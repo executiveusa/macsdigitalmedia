@@ -28,6 +28,19 @@ Finish with:
 
 `MACS-MSXX COMPLETE — REQUEST ARCHITECT REVIEW`
 
+## Mandatory design covenant
+
+Before creating or modifying any user-facing interface, read and obey:
+
+- `docs/design/brand-foundation.md`
+- `docs/design/krug-usability-gates.md`
+
+No page or component passes review merely because it is visually impressive. It must remain self-evident or immediately self-explanatory, scannable, predictable, accessible, and task-oriented.
+
+A design change must be rejected when it introduces avoidable cognitive load, hides expected navigation, makes clickability ambiguous, weakens hierarchy, creates visual noise, blocks mobile access, or uses animation without functional meaning.
+
+Clarity overrides novelty. Usability overrides cinematic presentation. Accessibility is part of design quality, not a later repair.
+
 ## Non-negotiable rules
 
 - Inspect files before editing; never hallucinate paths.
@@ -40,3 +53,4 @@ Finish with:
 - Preserve the supplied MACS logo as the brand source of truth.
 - Follow reduced-motion, keyboard, contrast, semantic HTML, and mobile requirements.
 - Keep public website responsibilities in this repository and agent execution responsibilities in `macs-agent-portal`.
+- Do not merge user-facing work that fails any mandatory gate in `docs/design/krug-usability-gates.md`.
