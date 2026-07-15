@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const currentYear = new Date().getFullYear();
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -34,7 +36,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="shell site-footer__legal">
-        <span>© {new Date().getFullYear()} MACS Digital Media</span>
+        <span>© {currentYear} MACS Digital Media</span>
         <span>Washington, USA</span>
         <Link href="/privacy">Privacy</Link>
         <Link href="/accessibility">Accessibility</Link>
