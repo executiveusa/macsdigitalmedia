@@ -1,5 +1,8 @@
 import { expect, test } from "@playwright/test";
 
+const heroVideoUrl =
+  "https://www.macsdigitalmedia.com/wp-content/uploads/2025/04/6015791_Business_Office_1280x720.webm";
+
 test("homepage passes the primary Krug trunk test at 1280 by 720", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
@@ -23,16 +26,19 @@ test("homepage passes the primary Krug trunk test at 1280 by 720", async ({ page
   const actionsBox = await primaryActions.boundingBox();
   expect(heroBox).not.toBeNull();
   expect(actionsBox).not.toBeNull();
+  expect(heroBox?.height ?? 0).toBeGreaterThanOrEqual(720 - 84);
   expect((actionsBox?.y ?? 721) + (actionsBox?.height ?? 0)).toBeLessThanOrEqual(720);
 
   await page.screenshot({ path: "test-results/home-desktop.png", fullPage: true });
 });
 
-test("hero video has a visible playback control", async ({ page }) => {
+test("full-page hero uses the approved MACS office video and exposes playback control", async ({ page }) => {
   await page.goto("/");
 
   const video = page.locator("video.hero__video");
   await expect(video).toBeAttached();
+  await expect(video.locator("source")).toHaveAttribute("src", heroVideoUrl);
+  await expect(video).toHaveCSS("object-fit", "cover");
   await video.evaluate((element: HTMLVideoElement) => element.pause());
 
   const control = page.getByRole("button", { name: /play background video/i });
@@ -49,7 +55,7 @@ test("reduced-motion mode removes the autoplaying background", async ({ page }) 
   await expect(page.getByRole("button", { name: /background video/i })).toHaveCount(0);
 });
 
-test("mobile navigation is usable without horizontal overflow", async ({ page }) => {
+test("mobile navigation and full-page hero work without horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
@@ -59,10 +65,14 @@ test("mobile navigation is usable without horizontal overflow", async ({ page })
   await expect(page.getByRole("navigation", { name: "Primary navigation" })).toBeVisible();
   await page.getByRole("button", { name: /close menu/i }).click();
 
+  const heroBox = await page.locator(".hero").boundingBox();
   const dimensions = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
     clientWidth: document.documentElement.clientWidth,
   }));
+
+  expect(heroBox).not.toBeNull();
+  expect(heroBox?.height ?? 0).toBeGreaterThanOrEqual(844 - 76);
   expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
 
   await page.screenshot({ path: "test-results/home-mobile-viewport.png" });
