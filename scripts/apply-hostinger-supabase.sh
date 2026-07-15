@@ -24,10 +24,10 @@ fi
 
 for migration in "${migrations[@]}"; do
   echo "Applying $(basename "$migration")"
-  psql "$SUPABASE_DB_URL" -X -v ON_ERROR_STOP=1 -f "$migration"
+  psql "$SUPABASE_DB_URL" -X -1 -v ON_ERROR_STOP=1 -f "$migration"
 done
 
-psql "$SUPABASE_DB_URL" -X -v ON_ERROR_STOP=1 <<'SQL'
+psql "$SUPABASE_DB_URL" -X -1 -v ON_ERROR_STOP=1 <<'SQL'
 do $$
 begin
   if to_regclass('public.founding_applications') is null then
