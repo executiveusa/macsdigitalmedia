@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 export async function GET() {
   return Response.json({
     services: [
@@ -16,9 +18,9 @@ export async function GET() {
           "Up to four supported connections",
           "AI Front Door or standardized five-page website rescue",
           "Human approval controls",
-          "Training, documentation, and ownership handoff"
-        ]
-      }
-    ]
+          "Training, documentation, and ownership handoff",
+        ],
+      },
+    ],
   });
 }

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { ApplicationPreviewForm } from "@/components/application-preview-form";
+import { ApplicationForm } from "@/components/application-form";
 
 export const metadata: Metadata = {
   title: "Apply for a Washington Founding Spot",
   description:
-    "Preview the application for the first MACS AI Operating System validation cohort in Washington.",
+    "Apply for the first MACS AI Operating System founding cohort in Washington.",
 };
 
 const fitCriteria = [
@@ -23,11 +23,11 @@ export default function ApplyPage() {
           <p className="eyebrow eyebrow--dark">Washington validation cohort</p>
           <h1 id="application-title">Apply for one of the first five founding installations.</h1>
           <p className="application-intro">
-            This application determines fit before a discovery call. It does not request sensitive documents, private client information, or system credentials.
+            This application determines fit before a discovery call. Do not submit private client records, passwords, credentials, medical information, or financial account information.
           </p>
 
-          <div className="preview-notice" role="status">
-            <strong>Architecture preview:</strong> the form is complete for usability review, but secure submission is intentionally disabled until the intake service and privacy controls are connected.
+          <div className="intake-notice">
+            <strong>What happens next:</strong> MACS reviews the application, confirms whether the project fits the founding scope, and contacts qualified organizations about a discovery call. Submitting does not create a contract or reserve a spot.
           </div>
 
           <h2>Good-fit organizations usually meet these conditions</h2>
@@ -38,7 +38,7 @@ export default function ApplyPage() {
           </ul>
         </div>
 
-        <ApplicationPreviewForm />
+        <ApplicationForm />
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeroVideo } from "@/components/hero-video";
 
 const systemParts = [
   {
@@ -97,12 +98,7 @@ export default function HomePage() {
       />
 
       <section className="hero" aria-labelledby="hero-title">
-        <video className="hero__video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-          <source
-            src="https://www.macsdigitalmedia.com/wp-content/uploads/2025/04/6015791_Business_Office_1280x720.webm"
-            type="video/webm"
-          />
-        </video>
+        <HeroVideo />
         <div className="hero__overlay" aria-hidden="true" />
         <div className="shell hero__content">
           <p className="eyebrow">Managed AI systems for Washington organizations</p>

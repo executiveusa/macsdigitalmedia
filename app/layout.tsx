@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
+import "./ms01.css";
+import "./ms01-nav.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.macsdigitalmedia.com"),
