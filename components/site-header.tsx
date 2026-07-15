@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navigation = [
-  { href: "/#what-we-build", label: "What we build" },
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#founding-offer", label: "Founding offer" },
+  { href: "/maxx", label: "Agent MAXX" },
+  { href: "/founding-launch", label: "Founding launch" },
+  { href: "/website-rescue", label: "Website rescue" },
+  { href: "/small-business", label: "Small business" },
   { href: "/#about", label: "About" },
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -42,10 +45,7 @@ export function SiteHeader() {
           aria-controls="primary-navigation"
           onClick={() => setOpen((current) => !current)}
         >
-          <span className="menu-button__label">Menu</span>
-          <span aria-hidden="true" className="menu-button__icon">
-            {open ? "×" : "☰"}
-          </span>
+          <span className="menu-button__label">{open ? "Close menu" : "Menu"}</span>
         </button>
 
         <nav
@@ -53,12 +53,26 @@ export function SiteHeader() {
           className={`primary-navigation${open ? " primary-navigation--open" : ""}`}
           aria-label="Primary navigation"
         >
-          {navigation.map((item) => (
-            <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
-          <Link className="button button--small button--primary" href="/apply" onClick={() => setOpen(false)}>
+          {navigation.map((item) => {
+            const isCurrent = item.href.startsWith("/#") ? false : pathname === item.href;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isCurrent ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+          <Link
+            className="button button--small button--primary"
+            href="/apply"
+            aria-current={pathname === "/apply" ? "page" : undefined}
+            onClick={() => setOpen(false)}
+          >
             Apply for a founding spot
           </Link>
         </nav>
