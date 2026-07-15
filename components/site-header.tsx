@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -29,12 +30,13 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-header__inner">
         <Link className="brand-link" href="/" aria-label="MACS Digital Media home" onClick={() => setOpen(false)}>
-          <img
+          <Image
             src="/logo.png"
             alt="MACS Digital Media"
             width={500}
             height={378}
             className="brand-logo"
+            priority
           />
         </Link>
 
