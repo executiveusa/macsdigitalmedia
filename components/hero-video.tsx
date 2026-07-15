@@ -15,7 +15,6 @@ export function HeroVideo() {
 
     if (mediaQuery.matches && video) {
       video.pause();
-      setPlaying(false);
     }
   }, []);
 
@@ -51,7 +50,6 @@ export function HeroVideo() {
         className="hero-video-control"
         type="button"
         aria-controls="macs-hero-video"
-        aria-pressed={!playing}
         onClick={togglePlayback}
       >
         {playing ? "Pause background video" : "Play background video"}
