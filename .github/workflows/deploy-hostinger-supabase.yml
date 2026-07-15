@@ -1,0 +1,42 @@
+name: Deploy Hostinger Supabase schema
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-supabase-production
+  cancel-in-progress: false
+
+jobs:
+  migrate-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install --yes postgresql-client
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Apply MACS migrations
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: npm run db:apply:hostinger
+
+      - name: Verify Supabase API connection
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run db:verify:hostinger
