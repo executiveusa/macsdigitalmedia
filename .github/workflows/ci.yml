@@ -12,7 +12,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,3 +33,20 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser usability tests
+        run: npm run test:e2e
+
+      - name: Upload visual review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macs-visual-review
+          path: |
+            test-results/**/*.png
+            playwright-report/**
+          if-no-files-found: warn
+          retention-days: 14
