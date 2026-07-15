@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "db:apply:hostinger": "bash scripts/apply-hostinger-supabase.sh",
+    "db:verify:hostinger": "node scripts/verify-hostinger-supabase.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",

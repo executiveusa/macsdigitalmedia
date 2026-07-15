@@ -89,3 +89,13 @@ test("founding application preserves native required-field validation", async ({
   expect(await nameField.evaluate((input: HTMLInputElement) => input.validity.valueMissing)).toBe(true);
   await expect(page.getByText(/your application was received/i)).toHaveCount(0);
 });
+
+test("Supabase health check fails safely when deployment secrets are absent", async ({ request }) => {
+  const response = await request.get("/api/health/supabase");
+  const body = await response.json();
+
+  expect(response.status()).toBe(503);
+  expect(body).toEqual({ ok: false, service: "supabase", status: "unavailable" });
+  expect(JSON.stringify(body)).not.toContain("SUPABASE");
+  expect(JSON.stringify(body)).not.toContain("http");
+});
