@@ -1,0 +1,16 @@
+.primary-navigation > a[aria-current="page"]:not(.button) {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.primary-navigation > .button[aria-current="page"] {
+  box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+.site-footer__legal a {
+  color: inherit;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
