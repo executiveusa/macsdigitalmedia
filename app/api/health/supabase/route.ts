@@ -18,7 +18,8 @@ export async function GET() {
     const supabase = getSupabaseAdmin();
     const { error } = await supabase
       .from("founding_applications")
-      .select("id", { count: "exact", head: true });
+      .select("id")
+      .limit(1);
 
     if (error) {
       console.error("Supabase health check failed:", error.message);
