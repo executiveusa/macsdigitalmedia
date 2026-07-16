@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroVideo } from "@/components/hero-video";
+import { ManagedAnnouncement } from "@/components/managed-announcement";
 import { Reveal } from "@/components/motion";
 import { siteCopy } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/server-preferences";
@@ -77,6 +78,8 @@ export default async function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      <ManagedAnnouncement locale={locale} />
 
       <Reveal>
         <section className="section section--light" id="what-we-build" aria-labelledby="system-title">
