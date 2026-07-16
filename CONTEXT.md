@@ -37,10 +37,23 @@ The first package includes:
 
 ## Repository boundary
 
-This repository owns the public MACS website, content, application journey, safe synthetic MAXX demonstration, SEO, structured data, and Vercel deployment.
+This repository owns the public MACS website, content, application journey, safe synthetic MAXX demonstration, SEO, structured data, machine-readable capability manifests, bounded site-operations endpoints, and Vercel deployment.
 
 It must not contain unrestricted agent execution, real client records, provider secrets, browser-control credentials, or production mission state. Those belong in the separate `macs-agent-portal` repository.
 
+## Agent-operated public site
+
+Agent MAXX may operate the public site only through allowlisted server-side capabilities:
+
+- inspect bounded deployment and dependency readiness
+- read allowlisted managed public content
+- update allowlisted managed public content with authentication, idempotency, validation, and revision history
+
+The first allowlisted content capability is the optional bilingual homepage announcement. The public site remains fully functional when managed content or the agent API is unavailable.
+
 ## Current phase
 
-MACS-MS00: architecture, product, design, and implementation foundation for the new public website.
+- Production baseline: PR #7 final bilingual design polish and motion system
+- Active bead: `ZTE-20260716-0001`
+- Active objective: authenticated, observable, reversible Agent MAXX site operations
+- Production promotion remains subject to the explicit Bambu approval gate
