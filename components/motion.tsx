@@ -3,7 +3,6 @@
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useSitePreferences } from "@/components/site-preferences";
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
@@ -14,12 +13,11 @@ export function MotionRoot({ children }: { children: ReactNode }) {
 export function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-  const { locale } = useSitePreferences();
 
   return (
-    <AnimatePresence mode="sync" initial={false}>
+    <AnimatePresence mode="wait" initial={false}>
       <m.div
-        key={`${pathname}:${locale}`}
+        key={pathname}
         className="page-transition"
         initial={reduceMotion ? false : { opacity: 1, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
