@@ -77,7 +77,6 @@ export function HeroVideo() {
           className="hero-video-control"
           type="button"
           aria-controls="macs-hero-video"
-          aria-pressed={!playing}
           onClick={togglePlayback}
         >
           <span className="hero-video-control__icon" aria-hidden="true">
