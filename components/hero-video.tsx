@@ -1,16 +1,33 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useSitePreferences } from "@/components/site-preferences";
 
 const videoSource =
   "https://www.macsdigitalmedia.com/wp-content/uploads/2025/04/6015791_Business_Office_1280x720.webm";
 const posterSource = "/media/macs-hero-poster.svg";
 
+function subscribeToHydration() {
+  return () => undefined;
+}
+
+function getHydratedSnapshot() {
+  return true;
+}
+
+function getServerHydratedSnapshot() {
+  return false;
+}
+
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { copy } = useSitePreferences();
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getHydratedSnapshot,
+    getServerHydratedSnapshot,
+  );
   const reduceMotion = Boolean(useReducedMotion());
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
@@ -18,7 +35,7 @@ export function HeroVideo() {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!hydrated || !video) return;
 
     if (reduceMotion || failed) {
       video.pause();
@@ -28,11 +45,11 @@ export function HeroVideo() {
     if (ready) {
       void video.play().catch(() => setPlaying(false));
     }
-  }, [failed, ready, reduceMotion]);
+  }, [failed, hydrated, ready, reduceMotion]);
 
   function togglePlayback() {
     const video = videoRef.current;
-    if (!video || reduceMotion || failed) return;
+    if (!hydrated || !video || reduceMotion || failed) return;
 
     if (video.paused) {
       void video.play().catch(() => setPlaying(false));
@@ -41,7 +58,7 @@ export function HeroVideo() {
     }
   }
 
-  const videoHidden = reduceMotion || failed || !ready;
+  const videoHidden = !hydrated || reduceMotion || failed || !ready;
 
   return (
     <>
@@ -50,11 +67,11 @@ export function HeroVideo() {
         id="macs-hero-video"
         ref={videoRef}
         className={`hero__video${videoHidden ? " hero__video--hidden" : ""}`}
-        autoPlay={!reduceMotion}
+        autoPlay={hydrated && !reduceMotion}
         muted
         loop
         playsInline
-        preload={reduceMotion ? "none" : "metadata"}
+        preload={hydrated && !reduceMotion ? "metadata" : "none"}
         poster={posterSource}
         aria-hidden="true"
         onCanPlay={() => {
@@ -72,7 +89,7 @@ export function HeroVideo() {
         <source src={videoSource} type="video/webm" />
       </video>
 
-      {!reduceMotion && !failed ? (
+      {hydrated && !reduceMotion && !failed ? (
         <button
           className="hero-video-control"
           type="button"
