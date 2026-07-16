@@ -1,64 +1,62 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal } from "@/components/motion";
+import { siteCopy } from "@/lib/i18n";
+import { getServerLocale } from "@/lib/server-preferences";
 
-export const metadata: Metadata = {
-  title: "Managed AI Systems for Small Businesses",
-  description: "A secondary MACS route for selected Washington small businesses with the same approval-first, client-owned operating model.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const copy = siteCopy[locale].smallBusiness;
+  return { title: copy.metadataTitle, description: copy.metadataDescription };
+}
 
-export default function SmallBusinessPage() {
+export default async function SmallBusinessPage() {
+  const locale = await getServerLocale();
+  const page = siteCopy[locale].smallBusiness;
+
   return (
     <article className="content-page">
-      <header className="content-page__hero">
-        <div className="shell">
-          <p className="eyebrow eyebrow--dark">Selected Washington small businesses</p>
-          <h1>Fix follow-up, meetings, scattered knowledge, and website friction without adding another disconnected tool.</h1>
-          <p className="content-page__lede">
-            The primary MACS founding cohort is built around nonprofit and social-purpose organizations. Selected small businesses may apply when the same two-workflow installation model fits the operation.
-          </p>
-          <div className="route-cta">
-            <Link className="button button--primary" href="/apply">
-              Apply for an assessment
-            </Link>
-            <Link className="button button--secondary" href="/founding-launch">
-              Review the launch scope
-            </Link>
+      <Reveal>
+        <header className="content-page__hero">
+          <div className="shell">
+            <p className="eyebrow eyebrow--dark">{page.eyebrow}</p>
+            <h1>{page.title}</h1>
+            <p className="content-page__lede">{page.lede}</p>
+            <div className="route-cta">
+              <Link className="button button--primary" href="/apply">{page.primaryCta}</Link>
+              <Link className="button button--secondary" href="/founding-launch">{page.secondaryCta}</Link>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </Reveal>
 
       <div className="shell content-page__body content-grid">
-        <div>
-          <h2>Best fit</h2>
-          <p>
-            MACS is most useful when a small team has meaningful demand but loses time to repetitive communication, information scattered across tools, inconsistent follow-up, or a website that does not route people correctly.
-          </p>
-        </div>
+        <Reveal>
+          <div>
+            <h2>{page.fitTitle}</h2>
+            <p>{page.fit}</p>
+          </div>
+        </Reveal>
 
         <div className="content-stack">
-          <section className="content-section">
-            <h3>Typical first workflows</h3>
-            <ul>
-              <li>New inquiry to qualified follow-up</li>
-              <li>Estimate or consultation request to scheduled next action</li>
-              <li>Meeting notes to assigned work and reminders</li>
-              <li>Frequently asked questions to approved answers and escalation</li>
-            </ul>
-          </section>
-
-          <section className="content-section">
-            <h3>Same ownership model</h3>
-            <p>
-              Small-business clients receive the same target model: separate data, defined permissions, human approval for consequential actions, documented workflow history, and an ownership handoff option instead of required long-term software lock-in.
-            </p>
-          </section>
-
-          <section className="content-section">
-            <h3>Not a fit for the founding scope</h3>
-            <p>
-              Projects requiring immediate mass outbound messaging, autonomous spending, regulated determinations, complex enterprise migration, or unlimited custom software are outside the standardized founding installation.
-            </p>
-          </section>
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.workflowsTitle}</h3>
+              <ul>{page.workflows.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          </Reveal>
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.ownershipTitle}</h3>
+              <p>{page.ownership}</p>
+            </section>
+          </Reveal>
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.notFitTitle}</h3>
+              <p>{page.notFit}</p>
+            </section>
+          </Reveal>
         </div>
       </div>
     </article>

@@ -1,0 +1,47 @@
+/* Maps the original MACS tokens to the semantic theme system introduced by polish.css. */
+
+html[data-resolved-theme="dark"],
+html[data-theme="dark"] {
+  --macs-warm-white: var(--page-bg);
+  --macs-ink: var(--text);
+  --macs-muted: var(--text-muted);
+  --macs-line: var(--line);
+  --macs-soft: var(--surface-soft);
+  --macs-surface: var(--surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"] {
+    --macs-warm-white: var(--page-bg);
+    --macs-ink: var(--text);
+    --macs-muted: var(--text-muted);
+    --macs-line: var(--line);
+    --macs-soft: var(--surface-soft);
+    --macs-surface: var(--surface);
+  }
+}
+
+html[data-resolved-theme="dark"] .offer-lock,
+html[data-theme="dark"] .offer-lock {
+  color: var(--text) !important;
+}
+
+html[data-resolved-theme="dark"] .route-cta .button--secondary,
+html[data-theme="dark"] .route-cta .button--secondary {
+  border-color: var(--macs-blue);
+  color: #dceaf5;
+}
+
+html[data-resolved-theme="dark"] .route-cta .button--secondary:hover,
+html[data-theme="dark"] .route-cta .button--secondary:hover {
+  border-color: #dceaf5;
+  background: rgba(58, 110, 165, 0.16);
+}
+
+.legal-section + .legal-section {
+  margin-top: 46px;
+}
+
+.legal-section h2 {
+  margin-top: 0;
+}

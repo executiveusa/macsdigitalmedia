@@ -1,84 +1,74 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal } from "@/components/motion";
+import { siteCopy } from "@/lib/i18n";
+import { getServerLocale } from "@/lib/server-preferences";
 
-export const metadata: Metadata = {
-  title: "Website Rescue and AI Front Door",
-  description: "How MACS preserves, repairs, or replaces a website before adding an AI Front Door.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const copy = siteCopy[locale].websiteRescue;
+  return { title: copy.metadataTitle, description: copy.metadataDescription };
+}
 
-const paths = [
-  ["Preserve", "The current website already earns trust.", "Keep the site, clarify the most important actions, and add the AI Front Door to the highest-value visitor journey."],
-  ["Rescue", "The content is useful but the path is unclear.", "Repair the homepage, navigation, mobile behavior, and primary inquiry or application flow while preserving usable content."],
-  ["Replace", "The current site damages confidence or cannot support the required journey.", "Install a standardized five-page foundation with clear messaging, accessible navigation, and the AI Front Door built in."],
-];
+export default async function WebsiteRescuePage() {
+  const locale = await getServerLocale();
+  const page = siteCopy[locale].websiteRescue;
 
-export default function WebsiteRescuePage() {
   return (
     <article className="content-page">
-      <header className="content-page__hero">
-        <div className="shell">
-          <p className="eyebrow eyebrow--dark">AI Front Door + website rescue</p>
-          <h1>The front door cannot work when the rest of the website destroys trust.</h1>
-          <p className="content-page__lede">
-            MACS audits the existing site before deciding whether to preserve it, repair the primary journey, or replace it with a focused foundation.
-          </p>
-          <div className="route-cta">
-            <Link className="button button--primary" href="/apply">
-              Apply for a website and workflow assessment
-            </Link>
+      <Reveal>
+        <header className="content-page__hero">
+          <div className="shell">
+            <p className="eyebrow eyebrow--dark">{page.eyebrow}</p>
+            <h1>{page.title}</h1>
+            <p className="content-page__lede">{page.lede}</p>
+            <div className="route-cta">
+              <Link className="button button--primary" href="/apply">{page.primaryCta}</Link>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </Reveal>
 
       <div className="shell content-page__body content-grid">
-        <div>
-          <h2>A decision based on usability and trust—not preference.</h2>
-          <p>
-            The audit looks at comprehension, navigation, mobile behavior, accessibility, credibility, content quality, and whether the site can support the agreed visitor journey.
-          </p>
-        </div>
+        <Reveal>
+          <div>
+            <h2>{page.introTitle}</h2>
+            <p>{page.intro}</p>
+          </div>
+        </Reveal>
 
         <div className="content-stack">
-          <section className="content-section">
-            <h3>Three possible paths</h3>
-            <table className="decision-table">
-              <thead>
-                <tr>
-                  <th>Path</th>
-                  <th>When it applies</th>
-                  <th>What MACS does</th>
-                </tr>
-              </thead>
-              <tbody>
-                {paths.map(([path, condition, action]) => (
-                  <tr key={path}>
-                    <td><strong>{path}</strong></td>
-                    <td>{condition}</td>
-                    <td>{action}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.pathsTitle}</h3>
+              <table className="decision-table">
+                <thead><tr>{page.pathHeaders.map((header) => <th key={header}>{header}</th>)}</tr></thead>
+                <tbody>
+                  {page.paths.map(([path, condition, action]) => (
+                    <tr key={path}>
+                      <td><strong>{path}</strong></td>
+                      <td>{condition}</td>
+                      <td>{action}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          </Reveal>
 
-          <section className="content-section">
-            <h3>What the AI Front Door does</h3>
-            <ol>
-              <li>Receives the visitor’s question, application, scheduling request, or service inquiry.</li>
-              <li>Checks approved organizational knowledge.</li>
-              <li>Collects missing information in a structured way.</li>
-              <li>Routes the request to the correct workflow and owner.</li>
-              <li>Prepares a response and pauses for human approval when required.</li>
-              <li>Records the next action and due date.</li>
-            </ol>
-          </section>
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.frontDoorTitle}</h3>
+              <ol>{page.frontDoorSteps.map((step) => <li key={step}>{step}</li>)}</ol>
+            </section>
+          </Reveal>
 
-          <section className="content-section">
-            <h3>What it does not do by default</h3>
-            <p>
-              It does not expose private records, invent eligibility decisions, promise unavailable services, send sensitive personalized messages without approval, or provide unrestricted access to the MAXX control plane.
-            </p>
-          </section>
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.doesNotTitle}</h3>
+              <p>{page.doesNot}</p>
+            </section>
+          </Reveal>
         </div>
       </div>
     </article>
