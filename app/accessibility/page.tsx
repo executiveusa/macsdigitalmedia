@@ -1,47 +1,58 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/motion";
+import { siteCopy } from "@/lib/i18n";
+import { getServerLocale } from "@/lib/server-preferences";
 
-export const metadata: Metadata = {
-  title: "Accessibility",
-  description: "MACS Digital Media accessibility standards and feedback process.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const copy = siteCopy[locale].accessibility;
+  return { title: copy.metadataTitle, description: copy.metadataDescription };
+}
 
-export default function AccessibilityPage() {
+export default async function AccessibilityPage() {
+  const locale = await getServerLocale();
+  const page = siteCopy[locale].accessibility;
+
   return (
     <article className="content-page">
-      <header className="content-page__hero">
-        <div className="shell">
-          <p className="eyebrow eyebrow--dark">Accessibility</p>
-          <h1>Core information and actions should work without special equipment or perfect conditions.</h1>
-          <p className="content-page__lede">
-            MACS treats accessibility as a product requirement rather than a final compliance repair.
-          </p>
-        </div>
-      </header>
+      <Reveal>
+        <header className="content-page__hero">
+          <div className="shell">
+            <p className="eyebrow eyebrow--dark">{page.eyebrow}</p>
+            <h1>{page.title}</h1>
+            <p className="content-page__lede">{page.lede}</p>
+          </div>
+        </header>
+      </Reveal>
 
       <div className="shell content-page__body legal-copy">
-        <h2>Current standard</h2>
-        <p>
-          The site is designed around semantic HTML, keyboard navigation, visible focus, readable contrast, responsive layouts, reduced-motion preferences, clear form labels, and status messages that can be announced by assistive technology.
-        </p>
+        <Reveal>
+          <section className="legal-section">
+            <h2>{page.standardTitle}</h2>
+            <p>{page.standard}</p>
+          </section>
+        </Reveal>
 
-        <h2>Primary task coverage</h2>
-        <ul>
-          <li>Navigation and the founding application can be used with a keyboard.</li>
-          <li>Important controls remain visible without hover.</li>
-          <li>The hero video includes a visible playback control and stops for reduced-motion preferences.</li>
-          <li>Form errors are placed near the relevant field and summarized through a live status region.</li>
-          <li>Mobile layouts preserve reading order and do not require horizontal scrolling.</li>
-        </ul>
+        <Reveal>
+          <section className="legal-section">
+            <h2>{page.coverageTitle}</h2>
+            <ul>{page.coverage.map((item) => <li key={item}>{item}</li>)}</ul>
+          </section>
+        </Reveal>
 
-        <h2>Known limitations</h2>
-        <p>
-          The site is still being expanded. New routes and the future MAXX demonstration must pass the same keyboard, mobile, contrast, motion, and semantic checks before production release.
-        </p>
+        <Reveal>
+          <section className="legal-section">
+            <h2>{page.limitationsTitle}</h2>
+            <p>{page.limitations}</p>
+          </section>
+        </Reveal>
 
-        <h2>Feedback</h2>
-        <p>
-          When contacting MACS about an accessibility problem, include the page, the task you were attempting, the device or assistive technology used when relevant, and what prevented completion. MACS will prioritize barriers that block access to information or application submission.
-        </p>
+        <Reveal>
+          <section className="legal-section">
+            <h2>{page.feedbackTitle}</h2>
+            <p>{page.feedback}</p>
+          </section>
+        </Reveal>
       </div>
     </article>
   );
