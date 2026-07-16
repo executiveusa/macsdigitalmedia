@@ -11,6 +11,7 @@ import "./ms01-nav.css";
 import "./hero-usability.css";
 import "./polish.css";
 import "./theme-compat.css";
+import "./agent-ops.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const preferences = await getServerPreferences();
