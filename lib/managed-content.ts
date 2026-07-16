@@ -1,10 +1,12 @@
 import "server-only";
 
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
-import type {
-  ManagedContentInput,
-  ManagedContentKey,
-  ManagedContentLocale,
+import {
+  managedContentKeys,
+  managedContentLocales,
+  type ManagedContentInput,
+  type ManagedContentKey,
+  type ManagedContentLocale,
 } from "@/lib/site-content-contract";
 
 export type ManagedContentRecord = {
@@ -45,6 +47,46 @@ function mapRow(row: ManagedContentRow): ManagedContentRecord {
     version: row.version,
     updatedBy: row.updated_by,
     updatedAt: row.updated_at,
+  };
+}
+
+function mapSnapshot(value: unknown): ManagedContentRecord {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error("Managed content update returned an invalid snapshot.");
+  }
+
+  const snapshot = value as Record<string, unknown>;
+  const key = snapshot.key;
+  const locale = snapshot.locale;
+
+  if (
+    typeof key !== "string"
+    || !managedContentKeys.includes(key as ManagedContentKey)
+    || typeof locale !== "string"
+    || !managedContentLocales.includes(locale as ManagedContentLocale)
+    || typeof snapshot.title !== "string"
+    || typeof snapshot.body !== "string"
+    || !(typeof snapshot.ctaLabel === "string" || snapshot.ctaLabel === null)
+    || !(typeof snapshot.ctaHref === "string" || snapshot.ctaHref === null)
+    || typeof snapshot.enabled !== "boolean"
+    || typeof snapshot.version !== "number"
+    || typeof snapshot.updatedBy !== "string"
+    || typeof snapshot.updatedAt !== "string"
+  ) {
+    throw new Error("Managed content update returned an invalid snapshot.");
+  }
+
+  return {
+    key: key as ManagedContentKey,
+    locale: locale as ManagedContentLocale,
+    title: snapshot.title,
+    body: snapshot.body,
+    ctaLabel: snapshot.ctaLabel,
+    ctaHref: snapshot.ctaHref,
+    enabled: snapshot.enabled,
+    version: snapshot.version,
+    updatedBy: snapshot.updatedBy,
+    updatedAt: snapshot.updatedAt,
   };
 }
 
@@ -116,9 +158,5 @@ export async function upsertManagedContent(
   });
 
   if (error) throw error;
-
-  const row = Array.isArray(data) ? data[0] : data;
-  if (!row) throw new Error("Managed content update returned no record.");
-
-  return mapRow(row as ManagedContentRow);
+  return mapSnapshot(Array.isArray(data) ? data[0] : data);
 }
