@@ -150,3 +150,44 @@ test("Supabase health check fails safely when deployment secrets are absent", as
   expect(JSON.stringify(body)).not.toContain("SUPABASE");
   expect(JSON.stringify(body)).not.toContain("http");
 });
+
+test("agent capability manifest is public, bounded, and secret-free", async ({ request }) => {
+  const response = await request.get("/.well-known/agent.json");
+  const body = await response.json();
+  const serialized = JSON.stringify(body);
+
+  expect(response.status()).toBe(200);
+  expect(body.site.name).toBe("MACS Digital Media");
+  expect(body.operator.name).toBe("Agent MAXX");
+  expect(body.capabilities.authenticatedOperations.allowlistedContentKeys).toEqual([
+    "home-announcement",
+  ]);
+  expect(body.safety.unrestrictedExecution).toBe(false);
+  expect(serialized).not.toContain("SERVICE_ROLE");
+  expect(serialized).not.toContain("SITE_AGENT_TOKEN=");
+});
+
+test("agent operations reject unauthenticated reads and writes before touching dependencies", async ({ request }) => {
+  const statusResponse = await request.get("/api/agent/status");
+  expect(statusResponse.status()).toBe(401);
+  expect(await statusResponse.json()).toEqual({ ok: false, error: "unauthorized" });
+
+  const readResponse = await request.get("/api/agent/content");
+  expect(readResponse.status()).toBe(401);
+
+  const writeResponse = await request.put("/api/agent/content", {
+    headers: { "Idempotency-Key": "ZTE-20260716-0001:test" },
+    data: {
+      key: "home-announcement",
+      locale: "en",
+      title: "Test announcement",
+      body: "This request must not reach the managed content store.",
+      ctaLabel: null,
+      ctaHref: null,
+      enabled: false,
+      revisionNote: "Verify unauthorized requests fail closed.",
+    },
+  });
+  expect(writeResponse.status()).toBe(401);
+  expect(await writeResponse.json()).toEqual({ ok: false, error: "unauthorized" });
+});
