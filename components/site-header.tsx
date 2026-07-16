@@ -35,10 +35,6 @@ export function SiteHeader() {
   ];
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape" && open) {
         setOpen(false);
