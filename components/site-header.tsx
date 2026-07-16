@@ -18,6 +18,14 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
+function getFocusableElements(container: HTMLElement) {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter((element) => element.getAttribute("aria-hidden") !== "true");
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
@@ -25,6 +33,7 @@ export function SiteHeader() {
   const common = copy.common;
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileNavRef = useRef<HTMLElement>(null);
 
   const navigation = [
     { href: "/maxx", label: common.maxx },
@@ -49,6 +58,45 @@ export function SiteHeader() {
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
     return () => document.body.classList.remove("menu-open");
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const navigationElement = mobileNavRef.current;
+    if (!navigationElement) return;
+
+    const focusFirst = window.requestAnimationFrame(() => {
+      getFocusableElements(navigationElement)[0]?.focus();
+    });
+
+    const containFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+
+      const focusable = getFocusableElements(navigationElement);
+      if (focusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !navigationElement.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !navigationElement.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", containFocus);
+    return () => {
+      window.cancelAnimationFrame(focusFirst);
+      document.removeEventListener("keydown", containFocus);
+    };
   }, [open]);
 
   const navigationLinks = navigation.map((item) => {
@@ -118,14 +166,19 @@ export function SiteHeader() {
             <m.button
               className="mobile-menu-backdrop"
               type="button"
+              tabIndex={-1}
               aria-label={common.closeMenu}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                menuButtonRef.current?.focus();
+              }}
               initial={reduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.2 }}
             />
             <m.nav
+              ref={mobileNavRef}
               id="mobile-primary-navigation"
               className="primary-navigation primary-navigation--mobile"
               aria-label={common.primaryNav}
