@@ -53,7 +53,7 @@ export function SitePreferencesProvider({
   const router = useRouter();
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
   const [theme, setThemeState] = useState<ThemePreference>(initialTheme);
-  const [systemTheme, setSystemTheme] = useState<ResolvedTheme>("light");
+  const [systemTheme, setSystemTheme] = useState<ResolvedTheme>(getSystemTheme);
   const [pendingLocaleChange, startLocaleTransition] = useTransition();
 
   const resolvedTheme: ResolvedTheme = theme === "system" ? systemTheme : theme;
