@@ -37,8 +37,10 @@ const manifest = {
     humanApprovalRequiredForProductionDeploy: true,
   },
   documentation: {
-    repositoryRules: "/AGENTS.md",
-    operationsRunbook: "/ops/runbooks/AGENT_SITE_OPERATIONS.md",
+    repositoryRules:
+      "https://github.com/executiveusa/macsdigitalmedia/blob/main/AGENTS.md",
+    operationsRunbook:
+      "https://github.com/executiveusa/macsdigitalmedia/blob/main/ops/runbooks/AGENT_SITE_OPERATIONS.md",
   },
 } as const;
 
