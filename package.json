@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test:unit": "node --experimental-strip-types --test tests/unit/*.test.ts",
+    "test:coverage": "node --experimental-strip-types --experimental-test-coverage --test-coverage-include=lib/site-content-contract.ts --test-coverage-include=lib/site-ops-auth.ts --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=80 --test tests/unit/*.test.ts",
     "test:e2e": "playwright test",
     "db:apply:hostinger": "bash scripts/apply-hostinger-supabase.sh",
     "db:verify:hostinger": "node scripts/verify-hostinger-supabase.mjs"
