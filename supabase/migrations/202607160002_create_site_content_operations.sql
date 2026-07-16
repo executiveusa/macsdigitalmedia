@@ -86,7 +86,7 @@ create or replace function public.macs_upsert_site_content(
   p_idempotency_key text,
   p_actor text
 )
-returns public.site_content_blocks
+returns jsonb
 language plpgsql
 security definer
 set search_path = public
@@ -94,6 +94,7 @@ as $$
 declare
   existing_revision public.site_content_revisions;
   result_row public.site_content_blocks;
+  result_snapshot jsonb;
 begin
   select *
     into existing_revision
@@ -101,12 +102,7 @@ begin
    where idempotency_key = p_idempotency_key;
 
   if found then
-    select *
-      into result_row
-      from public.site_content_blocks
-     where content_key = existing_revision.content_key
-       and locale = existing_revision.locale;
-    return result_row;
+    return existing_revision.snapshot;
   end if;
 
   insert into public.site_content_blocks (
@@ -142,6 +138,19 @@ begin
     updated_by = excluded.updated_by
   returning * into result_row;
 
+  result_snapshot := jsonb_build_object(
+    'key', result_row.content_key,
+    'locale', result_row.locale,
+    'title', result_row.title,
+    'body', result_row.body,
+    'ctaLabel', result_row.cta_label,
+    'ctaHref', result_row.cta_href,
+    'enabled', result_row.enabled,
+    'version', result_row.version,
+    'updatedBy', result_row.updated_by,
+    'updatedAt', result_row.updated_at
+  );
+
   insert into public.site_content_revisions (
     content_key,
     locale,
@@ -155,24 +164,13 @@ begin
     result_row.content_key,
     result_row.locale,
     result_row.version,
-    jsonb_build_object(
-      'contentKey', result_row.content_key,
-      'locale', result_row.locale,
-      'title', result_row.title,
-      'body', result_row.body,
-      'ctaLabel', result_row.cta_label,
-      'ctaHref', result_row.cta_href,
-      'enabled', result_row.enabled,
-      'version', result_row.version,
-      'updatedBy', result_row.updated_by,
-      'updatedAt', result_row.updated_at
-    ),
+    result_snapshot,
     p_revision_note,
     p_idempotency_key,
     p_actor
   );
 
-  return result_row;
+  return result_snapshot;
 exception
   when unique_violation then
     select *
@@ -180,13 +178,7 @@ exception
       from public.site_content_revisions
      where idempotency_key = p_idempotency_key;
 
-    select *
-      into result_row
-      from public.site_content_blocks
-     where content_key = existing_revision.content_key
-       and locale = existing_revision.locale;
-
-    return result_row;
+    return existing_revision.snapshot;
 end;
 $$;
 
