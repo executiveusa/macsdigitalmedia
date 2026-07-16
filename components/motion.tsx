@@ -46,7 +46,7 @@ export function Reveal({
   return (
     <m.div
       className={className ? `reveal ${className}` : "reveal"}
-      initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+      initial={reduceMotion ? false : { opacity: 1, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.16, margin: "0px 0px -8% 0px" }}
       transition={{ duration: reduceMotion ? 0 : 0.62, delay: reduceMotion ? 0 : delay, ease: easing }}
@@ -62,7 +62,7 @@ export function StaggerItem({ children, className }: { children: ReactNode; clas
   return (
     <m.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      initial={reduceMotion ? false : { opacity: 1, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: reduceMotion ? 0 : 0.45, ease: easing }}
