@@ -37,6 +37,14 @@ function persistCookie(name: string, value: string) {
   document.cookie = `${name}=${encodeURIComponent(value)}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
 }
 
+function persistLocalStorage(name: string, value: string) {
+  try {
+    window.localStorage.setItem(name, value);
+  } catch {
+    // The same-site cookie remains the authoritative server preference.
+  }
+}
+
 function subscribeToSystemTheme(callback: () => void) {
   const media = window.matchMedia("(prefers-color-scheme: dark)");
   media.addEventListener("change", callback);
@@ -88,8 +96,8 @@ export function SitePreferencesProvider({
       if (nextLocale === locale) return;
 
       setLocaleState(nextLocale);
-      window.localStorage.setItem("macs-locale", nextLocale);
       persistCookie("macs-locale", nextLocale);
+      persistLocalStorage("macs-locale", nextLocale);
       startLocaleTransition(() => router.refresh());
     },
     [locale, router],
@@ -97,8 +105,8 @@ export function SitePreferencesProvider({
 
   const setTheme = useCallback((nextTheme: ThemePreference) => {
     setThemeState(nextTheme);
-    window.localStorage.setItem("macs-theme", nextTheme);
     persistCookie("macs-theme", nextTheme);
+    persistLocalStorage("macs-theme", nextTheme);
   }, []);
 
   const value = useMemo<PreferencesContextValue>(
