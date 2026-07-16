@@ -10,6 +10,7 @@ import "./ms01.css";
 import "./ms01-nav.css";
 import "./hero-usability.css";
 import "./polish.css";
+import "./theme-compat.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.macsdigitalmedia.com"),
