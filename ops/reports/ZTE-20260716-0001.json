@@ -1,0 +1,40 @@
+{
+  "bead_id": "ZTE-20260716-0001",
+  "task": "Agent-operated production hardening",
+  "stage": 3,
+  "status": "testing",
+  "repository": "executiveusa/macsdigitalmedia",
+  "branch": "zte/ZTE-20260716-0001/agent-site-operations",
+  "base_commit": "91ef2654b163018e79407cde8d04789874293b46",
+  "risk_tier": "MEDIUM",
+  "production_gate": "Explicit Bambu approval required before merge or production promotion",
+  "cost_used_cents": 0,
+  "services_affected": [
+    "Vercel public website",
+    "Hostinger self-hosted Supabase"
+  ],
+  "secrets_required": [
+    "SUPABASE_URL",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_DB_URL",
+    "SITE_AGENT_TOKEN"
+  ],
+  "secret_values_recorded": false,
+  "verification": {
+    "lint": "pending",
+    "typecheck": "pending",
+    "unit_coverage": "pending",
+    "build": "pending",
+    "playwright": "pending",
+    "screenshots": "pending",
+    "code_review": "pending",
+    "vercel_preview": "pending",
+    "authenticated_preview_smoke": "blocked_by_preview_secrets",
+    "hostinger_migration": "blocked_by_production_gate"
+  },
+  "rollback": {
+    "application": "Revert the eventual squash merge and redeploy the prior production commit.",
+    "operations_shutdown": "Remove or rotate SITE_AGENT_TOKEN and redeploy.",
+    "database": "Preserve content and revision tables unless a separately approved destructive migration is executed."
+  }
+}
