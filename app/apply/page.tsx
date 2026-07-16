@@ -34,9 +34,7 @@ export default async function ApplyPage() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <ApplicationForm />
-        </Reveal>
+        <ApplicationForm />
       </div>
     </section>
   );
