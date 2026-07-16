@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useSitePreferences } from "@/components/site-preferences";
 
@@ -10,19 +11,10 @@ const posterSource = "/media/macs-hero-poster.svg";
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { copy } = useSitePreferences();
+  const reduceMotion = Boolean(useReducedMotion());
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReduceMotion(mediaQuery.matches);
-
-    updatePreference();
-    mediaQuery.addEventListener("change", updatePreference);
-    return () => mediaQuery.removeEventListener("change", updatePreference);
-  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
