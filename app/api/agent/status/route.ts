@@ -16,10 +16,10 @@ function json(body: unknown, status: number, extraHeaders?: Record<string, strin
   });
 }
 
-async function dependencyReady(table: string) {
+async function dependencyReady(table: string, column: string) {
   try {
     const supabase = getSupabaseAdmin();
-    const { error } = await supabase.from(table).select("id").limit(1);
+    const { error } = await supabase.from(table).select(column).limit(1);
     return !error;
   } catch {
     return false;
@@ -36,8 +36,8 @@ export async function GET(request: Request) {
   }
 
   const [applicationIntakeReady, contentStoreReady] = await Promise.all([
-    dependencyReady("founding_applications"),
-    dependencyReady("site_content_blocks"),
+    dependencyReady("founding_applications", "id"),
+    dependencyReady("site_content_blocks", "content_key"),
   ]);
   const ready = applicationIntakeReady && contentStoreReady;
 
