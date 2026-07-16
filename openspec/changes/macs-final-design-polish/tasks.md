@@ -47,11 +47,18 @@
 
 ## Gate 7 — Verification
 
-- [ ] Lint
-- [ ] Typecheck
-- [ ] Production build
-- [ ] Chromium browser tests
-- [ ] Screenshot artifact review
-- [ ] Vercel preview review
-- [ ] Resolve all P0/P1 code-review findings
-- [ ] Stop for merge approval
+- [x] Lint
+- [x] Typecheck
+- [x] Production build
+- [x] Chromium browser tests
+- [x] Screenshot artifact review
+- [x] Vercel preview reached Ready
+- [x] Resolve all P0/P1 code-review findings
+- [x] Stop for merge approval
+
+Verification evidence before this checkpoint:
+
+- GitHub Actions run `29467796382`
+- Visual artifact `8363618828`
+- Vercel and CodeRabbit commit checks succeeded on the reviewed head
+- Production remains unchanged until explicit merge approval
