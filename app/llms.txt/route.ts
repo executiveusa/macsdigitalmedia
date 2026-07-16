@@ -17,17 +17,22 @@ The first five accepted organizations enter at $7,500. Later cohorts enter at pu
 ## Safety and ownership
 Consequential actions require human approval during the supervised launch. Client organizations receive separate, client-owned deployments and a documented handoff option.
 
+## Agent boundary
+The public website exposes a bounded machine-readable capability manifest and authenticated allowlisted content operations. Unrestricted execution, provider credentials, real client records, browser-control access, and production mission state are not available from this website.
+
 ## Public resources
 - Website: https://www.macsdigitalmedia.com/
 - Application: https://www.macsdigitalmedia.com/apply
 - Company data: https://www.macsdigitalmedia.com/api/public/company
 - Service data: https://www.macsdigitalmedia.com/api/public/services
+- Agent capability manifest: https://www.macsdigitalmedia.com/.well-known/agent.json
 `;
 
   return new Response(body, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=3600",
+      "X-Content-Type-Options": "nosniff",
     },
   });
 }
