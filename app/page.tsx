@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroVideo } from "@/components/hero-video";
 import { Reveal } from "@/components/motion";
-import { siteCopy } from "@/lib/i18n";
+import { offerCopy } from "@/lib/offer-copy";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = siteCopy[locale].home;
+  const copy = offerCopy[locale].home;
 
   return {
     title: copy.metadataTitle,
@@ -21,7 +21,7 @@ const organizationSchema = {
   name: "MACS Digital Media",
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
-  description: "Managed, client-owned AI operating systems for Washington organizations.",
+  description: "Client-owned AI operations systems for Washington organizations.",
   areaServed: {
     "@type": "State",
     name: "Washington",
@@ -31,21 +31,26 @@ const organizationSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "MACS AI Operating System installation",
+  name: "MACS 90-Day Client-Owned AI Installation",
   provider: {
     "@type": "Organization",
     name: "MACS Digital Media",
   },
   areaServed: "Washington, USA",
-  serviceType: "Managed AI operating system installation and implementation",
+  serviceType: "Client-owned AI operations system installation",
   description:
-    "A 90-day installation combining an organization knowledge system, managed AI operator, AI Front Door, approval controls, and two production workflows.",
+    "A defined 90-day installation combining approved organizational knowledge, a managed AI operator, an AI Front Door, human approval controls, activity history, and two tested workflows.",
+  offers: {
+    "@type": "Offer",
+    price: "7500",
+    priceCurrency: "USD",
+    availability: "https://schema.org/LimitedAvailability",
+  },
 };
 
 export default async function HomePage() {
   const locale = await getServerLocale();
-  const copy = siteCopy[locale];
-  const home = copy.home;
+  const home = offerCopy[locale].home;
 
   return (
     <>
@@ -77,6 +82,32 @@ export default async function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      <Reveal>
+        <section className="section section--soft" id="operational-problem" aria-labelledby="problem-title">
+          <div className="shell">
+            <div className="section-heading">
+              <p className="eyebrow eyebrow--dark">{home.problemEyebrow}</p>
+              <h2 id="problem-title">{home.problemTitle}</h2>
+              <p>{home.problemIntro}</p>
+            </div>
+            <div className="outcome-grid">
+              <article className="outcome-card outcome-card--before">
+                <h3>{home.beforeTitle}</h3>
+                <ul>
+                  {home.before.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+              <article className="outcome-card outcome-card--after">
+                <h3>{home.afterTitle}</h3>
+                <ul>
+                  {home.after.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
       <Reveal>
         <section className="section section--light" id="what-we-build" aria-labelledby="system-title">
@@ -145,6 +176,28 @@ export default async function HomePage() {
       </Reveal>
 
       <Reveal>
+        <section className="section section--dark" id="about" aria-labelledby="founder-title">
+          <div className="shell founder-layout">
+            <div>
+              <p className="eyebrow">{home.founderEyebrow}</p>
+              <h2 id="founder-title">{home.founderTitle}</h2>
+            </div>
+            <div className="founder-copy">
+              {home.founderParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+            <div className="founder-principles">
+              {home.founderPrinciples.map(([title, body]) => (
+                <article className="founder-principle" key={title}>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
         <section className="section section--soft" id="how-it-works" aria-labelledby="launch-title">
           <div className="shell">
             <div className="section-heading">
@@ -195,15 +248,38 @@ export default async function HomePage() {
       </Reveal>
 
       <Reveal>
-        <section className="section section--dark" id="about" aria-labelledby="about-title">
-          <div className="shell about-layout">
-            <div>
-              <p className="eyebrow">{home.aboutEyebrow}</p>
-              <h2 id="about-title">{home.aboutTitle}</h2>
+        <section className="section section--soft" aria-labelledby="guarantee-title">
+          <div className="shell">
+            <div className="guarantee-panel">
+              <p className="eyebrow eyebrow--dark">{home.guaranteeEyebrow}</p>
+              <h2 id="guarantee-title">{home.guaranteeTitle}</h2>
+              <p>{home.guaranteeBody}</p>
             </div>
-            <div className="about-copy">
-              {home.aboutParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            <div className="scope-grid">
+              <article>
+                <h3>{home.responsibilityTitle}</h3>
+                <p>{home.responsibilityBody}</p>
+              </article>
+              <article>
+                <h3>{home.scopeTitle}</h3>
+                <p>{home.scopeBody}</p>
+              </article>
             </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="section section--light" aria-labelledby="fit-title">
+          <div className="shell fit-layout">
+            <div className="section-heading">
+              <p className="eyebrow eyebrow--dark">{home.fitEyebrow}</p>
+              <h2 id="fit-title">{home.fitTitle}</h2>
+              <p>{home.fitIntro}</p>
+            </div>
+            <ul className="fit-list">
+              {home.fitCriteria.map((item) => <li key={item}>{item}</li>)}
+            </ul>
           </div>
         </section>
       </Reveal>
