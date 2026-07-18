@@ -54,8 +54,8 @@ test("founding launch defines scope and client responsibilities", async ({ page 
   await page.goto("/founding-launch");
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Install two working AI workflows");
-  await expect(page.getByRole("term", { name: "One workflow" })).toBeVisible();
-  await expect(page.getByRole("term", { name: "One supported connection" })).toBeVisible();
+  await expect(page.locator("dt").filter({ hasText: /^One workflow$/ })).toBeVisible();
+  await expect(page.locator("dt").filter({ hasText: /^One supported connection$/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: /client participation required/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /outside the standardized founding installation/i })).toBeVisible();
 });
