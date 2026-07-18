@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/motion";
-import { siteCopy } from "@/lib/i18n";
+import { offerCopy } from "@/lib/offer-copy";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = siteCopy[locale].foundingLaunch;
+  const copy = offerCopy[locale].foundingLaunch;
   return { title: copy.metadataTitle, description: copy.metadataDescription };
 }
 
 export default async function FoundingLaunchPage() {
   const locale = await getServerLocale();
-  const copy = siteCopy[locale];
-  const page = copy.foundingLaunch;
+  const page = offerCopy[locale].foundingLaunch;
 
   return (
     <article className="content-page">
@@ -24,7 +23,7 @@ export default async function FoundingLaunchPage() {
             <h1>{page.title}</h1>
             <p className="content-page__lede">{page.lede}</p>
             <div className="route-cta">
-              <Link className="button button--primary" href="/apply">{copy.common.apply}</Link>
+              <Link className="button button--primary" href="/apply">{page.primaryCta}</Link>
             </div>
           </div>
         </header>
@@ -43,6 +42,20 @@ export default async function FoundingLaunchPage() {
             <section className="content-section">
               <h3>{page.includedTitle}</h3>
               <ul>{page.included.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          </Reveal>
+
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.definitionsTitle}</h3>
+              <dl className="definition-list">
+                {page.definitions.map(([term, definition]) => (
+                  <div key={term}>
+                    <dt>{term}</dt>
+                    <dd>{definition}</dd>
+                  </div>
+                ))}
+              </dl>
             </section>
           </Reveal>
 
@@ -73,9 +86,31 @@ export default async function FoundingLaunchPage() {
           </Reveal>
 
           <Reveal>
-            <section className="content-section">
+            <section className="content-section content-section--guarantee">
               <h3>{page.acceptanceTitle}</h3>
               <p>{page.acceptance}</p>
+            </section>
+          </Reveal>
+
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.clientTitle}</h3>
+              <p>{page.clientCommitment}</p>
+            </section>
+          </Reveal>
+
+          <Reveal>
+            <section className="content-section">
+              <h3>{page.exclusionsTitle}</h3>
+              <p>{page.exclusions}</p>
+            </section>
+          </Reveal>
+
+          <Reveal>
+            <section className="content-section content-section--final">
+              <h3>{page.finalTitle}</h3>
+              <p>{page.finalBody}</p>
+              <Link className="button button--primary" href="/apply">{page.finalCta}</Link>
             </section>
           </Reveal>
         </div>
