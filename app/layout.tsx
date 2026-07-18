@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SitePreferencesProvider } from "@/components/site-preferences";
 import { siteCopy } from "@/lib/i18n";
+import { offerCopy } from "@/lib/offer-copy";
 import { getServerPreferences } from "@/lib/server-preferences";
 import "./globals.css";
 import "./ms01.css";
@@ -11,10 +12,11 @@ import "./ms01-nav.css";
 import "./hero-usability.css";
 import "./polish.css";
 import "./theme-compat.css";
+import "./offer.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const preferences = await getServerPreferences();
-  const home = siteCopy[preferences.locale].home;
+  const home = offerCopy[preferences.locale].home;
 
   return {
     metadataBase: new URL("https://www.macsdigitalmedia.com"),
