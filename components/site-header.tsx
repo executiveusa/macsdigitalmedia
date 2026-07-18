@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { PreferenceControls } from "@/components/preference-controls";
 import { useSitePreferences } from "@/components/site-preferences";
+import { offerCopy } from "@/lib/offer-copy";
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -29,8 +30,9 @@ function getFocusableElements(container: HTMLElement) {
 export function SiteHeader() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-  const { copy } = useSitePreferences();
+  const { copy, locale } = useSitePreferences();
   const common = copy.common;
+  const primaryCta = offerCopy[locale].common.primaryCta;
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLElement>(null);
@@ -121,7 +123,7 @@ export function SiteHeader() {
       aria-current={pathname === "/apply" ? "page" : undefined}
       onClick={() => setOpen(false)}
     >
-      {common.apply}
+      {primaryCta}
     </Link>
   );
 
