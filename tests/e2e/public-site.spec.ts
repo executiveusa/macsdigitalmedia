@@ -74,6 +74,38 @@ test("hero keeps branded media in normal and degraded states", async ({ page }) 
   await expect(page.getByRole("button", { name: /play background video|pause background video/i })).toBeVisible();
 });
 
+test("mobile hero separates copy from video at 390 and 430 pixels", async ({ page }) => {
+  for (const width of [390, 430]) {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 932 });
+    await page.goto("/");
+
+    const heroContent = page.locator(".hero__content");
+    const video = page.locator("video.hero__video");
+    const actions = page.getByLabel("Primary actions");
+    const primaryAction = actions.getByRole("link", { name: /apply for a founding installation/i });
+
+    const contentBox = await heroContent.boundingBox();
+    const videoBox = await video.boundingBox();
+    const actionsBox = await actions.boundingBox();
+    const primaryActionBox = await primaryAction.boundingBox();
+
+    expect(contentBox).not.toBeNull();
+    expect(videoBox).not.toBeNull();
+    expect(actionsBox).not.toBeNull();
+    expect(primaryActionBox).not.toBeNull();
+    expect((videoBox?.y ?? 0)).toBeGreaterThanOrEqual((contentBox?.y ?? 0) + (contentBox?.height ?? 0) - 1);
+    expect(videoBox?.width ?? 0).toBeGreaterThanOrEqual(width - 2);
+    expect(Math.abs((primaryActionBox?.width ?? 0) - (actionsBox?.width ?? 0))).toBeLessThanOrEqual(1);
+
+    await expect(page.locator(".hero__overlay")).toBeHidden();
+    await expect(video).toHaveCSS("aspect-ratio", "16 / 9");
+    await expect(video).toHaveCSS("object-fit", "cover");
+    await expect(video).toHaveCSS("object-position", "40% 50%");
+    await expect(page.getByRole("button", { name: /play background video|pause background video/i })).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+  }
+});
+
 test("reduced-motion mode keeps the static hero identity and removes playback controls", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
