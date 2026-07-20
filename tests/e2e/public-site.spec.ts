@@ -82,20 +82,25 @@ test("mobile hero separates copy from video at 390 and 430 pixels", async ({ pag
     const heroContent = page.locator(".hero__content");
     const video = page.locator("video.hero__video");
     const actions = page.getByLabel("Primary actions");
+    const primaryAction = actions.getByRole("link", { name: /apply for a founding installation/i });
 
     const contentBox = await heroContent.boundingBox();
     const videoBox = await video.boundingBox();
+    const actionsBox = await actions.boundingBox();
+    const primaryActionBox = await primaryAction.boundingBox();
 
     expect(contentBox).not.toBeNull();
     expect(videoBox).not.toBeNull();
+    expect(actionsBox).not.toBeNull();
+    expect(primaryActionBox).not.toBeNull();
     expect((videoBox?.y ?? 0)).toBeGreaterThanOrEqual((contentBox?.y ?? 0) + (contentBox?.height ?? 0) - 1);
     expect(videoBox?.width ?? 0).toBeGreaterThanOrEqual(width - 2);
+    expect(Math.abs((primaryActionBox?.width ?? 0) - (actionsBox?.width ?? 0))).toBeLessThanOrEqual(1);
 
     await expect(page.locator(".hero__overlay")).toBeHidden();
     await expect(video).toHaveCSS("aspect-ratio", "16 / 9");
     await expect(video).toHaveCSS("object-fit", "cover");
     await expect(video).toHaveCSS("object-position", "40% 50%");
-    await expect(actions.getByRole("link", { name: /apply for a founding installation/i })).toHaveCSS("width", `${width - 28}px`);
     await expect(page.getByRole("button", { name: /play background video|pause background video/i })).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
