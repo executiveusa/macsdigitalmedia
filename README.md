@@ -35,6 +35,8 @@ npm run build
 Every builder must read:
 
 - `AGENTS.md`
+- `docs/icm/HUMAN_MACHINE_CONTRACT.md`
+- `docs/icm/ICM_CORE.md`
 - `docs/design/brand-foundation.md`
 - `docs/design/krug-usability-gates.md`
 
@@ -42,4 +44,4 @@ The public website must remain clear, scannable, accessible, mobile-first, and h
 
 ## Repository boundary
 
-This repository owns public marketing, content, application UX, public data endpoints, and a synthetic MAXX demonstration. Unrestricted agent execution, real client records, provider credentials, and production mission state belong in `executiveusa/macs-agent-portal`.
+This repository owns public marketing, content, application UX, public data endpoints, and a synthetic MAXX demonstration. Unrestricted agent execution, real client records, provider credentials, and production mission state belong in `executiveusa/maxx-migrations-agentic-systems`, the canonical private ICM/execution brain.
