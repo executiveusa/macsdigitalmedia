@@ -1,5 +1,10 @@
 # Agent Operating Rules
 
+## Governing authority
+
+Before any meaningful work, read `docs/icm/HUMAN_MACHINE_CONTRACT.md` and `docs/icm/ICM_CORE.md`. They define the Human ↔ Machine Contract, ICM truth model, sovereignty rules, approval gates, proactivity requirement, and voice-first/disappearing-interface north star. Repository execution conventions must not weaken those controls.
+
+
 ## Roles
 
 - Architect: owns product requirements, repository boundaries, architecture decisions, acceptance criteria, and review.
@@ -53,5 +58,7 @@ Clarity overrides novelty. Usability overrides cinematic presentation. Accessibi
 - Keep customer-facing vendor names out of core product copy unless explicitly approved.
 - Preserve the supplied MACS logo as the brand source of truth.
 - Follow reduced-motion, keyboard, contrast, semantic HTML, and mobile requirements.
-- Keep public website responsibilities in this repository and agent execution responsibilities in `macs-agent-portal`.
+- Keep public website responsibilities in this repository and agent execution/ICM responsibilities in `executiveusa/maxx-migrations-agentic-systems`. Do not introduce another competing control plane without an explicit architecture decision.
+- Do not turn the human into middleware. Safe, authorized, reversible machine work should be executed or prepared proactively; humans are reserved for truth, priorities, judgment, relationships, authority, and acceptance.
+- Voice-first means fewer interface demands, not weaker controls. Voice commands pass through the same authentication, policy, approval, evidence, and rollback gates as text.
 - Do not merge user-facing work that fails any mandatory gate in `docs/design/krug-usability-gates.md` or `docs/design/pauli-design-guardrails.md`.
