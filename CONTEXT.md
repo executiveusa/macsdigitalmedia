@@ -2,7 +2,9 @@
 
 ## Product direction
 
-MACS Digital Media installs and manages client-owned AI operating systems for Washington organizations.
+MACS Digital Media installs and manages client-owned AI operating systems. The public site is the storefront; `executiveusa/maxx-migrations-agentic-systems` is the canonical private ICM and agentic execution brain.
+
+MAXX is voice-first and aims to make the interface progressively disappear: the machine performs safe digital work and brings humans only truth, priority, judgment, relationship, authority, and acceptance decisions.
 
 Primary audience: nonprofit and social-purpose organization leaders with approximately 3–50 staff who are losing time to administrative work, scattered knowledge, missed follow-up, and disconnected software.
 
@@ -39,7 +41,7 @@ The first package includes:
 
 This repository owns the public MACS website, content, application journey, safe synthetic MAXX demonstration, SEO, structured data, and Vercel deployment.
 
-It must not contain unrestricted agent execution, real client records, provider secrets, browser-control credentials, or production mission state. Those belong in the separate `macs-agent-portal` repository.
+It must not contain unrestricted agent execution, real client records, provider secrets, browser-control credentials, or production mission state. Those belong in the canonical `executiveusa/maxx-migrations-agentic-systems` repository.
 
 ## Current phase
 
