@@ -45,7 +45,12 @@ test("homepage makes the outcome, founder story, scope, and guarantee visible", 
 
   await expect(page.getByRole("heading", { name: /important work is being lost/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /powerful technology should create capability/i })).toBeVisible();
-  await expect(page.getByText(/began in a Pacific Northwest basement/i)).toBeVisible();
+  await expect(page.getByText(/father-and-son company led by Stacy and Stavarai/i)).toBeVisible();
+  await expect(page.getByText(/owner of PostaTees/i)).toBeVisible();
+  await expect(page.getByText("Stacy", { exact: true })).toBeVisible();
+  await expect(page.getByText("Stavarai", { exact: true })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Stavarai and his father Stacy together" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Stavarai and Stacy standing together by the waterfront at night" })).toBeVisible();
   await expect(page.getByRole("heading", { name: /two agreed workflows must pass/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /what remains outside the founding scope/i })).toBeVisible();
 });
@@ -125,7 +130,7 @@ test("language and theme controls persist clear interface states", async ({ page
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Sé dueño del sistema de IA",
   );
-  await expect(page.getByText(/comenzó en un sótano del noroeste del Pacífico/i)).toBeVisible();
+  await expect(page.getByText(/empresa de padre e hijo dirigida por Stacy y Stavarai/i)).toBeVisible();
   await page.screenshot({ path: "test-results/theme-language-spanish.png" });
 
   const themeToggle = page.locator(".theme-toggle");

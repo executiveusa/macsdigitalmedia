@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { HeroVideo } from "@/components/hero-video";
 import { Reveal } from "@/components/motion";
@@ -83,6 +84,14 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <nav className="page-path" aria-label={locale === "es-MX" ? "Recorrido de la página" : "Page path"}>
+        <div className="shell page-path__inner">
+          <a href="#operational-problem"><span>1</span>{locale === "es-MX" ? "Identifica el problema" : "Name the problem"}</a>
+          <a href="#system-work"><span>2</span>{locale === "es-MX" ? "Mira el flujo" : "See the workflow"}</a>
+          <a href="#founding-offer"><span>3</span>{locale === "es-MX" ? "Revisa la oferta" : "Review the offer"}</a>
+        </div>
+      </nav>
+
       <Reveal>
         <section className="section section--soft" id="operational-problem" aria-labelledby="problem-title">
           <div className="shell">
@@ -104,6 +113,44 @@ export default async function HomePage() {
                   {home.after.map((item) => <li key={item}>{item}</li>)}
                 </ul>
               </article>
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="section section--dark" id="about" aria-labelledby="founder-title">
+          <div className="shell founder-layout">
+            <div className="founder-heading">
+              <p className="eyebrow">{home.founderEyebrow}</p>
+              <h2 id="founder-title">{home.founderTitle}</h2>
+            </div>
+            <div className="founder-copy">
+              {home.founderParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+            <div className="founder-profiles" aria-label={locale === "es-MX" ? "Fundadores de MACS" : "MACS founders"}>
+              {home.founderProfiles.map(([name, role]) => (
+                <p key={name}><strong>{name}</strong><span>{role}</span></p>
+              ))}
+            </div>
+            <div className="founder-gallery">
+              {home.founderGallery.map(([src, alt, title, caption], index) => (
+                <figure className={index === 0 ? "founder-photo founder-photo--primary" : "founder-photo"} key={src}>
+                  <Image src={src} alt={alt} width={1152} height={1536} sizes={index === 0 ? "(max-width: 680px) 100vw, 58vw" : "(max-width: 680px) 100vw, 36vw"} />
+                  <figcaption>
+                    <strong>{title}</strong>
+                    <span>{caption}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div className="founder-principles">
+              {home.founderPrinciples.map(([title, body]) => (
+                <article className="founder-principle" key={title}>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -166,28 +213,6 @@ export default async function HomePage() {
               {home.rescuePaths.map(([label, title, body]) => (
                 <article className="rescue-card" key={label}>
                   <p className="rescue-card__label">{label}</p>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--dark" id="about" aria-labelledby="founder-title">
-          <div className="shell founder-layout">
-            <div>
-              <p className="eyebrow">{home.founderEyebrow}</p>
-              <h2 id="founder-title">{home.founderTitle}</h2>
-            </div>
-            <div className="founder-copy">
-              {home.founderParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-            <div className="founder-principles">
-              {home.founderPrinciples.map(([title, body]) => (
-                <article className="founder-principle" key={title}>
                   <h3>{title}</h3>
                   <p>{body}</p>
                 </article>
