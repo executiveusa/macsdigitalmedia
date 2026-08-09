@@ -68,6 +68,11 @@
   align-items: start;
 }
 
+.founder-heading {
+  position: sticky;
+  top: 118px;
+}
+
 .founder-layout h2,
 .guarantee-panel h2 {
   margin: 0;
@@ -85,6 +90,85 @@
 
 .founder-copy p {
   margin: 0 0 22px;
+}
+
+.founder-profiles {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.founder-profiles p {
+  margin: 0;
+  padding: 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.founder-profiles strong,
+.founder-profiles span {
+  display: block;
+}
+
+.founder-profiles strong {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.founder-profiles span {
+  margin-top: 5px;
+  color: var(--macs-coral);
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.founder-gallery {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  gap: 18px;
+}
+
+.founder-photo {
+  min-width: 0;
+  margin: 0;
+  background: #0b0d10;
+}
+
+.founder-photo img {
+  width: 100%;
+  height: clamp(360px, 48vw, 650px);
+  display: block;
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+.founder-photo--primary img {
+  object-position: center 34%;
+}
+
+.founder-photo figcaption {
+  padding: 18px 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 0;
+}
+
+.founder-photo figcaption strong,
+.founder-photo figcaption span {
+  display: block;
+}
+
+.founder-photo figcaption strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.founder-photo figcaption span {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
 
 .founder-principles {
@@ -212,6 +296,10 @@
     gap: 42px;
   }
 
+  .founder-heading {
+    position: static;
+  }
+
   .founder-principles {
     grid-template-columns: 1fr;
   }
@@ -219,8 +307,14 @@
 
 @media (max-width: 680px) {
   .outcome-grid,
-  .scope-grid {
+  .scope-grid,
+  .founder-profiles,
+  .founder-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .founder-photo img {
+    height: auto;
   }
 
   .outcome-card,

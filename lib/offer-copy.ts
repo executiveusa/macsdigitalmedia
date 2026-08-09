@@ -36,6 +36,8 @@ type OfferCopy = {
     founderEyebrow: string;
     founderTitle: string;
     founderParagraphs: readonly string[];
+    founderProfiles: readonly (readonly [string, string])[];
+    founderGallery: readonly (readonly [string, string, string, string])[];
     founderPrinciples: readonly (readonly [string, string])[];
     launchEyebrow: string;
     launchTitle: string;
@@ -110,7 +112,7 @@ export const offerCopy: Record<Locale, OfferCopy> = {
       secondaryCta: "Watch inquiry become follow-up",
       nextStep: "Five Washington organizations will be accepted. Application review comes first, and submitting does not create a contract or reserve a spot.",
       trust: [
-        "Father-and-son built in Washington",
+        "Built by Stacy and Stavarai",
         "Human approval where it matters",
         "Documented ownership handoff",
       ],
@@ -164,9 +166,27 @@ export const offerCopy: Record<Locale, OfferCopy> = {
       founderEyebrow: "Built by a father and son",
       founderTitle: "Powerful technology should create capability—not dependence.",
       founderParagraphs: [
-        "MACS Digital Media began in a Pacific Northwest basement as a father-and-son effort between Jeremy Bowers and his son, Tyshawn. The goal was simple: give smaller organizations access to powerful technology without forcing them to surrender control of their data, systems, or future.",
-        "That belief became the foundation of the MACS offer. We install the system, prove the two agreed workflows, document how it works, and give the organization a clear choice between independent ownership and optional managed support.",
-        "Agent MAXX is the visible operator. The MACS AI Operating System is the controlled environment that gives MAXX approved knowledge, limited tools, human oversight, and an activity history the client can review.",
+        "MACS Digital Media is a father-and-son company led by Stacy and Stavarai. Their shared goal is practical: help smaller organizations use powerful technology without surrendering control of their data, systems, or future.",
+        "Stavarai also owns PostaTees, bringing the perspective of a working small-business owner to every system MACS designs. The work must be understandable, useful, and manageable after launch—not impressive only during a demonstration.",
+        "MACS installs the system, proves two agreed workflows, documents how it works, and gives each organization a clear choice between independent ownership and optional managed support.",
+      ],
+      founderProfiles: [
+        ["Stacy", "Co-founder"],
+        ["Stavarai", "Co-founder · Owner of PostaTees"],
+      ],
+      founderGallery: [
+        [
+          "/media/founders/stacy-stavarai-portrait.webp",
+          "Stavarai and his father Stacy together",
+          "Stacy + Stavarai",
+          "Father and son, building practical systems for working organizations.",
+        ],
+        [
+          "/media/founders/stacy-stavarai-waterfront.webp",
+          "Stavarai and Stacy standing together by the waterfront at night",
+          "Built from lived experience",
+          "Small-business perspective and long-term ownership shape every MACS engagement.",
+        ],
       ],
       founderPrinciples: [
         ["Ownership", "Client data, credentials, workflow history, and operating knowledge remain separately controlled."],
@@ -341,9 +361,27 @@ export const offerCopy: Record<Locale, OfferCopy> = {
       founderEyebrow: "Creado por padre e hijo",
       founderTitle: "La tecnología poderosa debe crear capacidad, no dependencia.",
       founderParagraphs: [
-        "MACS Digital Media comenzó en un sótano del noroeste del Pacífico como un esfuerzo de padre e hijo entre Jeremy Bowers y su hijo, Tyshawn. La meta era sencilla: dar a organizaciones pequeñas acceso a tecnología poderosa sin obligarlas a entregar el control de sus datos, sistemas o futuro.",
-        "Esa convicción se convirtió en la base de la oferta de MACS. Instalamos el sistema, comprobamos los dos flujos acordados, documentamos cómo funciona y damos a la organización una opción clara entre propiedad independiente y soporte administrado opcional.",
-        "El Agente MAXX es el operador visible. El Sistema Operativo de IA de MACS es el entorno controlado que proporciona a MAXX conocimiento aprobado, herramientas limitadas, supervisión humana y un historial de actividad que el cliente puede revisar.",
+        "MACS Digital Media es una empresa de padre e hijo dirigida por Stacy y Stavarai. Su meta compartida es práctica: ayudar a organizaciones pequeñas a usar tecnología poderosa sin entregar el control de sus datos, sistemas o futuro.",
+        "Stavarai también es propietario de PostaTees y aporta la perspectiva de un dueño de pequeña empresa a cada sistema que diseña MACS. El trabajo debe ser comprensible, útil y manejable después del lanzamiento, no solo impresionante durante una demostración.",
+        "MACS instala el sistema, comprueba dos flujos acordados, documenta cómo funciona y da a cada organización una opción clara entre propiedad independiente y soporte administrado opcional.",
+      ],
+      founderProfiles: [
+        ["Stacy", "Cofundador"],
+        ["Stavarai", "Cofundador · Propietario de PostaTees"],
+      ],
+      founderGallery: [
+        [
+          "/media/founders/stacy-stavarai-portrait.webp",
+          "Stavarai junto a su padre Stacy",
+          "Stacy + Stavarai",
+          "Padre e hijo creando sistemas prácticos para organizaciones que trabajan cada día.",
+        ],
+        [
+          "/media/founders/stacy-stavarai-waterfront.webp",
+          "Stavarai y Stacy juntos frente al agua por la noche",
+          "Creado desde la experiencia real",
+          "La perspectiva de una pequeña empresa y la propiedad a largo plazo guían cada proyecto de MACS.",
+        ],
       ],
       founderPrinciples: [
         ["Propiedad", "Los datos, credenciales, historial de flujos y conocimiento operativo del cliente permanecen bajo control separado."],
