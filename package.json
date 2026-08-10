@@ -1,34 +1,7 @@
 {
-  "name": "macsdigitalmedia",
-  "version": "0.3.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test:e2e": "playwright test",
-    "db:apply:hostinger": "bash scripts/apply-hostinger-supabase.sh",
-    "db:verify:hostinger": "node scripts/verify-hostinger-supabase.mjs"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
-    "framer-motion": "^12.23.24",
-    "next": "16.2.10",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.56.0",
-    "@types/node": "^22.15.0",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.0",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "16.2.10",
-    "typescript": "^5.8.3"
-  },
-  "engines": {
-    "node": ">=22.0.0"
-  }
+  "name":"macsdigitalmedia","version":"0.3.0","private":true,
+  "scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"eslint .","typecheck":"tsc --noEmit","test:unit":"node --experimental-strip-types --test tests/unit/*.test.ts","test:coverage":"node --experimental-strip-types --experimental-test-coverage --test-coverage-include=lib/site-content-contract.ts --test-coverage-include=lib/site-ops-auth.ts --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=80 --test tests/unit/*.test.ts","test:e2e":"playwright test","db:apply:hostinger":"bash scripts/apply-hostinger-supabase.sh","db:verify:hostinger":"node scripts/verify-hostinger-supabase.mjs"},
+  "dependencies":{"@supabase/supabase-js":"^2.49.4","framer-motion":"^12.23.24","next":"16.2.10","react":"19.2.0","react-dom":"19.2.0"},
+  "devDependencies":{"@playwright/test":"^1.56.0","@types/node":"^22.15.0","@types/react":"^19.1.0","@types/react-dom":"^19.1.0","eslint":"^9.39.1","eslint-config-next":"16.2.10","typescript":"^5.8.3"},
+  "engines":{"node":">=22.0.0"}
 }

@@ -1,0 +1,7 @@
+import assert from "node:assert/strict"; import test from "node:test"; import { isSafeManagedHref, validateManagedContent } from "../../lib/site-content-contract.ts";
+const validPayload={key:"home-announcement",locale:"en",title:"Founding cohort applications are open",body:"Washington organizations can now apply for the next MACS founding cohort.",ctaLabel:"Apply now",ctaHref:"/apply",enabled:true,revisionNote:"Open the next cohort application window."};
+test("accepts allowlisted content",()=>{const result=validateManagedContent(validPayload);assert.equal(result.ok,true)});
+test("accepts HTTPS and optional CTA",()=>{assert.equal(validateManagedContent({...validPayload,locale:"es-MX",ctaHref:"https://www.macsdigitalmedia.com/apply"}).ok,true);assert.equal(validateManagedContent({...validPayload,ctaLabel:null,ctaHref:null,enabled:false}).ok,true)});
+test("rejects bad identifiers",()=>{assert.equal(validateManagedContent({...validPayload,key:"homepage-html",locale:"fr"}).ok,false)});
+test("rejects invalid copy",()=>{assert.equal(validateManagedContent({...validPayload,title:"abc",body:"short",revisionNote:"x"}).ok,false)});
+test("safe links",()=>{assert.equal(isSafeManagedHref("/apply"),true);assert.equal(isSafeManagedHref("https://www.macsdigitalmedia.com/apply"),true);assert.equal(isSafeManagedHref("//attacker.example/path"),false);assert.equal(isSafeManagedHref("javascript:alert(1)"),false)});
