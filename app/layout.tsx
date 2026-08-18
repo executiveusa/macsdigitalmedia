@@ -16,6 +16,7 @@ import "./theme-compat.css";
 import "./offer.css";
 import "./agent-ops.css";
 import "./business-first.css";
+import "./business-first-apply.css";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
