@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroVideo } from "@/components/hero-video";
 import { Reveal } from "@/components/motion";
-import { offerCopy } from "@/lib/offer-copy";
+import { businessFirstCopy } from "@/lib/business-first-copy";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = offerCopy[locale].home;
-
-  return {
-    title: copy.metadataTitle,
-    description: copy.metadataDescription,
-  };
+  const copy = businessFirstCopy[locale];
+  return { title: copy.metadataTitle, description: copy.metadataDescription };
 }
 
 const organizationSchema = {
@@ -22,304 +17,261 @@ const organizationSchema = {
   name: "MACS Digital Media",
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
-  description: "Client-owned AI operations systems for Washington organizations.",
-  areaServed: {
-    "@type": "State",
-    name: "Washington",
-  },
+  description: "Business-first digital transformation for Washington organizations.",
+  areaServed: { "@type": "State", name: "Washington" },
 };
 
-const serviceSchema = {
+const checkupSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "MACS 90-Day Client-Owned AI Installation",
-  provider: {
-    "@type": "Organization",
-    name: "MACS Digital Media",
-  },
+  name: "MAX Digital Checkup",
+  provider: { "@type": "Organization", name: "MACS Digital Media" },
   areaServed: "Washington, USA",
-  serviceType: "Client-owned AI operations system installation",
-  description:
-    "A defined 90-day installation combining approved organizational knowledge, a managed AI operator, an AI Front Door, human approval controls, activity history, and two tested workflows.",
-  offers: {
-    "@type": "Offer",
-    price: "7500",
-    priceCurrency: "USD",
-    availability: "https://schema.org/LimitedAvailability",
-  },
+  serviceType: "Business and digital operations diagnostic",
+  description: "A business-first diagnostic that identifies the highest-value digital or operational problem before implementation begins.",
+  offers: { "@type": "Offer", price: "750", priceCurrency: "USD" },
 };
 
 export default async function HomePage() {
   const locale = await getServerLocale();
-  const home = offerCopy[locale].home;
+  const copy = businessFirstCopy[locale];
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema, serviceSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema, checkupSchema]) }}
       />
 
-      <section className="hero" aria-labelledby="hero-title">
-        <HeroVideo />
-        <div className="hero__overlay" aria-hidden="true" />
-        <div className="shell hero__content">
+      <section className="bf-hero" aria-labelledby="hero-title">
+        <div className="shell bf-hero__grid">
+          <div className="bf-hero__copy">
+            <Reveal>
+              <p className="bf-kicker">{copy.hero.eyebrow}</p>
+              <h1 id="hero-title" className="bf-display bf-display--hero">{copy.hero.title}</h1>
+              <p className="bf-hero__lede">{copy.hero.lede}</p>
+              <div className="bf-actions">
+                <Link className="bf-button bf-button--ink" href="/apply">{copy.hero.primaryCta}</Link>
+                <a className="bf-text-link" href="#method">{copy.hero.secondaryCta}<span aria-hidden="true">↘</span></a>
+              </div>
+            </Reveal>
+          </div>
           <Reveal>
-            <p className="eyebrow">{home.eyebrow}</p>
-            <h1 id="hero-title">{home.title}</h1>
-            <p className="hero__lede">{home.lede}</p>
-            <div className="button-row" aria-label={locale === "es-MX" ? "Acciones principales" : "Primary actions"}>
-              <Link className="button button--primary" href="/apply">
-                {home.primaryCta}
-              </Link>
-              <Link className="button button--secondary" href="#system-work">
-                {home.secondaryCta}
-              </Link>
-            </div>
-            <p className="hero__next-step">{home.nextStep}</p>
-            <ul className="trust-list" aria-label={locale === "es-MX" ? "Principios del servicio" : "Service principles"}>
-              {home.trust.map((item) => <li key={item}>{item}</li>)}
-            </ul>
+            <figure className="bf-hero__portrait">
+              <Image
+                src="/media/founders/stacy-stavarai-portrait.webp"
+                alt={locale === "es-MX" ? "Stacy y Stavarai, fundadores de MACS Digital Media" : "Stacy and Stavarai, founders of MACS Digital Media"}
+                width={1152}
+                height={1536}
+                priority
+                sizes="(max-width: 820px) 100vw, 42vw"
+              />
+              <figcaption>MACS Digital Media · Washington</figcaption>
+            </figure>
           </Reveal>
         </div>
       </section>
 
-      <nav className="page-path" aria-label={locale === "es-MX" ? "Recorrido de la página" : "Page path"}>
-        <div className="shell page-path__inner">
-          <a href="#operational-problem"><span>1</span>{locale === "es-MX" ? "Identifica el problema" : "Name the problem"}</a>
-          <a href="#system-work"><span>2</span>{locale === "es-MX" ? "Mira el flujo" : "See the workflow"}</a>
-          <a href="#founding-offer"><span>3</span>{locale === "es-MX" ? "Revisa la oferta" : "Review the offer"}</a>
+      <section className="bf-marquee" aria-label={locale === "es-MX" ? "Principio MACS" : "MACS principle"}>
+        <div className="bf-marquee__track">
+          <span>BUSINESS FIRST</span><i>•</i><span>PROOF BEFORE CLAIMS</span><i>•</i><span>BUILD ONLY WHAT EARNS ITS PLACE</span>
         </div>
-      </nav>
+      </section>
 
       <Reveal>
-        <section className="section section--soft" id="operational-problem" aria-labelledby="problem-title">
+        <section className="bf-section bf-tension" id="what-we-fix" aria-labelledby="tension-title">
           <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.problemEyebrow}</p>
-              <h2 id="problem-title">{home.problemTitle}</h2>
-              <p>{home.problemIntro}</p>
-            </div>
-            <div className="outcome-grid">
-              <article className="outcome-card outcome-card--before">
-                <h3>{home.beforeTitle}</h3>
-                <ul>
-                  {home.before.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-              <article className="outcome-card outcome-card--after">
-                <h3>{home.afterTitle}</h3>
-                <ul>
-                  {home.after.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--dark" id="about" aria-labelledby="founder-title">
-          <div className="shell founder-layout">
-            <div className="founder-heading">
-              <p className="eyebrow">{home.founderEyebrow}</p>
-              <h2 id="founder-title">{home.founderTitle}</h2>
-            </div>
-            <div className="founder-copy">
-              {home.founderParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-            <div className="founder-profiles" aria-label={locale === "es-MX" ? "Fundadores de MACS" : "MACS founders"}>
-              {home.founderProfiles.map(([name, role]) => (
-                <p key={name}><strong>{name}</strong><span>{role}</span></p>
-              ))}
-            </div>
-            <div className="founder-gallery">
-              {home.founderGallery.map(([src, alt, title, caption], index) => (
-                <figure className={index === 0 ? "founder-photo founder-photo--primary" : "founder-photo"} key={src}>
-                  <Image src={src} alt={alt} width={1152} height={1536} sizes={index === 0 ? "(max-width: 680px) 100vw, 58vw" : "(max-width: 680px) 100vw, 36vw"} />
-                  <figcaption>
-                    <strong>{title}</strong>
-                    <span>{caption}</span>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-            <div className="founder-principles">
-              {home.founderPrinciples.map(([title, body]) => (
-                <article className="founder-principle" key={title}>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--light" id="what-we-build" aria-labelledby="system-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.buildEyebrow}</p>
-              <h2 id="system-title">{home.buildTitle}</h2>
-              <p>{home.buildIntro}</p>
-            </div>
-            <ol className="system-grid">
-              {home.systemParts.map(([number, title, body]) => (
-                <li className="system-card" key={number}>
-                  <span className="system-card__number" aria-hidden="true">{number}</span>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--dark" id="system-work" aria-labelledby="workflow-title">
-          <div className="shell workflow-layout">
-            <div className="section-heading section-heading--dark">
-              <p className="eyebrow">{home.demoEyebrow}</p>
-              <h2 id="workflow-title">{home.demoTitle}</h2>
-              <p>{home.demoIntro}</p>
-            </div>
-            <ol className="workflow-list">
-              {home.workflowSteps.map(([title, body, status], index) => (
-                <li className={index === 3 ? "workflow-step workflow-step--approval" : "workflow-step"} key={title}>
-                  <span className="workflow-step__number">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{body}</p>
-                  </div>
-                  <span className="workflow-step__status">{status}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section" aria-labelledby="website-rescue-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.rescueEyebrow}</p>
-              <h2 id="website-rescue-title">{home.rescueTitle}</h2>
-              <p>{home.rescueIntro}</p>
-            </div>
-            <div className="rescue-grid">
-              {home.rescuePaths.map(([label, title, body]) => (
-                <article className="rescue-card" key={label}>
-                  <p className="rescue-card__label">{label}</p>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--soft" id="how-it-works" aria-labelledby="launch-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.launchEyebrow}</p>
-              <h2 id="launch-title">{home.launchTitle}</h2>
-              <p>{home.launchIntro}</p>
-            </div>
-            <ol className="phase-grid">
-              {home.launchPhases.map(([days, title, body]) => (
-                <li className="phase-card" key={days}>
-                  <p className="phase-card__days">{days}</p>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section" id="founding-offer" aria-labelledby="offer-title">
-          <div className="shell offer-layout">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.offerEyebrow}</p>
-              <h2 id="offer-title">{home.offerTitle}</h2>
-              <p>{home.offerIntro}</p>
-              <p className="offer-lock">{home.offerLock}</p>
-            </div>
-            <div className="offer-card">
-              <div className="offer-card__price">
-                <span>{home.validationCohort}</span>
-                <strong>$7,500</strong>
-                <span>{home.installation90}</span>
+            <div className="bf-split-heading">
+              <p className="bf-kicker bf-kicker--ink">{copy.tension.eyebrow}</p>
+              <div>
+                <h2 id="tension-title" className="bf-display bf-display--section">{copy.tension.title}</h2>
+                <p className="bf-intro">{copy.tension.intro}</p>
               </div>
-              <ul className="check-list">
-                {home.included.map((item) => <li key={item}>{item}</li>)}
+            </div>
+            <div className="bf-losses">
+              {copy.tension.losses.map((loss, index) => (
+                <p key={loss}><span>{String(index + 1).padStart(2, "0")}</span>{loss}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-belief" aria-labelledby="belief-title">
+          <div className="shell bf-belief__inner">
+            <p className="bf-kicker">{copy.belief.eyebrow}</p>
+            <h2 id="belief-title" className="bf-display bf-display--statement">
+              {copy.belief.title}<em>{copy.belief.accent}</em>
+            </h2>
+            <p className="bf-belief__body">{copy.belief.body}</p>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-method" id="method" aria-labelledby="method-title">
+          <div className="shell">
+            <div className="bf-split-heading">
+              <p className="bf-kicker bf-kicker--ink">{copy.method.eyebrow}</p>
+              <div>
+                <h2 id="method-title" className="bf-display bf-display--section">{copy.method.title}</h2>
+                <p className="bf-intro">{copy.method.intro}</p>
+              </div>
+            </div>
+            <ol className="bf-method__list">
+              {copy.method.steps.map(([name, question], index) => (
+                <li key={name}>
+                  <span className="bf-method__number">{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{name}</strong>
+                  <p>{question}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-checkup" id="checkup" aria-labelledby="checkup-title">
+          <div className="shell bf-checkup__grid">
+            <div>
+              <p className="bf-kicker">{copy.checkup.eyebrow}</p>
+              <h2 id="checkup-title" className="bf-display bf-display--section">{copy.checkup.title}</h2>
+              <p className="bf-intro bf-intro--light">{copy.checkup.body}</p>
+            </div>
+            <div className="bf-checkup__offer">
+              <div className="bf-price">
+                <span>MAX Digital Checkup</span>
+                <strong>{copy.checkup.price}</strong>
+                <p>{copy.checkup.priceNote}</p>
+              </div>
+              <ul className="bf-checkup__list">
+                {copy.checkup.includes.map((item) => <li key={item}>{item}</li>)}
               </ul>
-              <div className="payment-plan" aria-label={locale === "es-MX" ? "Etapas de pago" : "Payment milestones"}>
-                {home.payments.map((payment) => <span key={payment}>{payment}</span>)}
-              </div>
-              <Link className="button button--primary button--full" href="/apply">
-                {home.primaryCta}
-              </Link>
+              <Link className="bf-button bf-button--paper" href="/apply">{copy.checkup.cta}</Link>
             </div>
           </div>
         </section>
       </Reveal>
 
       <Reveal>
-        <section className="section section--soft" aria-labelledby="guarantee-title">
+        <section className="bf-section bf-ladder" aria-labelledby="ladder-title">
           <div className="shell">
-            <div className="guarantee-panel">
-              <p className="eyebrow eyebrow--dark">{home.guaranteeEyebrow}</p>
-              <h2 id="guarantee-title">{home.guaranteeTitle}</h2>
-              <p>{home.guaranteeBody}</p>
+            <div className="bf-split-heading">
+              <p className="bf-kicker bf-kicker--ink">{copy.ladder.eyebrow}</p>
+              <div>
+                <h2 id="ladder-title" className="bf-display bf-display--section">{copy.ladder.title}</h2>
+                <p className="bf-intro">{copy.ladder.intro}</p>
+              </div>
             </div>
-            <div className="scope-grid">
-              <article>
-                <h3>{home.responsibilityTitle}</h3>
-                <p>{home.responsibilityBody}</p>
-              </article>
-              <article>
-                <h3>{home.scopeTitle}</h3>
-                <p>{home.scopeBody}</p>
-              </article>
+            <div className="bf-ladder__steps">
+              {copy.ladder.steps.map(([label, title, body]) => (
+                <article key={label}>
+                  <p className="bf-kicker bf-kicker--ink">{label}</p>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
       </Reveal>
 
       <Reveal>
-        <section className="section section--light" aria-labelledby="fit-title">
-          <div className="shell fit-layout">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.fitEyebrow}</p>
-              <h2 id="fit-title">{home.fitTitle}</h2>
-              <p>{home.fitIntro}</p>
+        <section className="bf-section bf-founders" id="about" aria-labelledby="founders-title">
+          <div className="shell bf-founders__grid">
+            <figure className="bf-founders__image">
+              <Image
+                src="/media/founders/stacy-stavarai-waterfront.webp"
+                alt={locale === "es-MX" ? "Stacy y Stavarai juntos en Washington" : "Stacy and Stavarai together in Washington"}
+                width={1152}
+                height={1536}
+                sizes="(max-width: 820px) 100vw, 48vw"
+              />
+            </figure>
+            <div className="bf-founders__copy">
+              <p className="bf-kicker">{copy.founders.eyebrow}</p>
+              <h2 id="founders-title" className="bf-display bf-display--section">{copy.founders.title}</h2>
+              <p className="bf-intro bf-intro--light">{copy.founders.body}</p>
+              <div className="bf-founder-names">
+                <p><strong>Stacy</strong><span>{copy.founders.stacy}</span></p>
+                <p><strong>Stavarai</strong><span>{copy.founders.stavarai}</span></p>
+              </div>
             </div>
-            <ul className="fit-list">
-              {home.fitCriteria.map((item) => <li key={item}>{item}</li>)}
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-capability" aria-labelledby="capability-title">
+          <div className="shell">
+            <p className="bf-kicker bf-kicker--ink">{copy.capability.eyebrow}</p>
+            <h2 id="capability-title" className="bf-display bf-display--section">{copy.capability.title}</h2>
+            <p className="bf-intro">{copy.capability.body}</p>
+            <div className="bf-capability__lines">
+              {copy.capability.lines.map((line) => <p key={line}>{line}</p>)}
+            </div>
+            <p className="bf-capability__closer">{copy.capability.closer}</p>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-technology" aria-labelledby="technology-title">
+          <div className="shell bf-technology__grid">
+            <div>
+              <p className="bf-kicker">{copy.technology.eyebrow}</p>
+              <h2 id="technology-title" className="bf-display bf-display--section">{copy.technology.title}</h2>
+            </div>
+            <div>
+              <p className="bf-intro bf-intro--light">{copy.technology.body}</p>
+              <div className="bf-principles">
+                {copy.technology.principles.map(([title, body]) => (
+                  <article key={title}><h3>{title}</h3><p>{body}</p></article>
+                ))}
+              </div>
+              <Link className="bf-text-link bf-text-link--light" href="/maxx">{locale === "es-MX" ? "Conoce MAXX" : "Meet MAXX"}<span aria-hidden="true">→</span></Link>
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-sovereignty" aria-labelledby="sovereignty-title">
+          <div className="shell">
+            <p className="bf-kicker bf-kicker--ink">{copy.sovereignty.eyebrow}</p>
+            <h2 id="sovereignty-title" className="bf-display bf-display--statement bf-display--ink">{copy.sovereignty.title}</h2>
+            <p className="bf-intro">{copy.sovereignty.body}</p>
+            <ul className="bf-sovereignty__list">
+              {copy.sovereignty.lines.map((line) => <li key={line}>{line}</li>)}
             </ul>
           </div>
         </section>
       </Reveal>
 
       <Reveal>
-        <section className="section final-cta" aria-labelledby="final-cta-title">
-          <div className="shell final-cta__inner">
+        <section className="bf-section bf-proof" aria-labelledby="proof-title">
+          <div className="shell bf-proof__grid">
             <div>
-              <p className="eyebrow eyebrow--dark">{home.finalEyebrow}</p>
-              <h2 id="final-cta-title">{home.finalTitle}</h2>
+              <p className="bf-kicker">{copy.proof.eyebrow}</p>
+              <h2 id="proof-title" className="bf-display bf-display--section">{copy.proof.title}</h2>
+              <p className="bf-intro bf-intro--light">{copy.proof.body}</p>
             </div>
-            <Link className="button button--primary" href="/apply">
-              {home.finalCta}
-              <span className="button-arrow" aria-hidden="true">→</span>
-            </Link>
+            <div className="bf-proof__labels" aria-label={locale === "es-MX" ? "Contrato de prueba" : "Proof contract"}>
+              {copy.proof.labels.map((label, index) => <p key={label}><span>{String(index + 1).padStart(2, "0")}</span>{label}</p>)}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bf-section bf-final" aria-labelledby="final-title">
+          <div className="shell bf-final__inner">
+            <p className="bf-kicker bf-kicker--ink">{copy.final.eyebrow}</p>
+            <h2 id="final-title" className="bf-display bf-display--statement bf-display--ink">{copy.final.title}</h2>
+            <p className="bf-intro">{copy.final.body}</p>
+            <Link className="bf-button bf-button--ink" href="/apply">{copy.final.cta}</Link>
           </div>
         </section>
       </Reveal>
