@@ -1,0 +1,30 @@
+.bf-apply { background: var(--bf-paper-bright); }
+.bf-apply__layout {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(420px, 1.18fr);
+  gap: clamp(54px, 8vw, 120px);
+  align-items: start;
+}
+.bf-apply .bf-intro { margin-top: 30px; color: rgba(23,23,17,.72); }
+.bf-apply__price { margin: 48px 0; padding: 26px 0; border-block: 1px solid var(--bf-line); }
+.bf-apply__price strong { display: block; font-family: var(--bf-display); font-size: clamp(4rem, 7vw, 7rem); line-height: .9; letter-spacing: -.055em; }
+.bf-apply__price p { margin: 14px 0 0; max-width: 440px; color: rgba(23,23,17,.66); }
+.bf-apply__expect ol { margin: 0; padding: 0; list-style: none; counter-reset: step; border-top: 1px solid var(--bf-line); }
+.bf-apply__expect li { counter-increment: step; display: grid; grid-template-columns: 38px 1fr; gap: 12px; padding: 17px 0; border-bottom: 1px solid var(--bf-line); }
+.bf-apply__expect li::before { content: "0" counter(step); color: var(--bf-blue); font-size: .7rem; font-weight: 850; letter-spacing: .08em; }
+.bf-apply__form { position: sticky; top: 110px; }
+.bf-apply .application-form { border: 1px solid var(--bf-line); border-radius: 24px; background: #fff; box-shadow: none; padding: clamp(24px, 4vw, 44px); }
+.bf-apply .application-form label { color: var(--bf-ink); }
+.bf-apply .application-form input,
+.bf-apply .application-form select,
+.bf-apply .application-form textarea { border-color: rgba(23,23,17,.2); background: var(--bf-paper-bright); color: var(--bf-ink); }
+.bf-apply .application-form input:focus,
+.bf-apply .application-form select:focus,
+.bf-apply .application-form textarea:focus { border-color: var(--bf-blue); box-shadow: 0 0 0 3px rgba(49,95,143,.12); }
+.bf-apply .form-submit { background: var(--bf-ink); color: white; border-color: var(--bf-ink); }
+.bf-apply .form-submit:hover { background: var(--bf-blue-deep); border-color: var(--bf-blue-deep); }
+
+@media (max-width: 960px) {
+  .bf-apply__layout { grid-template-columns: 1fr; }
+  .bf-apply__form { position: static; }
+}
