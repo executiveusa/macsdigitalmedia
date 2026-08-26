@@ -4,6 +4,9 @@
 
 Before any meaningful work, read `docs/icm/HUMAN_MACHINE_CONTRACT.md` and `docs/icm/ICM_CORE.md`. They define the Human ↔ Machine Contract, ICM truth model, sovereignty rules, approval gates, proactivity requirement, and voice-first/disappearing-interface north star. Repository execution conventions must not weaken those controls.
 
+## Cross-repo MAXX suite routing
+
+This repository is the MACS Digital Media public storefront. The canonical MAXX portfolio map and product-analysis gate live in `executiveusa/maxx-migrations-agentic-systems` under `icm/maxx-suite/`. If a task changes the MAXX product family, crosses repository boundaries, evaluates a new product/repo/model/workflow, or needs a suite-wide architecture decision, load the backend repo's `icm/maxx-suite/00_router/CONTEXT.md` and only the smallest relevant context folder. Do not copy or autoload the full suite into this public website.
 
 ## Roles
 
