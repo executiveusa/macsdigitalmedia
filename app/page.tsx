@@ -76,21 +76,12 @@ export default async function HomePage() {
                 {home.secondaryCta}
               </Link>
             </div>
-            <p className="hero__next-step">{home.nextStep}</p>
             <ul className="trust-list" aria-label={locale === "es-MX" ? "Principios del servicio" : "Service principles"}>
               {home.trust.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </Reveal>
         </div>
       </section>
-
-      <nav className="page-path" aria-label={locale === "es-MX" ? "Recorrido de la página" : "Page path"}>
-        <div className="shell page-path__inner">
-          <a href="#operational-problem"><span>1</span>{locale === "es-MX" ? "Identifica el problema" : "Name the problem"}</a>
-          <a href="#system-work"><span>2</span>{locale === "es-MX" ? "Mira el flujo" : "See the workflow"}</a>
-          <a href="#founding-offer"><span>3</span>{locale === "es-MX" ? "Revisa la oferta" : "Review the offer"}</a>
-        </div>
-      </nav>
 
       <Reveal>
         <section className="section section--soft" id="operational-problem" aria-labelledby="problem-title">
@@ -103,15 +94,11 @@ export default async function HomePage() {
             <div className="outcome-grid">
               <article className="outcome-card outcome-card--before">
                 <h3>{home.beforeTitle}</h3>
-                <ul>
-                  {home.before.map((item) => <li key={item}>{item}</li>)}
-                </ul>
+                <ul>{home.before.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
               </article>
               <article className="outcome-card outcome-card--after">
                 <h3>{home.afterTitle}</h3>
-                <ul>
-                  {home.after.map((item) => <li key={item}>{item}</li>)}
-                </ul>
+                <ul>{home.after.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
               </article>
             </div>
           </div>
@@ -126,30 +113,19 @@ export default async function HomePage() {
               <h2 id="founder-title">{home.founderTitle}</h2>
             </div>
             <div className="founder-copy">
-              {home.founderParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-            <div className="founder-profiles" aria-label={locale === "es-MX" ? "Fundadores de MACS" : "MACS founders"}>
-              {home.founderProfiles.map(([name, role]) => (
-                <p key={name}><strong>{name}</strong><span>{role}</span></p>
-              ))}
+              <p>{home.founderParagraphs[0]}</p>
             </div>
             <div className="founder-gallery">
-              {home.founderGallery.map(([src, alt, title, caption], index) => (
-                <figure className={index === 0 ? "founder-photo founder-photo--primary" : "founder-photo"} key={src}>
-                  <Image src={src} alt={alt} width={1152} height={1536} sizes={index === 0 ? "(max-width: 680px) 100vw, 58vw" : "(max-width: 680px) 100vw, 36vw"} />
-                  <figcaption>
-                    <strong>{title}</strong>
-                    <span>{caption}</span>
-                  </figcaption>
+              {home.founderGallery.slice(0, 1).map(([src, alt, title, caption]) => (
+                <figure className="founder-photo founder-photo--primary" key={src}>
+                  <Image src={src} alt={alt} width={1152} height={1536} sizes="(max-width: 680px) 100vw, 58vw" />
+                  <figcaption><strong>{title}</strong><span>{caption}</span></figcaption>
                 </figure>
               ))}
             </div>
             <div className="founder-principles">
               {home.founderPrinciples.map(([title, body]) => (
-                <article className="founder-principle" key={title}>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </article>
+                <article className="founder-principle" key={title}><h3>{title}</h3><p>{body}</p></article>
               ))}
             </div>
           </div>
@@ -165,7 +141,7 @@ export default async function HomePage() {
               <p>{home.buildIntro}</p>
             </div>
             <ol className="system-grid">
-              {home.systemParts.map(([number, title, body]) => (
+              {home.systemParts.slice(0, 4).map(([number, title, body]) => (
                 <li className="system-card" key={number}>
                   <span className="system-card__number" aria-hidden="true">{number}</span>
                   <h3>{title}</h3>
@@ -189,53 +165,8 @@ export default async function HomePage() {
               {home.workflowSteps.map(([title, body, status], index) => (
                 <li className={index === 3 ? "workflow-step workflow-step--approval" : "workflow-step"} key={title}>
                   <span className="workflow-step__number">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{body}</p>
-                  </div>
+                  <div><h3>{title}</h3><p>{body}</p></div>
                   <span className="workflow-step__status">{status}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section" aria-labelledby="website-rescue-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.rescueEyebrow}</p>
-              <h2 id="website-rescue-title">{home.rescueTitle}</h2>
-              <p>{home.rescueIntro}</p>
-            </div>
-            <div className="rescue-grid">
-              {home.rescuePaths.map(([label, title, body]) => (
-                <article className="rescue-card" key={label}>
-                  <p className="rescue-card__label">{label}</p>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--soft" id="how-it-works" aria-labelledby="launch-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.launchEyebrow}</p>
-              <h2 id="launch-title">{home.launchTitle}</h2>
-              <p>{home.launchIntro}</p>
-            </div>
-            <ol className="phase-grid">
-              {home.launchPhases.map(([days, title, body]) => (
-                <li className="phase-card" key={days}>
-                  <p className="phase-card__days">{days}</p>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
                 </li>
               ))}
             </ol>
@@ -250,7 +181,6 @@ export default async function HomePage() {
               <p className="eyebrow eyebrow--dark">{home.offerEyebrow}</p>
               <h2 id="offer-title">{home.offerTitle}</h2>
               <p>{home.offerIntro}</p>
-              <p className="offer-lock">{home.offerLock}</p>
             </div>
             <div className="offer-card">
               <div className="offer-card__price">
@@ -259,52 +189,10 @@ export default async function HomePage() {
                 <span>{home.installation90}</span>
               </div>
               <ul className="check-list">
-                {home.included.map((item) => <li key={item}>{item}</li>)}
+                {home.included.slice(0, 5).map((item) => <li key={item}>{item}</li>)}
               </ul>
-              <div className="payment-plan" aria-label={locale === "es-MX" ? "Etapas de pago" : "Payment milestones"}>
-                {home.payments.map((payment) => <span key={payment}>{payment}</span>)}
-              </div>
-              <Link className="button button--primary button--full" href="/apply">
-                {home.primaryCta}
-              </Link>
+              <Link className="button button--primary button--full" href="/apply">{home.primaryCta}</Link>
             </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--soft" aria-labelledby="guarantee-title">
-          <div className="shell">
-            <div className="guarantee-panel">
-              <p className="eyebrow eyebrow--dark">{home.guaranteeEyebrow}</p>
-              <h2 id="guarantee-title">{home.guaranteeTitle}</h2>
-              <p>{home.guaranteeBody}</p>
-            </div>
-            <div className="scope-grid">
-              <article>
-                <h3>{home.responsibilityTitle}</h3>
-                <p>{home.responsibilityBody}</p>
-              </article>
-              <article>
-                <h3>{home.scopeTitle}</h3>
-                <p>{home.scopeBody}</p>
-              </article>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--light" aria-labelledby="fit-title">
-          <div className="shell fit-layout">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.fitEyebrow}</p>
-              <h2 id="fit-title">{home.fitTitle}</h2>
-              <p>{home.fitIntro}</p>
-            </div>
-            <ul className="fit-list">
-              {home.fitCriteria.map((item) => <li key={item}>{item}</li>)}
-            </ul>
           </div>
         </section>
       </Reveal>
@@ -317,8 +205,7 @@ export default async function HomePage() {
               <h2 id="final-cta-title">{home.finalTitle}</h2>
             </div>
             <Link className="button button--primary" href="/apply">
-              {home.finalCta}
-              <span className="button-arrow" aria-hidden="true">→</span>
+              {home.finalCta}<span className="button-arrow" aria-hidden="true">→</span>
             </Link>
           </div>
         </section>
