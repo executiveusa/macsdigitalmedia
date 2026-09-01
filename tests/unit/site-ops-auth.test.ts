@@ -1,5 +1,5 @@
 import assert from "node:assert/strict"; import test from "node:test";
-import { isAuthorizedSiteAgent, readAgentId, readBearerToken, readIdempotencyKey, safeTokenEqual } from "../../lib/site-ops-auth.ts";
+import { isAuthorizedSiteAgent, readAgentId, readBearerToken, readIdempotencyKey, safeTokenEqual } from "../../lib/site-ops-auth";
 const validToken="a".repeat(64);
 test("constant-time token comparison",()=>{assert.equal(safeTokenEqual(validToken,validToken),true);assert.equal(safeTokenEqual("b".repeat(64),validToken),false);assert.equal(safeTokenEqual("",validToken),false);assert.equal(safeTokenEqual(validToken,"short"),false)});
 test("bearer parser",()=>{assert.equal(readBearerToken(new Headers({authorization:`bearer   ${validToken}  `})),validToken);assert.equal(readBearerToken(new Headers()),"");assert.equal(readBearerToken(new Headers({authorization:`Basic ${validToken}`})),"")});
