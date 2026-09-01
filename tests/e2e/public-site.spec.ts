@@ -40,7 +40,7 @@ test("homepage passes the primary Krug trunk test at 1280 by 720", async ({ page
   await page.screenshot({ path: "test-results/desktop-1280-hero.png" });
 });
 
-test("homepage makes the outcome, founder story, scope, and guarantee visible", async ({ page }) => {
+test("homepage makes the outcome, founder story, and current offer visible", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: /important work is being lost/i })).toBeVisible();
@@ -50,8 +50,8 @@ test("homepage makes the outcome, founder story, scope, and guarantee visible", 
   await expect(page.getByRole("heading", { name: "Ownership", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Visibility", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Choice", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /two agreed workflows must pass/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /what remains outside the founding scope/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /five accepted organizations launch at/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /apply for a founding installation/i }).last()).toBeVisible();
 });
 
 test("founding launch defines scope and client responsibilities", async ({ page }) => {
