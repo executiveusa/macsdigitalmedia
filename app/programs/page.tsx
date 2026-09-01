@@ -4,7 +4,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Programs",
-  description: "Four business situations where MACS Digital Media steps in and takes responsibility for the digital work around the business.",
+  description: "Four business situations where MACS Digital Media helps owner-led businesses bring digital work back under control.",
 };
 
 export default async function ProgramsPage() {
@@ -13,16 +13,16 @@ export default async function ProgramsPage() {
 
   const programs = es
     ? [
-        ["reset", "Reset", "Cuando el negocio se fue llenando de herramientas, proveedores y pendientes que ya no trabajan juntos.", "Empezamos por entender qué sirve, qué estorba y qué debe volver a quedar bajo control del dueño."],
-        ["momentum", "Momentum", "Cuando el negocio es bueno, pero no suficiente gente lo está viendo o recordando.", "Contenido, UGC, distribución y seguimiento trabajan juntos para mantener al negocio visible sin convertir al dueño en creador de tiempo completo."],
-        ["scale", "Scale", "Cuando el crecimiento ya rebasó la forma en que el equipo organiza información, seguimiento y decisiones.", "Construimos una base operativa más clara para que el negocio no dependa de memoria, pestañas abiertas o una sola persona que sabe cómo funciona todo."],
-        ["launch", "Launch", "Cuando algo nuevo necesita posicionamiento, presencia, contenido, distribución y una operación que aguante después del lanzamiento.", "Juntamos las piezas necesarias alrededor del resultado, sin vender una lista de servicios por separado."],
+        ["reset", "Reset", "Cuando demasiadas herramientas, proveedores y pendientes ya no trabajan juntos.", "Auditamos lo que existe, conservamos lo que sirve, eliminamos duplicación y devolvemos al dueño el control de los sistemas importantes."],
+        ["momentum", "Momentum", "Cuando el negocio es bueno, pero la atención y el seguimiento son inconsistentes.", "Conectamos contenido, distribución y seguimiento en un ritmo repetible sin convertir al dueño en creador de contenido de tiempo completo."],
+        ["scale", "Scale", "Cuando el crecimiento ya rebasó la forma en que se manejan la información, las decisiones y el trabajo.", "Construimos una base operativa más clara para información, seguimiento, aprobaciones y responsabilidades."],
+        ["launch", "Launch", "Cuando una nueva oferta necesita un sistema detrás, no solo una campaña de lanzamiento.", "Unimos posicionamiento, presencia pública, contenido, distribución y seguimiento alrededor de un solo lanzamiento."],
       ]
     : [
-        ["reset", "Reset", "When the business filled up with tools, vendors and loose ends that no longer work together.", "We start by finding what works, what gets in the way, and what needs to come back under the owner's control."],
-        ["momentum", "Momentum", "When the business is good, but not enough people are seeing it or remembering it.", "Content, UGC, distribution and follow-up work together without turning the owner into a full-time content creator."],
-        ["scale", "Scale", "When growth has outpaced the way the team handles information, follow-up and decisions.", "We build a clearer operating backbone so the business does not depend on memory, open tabs or one person who knows how everything works."],
-        ["launch", "Launch", "When something new needs positioning, presence, content, distribution and an operation that still works after launch day.", "We bring the necessary pieces together around the outcome instead of selling a disconnected list of services."],
+        ["reset", "Reset", "When too many tools, vendors and loose ends no longer work together.", "We audit what exists, keep what works, remove overlap and put the important systems back under the owner's control."],
+        ["momentum", "Momentum", "When the business is good, but attention and follow-up are inconsistent.", "We connect content, distribution and follow-up into a repeatable rhythm without turning the owner into a full-time creator."],
+        ["scale", "Scale", "When growth has outpaced the way information, decisions and work get handled.", "We build a clearer operating backbone for information, follow-up, approvals and responsibilities."],
+        ["launch", "Launch", "When a new offer needs a working system behind it, not just a launch campaign.", "We bring positioning, public presence, content, distribution and follow-up together around one launch."],
       ];
 
   return (
@@ -31,8 +31,8 @@ export default async function ProgramsPage() {
         <header className="editorial-page__intro">
           <p className="editorial-kicker">{es ? "Programas" : "Programs"}</p>
           <div>
-            <h1>{es ? "Entramos cuando el negocio necesita que alguien vea el cuadro completo." : "We step in when the business needs someone to see the whole picture."}</h1>
-            <p>{es ? "Los nombres siguen siendo de trabajo. La regla ya está fija: empezamos por la situación del cliente, no por una lista de entregables." : "The names are still working names. The rule is already fixed: start with the client's situation, not a list of deliverables."}</p>
+            <h1>{es ? "Entramos cuando el trabajo digital necesita un dueño claro." : "We step in when the digital work needs a clear owner."}</h1>
+            <p>{es ? "Elige la situación que más se parece a la tuya. Empezamos por el cuello de botella y construimos solo lo necesario para mover el negocio." : "Choose the situation that feels familiar. We start with the bottleneck and build only what the business needs to move."}</p>
           </div>
         </header>
 
@@ -45,7 +45,7 @@ export default async function ProgramsPage() {
         ))}
 
         <Link className="editorial-link" href="/apply">
-          {es ? "Veamos si uno de estos encaja" : "See if one of these fits"} <span aria-hidden="true">↗</span>
+          {es ? "Cuéntanos qué está atorado" : "Tell us what's stuck"} <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </div>
