@@ -38,6 +38,7 @@ test("MACS Insights respects reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(articlePath);
-  const transition = await page.locator("a").filter({ hasText: /MACS Insights/i }).evaluate((element) => getComputedStyle(element).transitionDuration);
-  expect(transition === "0s" || transition === "").toBe(true);
+  const cta = page.getByRole("link", { name: /See how MACS works/i });
+  await expect(cta).toBeVisible();
+  await expect(cta).toHaveCSS("transition-duration", "0s");
 });
