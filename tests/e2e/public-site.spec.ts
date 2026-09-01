@@ -33,10 +33,10 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Make the business feel whole again");
-  await expect(page.getByText(/father-and-son team for the parts that stopped working together/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: /see if we're a fit/i }).first()).toBeVisible();
-  await expect(page.getByText(/Pacific Northwest · Father \+ son · Selective 90-day engagements/i)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("We fix the digital side of growing businesses");
+  await expect(page.getByText(/one father-and-son team makes the pieces work together/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
+  await expect(page.getByText(/Pacific Northwest · Father \+ son · 90-day systems engagements/i)).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
@@ -47,7 +47,7 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
 test("homepage tells the six-beat story with real founder and work proof", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /four situations we step into/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /start with the problem, not a package/i })).toBeVisible();
   await expect(page.getByText("Reset", { exact: true })).toBeVisible();
   await expect(page.getByText("Momentum", { exact: true })).toBeVisible();
   await expect(page.getByText("Scale", { exact: true })).toBeVisible();
@@ -56,7 +56,7 @@ test("homepage tells the six-beat story with real founder and work proof", async
   await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
   await expect(page.getByText("Agent MAXX", { exact: true })).toBeVisible();
   await expect(page.getByText("Buffer Blaster", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /small number of businesses at a time/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /digital side of the business feels scattered/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /Stacy and Stavarai of MACS Digital Media together by the waterfront/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /Stacy and Stavarai, the father-and-son team behind MACS Digital Media/i })).toBeVisible();
 });
@@ -86,7 +86,7 @@ test("mobile homepage keeps the primary action and founder story clear", async (
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /see if we're a fit/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
     await expect(page.locator(".editorial-hero__image")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
@@ -112,7 +112,7 @@ test("editorial menu keeps language switching and removes the unimplemented them
   const languageButtons = navigation.locator(".language-toggle button");
   await languageButtons.nth(1).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es-MX");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Haz que el negocio vuelva a sentirse completo");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Arreglamos el lado digital de negocios en crecimiento");
   await expect(page.locator(".theme-toggle")).toHaveCount(0);
   await page.screenshot({ path: "test-results/language-spanish.png", fullPage: true });
 });
