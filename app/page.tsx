@@ -29,6 +29,9 @@ const organizationSchema = {
   },
 };
 
+const asc3ndReferenceImage =
+  "https://raw.githubusercontent.com/executiveusa/asc3nd-frontend-website-/main/apps/site/public/images/asc3nd-site-reference.jpg";
+
 export default async function HomePage() {
   const locale = await getServerLocale();
   const home = editorialHome[locale];
@@ -99,7 +102,7 @@ export default async function HomePage() {
                 className="editorial-work__media"
                 role="img"
                 aria-label="ASC3ND project site reference"
-                style={{ backgroundImage: "url(https://asc3nd.org/images/asc3nd-site-reference.jpg)" }}
+                style={{ backgroundImage: `url(${asc3ndReferenceImage})` }}
               />
               <div className="editorial-work__caption">
                 <strong>{home.asc3ndTitle}</strong>
