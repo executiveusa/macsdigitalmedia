@@ -4,6 +4,9 @@
 
 Before any meaningful work, read `docs/icm/HUMAN_MACHINE_CONTRACT.md` and `docs/icm/ICM_CORE.md`. They define the Human ↔ Machine Contract, ICM truth model, sovereignty rules, approval gates, proactivity requirement, and voice-first/disappearing-interface north star. Repository execution conventions must not weaken those controls.
 
+## Canonical site-transformation protocol
+
+For any audit, repositioning, redesign, rebuild, migration, or relaunch of this public site, load the canonical protocol from `executiveusa/maxx-migrations-agentic-systems/icm/site-transformation-protocol/00_router/CONTEXT.md` and the MACS Client Zero instance at `icm/clients/macs-digital-media/06_transform/` in that repository. A write-capable agent must pass the canonical `WALK_TEST.md` before transformation work. Do not use chat history as a substitute for ICM routing or evidence.
 
 ## Roles
 
@@ -40,6 +43,7 @@ Before creating or modifying any user-facing interface, read and obey:
 - `docs/design/brand-foundation.md`
 - `docs/design/krug-usability-gates.md`
 - `docs/design/pauli-design-guardrails.md`
+- `docs/design/transformation-visual-system.md` when present on an active transformation branch
 
 No page or component passes review merely because it is visually impressive. It must remain self-evident or immediately self-explanatory, scannable, predictable, accessible, task-oriented, and specific to the MACS brand.
 
