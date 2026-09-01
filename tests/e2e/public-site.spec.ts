@@ -33,10 +33,10 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("We fix the digital side of growing businesses");
-  await expect(page.getByText(/one father-and-son team makes the pieces work together/i)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your technology partner for the digital side of the business");
+  await expect(page.getByText(/one accountable father-and-son team/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
-  await expect(page.getByText(/Pacific Northwest · Father \+ son · 90-day systems engagements/i)).toBeVisible();
+  await expect(page.getByText(/Pacific Northwest · Father \+ son · Built for ongoing partnership/i)).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
@@ -47,7 +47,7 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
 test("homepage tells the six-beat story with real founder and work proof", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /start with the problem, not a package/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /start with the pressure point/i })).toBeVisible();
   await expect(page.getByText("Reset", { exact: true })).toBeVisible();
   await expect(page.getByText("Momentum", { exact: true })).toBeVisible();
   await expect(page.getByText("Scale", { exact: true })).toBeVisible();
@@ -56,14 +56,15 @@ test("homepage tells the six-beat story with real founder and work proof", async
   await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
   await expect(page.getByText("Agent MAXX", { exact: true })).toBeVisible();
   await expect(page.getByText("Buffer Blaster", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /digital side of the business feels scattered/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /one accountable technology partner/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /Stacy and Stavarai of MACS Digital Media together by the waterfront/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /Stacy and Stavarai, the father-and-son team behind MACS Digital Media/i })).toBeVisible();
 });
 
-test("founding launch legacy route remains available during brownfield transformation", async ({ page }) => {
+test("retired founding launch route sends visitors to the four partnership lanes", async ({ page }) => {
   await page.goto("/founding-launch");
-  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page).toHaveURL(/\/programs$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("One technology partner. Four ways to start");
   await expectNoHorizontalOverflow(page);
 });
 
@@ -112,7 +113,7 @@ test("editorial menu keeps language switching and removes the unimplemented them
   const languageButtons = navigation.locator(".language-toggle button");
   await languageButtons.nth(1).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es-MX");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Arreglamos el lado digital de negocios en crecimiento");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Tu socio tecnológico para el lado digital del negocio");
   await expect(page.locator(".theme-toggle")).toHaveCount(0);
   await page.screenshot({ path: "test-results/language-spanish.png", fullPage: true });
 });
@@ -173,16 +174,17 @@ test("Phase 5 design lab exposes three divergent noindex prototype territories",
   }
 });
 
-test("founding application provides persistent inline validation", async ({ page }) => {
+test("partnership intake provides persistent inline validation", async ({ page }) => {
   await page.goto("/apply");
-  await page.getByRole("button", { name: /submit founding application/i }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Tell us where the digital side of the business is getting stuck");
+  await page.getByRole("button", { name: /send partnership request/i }).click();
 
   const nameField = page.getByLabel("Your name");
   await expect(nameField).toBeFocused();
   await expect(nameField).toHaveAttribute("aria-invalid", "true");
   await expect(page.getByText("Correct the highlighted fields before submitting.")).toBeVisible();
   await expect(page.locator("#name-error")).toContainText("This field is required");
-  await expect(page.getByText(/your application was received/i)).toHaveCount(0);
+  await expect(page.getByText(/your request was received/i)).toHaveCount(0);
 
   await page.screenshot({ path: "test-results/form-error.png", fullPage: true });
 });
