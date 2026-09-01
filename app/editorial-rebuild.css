@@ -441,7 +441,7 @@ body {
   }
 
   .editorial-work__media {
-    min-height: 17rem;
+    min-height: 0;
   }
 
   .editorial-work__caption,
