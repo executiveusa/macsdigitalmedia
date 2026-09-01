@@ -1,12 +1,32 @@
 import { expect, test } from "@playwright/test";
 
 async function expectNoHorizontalOverflow(page: import("@playwright/test").Page) {
-  const dimensions = await page.evaluate(() => ({
-    scrollWidth: document.documentElement.scrollWidth,
-    clientWidth: document.documentElement.clientWidth,
-  }));
+  const result = await page.evaluate(() => {
+    const clientWidth = document.documentElement.clientWidth;
+    const scrollWidth = document.documentElement.scrollWidth;
+    const offenders = Array.from(document.querySelectorAll<HTMLElement>("body *"))
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          tag: element.tagName.toLowerCase(),
+          id: element.id,
+          className: typeof element.className === "string" ? element.className : "",
+          left: Math.round(rect.left),
+          right: Math.round(rect.right),
+          width: Math.round(rect.width),
+        };
+      })
+      .filter((item) => item.right > clientWidth + 1 || item.left < -1)
+      .sort((a, b) => Math.max(b.right - clientWidth, -b.left) - Math.max(a.right - clientWidth, -a.left))
+      .slice(0, 12);
 
-  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+    return { scrollWidth, clientWidth, offenders };
+  });
+
+  expect(
+    result.scrollWidth,
+    `Horizontal overflow: viewport=${result.clientWidth}, scrollWidth=${result.scrollWidth}, offenders=${JSON.stringify(result.offenders)}`,
+  ).toBeLessThanOrEqual(result.clientWidth + 1);
 }
 
 test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page }) => {
