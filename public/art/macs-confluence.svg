@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">MACS Confluence study</title>
+  <desc id="desc">Two flat vector currents merge into one accountable path, using the MACS brand palette.</desc>
+  <rect width="1600" height="900" fill="#F6F6E9"/>
+  <path d="M-40 170 C260 180 360 230 520 360 C640 456 700 470 810 470" fill="none" stroke="#B4B4B4" stroke-width="76" stroke-linecap="square"/>
+  <path d="M-40 730 C280 700 390 650 540 540 C650 460 720 430 810 430" fill="none" stroke="#3A6EA5" stroke-width="76" stroke-linecap="square"/>
+  <path d="M810 450 C990 450 1130 420 1640 240" fill="none" stroke="#171512" stroke-width="76" stroke-linecap="square"/>
+  <path d="M746 498 L810 386 L874 498 Z" fill="#FE6E60"/>
+  <g fill="none" stroke="#171512" stroke-width="2" opacity="0.18">
+    <path d="M100 90 H1500"/>
+    <path d="M100 810 H1500"/>
+    <path d="M140 90 V810"/>
+    <path d="M1460 90 V810"/>
+  </g>
+</svg>
