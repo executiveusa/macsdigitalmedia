@@ -7,17 +7,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { PreferenceControls } from "@/components/preference-controls";
 import { useSitePreferences } from "@/components/site-preferences";
-import { offerCopy } from "@/lib/offer-copy";
-
-function MenuIcon({ open }: { open: boolean }) {
-  return (
-    <span className={`menu-icon${open ? " menu-icon--open" : ""}`} aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-  );
-}
 
 function getFocusableElements(container: HTMLElement) {
   return Array.from(
@@ -32,18 +21,19 @@ export function SiteHeader() {
   const reduceMotion = useReducedMotion();
   const { copy, locale } = useSitePreferences();
   const common = copy.common;
-  const primaryCta = offerCopy[locale].common.primaryCta;
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const mobileNavRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
 
+  const spanish = locale === "es-MX";
   const navigation = [
-    { href: "/maxx", label: common.maxx },
-    { href: "/founding-launch", label: common.launch },
-    { href: "/website-rescue", label: common.rescue },
-    { href: "/small-business", label: common.smallBusiness },
-    { href: "/#about", label: common.about },
+    { href: "/programs", label: spanish ? "Programas" : "Programs" },
+    { href: "/work", label: spanish ? "Trabajo" : "Work" },
+    { href: "/story", label: spanish ? "Historia" : "Story" },
+    { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
+    { href: "/notes", label: spanish ? "Notas" : "Notes" },
   ];
+  const fitLabel = spanish ? "Veamos si encajamos" : "See if we're a fit";
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -63,24 +53,17 @@ export function SiteHeader() {
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open || !menuRef.current) return;
 
-    const navigationElement = mobileNavRef.current;
-    if (!navigationElement) return;
-
+    const navigationElement = menuRef.current;
     const focusFirst = window.requestAnimationFrame(() => {
       getFocusableElements(navigationElement)[0]?.focus();
     });
 
     const containFocus = (event: KeyboardEvent) => {
       if (event.key !== "Tab") return;
-
       const focusable = getFocusableElements(navigationElement);
-      if (focusable.length === 0) {
-        event.preventDefault();
-        return;
-      }
-
+      if (focusable.length === 0) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       const active = document.activeElement;
@@ -101,98 +84,63 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const navigationLinks = navigation.map((item) => {
-    const isCurrent = item.href.startsWith("/#") ? false : pathname === item.href;
-
-    return (
-      <Link
-        key={item.href}
-        href={item.href}
-        aria-current={isCurrent ? "page" : undefined}
-        onClick={() => setOpen(false)}
-      >
-        {item.label}
-      </Link>
-    );
-  });
-
-  const applyLink = (
-    <Link
-      className="button button--small button--primary"
-      href="/apply"
-      aria-current={pathname === "/apply" ? "page" : undefined}
-      onClick={() => setOpen(false)}
-    >
-      {primaryCta}
-    </Link>
-  );
-
   return (
-    <header className="site-header">
-      <div className="site-header__inner">
-        <Link className="brand-link" href="/" aria-label={common.homeLabel} onClick={() => setOpen(false)}>
-          <Image
-            src="/logo.png"
-            alt="MACS Digital Media"
-            width={500}
-            height={378}
-            className="brand-logo"
-            priority
-          />
+    <header className="editorial-header">
+      <div className="editorial-header__inner">
+        <Link className="editorial-brand" href="/" aria-label={common.homeLabel} onClick={() => setOpen(false)}>
+          <Image src="/logo.png" alt="MACS Digital Media" width={500} height={378} priority />
         </Link>
 
-        <nav className="primary-navigation primary-navigation--desktop" aria-label={common.primaryNav}>
-          {navigationLinks}
-          {applyLink}
-        </nav>
-
-        <div className="site-header__tools">
-          <PreferenceControls />
+        <div className="editorial-header__actions">
+          <Link className="editorial-header__fit" href="/apply" aria-current={pathname === "/apply" ? "page" : undefined}>
+            {fitLabel}
+          </Link>
           <button
             ref={menuButtonRef}
-            className="menu-button"
+            className="editorial-menu-button"
             type="button"
             aria-expanded={open}
-            aria-controls="mobile-primary-navigation"
+            aria-controls="editorial-primary-navigation"
             onClick={() => setOpen((current) => !current)}
           >
-            <span className="menu-button__label">{open ? common.closeMenu : common.menu}</span>
-            <MenuIcon open={open} />
+            <span>{open ? common.closeMenu : common.menu}</span>
+            <span className="editorial-menu-button__glyph" aria-hidden="true">{open ? "×" : "☰"}</span>
           </button>
         </div>
       </div>
 
       <AnimatePresence>
         {open ? (
-          <>
-            <m.button
-              className="mobile-menu-backdrop"
-              type="button"
-              tabIndex={-1}
-              aria-label={common.closeMenu}
-              onClick={() => {
-                setOpen(false);
-                menuButtonRef.current?.focus();
-              }}
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.2 }}
-            />
-            <m.nav
-              ref={mobileNavRef}
-              id="mobile-primary-navigation"
-              className="primary-navigation primary-navigation--mobile"
-              aria-label={common.primaryNav}
-              initial={reduceMotion ? false : { opacity: 0, y: -14 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: reduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {navigationLinks}
-              {applyLink}
-            </m.nav>
-          </>
+          <m.nav
+            ref={menuRef}
+            id="editorial-primary-navigation"
+            className="editorial-menu"
+            aria-label={common.primaryNav}
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
+          >
+            <div className="editorial-menu__inner">
+              <div className="editorial-menu__primary">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="editorial-menu__meta">
+                <PreferenceControls />
+                <Link href="/apply" onClick={() => setOpen(false)}>{fitLabel} ↗</Link>
+                <span>Pacific Northwest</span>
+              </div>
+            </div>
+          </m.nav>
         ) : null}
       </AnimatePresence>
     </header>
