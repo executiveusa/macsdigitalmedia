@@ -1,4 +1,4 @@
-import assert from "node:assert/strict"; import test from "node:test"; import { isSafeManagedHref, validateManagedContent } from "../../lib/site-content-contract.ts";
+import assert from "node:assert/strict"; import test from "node:test"; import { isSafeManagedHref, validateManagedContent } from "../../lib/site-content-contract";
 const validPayload={key:"home-announcement",locale:"en",title:"Founding cohort applications are open",body:"Washington organizations can now apply for the next MACS founding cohort.",ctaLabel:"Apply now",ctaHref:"/apply",enabled:true,revisionNote:"Open the next cohort application window."};
 test("accepts allowlisted content",()=>{const result=validateManagedContent(validPayload);assert.equal(result.ok,true)});
 test("accepts HTTPS and optional CTA",()=>{assert.equal(validateManagedContent({...validPayload,locale:"es-MX",ctaHref:"https://www.macsdigitalmedia.com/apply"}).ok,true);assert.equal(validateManagedContent({...validPayload,ctaLabel:null,ctaHref:null,enabled:false}).ok,true)});

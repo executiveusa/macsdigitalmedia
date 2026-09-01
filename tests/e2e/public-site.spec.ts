@@ -1,149 +1,120 @@
 import { expect, test } from "@playwright/test";
 
-const heroVideoUrl =
-  "https://www.macsdigitalmedia.com/wp-content/uploads/2025/04/6015791_Business_Office_1280x720.webm";
-
 async function expectNoHorizontalOverflow(page: import("@playwright/test").Page) {
-  const dimensions = await page.evaluate(() => ({
-    scrollWidth: document.documentElement.scrollWidth,
-    clientWidth: document.documentElement.clientWidth,
-  }));
+  const result = await page.evaluate(() => {
+    const clientWidth = document.documentElement.clientWidth;
+    const scrollWidth = document.documentElement.scrollWidth;
+    const offenders = Array.from(document.querySelectorAll<HTMLElement>("body *"))
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          tag: element.tagName.toLowerCase(),
+          id: element.id,
+          className: typeof element.className === "string" ? element.className : "",
+          left: Math.round(rect.left),
+          right: Math.round(rect.right),
+          width: Math.round(rect.width),
+        };
+      })
+      .filter((item) => item.right > clientWidth + 1 || item.left < -1)
+      .sort((a, b) => Math.max(b.right - clientWidth, -b.left) - Math.max(a.right - clientWidth, -a.left))
+      .slice(0, 12);
 
-  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+    return { scrollWidth, clientWidth, offenders };
+  });
+
+  expect(
+    result.scrollWidth,
+    `Horizontal overflow: viewport=${result.clientWidth}, scrollWidth=${result.scrollWidth}, offenders=${JSON.stringify(result.offenders)}`,
+  ).toBeLessThanOrEqual(result.clientWidth + 1);
 }
 
-test("homepage passes the primary Krug trunk test at 1280 by 720", async ({ page }) => {
+test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
 
-  const hero = page.locator(".hero");
-  const primaryActions = page.getByLabel("Primary actions");
-  const servicePrinciples = page.getByLabel("Service principles");
-
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Own the AI system",
-  );
-  await expect(page.locator(".hero__lede")).toContainText("In 90 days");
-  await expect(
-    primaryActions.getByRole("link", { name: /apply for a founding installation/i }),
-  ).toBeVisible();
-  await expect(primaryActions.getByRole("link", { name: /watch inquiry become follow-up/i })).toBeVisible();
-  await expect(servicePrinciples.getByText("Human approval where it matters", { exact: true })).toBeVisible();
-  await expect(servicePrinciples.getByText("Documented ownership handoff", { exact: true })).toBeVisible();
-
-  const heroBox = await hero.boundingBox();
-  expect(heroBox).not.toBeNull();
-  expect(heroBox?.height ?? 0).toBeGreaterThanOrEqual(720 - 84);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Make the business feel whole again");
+  await expect(page.getByText(/father-and-son team for the parts that stopped working together/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: /see if we're a fit/i }).first()).toBeVisible();
+  await expect(page.getByText(/Pacific Northwest · Father \+ son · Selective 90-day engagements/i)).toBeVisible();
+  await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
   await page.screenshot({ path: "test-results/desktop-1280-full.png", fullPage: true });
   await page.screenshot({ path: "test-results/desktop-1280-hero.png" });
 });
 
-test("homepage makes the outcome, founder story, scope, and guarantee visible", async ({ page }) => {
+test("homepage tells the six-beat story with real founder and work proof", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /important work is being lost/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /powerful technology should create capability/i })).toBeVisible();
-  await expect(page.getByText(/father-and-son company led by Stacy and Stavarai/i)).toBeVisible();
-  await expect(page.getByText(/owner of PostaTees/i)).toBeVisible();
-  await expect(page.getByText("Stacy", { exact: true })).toBeVisible();
-  await expect(page.getByText("Stavarai", { exact: true })).toBeVisible();
-  await expect(page.getByRole("img", { name: "Stavarai and his father Stacy together" })).toBeVisible();
-  await expect(page.getByRole("img", { name: "Stavarai and Stacy standing together by the waterfront at night" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /two agreed workflows must pass/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /what remains outside the founding scope/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /four situations we step into/i })).toBeVisible();
+  await expect(page.getByText("Reset", { exact: true })).toBeVisible();
+  await expect(page.getByText("Momentum", { exact: true })).toBeVisible();
+  await expect(page.getByText("Scale", { exact: true })).toBeVisible();
+  await expect(page.getByText("Launch", { exact: true })).toBeVisible();
+  await expect(page.getByText("ASC3ND", { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
+  await expect(page.getByText("Agent MAXX", { exact: true })).toBeVisible();
+  await expect(page.getByText("Buffer Blaster", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /small number of businesses at a time/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /Stacy and Stavarai of MACS Digital Media together by the waterfront/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /Stacy and Stavarai, the father-and-son team behind MACS Digital Media/i })).toBeVisible();
 });
 
-test("founding launch defines scope and client responsibilities", async ({ page }) => {
+test("founding launch legacy route remains available during brownfield transformation", async ({ page }) => {
   await page.goto("/founding-launch");
-
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Install two working AI workflows");
-  await expect(page.locator("dt").filter({ hasText: /^One workflow$/ })).toBeVisible();
-  await expect(page.locator("dt").filter({ hasText: /^One supported connection$/ })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /client participation required/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /outside the standardized founding installation/i })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expectNoHorizontalOverflow(page);
 });
 
-test("hero keeps branded media in normal and degraded states", async ({ page }) => {
+test("editorial hero uses approved founder media instead of generic background video", async ({ page }) => {
   await page.goto("/");
 
-  const poster = page.locator(".hero__poster");
-  const video = page.locator("video.hero__video");
-
-  await expect(poster).toBeVisible();
-  await expect(video).toBeAttached();
-  await expect(video).toHaveAttribute("poster", "/media/macs-hero-poster.svg");
-  await expect(video.locator("source")).toHaveAttribute("src", heroVideoUrl);
-  await expect(video).toHaveCSS("object-fit", "cover");
-  await expect(page.getByRole("button", { name: /play background video|pause background video/i })).toBeVisible();
+  const image = page.locator(".editorial-hero__image");
+  await expect(image).toBeVisible();
+  await expect(image).toHaveAttribute("src", /stacy-stavarai-waterfront/);
+  await expect(page.locator("video.hero__video")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /background video/i })).toHaveCount(0);
 });
 
-test("mobile hero separates copy from video at 390 and 430 pixels", async ({ page }) => {
-  for (const width of [390, 430]) {
-    await page.setViewportSize({ width, height: width === 390 ? 844 : 932 });
+test("mobile homepage keeps the primary action and founder story clear", async ({ page }) => {
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 430, height: 932 },
+  ]) {
+    await page.setViewportSize(viewport);
     await page.goto("/");
 
-    const heroContent = page.locator(".hero__content");
-    const video = page.locator("video.hero__video");
-    const actions = page.getByLabel("Primary actions");
-    const primaryAction = actions.getByRole("link", { name: /apply for a founding installation/i });
-
-    const contentBox = await heroContent.boundingBox();
-    const videoBox = await video.boundingBox();
-    const actionsBox = await actions.boundingBox();
-    const primaryActionBox = await primaryAction.boundingBox();
-
-    expect(contentBox).not.toBeNull();
-    expect(videoBox).not.toBeNull();
-    expect(actionsBox).not.toBeNull();
-    expect(primaryActionBox).not.toBeNull();
-    expect((videoBox?.y ?? 0)).toBeGreaterThanOrEqual((contentBox?.y ?? 0) + (contentBox?.height ?? 0) - 1);
-    expect(videoBox?.width ?? 0).toBeGreaterThanOrEqual(width - 2);
-    expect(Math.abs((primaryActionBox?.width ?? 0) - (actionsBox?.width ?? 0))).toBeLessThanOrEqual(1);
-
-    await expect(page.locator(".hero__overlay")).toBeHidden();
-    await expect(video).toHaveCSS("aspect-ratio", "16 / 9");
-    await expect(video).toHaveCSS("object-fit", "cover");
-    await expect(video).toHaveCSS("object-position", "40% 50%");
-    await expect(page.getByRole("button", { name: /play background video|pause background video/i })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByRole("link", { name: /see if we're a fit/i }).first()).toBeVisible();
+    await expect(page.locator(".editorial-hero__image")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
 });
 
-test("reduced-motion mode keeps the static hero identity and removes playback controls", async ({ page }) => {
+test("reduced-motion mode keeps the complete static experience", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
 
-  await expect(page.locator(".hero__poster")).toBeVisible();
-  await expect(page.locator("video.hero__video")).toHaveCSS("opacity", "0");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expect(page.getByRole("button", { name: /background video/i })).toHaveCount(0);
-  await page.screenshot({ path: "test-results/reduced-motion.png" });
+  await page.screenshot({ path: "test-results/reduced-motion.png", fullPage: true });
 });
 
-test("language and theme controls persist clear interface states", async ({ page }) => {
+test("editorial menu keeps language switching and removes the unimplemented theme choice", async ({ page }) => {
   await page.goto("/");
 
-  const languageButtons = page.locator(".language-toggle button");
+  await page.getByRole("button", { name: /^menu$/i }).click();
+  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  await expect(navigation).toBeVisible();
+
+  const languageButtons = navigation.locator(".language-toggle button");
   await languageButtons.nth(1).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es-MX");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Sé dueño del sistema de IA",
-  );
-  await expect(page.getByText(/empresa de padre e hijo dirigida por Stacy y Stavarai/i)).toBeVisible();
-  await page.screenshot({ path: "test-results/theme-language-spanish.png" });
-
-  const themeToggle = page.locator(".theme-toggle");
-  await themeToggle.click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await page.screenshot({ path: "test-results/theme-light.png", fullPage: true });
-
-  await themeToggle.click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await page.screenshot({ path: "test-results/theme-dark.png", fullPage: true });
-
-  await languageButtons.nth(0).click();
-  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Haz que el negocio vuelva a sentirse completo");
+  await expect(page.locator(".theme-toggle")).toHaveCount(0);
+  await page.screenshot({ path: "test-results/language-spanish.png", fullPage: true });
 });
 
 test("mobile navigation closes with Escape and restores focus", async ({ page }) => {
@@ -167,6 +138,7 @@ test("mobile navigation closes with Escape and restores focus", async ({ page })
 test("key breakpoints avoid horizontal overflow", async ({ page }) => {
   const viewports = [
     { width: 360, height: 800 },
+    { width: 390, height: 844 },
     { width: 430, height: 932 },
     { width: 768, height: 1024 },
     { width: 1024, height: 768 },
@@ -182,6 +154,22 @@ test("key breakpoints avoid horizontal overflow", async ({ page }) => {
       path: `test-results/breakpoint-${viewport.width}.png`,
       fullPage: viewport.width <= 768,
     });
+  }
+});
+
+test("Phase 5 design lab exposes three divergent noindex prototype territories", async ({ page }) => {
+  const territories = [
+    ["long-view", /the long view/i],
+    ["two-clocks", /one watches what has to last/i],
+    ["confluence", /two currents\. one accountable team/i],
+  ] as const;
+
+  for (const [slug, heading] of territories) {
+    await page.goto(`/design-lab/${slug}`);
+    await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/i);
+    await expectNoHorizontalOverflow(page);
+    await page.screenshot({ path: `test-results/design-${slug}-1440.png`, fullPage: true });
   }
 });
 
