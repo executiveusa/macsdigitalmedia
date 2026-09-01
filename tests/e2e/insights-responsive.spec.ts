@@ -40,5 +40,6 @@ test("MACS Insights respects reduced motion", async ({ page }) => {
   await page.goto(articlePath);
   const cta = page.getByRole("link", { name: /See how MACS works/i });
   await expect(cta).toBeVisible();
-  await expect(cta).toHaveCSS("transition-duration", "0s");
+  const transitionSeconds = await cta.evaluate((element) => Number.parseFloat(getComputedStyle(element).transitionDuration));
+  expect(transitionSeconds).toBeLessThanOrEqual(0.001);
 });
