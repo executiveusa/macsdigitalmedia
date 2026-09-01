@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroVideo } from "@/components/hero-video";
 import { Reveal } from "@/components/motion";
-import { offerCopy } from "@/lib/offer-copy";
+import { editorialHome } from "@/lib/editorial-home";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = offerCopy[locale].home;
+  const home = editorialHome[locale];
 
   return {
-    title: copy.metadataTitle,
-    description: copy.metadataDescription,
+    title: home.metadataTitle,
+    description: home.metadataDescription,
   };
 }
 
@@ -22,110 +21,65 @@ const organizationSchema = {
   name: "MACS Digital Media",
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
-  description: "Client-owned AI operations systems for Washington organizations.",
+  description:
+    "A Pacific Northwest father-and-son company helping owner-led organizations bring fragmented digital work back together.",
   areaServed: {
     "@type": "State",
     name: "Washington",
   },
 };
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "MACS 90-Day Client-Owned AI Installation",
-  provider: {
-    "@type": "Organization",
-    name: "MACS Digital Media",
-  },
-  areaServed: "Washington, USA",
-  serviceType: "Client-owned AI operations system installation",
-  description:
-    "A defined 90-day installation combining approved organizational knowledge, a managed AI operator, an AI Front Door, human approval controls, activity history, and two tested workflows.",
-  offers: {
-    "@type": "Offer",
-    price: "7500",
-    priceCurrency: "USD",
-    availability: "https://schema.org/LimitedAvailability",
-  },
-};
-
 export default async function HomePage() {
   const locale = await getServerLocale();
-  const home = offerCopy[locale].home;
+  const home = editorialHome[locale];
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema, serviceSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
 
-      <section className="hero" aria-labelledby="hero-title">
-        <HeroVideo />
-        <div className="hero__overlay" aria-hidden="true" />
-        <div className="shell hero__content">
-          <Reveal>
-            <p className="eyebrow">{home.eyebrow}</p>
-            <h1 id="hero-title">{home.title}</h1>
-            <p className="hero__lede">{home.lede}</p>
-            <div className="button-row" aria-label={locale === "es-MX" ? "Acciones principales" : "Primary actions"}>
-              <Link className="button button--primary" href="/apply">
-                {home.primaryCta}
-              </Link>
-              <Link className="button button--secondary" href="#system-work">
-                {home.secondaryCta}
-              </Link>
-            </div>
-            <ul className="trust-list" aria-label={locale === "es-MX" ? "Principios del servicio" : "Service principles"}>
-              {home.trust.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </Reveal>
+      <section className="editorial-hero" aria-labelledby="editorial-hero-title">
+        <Image
+          className="editorial-hero__image"
+          src="/media/founders/stacy-stavarai-waterfront.webp"
+          alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
+          fill
+          priority
+          sizes="100vw"
+        />
+        <div className="editorial-hero__veil" aria-hidden="true" />
+        <div className="editorial-shell editorial-hero__content">
+          <p className="editorial-kicker">MACS Digital Media</p>
+          <h1 id="editorial-hero-title">{home.heroTitle}</h1>
+          <p className="editorial-hero__line">{home.heroLine}</p>
+          <Link className="editorial-link editorial-link--light" href="/apply">
+            {home.primaryCta} <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </section>
+
+      <section className="editorial-credibility" aria-label={home.credibility}>
+        <div className="editorial-shell">
+          <p>{home.credibility}</p>
         </div>
       </section>
 
       <Reveal>
-        <section className="section section--soft" id="operational-problem" aria-labelledby="problem-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.problemEyebrow}</p>
-              <h2 id="problem-title">{home.problemTitle}</h2>
-              <p>{home.problemIntro}</p>
+        <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
+          <div className="editorial-shell">
+            <div className="editorial-heading">
+              <p className="editorial-kicker">{home.programsLabel}</p>
+              <h2 id="programs-title">{home.programsTitle}</h2>
             </div>
-            <div className="outcome-grid">
-              <article className="outcome-card outcome-card--before">
-                <h3>{home.beforeTitle}</h3>
-                <ul>{home.before.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
-              </article>
-              <article className="outcome-card outcome-card--after">
-                <h3>{home.afterTitle}</h3>
-                <ul>{home.after.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
-              </article>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section section--dark" id="about" aria-labelledby="founder-title">
-          <div className="shell founder-layout">
-            <div className="founder-heading">
-              <p className="eyebrow">{home.founderEyebrow}</p>
-              <h2 id="founder-title">{home.founderTitle}</h2>
-            </div>
-            <div className="founder-copy">
-              <p>{home.founderParagraphs[0]}</p>
-            </div>
-            <div className="founder-gallery">
-              {home.founderGallery.slice(0, 1).map(([src, alt, title, caption]) => (
-                <figure className="founder-photo founder-photo--primary" key={src}>
-                  <Image src={src} alt={alt} width={1152} height={1536} sizes="(max-width: 680px) 100vw, 58vw" />
-                  <figcaption><strong>{title}</strong><span>{caption}</span></figcaption>
-                </figure>
-              ))}
-            </div>
-            <div className="founder-principles">
-              {home.founderPrinciples.map(([title, body]) => (
-                <article className="founder-principle" key={title}><h3>{title}</h3><p>{body}</p></article>
+            <div className="editorial-rows">
+              {home.programs.map((program) => (
+                <Link className="editorial-row" href={program.href} key={program.name}>
+                  <span className="editorial-row__name">{program.name}</span>
+                  <span className="editorial-row__line">{program.line}</span>
+                  <span className="editorial-row__arrow" aria-hidden="true">↗</span>
+                </Link>
               ))}
             </div>
           </div>
@@ -133,79 +87,96 @@ export default async function HomePage() {
       </Reveal>
 
       <Reveal>
-        <section className="section section--light" id="what-we-build" aria-labelledby="system-title">
-          <div className="shell">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.buildEyebrow}</p>
-              <h2 id="system-title">{home.buildTitle}</h2>
-              <p>{home.buildIntro}</p>
+        <section className="editorial-section editorial-work" aria-labelledby="work-title">
+          <div className="editorial-shell">
+            <div className="editorial-heading editorial-heading--split">
+              <p className="editorial-kicker">{home.workLabel}</p>
+              <h2 id="work-title">{home.workTitle}</h2>
             </div>
-            <ol className="system-grid">
-              {home.systemParts.slice(0, 4).map(([number, title, body]) => (
-                <li className="system-card" key={number}>
-                  <span className="system-card__number" aria-hidden="true">{number}</span>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-      </Reveal>
 
-      <Reveal>
-        <section className="section section--dark" id="system-work" aria-labelledby="workflow-title">
-          <div className="shell workflow-layout">
-            <div className="section-heading section-heading--dark">
-              <p className="eyebrow">{home.demoEyebrow}</p>
-              <h2 id="workflow-title">{home.demoTitle}</h2>
-              <p>{home.demoIntro}</p>
-            </div>
-            <ol className="workflow-list">
-              {home.workflowSteps.map(([title, body, status], index) => (
-                <li className={index === 3 ? "workflow-step workflow-step--approval" : "workflow-step"} key={title}>
-                  <span className="workflow-step__number">{String(index + 1).padStart(2, "0")}</span>
-                  <div><h3>{title}</h3><p>{body}</p></div>
-                  <span className="workflow-step__status">{status}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="section" id="founding-offer" aria-labelledby="offer-title">
-          <div className="shell offer-layout">
-            <div className="section-heading">
-              <p className="eyebrow eyebrow--dark">{home.offerEyebrow}</p>
-              <h2 id="offer-title">{home.offerTitle}</h2>
-              <p>{home.offerIntro}</p>
-            </div>
-            <div className="offer-card">
-              <div className="offer-card__price">
-                <span>{home.validationCohort}</span>
-                <strong>$7,500</strong>
-                <span>{home.installation90}</span>
+            <Link className="editorial-work__feature" href="/work#asc3nd">
+              <div
+                className="editorial-work__media"
+                role="img"
+                aria-label="ASC3ND project site reference"
+                style={{ backgroundImage: "url(https://asc3nd.org/images/asc3nd-site-reference.jpg)" }}
+              />
+              <div className="editorial-work__caption">
+                <strong>{home.asc3ndTitle}</strong>
+                <span>{home.asc3ndLine}</span>
+                <span aria-hidden="true">↗</span>
               </div>
-              <ul className="check-list">
-                {home.included.slice(0, 5).map((item) => <li key={item}>{item}</li>)}
-              </ul>
-              <Link className="button button--primary button--full" href="/apply">{home.primaryCta}</Link>
+            </Link>
+
+            <Link className="editorial-work__secondary" href="/work#client-zero">
+              <span className="editorial-work__index">02</span>
+              <strong>{home.clientZeroTitle}</strong>
+              <span>{home.clientZeroLine}</span>
+              <span aria-hidden="true">↗</span>
+            </Link>
+
+            <Link className="editorial-link" href="/work">
+              {home.workCta} <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="editorial-section editorial-story" aria-labelledby="story-title">
+          <div className="editorial-shell editorial-story__grid">
+            <div className="editorial-story__media">
+              <Image
+                src="/media/founders/stacy-stavarai-portrait.webp"
+                alt="Stacy and Stavarai, the father-and-son team behind MACS Digital Media"
+                fill
+                sizes="(max-width: 800px) 100vw, 54vw"
+              />
+            </div>
+            <div className="editorial-story__copy">
+              <p className="editorial-kicker">{home.storyLabel}</p>
+              <h2 id="story-title">{home.storyTitle}</h2>
+              <p>{home.storyLine}</p>
+              <Link className="editorial-link" href="/story">
+                {home.storyCta} <span aria-hidden="true">↗</span>
+              </Link>
             </div>
           </div>
         </section>
       </Reveal>
 
       <Reveal>
-        <section className="section final-cta" aria-labelledby="final-cta-title">
-          <div className="shell final-cta__inner">
-            <div>
-              <p className="eyebrow eyebrow--dark">{home.finalEyebrow}</p>
-              <h2 id="final-cta-title">{home.finalTitle}</h2>
+        <section className="editorial-section editorial-built" aria-labelledby="built-title">
+          <div className="editorial-shell">
+            <div className="editorial-heading editorial-heading--wide">
+              <p className="editorial-kicker">{home.builtLabel}</p>
+              <h2 id="built-title">{home.builtTitle}</h2>
             </div>
-            <Link className="button button--primary" href="/apply">
-              {home.finalCta}<span className="button-arrow" aria-hidden="true">→</span>
+            <div className="editorial-built__grid">
+              {home.builtItems.map((item, index) => (
+                <Link className="editorial-built__item" href={item.href} key={item.name}>
+                  <span className="editorial-built__index">0{index + 1}</span>
+                  <strong>{item.name}</strong>
+                  <span>{item.line}</span>
+                  <span className="editorial-built__arrow" aria-hidden="true">↗</span>
+                </Link>
+              ))}
+            </div>
+            <Link className="editorial-link" href="/built-here">
+              {home.builtCta} <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="editorial-fit" aria-labelledby="fit-title">
+          <div className="editorial-shell editorial-fit__inner">
+            <p className="editorial-kicker">{home.fitLabel}</p>
+            <h2 id="fit-title">{home.fitTitle}</h2>
+            <p>{home.fitLine}</p>
+            <Link className="editorial-link editorial-link--light" href="/apply">
+              {home.fitCta} <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </section>
