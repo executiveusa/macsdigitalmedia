@@ -4,7 +4,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Programs",
-  description: "Four business situations where MACS Digital Media helps owner-led businesses bring digital work back under control.",
+  description: "Four ways MACS Digital Media begins an ongoing technology partnership with owner-led businesses: Reset, Momentum, Scale and Launch.",
 };
 
 export default async function ProgramsPage() {
@@ -13,26 +13,26 @@ export default async function ProgramsPage() {
 
   const programs = es
     ? [
-        ["reset", "Reset", "Cuando demasiadas herramientas, proveedores y pendientes ya no trabajan juntos.", "Auditamos lo que existe, conservamos lo que sirve, eliminamos duplicación y devolvemos al dueño el control de los sistemas importantes."],
-        ["momentum", "Momentum", "Cuando el negocio es bueno, pero la atención y el seguimiento son inconsistentes.", "Conectamos contenido, distribución y seguimiento en un ritmo repetible sin convertir al dueño en creador de contenido de tiempo completo."],
-        ["scale", "Scale", "Cuando el crecimiento ya rebasó la forma en que se manejan la información, las decisiones y el trabajo.", "Construimos una base operativa más clara para información, seguimiento, aprobaciones y responsabilidades."],
-        ["launch", "Launch", "Cuando una nueva oferta necesita un sistema detrás, no solo una campaña de lanzamiento.", "Unimos posicionamiento, presencia pública, contenido, distribución y seguimiento alrededor de un solo lanzamiento."],
+        ["reset", "Reset", "Cuando el sitio web, las herramientas y los flujos digitales están creando más fricción que progreso.", "Empezamos por ordenar la base: auditamos lo que existe, conservamos lo que sirve, eliminamos duplicación y dejamos una estructura más clara para seguir mejorando."],
+        ["momentum", "Momentum", "Cuando el negocio necesita atención constante, mejor contenido y seguimiento más confiable.", "Construimos un ritmo repetible para contenido, distribución, UGC y seguimiento para que el crecimiento no dependa de campañas aisladas ni de que el dueño haga todo."],
+        ["scale", "Scale", "Cuando el volumen ya rebasó la forma en que el equipo maneja información, decisiones y trabajo.", "Conectamos automatización, IA, conocimiento, aprobaciones y seguimiento para que el negocio pueda manejar más trabajo sin sumar más caos."],
+        ["launch", "Launch", "Cuando una nueva oferta, producto o iniciativa necesita un sistema completo detrás.", "Unimos posicionamiento, sitio, contenido, distribución, captura de demanda y seguimiento para que el lanzamiento tenga una operación que continúe después del primer impulso."],
       ]
     : [
-        ["reset", "Reset", "When too many tools, vendors and loose ends no longer work together.", "We audit what exists, keep what works, remove overlap and put the important systems back under the owner's control."],
-        ["momentum", "Momentum", "When the business is good, but attention and follow-up are inconsistent.", "We connect content, distribution and follow-up into a repeatable rhythm without turning the owner into a full-time creator."],
-        ["scale", "Scale", "When growth has outpaced the way information, decisions and work get handled.", "We build a clearer operating backbone for information, follow-up, approvals and responsibilities."],
-        ["launch", "Launch", "When a new offer needs a working system behind it, not just a launch campaign.", "We bring positioning, public presence, content, distribution and follow-up together around one launch."],
+        ["reset", "Reset", "When the website, tools and digital workflows are creating more friction than progress.", "We start by cleaning up the foundation: audit what exists, keep what works, remove overlap and leave a clearer system that can keep improving."],
+        ["momentum", "Momentum", "When the business needs consistent attention, stronger content and more reliable follow-up.", "We build a repeatable rhythm for content, distribution, UGC and follow-up so growth does not depend on isolated campaigns or the owner doing everything."],
+        ["scale", "Scale", "When volume has outgrown the way the team handles information, decisions and work.", "We connect automation, AI, knowledge, approvals and follow-up so the business can handle more work without adding more chaos."],
+        ["launch", "Launch", "When a new offer, product or initiative needs a complete system behind it.", "We connect positioning, website, content, distribution, demand capture and follow-up so the launch has an operation that keeps working after the first push."],
       ];
 
   return (
     <div className="editorial-page">
       <div className="editorial-shell">
         <header className="editorial-page__intro">
-          <p className="editorial-kicker">{es ? "Programas" : "Programs"}</p>
+          <p className="editorial-kicker">{es ? "Cuatro caminos" : "Four partnership lanes"}</p>
           <div>
-            <h1>{es ? "Entramos cuando el trabajo digital necesita un dueño claro." : "We step in when the digital work needs a clear owner."}</h1>
-            <p>{es ? "Elige la situación que más se parece a la tuya. Empezamos por el cuello de botella y construimos solo lo necesario para mover el negocio." : "Choose the situation that feels familiar. We start with the bottleneck and build only what the business needs to move."}</p>
+            <h1>{es ? "Un socio tecnológico. Cuatro formas de empezar." : "One technology partner. Four ways to start."}</h1>
+            <p>{es ? "No son cuatro servicios sueltos. Son cuatro puntos de entrada a una relación continua. Empezamos por el problema más urgente y seguimos con el negocio conforme cambian las prioridades." : "These are not four disconnected services. They are four entry points into an ongoing relationship. We start with the most urgent pressure point and stay with the business as priorities change."}</p>
           </div>
         </header>
 
@@ -45,7 +45,7 @@ export default async function ProgramsPage() {
         ))}
 
         <Link className="editorial-link" href="/apply">
-          {es ? "Cuéntanos qué está atorado" : "Tell us what's stuck"} <span aria-hidden="true">↗</span>
+          {es ? "Empezar la conversación" : "Start the conversation"} <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </div>
