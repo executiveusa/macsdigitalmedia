@@ -135,7 +135,7 @@ export function SiteHeader() {
                 ))}
               </div>
               <div className="editorial-menu__meta">
-                <PreferenceControls />
+                <PreferenceControls showTheme={false} />
                 <Link href="/apply" onClick={() => setOpen(false)}>{fitLabel} ↗</Link>
                 <span>Pacific Northwest</span>
               </div>
