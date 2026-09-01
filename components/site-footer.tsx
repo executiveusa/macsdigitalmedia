@@ -7,48 +7,47 @@ import { useSitePreferences } from "@/components/site-preferences";
 const currentYear = new Date().getFullYear();
 
 export function SiteFooter() {
-  const { copy } = useSitePreferences();
+  const { copy, locale } = useSitePreferences();
   const common = copy.common;
+  const spanish = locale === "es-MX";
+
+  const navigation = [
+    { href: "/programs", label: spanish ? "Programas" : "Programs" },
+    { href: "/work", label: spanish ? "Trabajo" : "Work" },
+    { href: "/story", label: spanish ? "Historia" : "Story" },
+    { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
+    { href: "/notes", label: spanish ? "Notas" : "Notes" },
+    { href: "/apply", label: spanish ? "Veamos si encajamos" : "See if we're a fit" },
+  ];
 
   return (
-    <footer className="site-footer">
-      <div className="shell site-footer__grid">
-        <div>
-          <Link href="/" className="footer-brand" aria-label={common.homeLabel}>
-            <Image
-              src="/logo.png"
-              alt="MACS Digital Media"
-              width={500}
-              height={378}
-              className="footer-logo"
-            />
-          </Link>
-          <p className="site-footer__statement">{common.footerStatement}</p>
-        </div>
-        <div>
-          <h2 className="site-footer__heading">{common.explore}</h2>
-          <nav className="footer-navigation" aria-label={common.footerNav}>
-            <Link href="/maxx">{common.maxx}</Link>
-            <Link href="/founding-launch">{common.launch}</Link>
-            <Link href="/website-rescue">{common.rescue}</Link>
-            <Link href="/small-business">{common.smallBusiness}</Link>
-            <Link href="/apply">{common.apply}</Link>
+    <footer className="editorial-footer">
+      <div className="editorial-footer__inner">
+        <div className="editorial-footer__top">
+          <div className="editorial-footer__brand">
+            <Link href="/" aria-label={common.homeLabel}>
+              <Image src="/logo.png" alt="MACS Digital Media" width={500} height={378} />
+            </Link>
+            <p>{spanish ? "Padre e hijo. Negocios reales. Trabajo que se queda contigo." : "Father and son. Real businesses. Work that stays yours."}</p>
+          </div>
+
+          <nav className="editorial-footer__nav" aria-label={common.footerNav}>
+            {navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
           </nav>
+
+          <div className="editorial-footer__meta">
+            <span>Pacific Northwest</span>
+            <span>Seattle · Washington</span>
+            <Link href="/privacy">{common.privacy}</Link>
+            <Link href="/accessibility">{common.accessibility}</Link>
+            <a href="#main-content">{common.backToTop} ↑</a>
+          </div>
         </div>
-        <div>
-          <h2 className="site-footer__heading">{common.operatingPrinciple}</h2>
-          <p className="site-footer__statement">{common.principleStatement}</p>
-          <a className="footer-back-to-top" href="#main-content">
-            {common.backToTop}
-            <span aria-hidden="true"> ↑</span>
-          </a>
+
+        <div className="editorial-footer__bottom">
+          <span>© {currentYear} MACS Digital Media</span>
+          <span>{spanish ? "Relaciones antes que encierro." : "Relationships over lock-in."}</span>
         </div>
-      </div>
-      <div className="shell site-footer__legal">
-        <span>© {currentYear} MACS Digital Media</span>
-        <span>{common.washington}</span>
-        <Link href="/privacy">{common.privacy}</Link>
-        <Link href="/accessibility">{common.accessibility}</Link>
       </div>
     </footer>
   );
