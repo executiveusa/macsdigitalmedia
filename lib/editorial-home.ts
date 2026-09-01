@@ -1,4 +1,4 @@
-import type { SiteLocale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 type Program = {
   name: string;
@@ -43,8 +43,8 @@ type EditorialHome = {
   fitCta: string;
 };
 
-export const editorialHome: Record<SiteLocale, EditorialHome> = {
-  "en-US": {
+export const editorialHome: Record<Locale, EditorialHome> = {
+  en: {
     metadataTitle: "MACS Digital Media | Pacific Northwest father-and-son business systems",
     metadataDescription:
       "MACS Digital Media is a Pacific Northwest father-and-son company helping owner-led organizations bring scattered digital work back together.",
