@@ -148,7 +148,6 @@
 .editorial-footer__brand img {
   width: 6rem;
   height: auto;
-  filter: brightness(0) invert(1);
 }
 
 .editorial-footer__brand p {
