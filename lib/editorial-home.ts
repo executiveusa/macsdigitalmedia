@@ -4,6 +4,8 @@ type Program = {
   name: string;
   line: string;
   href: string;
+  proofLabel: string;
+  proofHint: string;
 };
 
 type BuiltItem = {
@@ -21,7 +23,11 @@ type EditorialHome = {
   credibility: string;
   programsLabel: string;
   programsTitle: string;
+  programsIntro: string;
   programs: Program[];
+  partnershipBridgeLabel: string;
+  partnershipBridgeTitle: string;
+  partnershipBridgeLine: string;
   workLabel: string;
   workTitle: string;
   asc3ndTitle: string;
@@ -52,14 +58,42 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     heroLine: "Websites, content, automation, AI and follow-up—planned and improved by one accountable father-and-son team instead of a rotating list of freelancers and vendors.",
     primaryCta: "Tell us what's stuck",
     credibility: "Pacific Northwest · Father + son · Built for ongoing partnership",
-    programsLabel: "Four partnership lanes",
-    programsTitle: "Start with the pressure point. Build the relationship from there.",
+    programsLabel: "How we partner",
+    programsTitle: "One technology partner. Four ways to start.",
+    programsIntro: "Start where the pressure is. Each lane solves a different business condition, but the context stays with the same team as priorities change.",
     programs: [
-      { name: "Reset", line: "Repair the website, tools and broken workflows that are creating drag or confusion.", href: "/programs#reset" },
-      { name: "Momentum", line: "Build a repeatable content, visibility and follow-up system that keeps the business moving.", href: "/programs#momentum" },
-      { name: "Scale", line: "Use automation, AI and better operating systems to handle more work without more chaos.", href: "/programs#scale" },
-      { name: "Launch", line: "Turn a new offer, product or initiative into a complete digital system that can keep running after launch day.", href: "/programs#launch" },
+      {
+        name: "Reset",
+        line: "Fix what’s scattered—website, tools, vendors and broken workflows.",
+        href: "/programs#reset",
+        proofLabel: "Reset proof",
+        proofHint: "Add video, before/after, case study or live site",
+      },
+      {
+        name: "Momentum",
+        line: "Build consistent growth through content, visibility, distribution and follow-up.",
+        href: "/programs#momentum",
+        proofLabel: "Momentum proof",
+        proofHint: "Add campaign, content system, video or results story",
+      },
+      {
+        name: "Scale",
+        line: "Make growth easier to operate with automation, AI, knowledge and better systems.",
+        href: "/programs#scale",
+        proofLabel: "Scale proof",
+        proofHint: "Add workflow, automation, agent or operations case study",
+      },
+      {
+        name: "Launch",
+        line: "Build the digital system behind what comes next—not just the campaign announcing it.",
+        href: "/programs#launch",
+        proofLabel: "Launch proof",
+        proofHint: "Add launch video, product, brand, live site or case study",
+      },
     ],
+    partnershipBridgeLabel: "The relationship",
+    partnershipBridgeTitle: "Start with one problem. Keep the context as the business changes.",
+    partnershipBridgeLine: "A Reset can become Momentum. Momentum can expose what needs to Scale. Launch can happen at any point. The value is not buying four projects—it is having one technology partner who already understands the business when the next problem appears.",
     workLabel: "Proof",
     workTitle: "Proof before promises.",
     asc3ndTitle: "ASC3ND",
@@ -93,14 +127,42 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     heroLine: "Sitio web, contenido, automatización, IA y seguimiento: planeados y mejorados por un solo equipo responsable de padre e hijo, en lugar de una lista cambiante de freelancers y proveedores.",
     primaryCta: "Cuéntanos qué está atorado",
     credibility: "Noroeste del Pacífico · Padre + hijo · Hecho para una relación continua",
-    programsLabel: "Cuatro caminos de colaboración",
-    programsTitle: "Empieza por la presión más urgente. Construye la relación desde ahí.",
+    programsLabel: "Cómo colaboramos",
+    programsTitle: "Un socio tecnológico. Cuatro formas de empezar.",
+    programsIntro: "Empieza donde está la presión. Cada camino resuelve una condición distinta del negocio, pero el contexto se queda con el mismo equipo conforme cambian las prioridades.",
     programs: [
-      { name: "Reset", line: "Reparamos sitio web, herramientas y flujos rotos que están creando fricción o confusión.", href: "/programs#reset" },
-      { name: "Momentum", line: "Construimos un sistema repetible de contenido, visibilidad y seguimiento que mantiene el negocio en movimiento.", href: "/programs#momentum" },
-      { name: "Scale", line: "Usamos automatización, IA y mejores sistemas operativos para manejar más trabajo sin más caos.", href: "/programs#scale" },
-      { name: "Launch", line: "Convertimos una nueva oferta, producto o iniciativa en un sistema digital completo que sigue funcionando después del lanzamiento.", href: "/programs#launch" },
+      {
+        name: "Reset",
+        line: "Arregla lo que está regado: sitio web, herramientas, proveedores y flujos rotos.",
+        href: "/programs#reset",
+        proofLabel: "Prueba de Reset",
+        proofHint: "Agregar video, antes/después, caso de estudio o sitio en vivo",
+      },
+      {
+        name: "Momentum",
+        line: "Construye crecimiento consistente con contenido, visibilidad, distribución y seguimiento.",
+        href: "/programs#momentum",
+        proofLabel: "Prueba de Momentum",
+        proofHint: "Agregar campaña, sistema de contenido, video o historia de resultados",
+      },
+      {
+        name: "Scale",
+        line: "Haz que crecer sea más fácil de operar con automatización, IA, conocimiento y mejores sistemas.",
+        href: "/programs#scale",
+        proofLabel: "Prueba de Scale",
+        proofHint: "Agregar flujo, automatización, agente o caso operativo",
+      },
+      {
+        name: "Launch",
+        line: "Construye el sistema digital detrás de lo que sigue, no solo la campaña que lo anuncia.",
+        href: "/programs#launch",
+        proofLabel: "Prueba de Launch",
+        proofHint: "Agregar video, producto, marca, sitio en vivo o caso de estudio",
+      },
     ],
+    partnershipBridgeLabel: "La relación",
+    partnershipBridgeTitle: "Empieza con un problema. Conserva el contexto conforme cambia el negocio.",
+    partnershipBridgeLine: "Un Reset puede convertirse en Momentum. Momentum puede mostrar qué necesita Scale. Launch puede aparecer en cualquier momento. El valor no está en comprar cuatro proyectos, sino en tener un socio tecnológico que ya entiende el negocio cuando aparece el siguiente problema.",
     workLabel: "Prueba",
     workTitle: "Prueba antes que promesas.",
     asc3ndTitle: "ASC3ND",
