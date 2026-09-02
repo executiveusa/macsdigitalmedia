@@ -18,6 +18,7 @@ import "./editorial-rebuild.css";
 import "./editorial-chrome.css";
 import "./editorial-pages.css";
 import "./mobile-gauntlet.css";
+import "./partnership-proof.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const preferences = await getServerPreferences();
