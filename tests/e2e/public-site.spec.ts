@@ -44,14 +44,20 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
   await page.screenshot({ path: "test-results/desktop-1280-hero.png" });
 });
 
-test("homepage tells the six-beat story with real founder and work proof", async ({ page }) => {
+test("homepage teaches the four-lane partnership model and leaves proof slots ready", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /start with the pressure point/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /one technology partner\. four ways to start/i })).toBeVisible();
   await expect(page.getByText("Reset", { exact: true })).toBeVisible();
   await expect(page.getByText("Momentum", { exact: true })).toBeVisible();
   await expect(page.getByText("Scale", { exact: true })).toBeVisible();
   await expect(page.getByText("Launch", { exact: true })).toBeVisible();
+  await expect(page.locator(".editorial-offer-proof__slot")).toHaveCount(4);
+  await expect(page.getByText("Reset proof", { exact: true })).toBeVisible();
+  await expect(page.getByText("Momentum proof", { exact: true })).toBeVisible();
+  await expect(page.getByText("Scale proof", { exact: true })).toBeVisible();
+  await expect(page.getByText("Launch proof", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /start with one problem\. keep the context/i })).toBeVisible();
   await expect(page.getByText("ASC3ND", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
   await expect(page.getByText("Agent MAXX", { exact: true })).toBeVisible();
