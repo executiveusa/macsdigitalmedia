@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/motion";
-import { siteCopy } from "@/lib/i18n";
+import { partnerIntakeCopy } from "@/lib/partner-intake-copy";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = siteCopy[locale].privacy;
+  const copy = partnerIntakeCopy[locale].privacy;
   return { title: copy.metadataTitle, description: copy.metadataDescription };
 }
 
 export default async function PrivacyPage() {
   const locale = await getServerLocale();
-  const page = siteCopy[locale].privacy;
+  const page = partnerIntakeCopy[locale].privacy;
 
   return (
     <article className="content-page">

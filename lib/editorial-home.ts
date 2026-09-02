@@ -4,6 +4,8 @@ type Program = {
   name: string;
   line: string;
   href: string;
+  proofLabel: string;
+  proofHint: string;
 };
 
 type BuiltItem = {
@@ -21,7 +23,11 @@ type EditorialHome = {
   credibility: string;
   programsLabel: string;
   programsTitle: string;
+  programsIntro: string;
   programs: Program[];
+  partnershipBridgeLabel: string;
+  partnershipBridgeTitle: string;
+  partnershipBridgeLine: string;
   workLabel: string;
   workTitle: string;
   asc3ndTitle: string;
@@ -45,85 +51,141 @@ type EditorialHome = {
 
 export const editorialHome: Record<Locale, EditorialHome> = {
   en: {
-    metadataTitle: "MACS Digital Media | Pacific Northwest father-and-son business systems",
+    metadataTitle: "MACS Digital Media | Technology partner for owner-led businesses",
     metadataDescription:
-      "MACS Digital Media is a Pacific Northwest father-and-son company helping owner-led organizations bring scattered digital work back together.",
-    heroTitle: "Make the business feel whole again.",
-    heroLine: "A father-and-son team for the parts that stopped working together.",
-    primaryCta: "See if we're a fit",
-    credibility: "Pacific Northwest · Father + son · Selective 90-day engagements",
-    programsLabel: "Programs",
-    programsTitle: "Four situations we step into.",
+      "MACS Digital Media is a Pacific Northwest father-and-son technology partner helping owner-led businesses connect websites, content, automation, AI and follow-up into one working system.",
+    heroTitle: "Your technology partner for the digital side of the business.",
+    heroLine: "Websites, content, automation, AI and follow-up—planned and improved by one accountable father-and-son team instead of a rotating list of freelancers and vendors.",
+    primaryCta: "Tell us what's stuck",
+    credibility: "Pacific Northwest · Father + son · Built for ongoing partnership",
+    programsLabel: "How we partner",
+    programsTitle: "One technology partner. Four ways to start.",
+    programsIntro: "Start where the pressure is. Each lane solves a different business condition, but the context stays with the same team as priorities change.",
     programs: [
-      { name: "Reset", line: "When too many tools, vendors and loose ends are running the business.", href: "/programs#reset" },
-      { name: "Momentum", line: "When the business is good, but not enough people are seeing it.", href: "/programs#momentum" },
-      { name: "Scale", line: "When growth has outpaced the way the work gets done.", href: "/programs#scale" },
-      { name: "Launch", line: "When something new needs more than a good idea.", href: "/programs#launch" },
+      {
+        name: "Reset",
+        line: "Fix what’s scattered—website, tools, vendors and broken workflows.",
+        href: "/programs#reset",
+        proofLabel: "Reset proof",
+        proofHint: "Add video, before/after, case study or live site",
+      },
+      {
+        name: "Momentum",
+        line: "Build consistent growth through content, visibility, distribution and follow-up.",
+        href: "/programs#momentum",
+        proofLabel: "Momentum proof",
+        proofHint: "Add campaign, content system, video or results story",
+      },
+      {
+        name: "Scale",
+        line: "Make growth easier to operate with automation, AI, knowledge and better systems.",
+        href: "/programs#scale",
+        proofLabel: "Scale proof",
+        proofHint: "Add workflow, automation, agent or operations case study",
+      },
+      {
+        name: "Launch",
+        line: "Build the digital system behind what comes next—not just the campaign announcing it.",
+        href: "/programs#launch",
+        proofLabel: "Launch proof",
+        proofHint: "Add launch video, product, brand, live site or case study",
+      },
     ],
-    workLabel: "Work",
-    workTitle: "Show the work. Then explain it.",
+    partnershipBridgeLabel: "The relationship",
+    partnershipBridgeTitle: "Start with one problem. Keep the context as the business changes.",
+    partnershipBridgeLine: "A Reset can become Momentum. Momentum can expose what needs to Scale. Launch can happen at any point. The value is not buying four projects—it is having one technology partner who already understands the business when the next problem appears.",
+    workLabel: "Proof",
+    workTitle: "Proof before promises.",
     asc3ndTitle: "ASC3ND",
-    asc3ndLine: "A Seattle social-purpose organization building a clearer public front door and a reusable operating backbone.",
+    asc3ndLine: "A public Next.js site plus a reusable operations layer for onboarding, opportunities, campaigns, approvals and organizational context.",
     clientZeroTitle: "MACS / Client Zero",
-    clientZeroLine: "We use our own company first when we test what should become part of a client's system.",
-    workCta: "See the work",
+    clientZeroLine: "We test new systems on our own company before asking a client to trust them.",
+    workCta: "See the proof",
     storyLabel: "Father + son",
     storyTitle: "One watches what has to last. One stays close to what is changing.",
     storyLine:
-      "Stacy knows what it feels like when software, vendors and responsibilities scatter across a business. Stavarai brings the creator, commerce and content side of what customers respond to now.",
-    storyCta: "Our story",
+      "Stacy brings the long view of ownership, operations and what has to keep working. Stavarai stays close to creators, commerce and what customers respond to now. Together, we stay close enough to the business to improve the system over time—not just ship a project and disappear.",
+    storyCta: "Meet the team",
     builtLabel: "Built here",
-    builtTitle: "Things we built because we needed them to do better work.",
+    builtTitle: "We build the tools our partnerships need next.",
     builtItems: [
-      { name: "Agent MAXX", line: "An owner-facing operator for context, approvals, progress and evidence.", href: "/built-here#agent-maxx" },
-      { name: "Buffer Blaster", line: "Our internal content-operations engine for research, production, scoring and scheduling.", href: "/built-here#buffer-blaster" },
-      { name: "Home Team AI Lab", line: "Real business-task tests of smaller local and open models before we reach for more complexity.", href: "/built-here#home-team" },
+      { name: "Agent MAXX", line: "An owner-facing control layer for context, approvals, progress and evidence.", href: "/built-here#agent-maxx" },
+      { name: "Buffer Blaster", line: "A content-operations engine for research, production, scoring and scheduling.", href: "/built-here#buffer-blaster" },
+      { name: "Home Team AI Lab", line: "Real business-task testing of smaller local and open models before adding more complexity.", href: "/built-here#home-team" },
     ],
-    builtCta: "Explore Built Here",
-    fitLabel: "Fit",
-    fitTitle: "We work with a small number of businesses at a time.",
-    fitLine: "Initial engagements run 90 days. The goal is useful work, clear ownership and a relationship worth keeping.",
-    fitCta: "See if we're a fit",
+    builtCta: "See what we built",
+    fitLabel: "Partnership",
+    fitTitle: "One accountable technology partner. Four ways to start.",
+    fitLine: "We begin with the highest-pressure lane—Reset, Momentum, Scale or Launch—then keep improving the digital side of the business as priorities change. The goal is continuity, ownership and fewer disconnected vendors.",
+    fitCta: "Start the conversation",
   },
   "es-MX": {
-    metadataTitle: "MACS Digital Media | Empresa familiar del Noroeste del Pacífico",
+    metadataTitle: "MACS Digital Media | Socio tecnológico para negocios dirigidos por sus dueños",
     metadataDescription:
-      "MACS Digital Media es una empresa de padre e hijo del Noroeste del Pacífico que ayuda a negocios dirigidos por sus dueños a volver a conectar su trabajo digital.",
-    heroTitle: "Haz que el negocio vuelva a sentirse completo.",
-    heroLine: "Un equipo de padre e hijo para las partes que dejaron de trabajar juntas.",
-    primaryCta: "Veamos si encajamos",
-    credibility: "Noroeste del Pacífico · Padre + hijo · Proyectos selectivos de 90 días",
-    programsLabel: "Programas",
-    programsTitle: "Cuatro momentos en los que entramos a ayudar.",
+      "MACS Digital Media es un equipo de padre e hijo del Noroeste del Pacífico que funciona como socio tecnológico para conectar sitio web, contenido, automatización, IA y seguimiento en un solo sistema.",
+    heroTitle: "Tu socio tecnológico para el lado digital del negocio.",
+    heroLine: "Sitio web, contenido, automatización, IA y seguimiento: planeados y mejorados por un solo equipo responsable de padre e hijo, en lugar de una lista cambiante de freelancers y proveedores.",
+    primaryCta: "Cuéntanos qué está atorado",
+    credibility: "Noroeste del Pacífico · Padre + hijo · Hecho para una relación continua",
+    programsLabel: "Cómo colaboramos",
+    programsTitle: "Un socio tecnológico. Cuatro formas de empezar.",
+    programsIntro: "Empieza donde está la presión. Cada camino resuelve una condición distinta del negocio, pero el contexto se queda con el mismo equipo conforme cambian las prioridades.",
     programs: [
-      { name: "Reset", line: "Cuando demasiadas herramientas, proveedores y pendientes empiezan a dirigir el negocio.", href: "/programs#reset" },
-      { name: "Momentum", line: "Cuando el negocio es bueno, pero no suficiente gente lo está viendo.", href: "/programs#momentum" },
-      { name: "Scale", line: "Cuando el crecimiento ya rebasó la forma en que se hace el trabajo.", href: "/programs#scale" },
-      { name: "Launch", line: "Cuando algo nuevo necesita más que una buena idea.", href: "/programs#launch" },
+      {
+        name: "Reset",
+        line: "Arregla lo que está regado: sitio web, herramientas, proveedores y flujos rotos.",
+        href: "/programs#reset",
+        proofLabel: "Prueba de Reset",
+        proofHint: "Agregar video, antes/después, caso de estudio o sitio en vivo",
+      },
+      {
+        name: "Momentum",
+        line: "Construye crecimiento consistente con contenido, visibilidad, distribución y seguimiento.",
+        href: "/programs#momentum",
+        proofLabel: "Prueba de Momentum",
+        proofHint: "Agregar campaña, sistema de contenido, video o historia de resultados",
+      },
+      {
+        name: "Scale",
+        line: "Haz que crecer sea más fácil de operar con automatización, IA, conocimiento y mejores sistemas.",
+        href: "/programs#scale",
+        proofLabel: "Prueba de Scale",
+        proofHint: "Agregar flujo, automatización, agente o caso operativo",
+      },
+      {
+        name: "Launch",
+        line: "Construye el sistema digital detrás de lo que sigue, no solo la campaña que lo anuncia.",
+        href: "/programs#launch",
+        proofLabel: "Prueba de Launch",
+        proofHint: "Agregar video, producto, marca, sitio en vivo o caso de estudio",
+      },
     ],
-    workLabel: "Trabajo",
-    workTitle: "Primero muestra el trabajo. Después explícalo.",
+    partnershipBridgeLabel: "La relación",
+    partnershipBridgeTitle: "Empieza con un problema. Conserva el contexto conforme cambia el negocio.",
+    partnershipBridgeLine: "Un Reset puede convertirse en Momentum. Momentum puede mostrar qué necesita Scale. Launch puede aparecer en cualquier momento. El valor no está en comprar cuatro proyectos, sino en tener un socio tecnológico que ya entiende el negocio cuando aparece el siguiente problema.",
+    workLabel: "Prueba",
+    workTitle: "Prueba antes que promesas.",
     asc3ndTitle: "ASC3ND",
-    asc3ndLine: "Una organización de propósito social en Seattle construyendo una entrada pública más clara y una base operativa reutilizable.",
+    asc3ndLine: "Un sitio público en Next.js más una capa operativa reutilizable para onboarding, oportunidades, campañas, aprobaciones y contexto organizacional.",
     clientZeroTitle: "MACS / Cliente Cero",
-    clientZeroLine: "Probamos primero en nuestra propia empresa lo que después puede formar parte del sistema de un cliente.",
-    workCta: "Ver el trabajo",
+    clientZeroLine: "Probamos los sistemas nuevos en nuestra propia empresa antes de pedirle a un cliente que confíe en ellos.",
+    workCta: "Ver la prueba",
     storyLabel: "Padre + hijo",
     storyTitle: "Uno cuida lo que tiene que durar. El otro se mantiene cerca de lo que está cambiando.",
     storyLine:
-      "Stacy sabe lo que pasa cuando el software, los proveedores y las responsabilidades terminan regados por todo el negocio. Stavarai aporta la mirada de creadores, comercio y contenido sobre lo que hoy sí mueve a los clientes.",
-    storyCta: "Nuestra historia",
+      "Stacy aporta la mirada larga de la propiedad, la operación y lo que tiene que seguir funcionando. Stavarai se mantiene cerca de creadores, comercio y de lo que hoy mueve a los clientes. Juntos nos mantenemos lo suficientemente cerca del negocio para mejorar el sistema con el tiempo, no solo entregar un proyecto y desaparecer.",
+    storyCta: "Conoce al equipo",
     builtLabel: "Hecho aquí",
-    builtTitle: "Cosas que construimos porque las necesitábamos para hacer mejor trabajo.",
+    builtTitle: "Construimos las herramientas que nuestras colaboraciones necesitan después.",
     builtItems: [
-      { name: "Agent MAXX", line: "Un operador para contexto, aprobaciones, avance y evidencia que el dueño puede revisar.", href: "/built-here#agent-maxx" },
-      { name: "Buffer Blaster", line: "Nuestro motor interno de operaciones de contenido para investigar, producir, evaluar y programar.", href: "/built-here#buffer-blaster" },
-      { name: "Home Team AI Lab", line: "Pruebas con tareas reales de negocio antes de agregar modelos o infraestructura más complejos.", href: "/built-here#home-team" },
+      { name: "Agent MAXX", line: "Una capa de control para contexto, aprobaciones, avance y evidencia que el dueño puede revisar.", href: "/built-here#agent-maxx" },
+      { name: "Buffer Blaster", line: "Un motor de operaciones de contenido para investigar, producir, evaluar y programar.", href: "/built-here#buffer-blaster" },
+      { name: "Home Team AI Lab", line: "Pruebas con tareas reales de negocio usando modelos locales y abiertos antes de agregar más complejidad.", href: "/built-here#home-team" },
     ],
-    builtCta: "Explorar Hecho Aquí",
-    fitLabel: "Encaje",
-    fitTitle: "Trabajamos con pocos negocios a la vez.",
-    fitLine: "Los proyectos iniciales duran 90 días. Buscamos trabajo útil, propiedad clara y una relación que valga la pena mantener.",
-    fitCta: "Veamos si encajamos",
+    builtCta: "Ver lo que construimos",
+    fitLabel: "Colaboración",
+    fitTitle: "Un solo socio tecnológico responsable. Cuatro formas de empezar.",
+    fitLine: "Empezamos por el camino con más presión—Reset, Momentum, Scale o Launch—y seguimos mejorando el lado digital del negocio conforme cambian las prioridades. La meta es continuidad, propiedad y menos proveedores desconectados.",
+    fitCta: "Empezar la conversación",
   },
 };

@@ -22,7 +22,7 @@ const organizationSchema = {
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
   description:
-    "A Pacific Northwest father-and-son company helping owner-led organizations bring fragmented digital work back together.",
+    "A Pacific Northwest father-and-son technology partner helping owner-led businesses connect the digital side of the business.",
   areaServed: {
     "@type": "State",
     name: "Washington",
@@ -75,7 +75,9 @@ export default async function HomePage() {
             <div className="editorial-heading">
               <p className="editorial-kicker">{home.programsLabel}</p>
               <h2 id="programs-title">{home.programsTitle}</h2>
+              <p className="editorial-heading__intro">{home.programsIntro}</p>
             </div>
+
             <div className="editorial-rows">
               {home.programs.map((program) => (
                 <Link className="editorial-row" href={program.href} key={program.name}>
@@ -84,6 +86,32 @@ export default async function HomePage() {
                   <span className="editorial-row__arrow" aria-hidden="true">↗</span>
                 </Link>
               ))}
+            </div>
+
+            <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Espacios para prueba futura" : "Future proof placeholders"}>
+              {home.programs.map((program, index) => (
+                <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
+                  <div className="editorial-offer-proof__media" aria-hidden="true">
+                    <span>0{index + 1}</span>
+                  </div>
+                  <div className="editorial-offer-proof__copy">
+                    <strong>{program.proofLabel}</strong>
+                    <span>{program.proofHint}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
+          <div className="editorial-shell editorial-partnership-bridge__inner">
+            <p className="editorial-kicker">{home.partnershipBridgeLabel}</p>
+            <div>
+              <h2 id="partnership-bridge-title">{home.partnershipBridgeTitle}</h2>
+              <p>{home.partnershipBridgeLine}</p>
             </div>
           </div>
         </section>

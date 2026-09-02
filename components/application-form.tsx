@@ -4,6 +4,7 @@ import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useSitePreferences } from "@/components/site-preferences";
+import { partnerIntakeCopy } from "@/lib/partner-intake-copy";
 
 type SubmissionState = {
   kind: "idle" | "submitting" | "success" | "error";
@@ -40,8 +41,8 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
 export function ApplicationForm() {
   const startedAt = useRef(0);
-  const { copy, locale } = useSitePreferences();
-  const c = copy.form;
+  const { locale } = useSitePreferences();
+  const c = partnerIntakeCopy[locale].form;
   const reduceMotion = useReducedMotion();
   const [submission, setSubmission] = useState<SubmissionState>(initialState);
 

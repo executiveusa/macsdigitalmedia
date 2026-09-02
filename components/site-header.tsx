@@ -33,7 +33,7 @@ export function SiteHeader() {
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
     { href: "/notes", label: spanish ? "Notas" : "Notes" },
   ];
-  const fitLabel = spanish ? "Veamos si encajamos" : "See if we're a fit";
+  const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's stuck";
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
