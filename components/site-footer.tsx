@@ -17,7 +17,7 @@ export function SiteFooter() {
     { href: "/story", label: spanish ? "Historia" : "Story" },
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
     { href: "/notes", label: spanish ? "Notas" : "Notes" },
-    { href: "/apply", label: spanish ? "Cuéntanos qué está atorado" : "Tell us what's stuck" },
+    { href: "/apply", label: spanish ? "Cuéntanos qué está atorado" : "Tell us what's important" },
   ];
 
   return (
@@ -28,7 +28,7 @@ export function SiteFooter() {
             <Link href="/" aria-label={common.homeLabel}>
               <Image src="/logo.png" alt="MACS Digital Media" width={500} height={378} />
             </Link>
-            <p>{spanish ? "Padre e hijo. Sistemas que funcionan. Control que se queda contigo." : "Father and son. Systems that work. Control that stays yours."}</p>
+            <p>{spanish ? "Padre e hijo. Sistemas que funcionan. Control que se queda contigo." : "Father and son. Systems that work. Change you can measure."}</p>
           </div>
 
           <nav className="editorial-footer__nav" aria-label={common.footerNav}>
@@ -46,7 +46,7 @@ export function SiteFooter() {
 
         <div className="editorial-footer__bottom">
           <span>© {currentYear} MACS Digital Media</span>
-          <span>{spanish ? "Relaciones antes que encierro." : "Relationships over lock-in."}</span>
+          <span>{spanish ? "Relaciones antes que encierro." : "Bespoke Software Sovereign Solutions."}</span>
         </div>
       </div>
     </footer>
