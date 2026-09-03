@@ -33,9 +33,9 @@ test("mobile Collins gate: readable, reachable and overflow-free across required
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
     await expectTouchTarget(page.getByRole("button", { name: /^menu$/i }));
-    await expectTouchTarget(page.getByRole("link", { name: /tell us what's stuck/i }).first());
+    await expectTouchTarget(page.getByRole("link", { name: /tell us what's important/i }).first());
 
     const bodyCopy = page.locator(".editorial-hero__line");
     const fontSize = await bodyCopy.evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
@@ -97,7 +97,7 @@ test("reduced motion preserves the full mobile page without transform animation"
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.getByText("ASC3ND", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one accountable technology partner/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /one accountable\s+partner/i })).toBeVisible();
 
   const transition = page.locator(".page-transition");
   const transform = await transition.evaluate((element) => getComputedStyle(element).transform);
