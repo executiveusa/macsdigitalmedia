@@ -73,7 +73,7 @@ export function SiteHeader() {
         last.focus();
       } else if (!event.shiftKey && (active === last || !navigationElement.contains(active))) {
         event.preventDefault();
-        last.focus();
+        first.focus();
       }
     };
 
