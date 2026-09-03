@@ -33,10 +33,10 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your technology partner for the digital side of the business");
-  await expect(page.getByText(/one accountable father-and-son team/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
-  await expect(page.getByText(/Pacific Northwest · Father \+ son · Built for ongoing partnership/i)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your technology partner for the digital side of your vision");
+  await expect(page.getByText(/one accountable team/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
+  await expect(page.getByText(/Pacific Northwest\s+Local\s+partners Proven Results/i)).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
@@ -62,7 +62,7 @@ test("homepage teaches the four-lane partnership model and leaves proof slots re
   await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
   await expect(page.getByText("Agent MAXX", { exact: true })).toBeVisible();
   await expect(page.getByText("Buffer Blaster", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one accountable technology partner/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /one accountable\s+partner/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /Stacy and Stavarai of MACS Digital Media together by the waterfront/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /Stacy and Stavarai, the father-and-son team behind MACS Digital Media/i })).toBeVisible();
 });
@@ -93,7 +93,7 @@ test("mobile homepage keeps the primary action and founder story clear", async (
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
     await expect(page.locator(".editorial-hero__image")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
@@ -182,7 +182,7 @@ test("Phase 5 design lab exposes three divergent noindex prototype territories",
 
 test("partnership intake provides persistent inline validation", async ({ page }) => {
   await page.goto("/apply");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Tell us where the digital side of the business is getting stuck");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Tell us where the digital side of the business needs attention");
   await page.getByRole("button", { name: /send partnership request/i }).click();
 
   const nameField = page.getByLabel("Your name");
