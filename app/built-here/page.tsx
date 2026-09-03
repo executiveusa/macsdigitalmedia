@@ -20,7 +20,7 @@ export default async function BuiltHerePage() {
     : [
         ["agent-maxx", "01", "Agent MAXX", "We built it so an owner can work with context, approvals, progress and evidence without learning the architecture underneath."],
         ["buffer-blaster", "02", "Buffer Blaster", "An internal content-operations engine for research, production, scoring and scheduling so the client does not have to become the system operator."],
-        ["home-team", "03", "Home Team AI Lab", "We test smaller local and open models on real business tasks so we know when they are enough before paying for more complexity."],
+        ["home-team", "03", "Home Team AI Lab", "We test smaller local and open models built right here in Washington State. Our relationships with Microsoft, Boeing and The Allen Institute give us inside perspectives on the latest technology from right here in our own backyard. Check out our Blog to see what we are up to lately right here at home"],
       ];
 
   return (
