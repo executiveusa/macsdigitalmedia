@@ -33,7 +33,7 @@ export function SiteHeader() {
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
     { href: "/notes", label: spanish ? "Notas" : "Notes" },
   ];
-  const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's stuck";
+  const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's important";
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -73,7 +73,7 @@ export function SiteHeader() {
         last.focus();
       } else if (!event.shiftKey && (active === last || !navigationElement.contains(active))) {
         event.preventDefault();
-        first.focus();
+        last.focus();
       }
     };
 
