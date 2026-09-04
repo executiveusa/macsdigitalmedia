@@ -46,7 +46,7 @@ export function SiteFooter() {
 
         <div className="editorial-footer__bottom">
           <span>© {currentYear} MACS Digital Media</span>
-          <span>{spanish ? "Relaciones antes que encierro." : "Bespoke Software Sovereign Solutions."}</span>
+          <span>{spanish ? "Relaciones antes que encierro." : "Bespoke Software. Sovereign Solutions."}</span>
         </div>
       </div>
     </footer>
