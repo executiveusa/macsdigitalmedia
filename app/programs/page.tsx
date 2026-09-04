@@ -19,9 +19,9 @@ export default async function ProgramsPage() {
         ["launch", "Launch", "Cuando una nueva oferta, producto o iniciativa necesita un sistema completo detrás.", "Unimos posicionamiento, sitio, contenido, distribución, captura de demanda y seguimiento para que el lanzamiento tenga una operación que continúe después del primer impulso."],
       ]
     : [
-        ["reset", "Reset", "When the website, tools and digital workflows and subscriptions are creating more friction than progress.", "We start by cleaning up the foundation: audit what exists, keep what works, remove overlapping software  and leave a simple system that you own that keeps improving."],
-        ["momentum", "Momentum", "When the business needs consistent attention, stronger content and more reliable follow-up.", "We build a repeatable rhythm for content, distribution, UGC and eCommerce. We help you automate  follow-up so growth does not eat up your time on isolated campaigns or leave the founder  doing everything."],
-        ["scale", "Scale", "When volume has outgrown the way your team handles information, decisions and the daily workflow.", "We consolidate automation, AI tools, company data and your personal founder knowledge into one repeatable system so the business can handle more work without less chaos."],
+        ["reset", "Reset", "When the website, tools, digital workflows and subscriptions are creating more friction than progress.", "We start by cleaning up the foundation: audit what exists, keep what works, remove overlapping software and leave a simple system that you own and can keep improving."],
+        ["momentum", "Momentum", "When the business needs consistent attention, stronger content and more reliable follow-up.", "We build a repeatable rhythm for content, distribution, UGC and eCommerce. We help automate follow-up so growth does not eat up your time through isolated campaigns or leave the founder doing everything."],
+        ["scale", "Scale", "When volume has outgrown the way your team handles information, decisions and the daily workflow.", "We consolidate automation, AI tools, company data and your personal founder knowledge into one repeatable system so the business can handle more work with less chaos."],
         ["launch", "Launch", "When a new offer, product or initiative needs a complete system behind it.", "We connect positioning, branding, website, content, distribution, demand capture and follow-up so the launch has an operation that keeps working at scale after the first push."],
       ];
 
