@@ -33,6 +33,7 @@ export function SiteFooter() {
     { href: "/programs", label: spanish ? "Programas" : "Programs" },
     { href: "/work", label: spanish ? "Trabajo" : "Work" },
     { href: "/story", label: spanish ? "Historia" : "Story" },
+    { href: "/team", label: spanish ? "Equipo" : "Team" },
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
     { href: "/notes", label: spanish ? "Notas" : "Notes" },
     { href: "/apply", label: spanish ? "Cuéntanos qué está atorado" : "Tell us what's important" },
