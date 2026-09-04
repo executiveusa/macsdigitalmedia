@@ -60,6 +60,7 @@ export default function TeamWireframePage() {
       <section className={styles.hero} aria-labelledby="team-title">
         <div className={styles.heroCopy}>
           <h1 id="team-title">Meet the team</h1>
+          <p className={styles.heroLead}>Everyone here is invested in your success.</p>
         </div>
         <div className={styles.heroVisual} aria-label="Team photo placeholder">
           <span className={styles.heroMark}>Team photo / video</span>
