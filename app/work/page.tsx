@@ -25,14 +25,16 @@ export default async function WorkPage() {
 
         {caseStudies.map((study, index) => (
           <article className="editorial-case" id={study.slug} key={study.slug}>
-            {study.heroImage ? (
-              <div
-                className="editorial-case__media"
-                role="img"
-                aria-label={`${study.name} project reference`}
-                style={{ backgroundImage: `url(${study.heroImage})` }}
-              />
-            ) : null}
+            <Link
+              className="editorial-case__placeholder"
+              href={`/work/${study.slug}`}
+              aria-label={`${study.name} case study`}
+            >
+              <span className="editorial-case__placeholder-index">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{study.name}</strong>
+              <span>{study.lane}</span>
+              <span className="editorial-case__placeholder-mark" aria-hidden="true">↗</span>
+            </Link>
             <div className="editorial-case__copy">
               <div>
                 <p className="editorial-kicker">{String(index + 1).padStart(2, "0")} · {study.lane}</p>
