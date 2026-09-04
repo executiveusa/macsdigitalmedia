@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/programs", "monthly", 0.9],
     ["/work", "monthly", 0.9],
     ["/story", "monthly", 0.8],
+    ["/team", "monthly", 0.8],
     ["/built-here", "monthly", 0.8],
     ["/notes", "weekly", 0.7],
     ["/maxx", "monthly", 0.8],
