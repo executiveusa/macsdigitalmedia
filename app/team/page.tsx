@@ -2,84 +2,82 @@ import type { Metadata } from "next";
 import styles from "./team.module.css";
 
 export const metadata: Metadata = {
-  title: "Meet the Team Wireframe",
-  description: "Editorial wireframe for the MACS Digital Media team page.",
+  title: "Meet the Team",
+  description: "Meet the MACS Digital Media team.",
 };
 
 const people = [
   {
     index: "01",
-    name: "Stacy M.",
-    initials: "SM",
+    name: "Stacy",
+    initials: "ST",
     role: "Founder / Strategy",
-    statement: "Protects the long view—what has to last, what the owner needs to control, and what the work is actually supposed to change.",
-    owns: "Vision · Strategy · Client direction",
-    proof: "Founder story / related work",
+    statement: "Long-term vision, strategy and client direction.",
+    owns: "Strategy",
+    proof: "Work",
   },
   {
     index: "02",
-    name: "Stavari M.",
-    initials: "SM",
+    name: "Stavari",
+    initials: "ST",
     role: "Product / Commerce",
-    statement: "Stays closest to creators, ecommerce, product behavior and what customers are responding to now.",
-    owns: "Product · Commerce · Development",
-    proof: "Posta Studio / PostaTees",
+    statement: "Product, commerce and development.",
+    owns: "Product",
+    proof: "Posta Studio",
   },
   {
     index: "03",
-    name: "Yvette M.",
-    initials: "YM",
-    role: "Position to confirm",
-    statement: "This is where Yvette’s real position, point of view and the part of the work she owns will live—one clear sentence, not a résumé paragraph.",
-    owns: "Role / responsibilities placeholder",
-    proof: "Related project / profile placeholder",
+    name: "Ivette",
+    initials: "IV",
+    role: "Role",
+    statement: "Bio",
+    owns: "Role",
+    proof: "Work",
   },
   {
     index: "04",
-    name: "Akash S.",
-    initials: "AS",
-    role: "Position to confirm",
-    statement: "Akash gets a distinct role statement and proof connection so visitors understand immediately what he contributes to the team.",
-    owns: "Role / responsibilities placeholder",
-    proof: "Related project / profile placeholder",
+    name: "Akash",
+    initials: "AK",
+    role: "Role",
+    statement: "Bio",
+    owns: "Role",
+    proof: "Work",
   },
   {
     index: "05",
-    name: "Jeremy B.",
-    initials: "JB",
-    role: "Position to confirm",
-    statement: "Jeremy’s section will focus on the position he plays, what he owns, and the work that makes that contribution visible.",
-    owns: "Role / responsibilities placeholder",
-    proof: "Related project / profile placeholder",
+    name: "Jeremy",
+    initials: "JE",
+    role: "Role",
+    statement: "Bio",
+    owns: "Role",
+    proof: "Work",
   },
 ];
 
 export default function TeamWireframePage() {
   return (
     <div className={styles.page}>
-      <section className={styles.hero} aria-labelledby="team-wireframe-title">
+      <section className={styles.hero} aria-labelledby="team-title">
         <div className={styles.heroCopy}>
-          <p className={styles.kicker}>Meet the team / wireframe</p>
-          <h1 id="team-wireframe-title">Everybody plays a position.</h1>
-          <p className={styles.heroLead}>
-            Strategy, product, design, development, content and operations—different positions, one accountable team.
-          </p>
+          <p className={styles.kicker}>Meet the team</p>
+          <h1 id="team-title">Everybody plays a position.</h1>
+          <p className={styles.heroLead}>Different positions. One team.</p>
         </div>
-        <div className={styles.heroVisual} aria-label="Group portrait or short team film placeholder">
-          <span className={styles.heroMark}>Group portrait / short film placeholder</span>
+        <div className={styles.heroVisual} aria-label="Team photo placeholder">
+          <span className={styles.heroMark}>Team photo / video</span>
         </div>
       </section>
 
       <div className={styles.shell}>
         <section className={styles.rosterIntro} aria-labelledby="roster-title">
-          <p className={styles.kicker}>The roster</p>
-          <h2 id="roster-title">Not job titles. The position each person plays.</h2>
+          <p className={styles.kicker}>Team</p>
+          <h2 id="roster-title">Who does what.</h2>
         </section>
 
         <section className={styles.people} aria-label="MACS team roster">
           {people.map((person) => (
             <article className={styles.person} key={person.name}>
-              <div className={styles.portrait} data-initials={person.initials} aria-label={`${person.name} portrait or film placeholder`} />
+              <div className={styles.portrait} data-initials={person.initials} aria-label={`${person.name} photo placeholder`} />
               <div className={styles.copy}>
                 <span className={styles.index}>{person.index}</span>
                 <div className={styles.identity}>
@@ -89,11 +87,11 @@ export default function TeamWireframePage() {
                 </div>
                 <div className={styles.meta}>
                   <div className={styles.metaBlock}>
-                    <span>What they own</span>
+                    <span>Position</span>
                     <strong>{person.owns}</strong>
                   </div>
                   <div className={styles.metaBlock}>
-                    <span>Proof / related work</span>
+                    <span>Work</span>
                     <strong>{person.proof}</strong>
                   </div>
                 </div>
@@ -105,11 +103,8 @@ export default function TeamWireframePage() {
 
       <section className={styles.closer}>
         <div className={styles.shell}>
-          <p className={styles.kicker}>One team</p>
-          <h2>Different positions. Shared outcome.</h2>
-          <p>
-            Final version: connect each person to the work they helped create, their real social profile, and the part of the client journey they own.
-          </p>
+          <p className={styles.kicker}>MACS</p>
+          <h2>Different positions. One team.</h2>
         </div>
       </section>
     </div>
