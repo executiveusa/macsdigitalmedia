@@ -89,7 +89,7 @@ export const partnerIntakeCopy: Record<Locale, {
       socialPurpose: "Social-purpose company",
       smallBusiness: "Small business",
       staffSize: "Approximate staff size",
-      problem: "What is getting stuck on the digital side of the business?",
+      problem: "What needs attention on the digital side of the business?",
       problemHelp: "Think website, content, visibility, follow-up, automation, AI, scattered tools or internal workflows.",
       result: "What would a useful technology partner help change over the next 90 days?",
       decisionMaker: "A decision-maker can participate in prioritization, approvals and review of the work.",
