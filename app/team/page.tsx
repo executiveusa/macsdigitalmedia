@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const people = [
   {
     index: "01",
-    name: "Stacy",
+    name: "Stacy M.",
     initials: "SM",
     role: "Founder / Strategy",
     statement: "Protects the long view—what has to last, what the owner needs to control, and what the work is actually supposed to change.",
@@ -18,7 +18,7 @@ const people = [
   },
   {
     index: "02",
-    name: "Stavari",
+    name: "Stavari M.",
     initials: "SM",
     role: "Product / Commerce",
     statement: "Stays closest to creators, ecommerce, product behavior and what customers are responding to now.",
@@ -27,7 +27,7 @@ const people = [
   },
   {
     index: "03",
-    name: "Yvette",
+    name: "Yvette M.",
     initials: "YM",
     role: "Position to confirm",
     statement: "This is where Yvette’s real position, point of view and the part of the work she owns will live—one clear sentence, not a résumé paragraph.",
@@ -36,8 +36,8 @@ const people = [
   },
   {
     index: "04",
-    name: "Akash",
-    initials: "AK",
+    name: "Akash S.",
+    initials: "AS",
     role: "Position to confirm",
     statement: "Akash gets a distinct role statement and proof connection so visitors understand immediately what he contributes to the team.",
     owns: "Role / responsibilities placeholder",
@@ -45,8 +45,8 @@ const people = [
   },
   {
     index: "05",
-    name: "Jeremy",
-    initials: "JR",
+    name: "Jeremy B.",
+    initials: "JB",
     role: "Position to confirm",
     statement: "Jeremy’s section will focus on the position he plays, what he owns, and the work that makes that contribution visible.",
     owns: "Role / responsibilities placeholder",
