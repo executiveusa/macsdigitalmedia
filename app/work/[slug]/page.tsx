@@ -82,7 +82,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         <div className="editorial-case-study-footer">
           <Link className="editorial-link" href="/work">See all work <span aria-hidden="true">↗</span></Link>
-          <Link className="editorial-link" href="/apply">Tell us what's important <span aria-hidden="true">↗</span></Link>
+          <Link className="editorial-link" href="/apply">{"Tell us what's important"} <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
     </div>
