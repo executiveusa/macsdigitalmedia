@@ -19,7 +19,7 @@ export default async function StoryPage() {
           <p className="editorial-kicker">{es ? "Padre + hijo" : "Father + son"}</p>
           <div>
             <h1>{es ? "Dos maneras de mirar el mismo negocio." : "Two ways of looking at the same challenges."}</h1>
-            <p>{es ? "Una cuida lo que tiene que durar. La otra se mantiene cerca de lo que está cambiando." : "See  what has to last. Stay close to what is changing."}</p>
+            <p>{es ? "Una cuida lo que tiene que durar. La otra se mantiene cerca de lo que está cambiando." : "See what has to last. Stay close to what is changing."}</p>
           </div>
         </header>
 
@@ -38,7 +38,7 @@ export default async function StoryPage() {
             <p className="editorial-kicker">{es ? "01 · Stacy" : "01 · Meet Stacy"}</p>
             <div>
               <h2>{es ? "El problema no era una sola herramienta." : "The problem was never one tool."}</h2>
-              <p>{es ? "Stacy llegó a MACS desde el lado del dueño. Software rentado, proveedores distintos y partes del negocio arregladas por separado pueden dejar al dueño pagando por muchas cosas sin sentir que alguien está cuidando el resultado completo. Esa experiencia se convirtió en una regla: el cliente debe poder entender, conservar y mover lo que construimos." : " Thank you for considering Macs Digital Media. Macs Digital Media was born from the journey to solve my own problems and in house challenges. Expensive software subscriptions , separate vendors, disconnected freelancers  and isolated fixes  left me paying for a lot of activity without anyone being accountable for the whole result. That experience became a rule once Macs was built: the client should be able to understand, own thier data and use whatever we build without being technical,locked into a subscription  or having to understand every little detail about AI and digital marketing."}</p>
+              <p>{es ? "Stacy llegó a MACS desde el lado del dueño. Software rentado, proveedores distintos y partes del negocio arregladas por separado pueden dejar al dueño pagando por muchas cosas sin sentir que alguien está cuidando el resultado completo. Esa experiencia se convirtió en una regla: el cliente debe poder entender, conservar y mover lo que construimos." : "Thank you for considering MACS Digital Media. MACS Digital Media was born from the journey to solve my own problems and in-house challenges. Expensive software subscriptions, separate vendors, disconnected freelancers and isolated fixes left me paying for a lot of activity without anyone being accountable for the whole result. That experience became a rule once MACS was built: the client should be able to understand and own their data, and use whatever we build without being technical, locked into a subscription or having to understand every little detail about AI and digital marketing."}</p>
             </div>
           </section>
 
@@ -46,7 +46,7 @@ export default async function StoryPage() {
             <p className="editorial-kicker">{es ? "02 · Stavarai" : "02 · Meet Stavarai"}</p>
             <div>
               <h2>{es ? "Lo que dura también tiene que seguir siendo actual." : "What lasts still has to stay current."}</h2>
-              <p>{es ? "Stavarai aporta la perspectiva de una generación que vive más cerca del contenido, UGC, comercio y comportamiento de clientes en el teléfono. También es dueño de PostaTees, así que esa mirada no viene solo de observar tendencias: viene de operar un negocio." : "Stavarai brings the perspective of a generation living closer to tending content, UGC, eCommerce and how customers behave on a phone. He also owns PostaTees, so that perspective does not come only from watching trends. It comes from running a real eCommerce business at scaleand working professinally with eCommerce clients on a daily basis."}</p>
+              <p>{es ? "Stavarai aporta la perspectiva de una generación que vive más cerca del contenido, UGC, comercio y comportamiento de clientes en el teléfono. También es dueño de PostaTees, así que esa mirada no viene solo de observar tendencias: viene de operar un negocio." : "Stavarai brings the perspective of a generation living closer to trending content, UGC, eCommerce and how customers behave on a phone. He also owns PostaTees, so that perspective does not come only from watching trends. It comes from running a real eCommerce business at scale and working professionally with eCommerce clients on a daily basis."}</p>
             </div>
           </section>
 
@@ -61,7 +61,7 @@ export default async function StoryPage() {
 
         <div style={{ marginTop: "clamp(5rem, 10vw, 9rem)" }}>
           <Link className="editorial-link" href="/apply">
-            {es ? "Veamos si encajamos" : "See if we're a fit"} <span aria-hidden="true">↗</span>
+            {es ? "Veamos si encajamos" : "Tell us what's important"} <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>
