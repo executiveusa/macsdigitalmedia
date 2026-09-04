@@ -32,6 +32,13 @@ const organizationSchema = {
 const asc3ndReferenceImage =
   "https://raw.githubusercontent.com/executiveusa/asc3nd-frontend-website-/main/apps/site/public/images/asc3nd-site-reference.jpg";
 
+const proofLinks: Record<string, string | null> = {
+  Reset: null,
+  Momentum: "/work/buffer-blaster",
+  Scale: "/work#pare",
+  Launch: "/work/asc3nd",
+};
+
 export default async function HomePage() {
   const locale = await getServerLocale();
   const home = editorialHome[locale];
@@ -88,18 +95,31 @@ export default async function HomePage() {
               ))}
             </div>
 
-            <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Espacios para prueba futura" : "Future proof placeholders"}>
-              {home.programs.map((program, index) => (
-                <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
-                  <div className="editorial-offer-proof__media" aria-hidden="true">
-                    <span>0{index + 1}</span>
+            <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Prueba por programa" : "Proof by partnership lane"}>
+              {home.programs.map((program, index) => {
+                const href = proofLinks[program.name];
+                const content = (
+                  <>
+                    <div className="editorial-offer-proof__media" aria-hidden="true">
+                      <span>0{index + 1}</span>
+                    </div>
+                    <div className="editorial-offer-proof__copy">
+                      <strong>{program.proofLabel}</strong>
+                      <span>{program.proofHint}</span>
+                    </div>
+                  </>
+                );
+
+                return href ? (
+                  <Link className="editorial-offer-proof__slot" href={href} key={`${program.name}-proof`}>
+                    {content}
+                  </Link>
+                ) : (
+                  <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
+                    {content}
                   </div>
-                  <div className="editorial-offer-proof__copy">
-                    <strong>{program.proofLabel}</strong>
-                    <span>{program.proofHint}</span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -125,7 +145,7 @@ export default async function HomePage() {
               <h2 id="work-title">{home.workTitle}</h2>
             </div>
 
-            <Link className="editorial-work__feature" href="/work#asc3nd">
+            <Link className="editorial-work__feature" href="/work/asc3nd">
               <div
                 className="editorial-work__media"
                 role="img"
@@ -139,7 +159,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link className="editorial-work__secondary" href="/work#client-zero">
+            <Link className="editorial-work__secondary" href="/work/agent-maxx">
               <span className="editorial-work__index">02</span>
               <strong>{home.clientZeroTitle}</strong>
               <span>{home.clientZeroLine}</span>
