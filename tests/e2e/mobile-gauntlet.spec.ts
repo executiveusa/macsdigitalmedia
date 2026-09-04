@@ -42,6 +42,14 @@ test("mobile Collins gate: readable, reachable and overflow-free across required
     const lineHeight = await bodyCopy.evaluate((element) => parseFloat(getComputedStyle(element).lineHeight));
     expect(fontSize).toBeGreaterThanOrEqual(16);
     expect(lineHeight).toBeGreaterThanOrEqual(fontSize * 1.45);
+
+    if (viewport.width <= 430) {
+      const media = await page.locator(".editorial-hero__media").boundingBox();
+      const panel = await page.locator(".editorial-hero__panel").boundingBox();
+      expect(media).not.toBeNull();
+      expect(panel).not.toBeNull();
+      expect(panel!.y).toBeGreaterThanOrEqual(media!.y + media!.height - 1);
+    }
   }
 });
 
@@ -117,6 +125,10 @@ test("mobile art direction keeps proof and founder media compact enough to prese
   expect(storyMedia).not.toBeNull();
   expect(workMedia!.height / workMedia!.width).toBeLessThan(0.9);
   expect(storyMedia!.height / storyMedia!.width).toBeLessThan(1.35);
+
+  const socialLinks = page.locator(".editorial-footer__social a");
+  await expect(socialLinks).toHaveCount(3);
+  for (const link of await socialLinks.all()) await expectTouchTarget(link);
 
   await page.screenshot({ path: "test-results/mobile-gauntlet-home-390.png", fullPage: true });
 });
