@@ -59,9 +59,7 @@ export default function TeamWireframePage() {
     <div className={styles.page}>
       <section className={styles.hero} aria-labelledby="team-title">
         <div className={styles.heroCopy}>
-          <p className={styles.kicker}>Meet the team</p>
-          <h1 id="team-title">Everybody plays a position.</h1>
-          <p className={styles.heroLead}>Different positions. One team.</p>
+          <h1 id="team-title">Meet the team</h1>
         </div>
         <div className={styles.heroVisual} aria-label="Team photo placeholder">
           <span className={styles.heroMark}>Team photo / video</span>
@@ -69,11 +67,6 @@ export default function TeamWireframePage() {
       </section>
 
       <div className={styles.shell}>
-        <section className={styles.rosterIntro} aria-labelledby="roster-title">
-          <p className={styles.kicker}>Team</p>
-          <h2 id="roster-title">Who does what.</h2>
-        </section>
-
         <section className={styles.people} aria-label="MACS team roster">
           {people.map((person) => (
             <article className={styles.person} key={person.name}>
@@ -100,13 +93,6 @@ export default function TeamWireframePage() {
           ))}
         </section>
       </div>
-
-      <section className={styles.closer}>
-        <div className={styles.shell}>
-          <p className={styles.kicker}>MACS</p>
-          <h2>Different positions. One team.</h2>
-        </div>
-      </section>
     </div>
   );
 }
