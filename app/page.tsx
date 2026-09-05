@@ -166,7 +166,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link className="editorial-work__secondary" href="/work/agent-maxx">
+            <Link className="editorial-work__secondary" href="/built-here#agent-maxx">
               <span className="editorial-work__index">02</span>
               <strong>{home.clientZeroTitle}</strong>
               <span>{home.clientZeroLine}</span>
