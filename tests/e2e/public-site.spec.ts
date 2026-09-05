@@ -36,7 +36,7 @@ test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Your technology partner for the digital side of your vision");
   await expect(page.getByText(/one accountable team/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
-  await expect(page.getByText(/Pacific Northwest · Local partners · Proven results/i)).toBeVisible();
+  await expect(page.getByText(/Pacific Northwest · Father \+ son · Local partners/i)).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
@@ -65,11 +65,19 @@ test("homepage teaches the four-lane model and connects named proof", async ({ p
   await expect(page.getByRole("img", { name: /Stacy and Stavarai, the father-and-son team behind MACS Digital Media/i })).toBeVisible();
 });
 
-test("work page exposes the proof library and full case-study routes", async ({ page }) => {
+test("work page exposes exactly four public buckets and their verified proof routes", async ({ page }) => {
   await page.goto("/work");
-  for (const name of ["ASC3ND", "Buffer Blaster", "Pare’", "Posta Studio", "Agent MAXX"]) {
+
+  for (const bucket of ["Reset", "Momentum", "Scale", "Launch"]) {
+    await expect(page.getByRole("heading", { name: bucket, exact: true })).toBeVisible();
+  }
+
+  for (const name of ["ASC3ND", "Buffer Blaster", "Pare’", "Posta Studio"]) {
     await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
   }
+
+  await expect(page.getByRole("heading", { name: "Agent MAXX", exact: true })).toHaveCount(0);
+  await expect(page.getByText("Case study placeholder", { exact: true })).toBeVisible();
 
   await page.goto("/work/asc3nd");
   await expect(page.getByRole("heading", { level: 1, name: "ASC3ND" })).toBeVisible();
@@ -79,6 +87,9 @@ test("work page exposes the proof library and full case-study routes", async ({ 
   await expect(page.getByRole("heading", { level: 1, name: "Posta Studio" })).toBeVisible();
   await expect(page.getByText("Developed by Stavarai", { exact: true })).toBeVisible();
   await expect(page.getByText("Hero media placeholder", { exact: true })).toBeVisible();
+
+  await page.goto("/work/agent-maxx");
+  await expect(page).toHaveURL(/\/maxx$/);
 });
 
 test("retired founding launch route sends visitors to the four partnership lanes", async ({ page }) => {
