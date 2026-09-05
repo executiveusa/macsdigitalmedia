@@ -78,7 +78,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
       },
       {
         name: "Scale",
-        line: "Your idea is already working. We use automation, agentic systems and digital campaigns to turn that idea into more of your desired outcomes—more customers, sales, awareness and whatever actually moves you forward. All operating at scale, powered by the latest technology our team uses.",
+        line: "Your idea is working. Grow without complexity.",
         href: "/programs#scale",
         proofLabel: "Pare’ + Posta Studio",
         proofHint: "Scale case studies",
@@ -147,7 +147,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
       },
       {
         name: "Scale",
-        line: "Haz que crecer sea más fácil de operar con automatización, IA, conocimiento y mejores sistemas.",
+        line: "Tu idea funciona. Crece sin complejidad.",
         href: "/programs#scale",
         proofLabel: "Prueba de Scale",
         proofHint: "Agregar flujo, automatización, agente o caso operativo",
