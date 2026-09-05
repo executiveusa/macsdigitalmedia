@@ -13,18 +13,18 @@ export default async function BuiltHerePage() {
 
   const items = es
     ? [
-        ["agent-maxx", "01", "Agent MAXX", "Lo construimos para que un dueño pueda conversar con el contexto, las aprobaciones, el avance y la evidencia sin aprender la arquitectura detrás.", "/work/agent-maxx"],
+        ["agent-maxx", "01", "Agent MAXX", "Lo construimos para que un dueño pueda conversar con el contexto, las aprobaciones, el avance y la evidencia sin aprender la arquitectura detrás.", "/maxx"],
         ["buffer-blaster", "02", "Buffer Blaster", "Un motor interno de operaciones de contenido para investigar, producir, evaluar y programar más trabajo sin convertir al cliente en operador del sistema.", "/work/buffer-blaster"],
         ["pare", "03", "Pare’", "Caso de estudio de Scale listo para completar con la historia del producto, recorrido y resultados documentados.", "/work/pare"],
         ["posta-studio", "04", "Posta Studio", "Un sistema de personajes UGC desarrollado por Stavarai y preparado como caso de estudio de Scale.", "/work/posta-studio"],
-        ["home-team", "05", "Home Team AI Lab", "Probamos modelos pequeños, locales y abiertos con tareas reales de negocio para saber cuándo sí sirven antes de pagar por más complejidad.", "/notes"],
+        ["home-team", "05", "Home Team AI Lab", "Probamos modelos pequeños, locales y abiertos con tareas reales de negocio antes de agregar más complejidad.", "/notes"],
       ]
     : [
-        ["agent-maxx", "01", "Agent MAXX", "We built it so an owner can work with context, approvals, progress and evidence without learning the architecture underneath.", "/work/agent-maxx"],
+        ["agent-maxx", "01", "Agent MAXX", "We built it so an owner can work with context, approvals, progress and evidence without learning the architecture underneath.", "/maxx"],
         ["buffer-blaster", "02", "Buffer Blaster", "An internal content-operations engine for research, production, scoring and scheduling so the client does not have to become the system operator.", "/work/buffer-blaster"],
         ["pare", "03", "Pare’", "A Scale case study ready for the full product story, walkthrough and documented results.", "/work/pare"],
         ["posta-studio", "04", "Posta Studio", "A UGC-character system developed by Stavarai and prepared as a Scale case study.", "/work/posta-studio"],
-        ["home-team", "05", "Home Team AI Lab", "We test smaller local and open models built here in Washington State. Our relationships with Microsoft, Boeing and the Allen Institute give us an inside perspective on technology being developed in our own backyard. Check the blog to see what we are testing and learning locally.", "/notes"],
+        ["home-team", "05", "Home Team AI Lab", "We test smaller local and open models with real business tasks before adding more complexity.", "/notes"],
       ];
 
   return (
