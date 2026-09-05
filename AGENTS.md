@@ -8,6 +8,18 @@ Before any meaningful work, read `docs/icm/HUMAN_MACHINE_CONTRACT.md` and `docs/
 
 For any audit, repositioning, redesign, rebuild, migration, or relaunch of this public site, load the canonical protocol from `executiveusa/maxx-migrations-agentic-systems/icm/site-transformation-protocol/00_router/CONTEXT.md` and the MACS Client Zero instance at `icm/clients/macs-digital-media/06_transform/` in that repository. A write-capable agent must pass the canonical `WALK_TEST.md` before transformation work. Do not use chat history as a substitute for ICM routing or evidence.
 
+## ICM federation
+
+ICM means **Interpretable Context Methodology**. This public storefront is one member of the three-repository MACS system:
+
+- `executiveusa/macsdigitalmedia` — public storefront and public proof;
+- `executiveusa/macs-agent-portal` — Agent MAXX operator surface, control plane, approvals, CLI/MCP entry points and Hermes runtime;
+- `executiveusa/maxx-migrations-agentic-systems` — canonical ICM, commercial routing and execution backend.
+
+For cross-repository work, cold-walk the canonical backend through `docs/icm/FEDERATION_CONTRACT.md`, `icm/federation/CONTEXT.md`, and the smallest relevant ICM stage. The storefront must not duplicate backend authority or hold `MAXX_MIGRATIONS_API_KEY`. Application-facing Agent MAXX calls go through the Agent MAXX control plane; that control plane is the credentialed bridge to MAXX Migrations.
+
+**Motion is required before a federation walk test can PASS.** Files, builds, route declarations, mocks and documentation are not motion. At least one intended transport must reach the canonical owner and return observable evidence. Keep `TESTED` separate from `VERIFIED` until deployed runtime evidence exists.
+
 ## Roles
 
 - Architect: owns product requirements, repository boundaries, architecture decisions, acceptance criteria, and review.
