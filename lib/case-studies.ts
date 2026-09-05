@@ -1,6 +1,6 @@
 export type CaseStudy = {
   slug: string;
-  lane: "Reset" | "Momentum" | "Scale" | "Launch" | "Client Zero";
+  lane: "Reset" | "Momentum" | "Scale" | "Launch";
   name: string;
   credit?: string;
   headline: string;
@@ -132,35 +132,6 @@ export const caseStudies: CaseStudy[] = [
       "Add product walkthrough",
       "Add development story from Stavarai",
       "Add documented result",
-    ],
-  },
-  {
-    slug: "agent-maxx",
-    lane: "Client Zero",
-    name: "Agent MAXX",
-    headline: "Built inside MACS before we ask anyone else to rely on it.",
-    summary:
-      "Agent MAXX is Client Zero proof: an in-house AI operator built for everyday, nontechnical use inside MACS Digital Media and developed on open-source software.",
-    sections: [
-      {
-        title: "Why we built it",
-        body: "We needed an operator that could help with day-to-day work without requiring the people using it to understand the architecture underneath.",
-      },
-      {
-        title: "How we use it",
-        body: "MAXX works inside defined permissions and supervised workflows. We use our own operation as the first proving ground before adapting similar ideas for partners.",
-      },
-      {
-        title: "What Client Zero means",
-        body: "We test new systems on our own company first. The point is not to call internal testing a client result; it is to show the standard we expect before a system becomes somebody else’s dependency.",
-      },
-    ],
-    placeholders: [
-      "Add Agent MAXX hero demo",
-      "Add Try Agent MAXX link",
-      "Add interface walkthrough",
-      "Add day-to-day workflow example",
-      "Add documented internal result",
     ],
   },
 ];
