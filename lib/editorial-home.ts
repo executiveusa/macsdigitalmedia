@@ -78,7 +78,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
       },
       {
         name: "Scale",
-        line: "Your idea is working. Grow without complexity.",
+        line: "The idea is working. Grow without complexity.",
         href: "/programs#scale",
         proofLabel: "Pare’ + Posta Studio",
         proofHint: "Scale case studies",
@@ -147,7 +147,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
       },
       {
         name: "Scale",
-        line: "Tu idea funciona. Crece sin complejidad.",
+        line: "La idea funciona. Crece sin complejidad.",
         href: "/programs#scale",
         proofLabel: "Prueba de Scale",
         proofHint: "Agregar flujo, automatización, agente o caso operativo",
