@@ -32,6 +32,16 @@ const organizationSchema = {
 const asc3ndReferenceImage =
   "https://raw.githubusercontent.com/executiveusa/asc3nd-frontend-website-/main/apps/site/public/images/asc3nd-site-reference.jpg";
 
+const proofLinks: Record<string, Array<{ label: string; href: string }> | null> = {
+  Reset: null,
+  Momentum: [{ label: "View Buffer Blaster", href: "/work/buffer-blaster" }],
+  Scale: [
+    { label: "View Pare’", href: "/work/pare" },
+    { label: "View Posta Studio", href: "/work/posta-studio" },
+  ],
+  Launch: [{ label: "View ASC3ND", href: "/work/asc3nd" }],
+};
+
 export default async function HomePage() {
   const locale = await getServerLocale();
   const home = editorialHome[locale];
@@ -44,22 +54,26 @@ export default async function HomePage() {
       />
 
       <section className="editorial-hero" aria-labelledby="editorial-hero-title">
-        <Image
-          className="editorial-hero__image"
-          src="/media/founders/stacy-stavarai-waterfront.webp"
-          alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
-          fill
-          priority
-          sizes="100vw"
-        />
-        <div className="editorial-hero__veil" aria-hidden="true" />
-        <div className="editorial-shell editorial-hero__content">
-          <p className="editorial-kicker">MACS Digital Media</p>
-          <h1 id="editorial-hero-title">{home.heroTitle}</h1>
-          <p className="editorial-hero__line">{home.heroLine}</p>
-          <Link className="editorial-link editorial-link--light" href="/apply">
-            {home.primaryCta} <span aria-hidden="true">↗</span>
-          </Link>
+        <div className="editorial-hero__media">
+          <Image
+            className="editorial-hero__image"
+            src="/media/founders/stacy-stavarai-waterfront.webp"
+            alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
+            fill
+            priority
+            sizes="(max-width: 760px) 100vw, 56vw"
+          />
+          <div className="editorial-hero__veil" aria-hidden="true" />
+        </div>
+        <div className="editorial-hero__panel">
+          <div className="editorial-hero__content">
+            <p className="editorial-kicker">MACS Digital Media</p>
+            <h1 id="editorial-hero-title">{home.heroTitle}</h1>
+            <p className="editorial-hero__line">{home.heroLine}</p>
+            <Link className="editorial-link editorial-link--light" href="/apply">
+              {home.primaryCta} <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -72,7 +86,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
           <div className="editorial-shell">
-            <div className="editorial-heading">
+            <div className="editorial-heading editorial-heading--programs">
               <p className="editorial-kicker">{home.programsLabel}</p>
               <h2 id="programs-title">{home.programsTitle}</h2>
               <p className="editorial-heading__intro">{home.programsIntro}</p>
@@ -88,18 +102,31 @@ export default async function HomePage() {
               ))}
             </div>
 
-            <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Espacios para prueba futura" : "Future proof placeholders"}>
-              {home.programs.map((program, index) => (
-                <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
-                  <div className="editorial-offer-proof__media" aria-hidden="true">
-                    <span>0{index + 1}</span>
+            <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Prueba por programa" : "Proof by partnership lane"}>
+              {home.programs.map((program, index) => {
+                const links = proofLinks[program.name];
+                return (
+                  <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
+                    <div className="editorial-offer-proof__media" aria-hidden="true">
+                      <span>0{index + 1}</span>
+                      <small>{links ? "Case study media" : "Case study reserved"}</small>
+                    </div>
+                    <div className="editorial-offer-proof__copy">
+                      <strong>{program.proofLabel}</strong>
+                      <span>{program.proofHint}</span>
+                      {links ? (
+                        <div className="editorial-offer-proof__links">
+                          {links.map((item) => (
+                            <Link href={item.href} key={item.href}>{item.label} <span aria-hidden="true">↗</span></Link>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="editorial-offer-proof__reserved">Full-page hero, live-site link and story placeholder</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="editorial-offer-proof__copy">
-                    <strong>{program.proofLabel}</strong>
-                    <span>{program.proofHint}</span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -125,7 +152,7 @@ export default async function HomePage() {
               <h2 id="work-title">{home.workTitle}</h2>
             </div>
 
-            <Link className="editorial-work__feature" href="/work#asc3nd">
+            <Link className="editorial-work__feature" href="/work/asc3nd">
               <div
                 className="editorial-work__media"
                 role="img"
@@ -139,7 +166,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link className="editorial-work__secondary" href="/work#client-zero">
+            <Link className="editorial-work__secondary" href="/built-here#agent-maxx">
               <span className="editorial-work__index">02</span>
               <strong>{home.clientZeroTitle}</strong>
               <span>{home.clientZeroLine}</span>

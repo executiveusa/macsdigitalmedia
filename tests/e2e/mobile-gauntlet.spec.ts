@@ -33,15 +33,23 @@ test("mobile Collins gate: readable, reachable and overflow-free across required
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /tell us what's stuck/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
     await expectTouchTarget(page.getByRole("button", { name: /^menu$/i }));
-    await expectTouchTarget(page.getByRole("link", { name: /tell us what's stuck/i }).first());
+    await expectTouchTarget(page.getByRole("link", { name: /tell us what's important/i }).first());
 
     const bodyCopy = page.locator(".editorial-hero__line");
     const fontSize = await bodyCopy.evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
     const lineHeight = await bodyCopy.evaluate((element) => parseFloat(getComputedStyle(element).lineHeight));
     expect(fontSize).toBeGreaterThanOrEqual(16);
     expect(lineHeight).toBeGreaterThanOrEqual(fontSize * 1.45);
+
+    if (viewport.width <= 430) {
+      const media = await page.locator(".editorial-hero__media").boundingBox();
+      const panel = await page.locator(".editorial-hero__panel").boundingBox();
+      expect(media).not.toBeNull();
+      expect(panel).not.toBeNull();
+      expect(panel!.y).toBeGreaterThanOrEqual(media!.y + media!.height - 1);
+    }
   }
 });
 
@@ -97,7 +105,7 @@ test("reduced motion preserves the full mobile page without transform animation"
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.getByText("ASC3ND", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one accountable technology partner/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /one accountable\s+partner/i })).toBeVisible();
 
   const transition = page.locator(".page-transition");
   const transform = await transition.evaluate((element) => getComputedStyle(element).transform);
@@ -117,6 +125,10 @@ test("mobile art direction keeps proof and founder media compact enough to prese
   expect(storyMedia).not.toBeNull();
   expect(workMedia!.height / workMedia!.width).toBeLessThan(0.9);
   expect(storyMedia!.height / storyMedia!.width).toBeLessThan(1.35);
+
+  const socialLinks = page.locator(".editorial-footer__social a");
+  await expect(socialLinks).toHaveCount(3);
+  for (const link of await socialLinks.all()) await expectTouchTarget(link);
 
   await page.screenshot({ path: "test-results/mobile-gauntlet-home-390.png", fullPage: true });
 });

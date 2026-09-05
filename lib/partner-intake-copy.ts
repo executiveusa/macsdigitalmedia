@@ -59,9 +59,9 @@ export const partnerIntakeCopy: Record<Locale, {
   en: {
     page: {
       metadataTitle: "Start a Technology Partnership",
-      metadataDescription: "Tell MACS Digital Media where the digital side of your business is getting stuck and which partnership lane may fit best.",
+      metadataDescription: "Tell MACS Digital Media where the digital side of your business needs attention and which partnership lane may fit best.",
       eyebrow: "Start a technology partnership",
-      title: "Tell us where the digital side of the business is getting stuck.",
+      title: "Tell us where the digital side of the business needs attention.",
       intro: "We use this intake to understand whether Reset, Momentum, Scale or Launch is the right place to begin. We are looking for relationships where MACS can become an accountable technology partner—not a one-off freelancer for a single task.",
       nextLabel: "What happens next:",
       next: "We review the situation, identify the most likely starting lane, and contact good-fit organizations about a working session. Submitting this form does not create a contract or commit either side.",
@@ -89,7 +89,7 @@ export const partnerIntakeCopy: Record<Locale, {
       socialPurpose: "Social-purpose company",
       smallBusiness: "Small business",
       staffSize: "Approximate staff size",
-      problem: "What is getting stuck on the digital side of the business?",
+      problem: "What needs attention on the digital side of the business?",
       problemHelp: "Think website, content, visibility, follow-up, automation, AI, scattered tools or internal workflows.",
       result: "What would a useful technology partner help change over the next 90 days?",
       decisionMaker: "A decision-maker can participate in prioritization, approvals and review of the work.",

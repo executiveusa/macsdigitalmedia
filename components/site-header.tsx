@@ -30,10 +30,11 @@ export function SiteHeader() {
     { href: "/programs", label: spanish ? "Programas" : "Programs" },
     { href: "/work", label: spanish ? "Trabajo" : "Work" },
     { href: "/story", label: spanish ? "Historia" : "Story" },
+    { href: "/team", label: spanish ? "Equipo" : "Team" },
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
     { href: "/notes", label: spanish ? "Notas" : "Notes" },
   ];
-  const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's stuck";
+  const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's important";
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
