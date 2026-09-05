@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
 
 export function generateStaticParams() {
@@ -9,6 +9,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+
+  if (slug === "agent-maxx") {
+    return {
+      title: "Agent MAXX | MACS Digital Media",
+      description: "Agent MAXX is built inside MACS and documented under Built Here.",
+    };
+  }
+
   const study = getCaseStudy(slug);
 
   if (!study) return {};
@@ -21,6 +29,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+
+  if (slug === "agent-maxx") {
+    permanentRedirect("/maxx");
+  }
+
   const study = getCaseStudy(slug);
 
   if (!study) notFound();
