@@ -1,0 +1,70 @@
+{
+  "id": "macs-insight-001",
+  "slug": "the-business-stays-yours",
+  "status": "preview",
+  "title": "The Business Stays Yours",
+  "dek": "Good technology should leave a business more capable, not more dependent.",
+  "audience": "Owner-led Washington organizations evaluating AI, websites, automation, or operational systems",
+  "thesis": "The real test of a technology partner is whether the client remains in control of the system, data, and next decision after the engagement ends.",
+  "author": "MACS Digital Media",
+  "publishedAt": null,
+  "revisionNote": "Initial preview article based only on approved public MACS positioning and the current research audit. No client performance claims are included.",
+  "sources": [
+    {
+      "type": "repository",
+      "label": "MACS Digital Media public site and approved repository context"
+    },
+    {
+      "type": "research",
+      "label": "MACS vs COLLINS Positioning & Architecture Research Audit"
+    }
+  ],
+  "claims": [
+    {
+      "text": "MACS treats client ownership and avoidance of unnecessary vendor dependence as a core operating principle.",
+      "truthClass": "FACT",
+      "support": "Current MACS public positioning and research audit."
+    },
+    {
+      "text": "A technology engagement should increase the client's ability to understand and operate what was built.",
+      "truthClass": "DECISION",
+      "support": "MACS design and human-machine operating principles."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "body": "A business can look modern and still be trapped. The website belongs to a vendor account. The automations only make sense to the person who built them. The data sits in somebody else's system. Every improvement adds another monthly dependency."
+    },
+    {
+      "type": "statement",
+      "heading": "Capability, not dependence.",
+      "body": "The point of better technology is not to make the vendor harder to leave. It is to make the business stronger after the work is done."
+    },
+    {
+      "type": "text",
+      "heading": "The handoff is part of the product",
+      "body": "Ownership is not a line buried in a proposal. It changes how a system is designed from the beginning: understandable workflows, visible approvals, documented decisions, exportable data, and a clear boundary between what the business owns and what a provider temporarily supplies."
+    },
+    {
+      "type": "contrast",
+      "heading": "A simple test",
+      "before": "If the vendor disappeared tomorrow, would the business lose the ability to understand what is running?",
+      "after": "A better system leaves the owner with clarity about what exists, what it does, and what happens next."
+    },
+    {
+      "type": "text",
+      "heading": "Why a small accountable team can matter",
+      "body": "MACS is being built around a father-and-son operating model rather than a faceless software subscription. The technology matters, but accountability matters more: real people, a defined scope, explicit approvals, and work designed to remain manageable after launch."
+    },
+    {
+      "type": "statement",
+      "heading": "The business stays yours.",
+      "body": "That is a higher bar than making a good demo. It means the system should still make sense when the demo is over."
+    }
+  ],
+  "cta": {
+    "label": "See how MACS works",
+    "href": "/founding-launch"
+  }
+}
