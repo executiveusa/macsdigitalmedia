@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getInsight, listInsights } from "@/lib/editorial";
+import { getInsight } from "@/lib/editorial";
 import styles from "../insights.module.css";
 
-export function generateStaticParams() {
-  return listInsights().filter((article) => article.status !== "archived").map((article) => ({ slug: article.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
