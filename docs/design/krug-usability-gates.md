@@ -70,17 +70,21 @@ If a concept cannot be self-evident, it must be made self-explanatory with the s
 - The page must remain fully understandable when animation is disabled.
 - Creativity may alter presentation, but never navigation clarity or task completion.
 
-## Homepage trunk test
+## Homepage trunk test — current approved positioning
+
+This gate supersedes the earlier validation-cohort framing that described MACS primarily as “managed AI operating systems” for Washington nonprofits. That language belongs to prior product validation evidence and must not force the public storefront back into a SaaS/implementation category after the approved father-and-son repositioning.
 
 Without scrolling far, a first-time visitor must be able to identify:
 
-1. Site identity: MACS Digital Media
-2. Category: managed AI operating systems
-3. Primary audience: Washington nonprofit and social-purpose organizations
-4. Primary outcome: less administrative friction and missed follow-up
-5. Primary action: Apply for a Washington Founding Spot
-6. Secondary action: See the System Work
-7. Trust basis: human-managed, approval-first, client-owned deployment
+1. Site identity: MACS Digital Media.
+2. Human/category frame: a Pacific Northwest father-and-son company, not a generic software dashboard or website shop.
+3. Customer situation: owner-led organizations whose digital work, vendors, content, follow-up, systems, or responsibilities have stopped working together cleanly.
+4. Primary outcome: bring the important digital side of the business back together so the owner can focus on running the business.
+5. Primary action: **See if we're a fit** (or the approved Spanish equivalent).
+6. Trust basis: selective 90-day engagements, real founder/work proof, client ownership, and a relationship the client keeps by choice rather than software lock-in.
+7. Progressive disclosure: Programs, Work, Story, and Built Here explain how MACS works; technical architecture must not dominate the first viewport.
+
+The first viewport does **not** need a second competing CTA merely to expose internal system mechanics. One dominant next action is preferred unless evidence shows another action improves comprehension or conversion.
 
 ## Mobile rules
 

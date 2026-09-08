@@ -31,7 +31,7 @@ function ThemeIcon({ theme }: { theme: ThemePreference }) {
   );
 }
 
-export function PreferenceControls() {
+export function PreferenceControls({ showTheme = true }: { showTheme?: boolean }) {
   const { locale, setLocale, theme, setTheme, copy, pendingLocaleChange } = useSitePreferences();
   const common = copy.common;
 
@@ -48,7 +48,10 @@ export function PreferenceControls() {
   }
 
   return (
-    <div className="preference-controls" aria-label={`${common.languageControl}; ${common.themeControl}`}>
+    <div
+      className="preference-controls"
+      aria-label={showTheme ? `${common.languageControl}; ${common.themeControl}` : common.languageControl}
+    >
       <div className="language-toggle" role="group" aria-label={common.languageControl}>
         <button
           type="button"
@@ -70,18 +73,20 @@ export function PreferenceControls() {
         </button>
       </div>
 
-      <button
-        className="theme-toggle"
-        type="button"
-        aria-label={themeLabel}
-        title={themeLabel}
-        onClick={cycleTheme}
-      >
-        <ThemeIcon theme={theme} />
-        <span className="theme-toggle__label">
-          {theme === "light" ? common.lightTheme : theme === "dark" ? common.darkTheme : common.systemTheme}
-        </span>
-      </button>
+      {showTheme ? (
+        <button
+          className="theme-toggle"
+          type="button"
+          aria-label={themeLabel}
+          title={themeLabel}
+          onClick={cycleTheme}
+        >
+          <ThemeIcon theme={theme} />
+          <span className="theme-toggle__label">
+            {theme === "light" ? common.lightTheme : theme === "dark" ? common.darkTheme : common.systemTheme}
+          </span>
+        </button>
+      ) : null}
     </div>
   );
 }

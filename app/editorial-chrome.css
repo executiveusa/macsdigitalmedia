@@ -1,0 +1,237 @@
+.editorial-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.editorial-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100% - 2rem, 1440px);
+  margin-inline: auto;
+  padding: 0.9rem 0;
+  pointer-events: auto;
+}
+
+.editorial-brand {
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 999px;
+  background: rgba(246, 246, 233, 0.92);
+  backdrop-filter: blur(18px) saturate(130%);
+  overflow: hidden;
+}
+
+.editorial-brand img {
+  width: 2.55rem;
+  height: auto;
+}
+
+.editorial-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.editorial-header__fit,
+.editorial-menu-button {
+  min-height: 2.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(246, 246, 233, 0.92);
+  color: #171512;
+  backdrop-filter: blur(18px) saturate(130%);
+  font: 650 0.8rem/1 var(--editorial-sans);
+  text-decoration: none;
+}
+
+.editorial-header__fit {
+  padding-inline: 1rem;
+}
+
+.editorial-menu-button {
+  gap: 0.55rem;
+  padding: 0 0.8rem 0 1rem;
+  cursor: pointer;
+}
+
+.editorial-menu-button__glyph {
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: 1rem;
+}
+
+.editorial-menu {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  min-height: 100svh;
+  padding: 6rem 1rem 2rem;
+  background: #171512;
+  color: #f6f6e9;
+  pointer-events: auto;
+}
+
+.editorial-menu__inner {
+  width: min(100%, 1440px);
+  min-height: calc(100svh - 8rem);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.5fr);
+  gap: 3rem;
+  align-items: end;
+}
+
+.editorial-menu__primary {
+  display: grid;
+}
+
+.editorial-menu__primary a {
+  width: fit-content;
+  color: inherit;
+  font: 400 clamp(3rem, 7vw, 7.8rem)/0.95 var(--editorial-serif);
+  letter-spacing: -0.05em;
+  text-decoration: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.editorial-menu__primary a:hover,
+.editorial-menu__primary a:focus-visible {
+  opacity: 0.66;
+  transform: translateX(0.3rem);
+}
+
+.editorial-menu__meta {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  font-family: var(--editorial-sans);
+  font-size: 0.88rem;
+}
+
+.editorial-menu__meta a {
+  color: inherit;
+}
+
+.editorial-footer {
+  background: #171512;
+  color: #f6f6e9;
+  padding: 5rem 0 2rem;
+}
+
+.editorial-footer__inner {
+  width: min(100% - 2rem, 1440px);
+  margin-inline: auto;
+}
+
+.editorial-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(12rem, 0.5fr) minmax(12rem, 0.5fr);
+  gap: 3rem;
+  padding-bottom: 5rem;
+}
+
+.editorial-footer__brand {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.editorial-footer__brand img {
+  width: 6rem;
+  height: auto;
+}
+
+.editorial-footer__brand p {
+  max-width: 26rem;
+  margin: 0;
+  font: 400 clamp(2rem, 3.4vw, 4rem)/1 var(--editorial-serif);
+  letter-spacing: -0.04em;
+}
+
+.editorial-footer__nav,
+.editorial-footer__meta {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+  font: 500 0.9rem/1.35 var(--editorial-sans);
+}
+
+.editorial-footer__nav a,
+.editorial-footer__meta a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.editorial-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(246, 246, 233, 0.28);
+  font: 500 0.72rem/1.3 var(--editorial-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 800px) {
+  .editorial-header__fit {
+    display: none;
+  }
+
+  .editorial-menu__inner,
+  .editorial-footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .editorial-menu__inner {
+    align-content: end;
+  }
+
+  .editorial-menu__meta {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .editorial-header__inner,
+  .editorial-footer__inner {
+    width: min(100% - 1.25rem, 1440px);
+  }
+
+  .editorial-brand {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .editorial-brand img {
+    width: 2.2rem;
+  }
+
+  .editorial-menu-button {
+    min-height: 2.6rem;
+  }
+
+  .editorial-menu {
+    padding-inline: 0.65rem;
+  }
+
+  .editorial-menu__primary a {
+    font-size: clamp(3.1rem, 14vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-menu__primary a {
+    transition: none;
+  }
+}

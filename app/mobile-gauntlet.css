@@ -1,0 +1,329 @@
+/* Collins / Krug mobile hardening pass.
+   Loaded after the editorial system so these are deliberate behavioral overrides. */
+
+:root {
+  --mobile-touch-target: 2.75rem;
+  --mobile-reading-width: 38rem;
+}
+
+/* Touch feedback should begin immediately and never delay navigation. */
+.editorial-link,
+.editorial-header__fit,
+.editorial-menu-button,
+.editorial-brand {
+  min-height: var(--mobile-touch-target);
+  transition-duration: 120ms;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+}
+
+.editorial-link {
+  align-items: center;
+  line-height: 1.2;
+  padding-top: .55rem;
+  padding-bottom: .45rem;
+}
+
+.editorial-link:active,
+.editorial-header__fit:active,
+.editorial-menu-button:active,
+.editorial-brand:active {
+  transform: scale(.98);
+}
+
+.editorial-row:active,
+.editorial-built__item:active,
+.editorial-work__feature:active,
+.editorial-work__secondary:active {
+  opacity: .82;
+}
+
+/* Keep body copy comfortable even when display typography is expressive. */
+.editorial-hero__line,
+.editorial-row__line,
+.editorial-work__caption span:nth-child(2),
+.editorial-work__secondary > span:nth-child(3),
+.editorial-story__copy > p:not(.editorial-kicker),
+.editorial-fit p:not(.editorial-kicker) {
+  max-width: var(--mobile-reading-width);
+  text-wrap: pretty;
+}
+
+/* Visible focus must be stronger than the brand's decorative borders. */
+.editorial-link:focus-visible,
+.editorial-row:focus-visible,
+.editorial-work__feature:focus-visible,
+.editorial-work__secondary:focus-visible,
+.editorial-built__item:focus-visible,
+.editorial-brand:focus-visible,
+.editorial-header__fit:focus-visible,
+.editorial-menu-button:focus-visible,
+.editorial-menu__primary a:focus-visible,
+.editorial-menu__meta a:focus-visible {
+  outline: 3px solid var(--editorial-coral);
+  outline-offset: 4px;
+}
+
+@media (max-width: 800px) {
+  /* Phone/tablet navigation must remain tappable, not merely visually large. */
+  .editorial-menu__primary a,
+  .editorial-menu__meta a,
+  .editorial-footer__nav a,
+  .editorial-footer__meta a {
+    display: flex;
+    align-items: center;
+    min-height: var(--mobile-touch-target);
+  }
+
+  .editorial-menu__primary {
+    gap: .15rem;
+  }
+}
+
+@media (max-width: 680px) {
+  /* A mobile page should read as its own composition, not compressed desktop. */
+  .editorial-shell,
+  .editorial-header__inner,
+  .editorial-footer__inner {
+    width: min(100% - 1.5rem, 1440px);
+  }
+
+  .editorial-header__inner {
+    padding-top: max(.7rem, env(safe-area-inset-top));
+  }
+
+  .editorial-brand,
+  .editorial-menu-button {
+    min-width: var(--mobile-touch-target);
+    min-height: var(--mobile-touch-target);
+  }
+
+  .editorial-menu-button {
+    padding-inline: .9rem;
+  }
+
+  .editorial-menu {
+    padding-top: calc(5.5rem + env(safe-area-inset-top));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+
+  .editorial-menu__inner {
+    min-height: calc(100svh - 7rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    gap: 1.25rem;
+  }
+
+  .editorial-menu__primary a {
+    font-size: clamp(2.7rem, 12.5vw, 4.25rem);
+    line-height: .98;
+  }
+
+  .editorial-menu__meta {
+    gap: .35rem;
+    padding-top: 1rem;
+  }
+
+  /* Keep the hero memorable but reveal the next decision sooner. */
+  .editorial-hero {
+    min-height: 76svh;
+  }
+
+  .editorial-hero__image {
+    object-position: 52% 38%;
+  }
+
+  .editorial-hero__content {
+    gap: .85rem;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .editorial-hero h1 {
+    max-width: 10ch;
+    font-size: clamp(3rem, 14.5vw, 4.65rem);
+    line-height: .92;
+    letter-spacing: -.042em;
+  }
+
+  .editorial-hero__line {
+    max-width: 28rem;
+    margin-bottom: .15rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .editorial-credibility p {
+    padding-block: .85rem;
+    font-size: .68rem;
+    line-height: 1.45;
+    letter-spacing: .07em;
+  }
+
+  .editorial-section {
+    padding-block: 4rem;
+  }
+
+  .editorial-heading {
+    gap: .75rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .editorial-heading h2,
+  .editorial-story__copy h2,
+  .editorial-fit h2 {
+    text-wrap: balance;
+  }
+
+  .editorial-heading h2 {
+    font-size: clamp(2.35rem, 11vw, 3.45rem);
+    line-height: .98;
+    letter-spacing: -.04em;
+  }
+
+  .editorial-row {
+    gap: .45rem .75rem;
+    padding-block: 1.15rem;
+  }
+
+  .editorial-row__name {
+    font-size: clamp(1.9rem, 9vw, 2.65rem);
+  }
+
+  .editorial-row__line,
+  .editorial-work__caption span:nth-child(2),
+  .editorial-work__secondary > span:nth-child(3),
+  .editorial-story__copy > p:not(.editorial-kicker),
+  .editorial-fit p:not(.editorial-kicker) {
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .editorial-work__media {
+    aspect-ratio: 4 / 3;
+    border-radius: .8rem;
+    background-position: center top;
+  }
+
+  .editorial-work__caption {
+    gap: .65rem .75rem;
+    padding: 1rem 0 2rem;
+  }
+
+  .editorial-work__caption strong {
+    font-size: 1.65rem;
+  }
+
+  .editorial-work__secondary {
+    gap: .55rem .75rem;
+    padding-block: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .editorial-story__grid {
+    gap: 2rem;
+  }
+
+  .editorial-story__media {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    border-radius: .8rem;
+  }
+
+  .editorial-story__media img {
+    object-position: 50% 42%;
+  }
+
+  .editorial-story__copy {
+    gap: 1rem;
+  }
+
+  .editorial-story__copy h2 {
+    font-size: clamp(2.5rem, 12vw, 3.75rem);
+    line-height: .96;
+    letter-spacing: -.042em;
+  }
+
+  .editorial-built__grid {
+    margin-bottom: 2rem;
+  }
+
+  .editorial-built__item {
+    min-height: 0;
+    gap: .7rem;
+    padding: 1.25rem;
+  }
+
+  .editorial-built__item strong {
+    margin-top: 2.5rem;
+    font-size: clamp(2rem, 9.5vw, 2.8rem);
+  }
+
+  .editorial-fit__inner {
+    min-height: 0;
+    padding-block: 5rem;
+  }
+
+  .editorial-fit h2 {
+    max-width: 12ch;
+    font-size: clamp(2.75rem, 12.5vw, 4rem);
+    line-height: .94;
+  }
+
+  .editorial-footer {
+    padding-top: 4rem;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .editorial-footer__top {
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .editorial-footer__nav,
+  .editorial-footer__meta {
+    gap: .15rem;
+    font-size: .95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .editorial-hero h1 {
+    font-size: clamp(2.75rem, 14vw, 3.8rem);
+  }
+
+  .editorial-menu__primary a {
+    font-size: clamp(2.5rem, 12vw, 3.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-link,
+  .editorial-header__fit,
+  .editorial-menu-button,
+  .editorial-brand,
+  .editorial-row,
+  .editorial-built__item,
+  .editorial-work__feature,
+  .editorial-work__secondary {
+    scroll-behavior: auto;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .editorial-brand,
+  .editorial-header__fit,
+  .editorial-menu-button {
+    background: var(--editorial-paper);
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .editorial-credibility,
+  .editorial-rows,
+  .editorial-row,
+  .editorial-work__caption,
+  .editorial-work__secondary,
+  .editorial-built__grid {
+    border-color: currentColor;
+  }
+}

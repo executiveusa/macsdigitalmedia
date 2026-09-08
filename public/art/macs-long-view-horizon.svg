@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">MACS Long View horizon study</title>
+  <desc id="desc">Flat vector horizon lines derived from the MACS palette for the restrained editorial design territory.</desc>
+  <rect width="1600" height="900" fill="#F6F6E9"/>
+  <g fill="none" stroke="#171512" stroke-width="2" opacity="0.22">
+    <path d="M0 560 C220 510 400 600 610 545 S1020 500 1600 555"/>
+    <path d="M0 600 C240 550 410 640 650 585 S1080 540 1600 595"/>
+    <path d="M0 640 C260 590 470 675 690 630 S1130 585 1600 640"/>
+    <path d="M0 680 C280 630 520 710 730 675 S1180 625 1600 680"/>
+  </g>
+  <path d="M0 545 C220 495 400 585 610 530 S1020 485 1600 540" fill="none" stroke="#3A6EA5" stroke-width="18"/>
+  <path d="M1210 531 L1254 455 L1298 531 Z" fill="#FE6E60"/>
+  <g fill="#171512">
+    <circle cx="116" cy="158" r="7"/>
+    <circle cx="1460" cy="158" r="7"/>
+  </g>
+</svg>

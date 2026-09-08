@@ -2,7 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 
 export type TruthClass = "FACT" | "INFERENCE" | "HYPOTHESIS" | "DECISION" | "EVIDENCE";
-
 export type InsightSection = {
   type: "lead" | "statement" | "text" | "contrast";
   heading?: string;
@@ -10,7 +9,6 @@ export type InsightSection = {
   before?: string;
   after?: string;
 };
-
 export type InsightArticle = {
   id: string;
   slug: string;
@@ -30,13 +28,18 @@ export type InsightArticle = {
 
 const contentRoot = path.join(process.cwd(), "content", "insights");
 
-export function listInsights(): InsightArticle[] {
+/** Internal editorial inventory. Never expose this unfiltered through a public route. */
+export function listAllInsights(): InsightArticle[] {
   if (!fs.existsSync(contentRoot)) return [];
-  return fs
-    .readdirSync(contentRoot)
+  return fs.readdirSync(contentRoot)
     .filter((file) => file.endsWith(".json"))
     .map((file) => JSON.parse(fs.readFileSync(path.join(contentRoot, file), "utf8")) as InsightArticle)
     .sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/** Public publication boundary: drafts and previews require a separate authorized review surface. */
+export function listInsights(): InsightArticle[] {
+  return listAllInsights().filter((article) => article.status === "published");
 }
 
 export function getInsight(slug: string): InsightArticle | null {

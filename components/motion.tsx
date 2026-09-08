@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
+import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
@@ -15,43 +15,27 @@ export function PageTransition({ children }: { children: ReactNode }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <m.div
-        key={pathname}
-        className="page-transition"
-        initial={reduceMotion ? false : { opacity: 1, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -6 }}
-        transition={{ duration: reduceMotion ? 0 : 0.28, ease: easing }}
-      >
-        {children}
-      </m.div>
-    </AnimatePresence>
+    <m.div
+      key={pathname}
+      className="page-transition"
+      initial={reduceMotion ? false : { opacity: 0.985 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: reduceMotion ? 0 : 0.14, ease: easing }}
+    >
+      {children}
+    </m.div>
   );
 }
 
 export function Reveal({
   children,
   className,
-  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
 }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <m.div
-      className={className ? `reveal ${className}` : "reveal"}
-      initial={reduceMotion ? false : { opacity: 1, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.16, margin: "0px 0px -8% 0px" }}
-      transition={{ duration: reduceMotion ? 0 : 0.62, delay: reduceMotion ? 0 : delay, ease: easing }}
-    >
-      {children}
-    </m.div>
-  );
+  return <div className={className ? `reveal ${className}` : "reveal"}>{children}</div>;
 }
 
 export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
@@ -60,10 +44,10 @@ export function StaggerItem({ children, className }: { children: ReactNode; clas
   return (
     <m.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 1, y: 14 }}
+      initial={reduceMotion ? false : { opacity: 0.985, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: reduceMotion ? 0 : 0.45, ease: easing }}
+      transition={{ duration: reduceMotion ? 0 : 0.28, ease: easing }}
     >
       {children}
     </m.div>

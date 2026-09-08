@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { ApplicationForm } from "@/components/application-form";
 import { Reveal } from "@/components/motion";
-import { siteCopy } from "@/lib/i18n";
+import { partnerIntakeCopy } from "@/lib/partner-intake-copy";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = siteCopy[locale].apply;
+  const copy = partnerIntakeCopy[locale].page;
   return { title: copy.metadataTitle, description: copy.metadataDescription };
 }
 
 export default async function ApplyPage() {
   const locale = await getServerLocale();
-  const page = siteCopy[locale].apply;
+  const page = partnerIntakeCopy[locale].page;
 
   return (
     <section className="section application-page" aria-labelledby="application-title">

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">MACS Two Clocks study</title>
+  <desc id="desc">Two complementary circular rails representing long-term business judgment and what is changing now.</desc>
+  <rect width="1600" height="900" fill="#171512"/>
+  <g fill="none" stroke-linecap="round">
+    <circle cx="570" cy="450" r="260" stroke="#B4B4B4" stroke-width="30" opacity="0.9"/>
+    <circle cx="1030" cy="450" r="260" stroke="#3A6EA5" stroke-width="30" opacity="0.95"/>
+    <path d="M570 450 L570 252" stroke="#F6F6E9" stroke-width="12"/>
+    <path d="M1030 450 L1170 334" stroke="#F6F6E9" stroke-width="12"/>
+    <path d="M800 278 L800 622" stroke="#F6F6E9" stroke-width="2" opacity="0.35"/>
+  </g>
+  <circle cx="800" cy="450" r="34" fill="#FE6E60"/>
+  <path d="M748 540 L800 450 L852 540 Z" fill="#FE6E60"/>
+  <g fill="#F6F6E9" font-family="Arial, sans-serif" font-size="28" letter-spacing="4">
+    <text x="466" y="780">LONG VIEW</text>
+    <text x="940" y="780">NEXT MOVE</text>
+  </g>
+</svg>
