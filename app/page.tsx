@@ -29,9 +29,6 @@ const organizationSchema = {
   },
 };
 
-const asc3ndReferenceImage =
-  "https://raw.githubusercontent.com/executiveusa/asc3nd-frontend-website-/main/apps/site/public/images/asc3nd-site-reference.jpg";
-
 const proofLinks: Record<string, Array<{ label: string; href: string }> | null> = {
   Reset: null,
   Momentum: [{ label: "View Buffer Blaster", href: "/work/buffer-blaster" }],
@@ -151,20 +148,6 @@ export default async function HomePage() {
               <p className="editorial-kicker">{home.workLabel}</p>
               <h2 id="work-title">{home.workTitle}</h2>
             </div>
-
-            <Link className="editorial-work__feature" href="/work/asc3nd">
-              <div
-                className="editorial-work__media"
-                role="img"
-                aria-label="ASC3ND project site reference"
-                style={{ backgroundImage: `url(${asc3ndReferenceImage})` }}
-              />
-              <div className="editorial-work__caption">
-                <strong>{home.asc3ndTitle}</strong>
-                <span>{home.asc3ndLine}</span>
-                <span aria-hidden="true">↗</span>
-              </div>
-            </Link>
 
             <Link className="editorial-work__secondary" href="/built-here#agent-maxx">
               <span className="editorial-work__index">02</span>
