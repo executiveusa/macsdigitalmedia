@@ -18,7 +18,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const study = getCaseStudy(slug);
-
   if (!study) return {};
 
   return {
@@ -35,25 +34,36 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   }
 
   const study = getCaseStudy(slug);
-
   if (!study) notFound();
+
+  const isInternal = study.visibility === "internal";
+  const formatLabel = study.format === "collaboration" ? "Collaboration" : study.format === "product" ? "Built Here" : "Case Study";
 
   return (
     <div className="editorial-page editorial-page--white">
       <div className="editorial-shell">
         <header className="editorial-case-study-hero">
-          <p className="editorial-kicker">{study.lane} · Case study</p>
+          <p className="editorial-kicker">{study.lane} · {formatLabel}</p>
           <h1>{study.name}</h1>
+          {study.collaboration ? <p className="editorial-case-study-hero__credit">{study.collaboration}</p> : null}
           {study.credit ? <p className="editorial-case-study-hero__credit">{study.credit}</p> : null}
           <p className="editorial-case-study-hero__headline">{study.headline}</p>
           <p className="editorial-case-study-hero__summary">{study.summary}</p>
+
+          <dl className="editorial-case-study-meta">
+            <div><dt>Program</dt><dd>{study.lane}</dd></div>
+            {study.industry ? <div><dt>Industry</dt><dd>{study.industry}</dd></div> : null}
+            {study.stage ? <div><dt>Stage</dt><dd>{study.stage}</dd></div> : null}
+            <div><dt>Format</dt><dd>{formatLabel}</dd></div>
+          </dl>
+
           <div className="editorial-case-study-hero__actions">
             {study.liveUrl ? (
               <a className="editorial-link" href={study.liveUrl} target="_blank" rel="noreferrer">
                 Visit live project <span aria-hidden="true">↗</span>
               </a>
             ) : (
-              <span className="editorial-case-study-placeholder">Live link placeholder</span>
+              <span className="editorial-case-study-placeholder">Live project link — pending</span>
             )}
           </div>
         </header>
@@ -61,10 +71,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div
           className="editorial-case-study-hero__media"
           role={study.heroImage ? "img" : undefined}
-          aria-label={study.heroImage ? `${study.name} case study hero` : undefined}
+          aria-label={study.heroImage ? `${study.name} project hero` : undefined}
           style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
         >
-          {!study.heroImage ? <span>Hero media placeholder</span> : null}
+          {!study.heroImage ? <span>Hero media — approved project image or film</span> : null}
         </div>
 
         <div className="editorial-case-study-story">
@@ -81,9 +91,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {study.placeholders?.length ? (
           <section className="editorial-case-study-assets" aria-labelledby="case-assets-title">
-            <p className="editorial-kicker">Next proof</p>
+            <p className="editorial-kicker">Proof still needed</p>
             <div>
-              <h2 id="case-assets-title">Add the evidence as it is ready.</h2>
+              <h2 id="case-assets-title">Complete the story with approved evidence.</h2>
               <div className="editorial-case-study-assets__grid">
                 {study.placeholders.map((placeholder) => (
                   <div className="editorial-case-study-placeholder" key={placeholder}>{placeholder}</div>
@@ -94,8 +104,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         ) : null}
 
         <div className="editorial-case-study-footer">
-          <Link className="editorial-link" href="/work">See all work <span aria-hidden="true">↗</span></Link>
-          <Link className="editorial-link" href="/apply">{"Tell us what's important"} <span aria-hidden="true">↗</span></Link>
+          <Link className="editorial-link" href={isInternal ? "/built-here" : "/work"}>
+            {isInternal ? "Back to Built Here" : "See all work"} <span aria-hidden="true">↗</span>
+          </Link>
+          <Link className="editorial-link" href="/apply">Tell us what's important <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
     </div>
