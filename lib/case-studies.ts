@@ -12,6 +12,7 @@ export type CaseStudy = {
   summary: string;
   liveUrl?: string;
   heroImage?: string;
+  media?: Array<{ src: string; alt: string; caption?: string }>;
   sections: Array<{ title: string; body: string }>;
   placeholders?: string[];
 };
@@ -26,29 +27,47 @@ export const caseStudies: CaseStudy[] = [
     collaboration: "Taste of Nawlins × MACS Digital Media",
     industry: "Food / Hospitality",
     stage: "Launch",
-    headline: "A collaboration built around bringing the brand into a focused digital launch.",
+    headline: "A New Orleans food concept taking shape in the Pacific Northwest.",
     summary:
-      "Taste of Nawlins is the first MACS collaboration story in this format. The public case will show what the team was building, where MACS contributed, and the verified result without overstating authorship.",
+      "Taste of Nawlins is a live collaboration story centered on the brand, its community-facing food concept, and a digital launch that can grow with the business. The case keeps authorship explicit and separates verified project evidence from contribution details that still need approval.",
     liveUrl: "https://tasteofnawlins.netlify.app",
+    heroImage:
+      "https://raw.githubusercontent.com/executiveusa/tasteofnawlins/main/public/images/table-1920.webp",
+    media: [
+      {
+        src: "https://raw.githubusercontent.com/executiveusa/tasteofnawlins/main/public/images/counter-1440.webp",
+        alt: "Taste of Nawlins food being handed across a neighborhood counter",
+        caption: "Community-facing food service",
+      },
+      {
+        src: "https://raw.githubusercontent.com/executiveusa/tasteofnawlins/main/public/images/first-taste-1440.webp",
+        alt: "A customer holding a Taste of Nawlins food container",
+        caption: "The brand in customers' hands",
+      },
+      {
+        src: "https://raw.githubusercontent.com/executiveusa/tasteofnawlins/main/public/images/walmart-1440.webp",
+        alt: "A worker holding a Taste of Nawlins food container",
+        caption: "Real-world brand presence",
+      },
+    ],
     sections: [
       {
         title: "What they were building",
-        body: "Document the approved founder and brand context here: what Taste of Nawlins was creating, what already existed, and what mattered before MACS joined the work.",
+        body: "Taste of Nawlins is developing a Pacific Northwest pop-up kitchen around New Orleans staples including beignets, chicory coffee, red beans, cornbread and cabbage. The public concept also connects the food business to Boxing & Beignets, a recurring community event built around food, fighters and mentorship.",
       },
       {
         title: "Where MACS came in",
-        body: "Document the exact MACS contribution here. Separate strategy, design, technology, campaign, operations, and partner contributions so authorship stays clear.",
+        body: "MACS is presented here as a collaborator, not the sole author. The exact approved contribution split across strategy, design, technology, campaign work and outside contributors still needs to be documented before this section is treated as final proof.",
       },
       {
-        title: "What changed",
-        body: "Add only verified launch evidence here: the live experience, approved before-and-after material, documented operating improvement, customer response, or another supported outcome.",
+        title: "What exists now",
+        body: "A live Vite site now presents the menu, brand story, community-event concept, catering path and follow-the-kitchen path. Netlify shows the current production deployment as ready. The catering and email forms are intentionally still preview-only, so the case does not claim live lead capture yet.",
       },
     ],
     placeholders: [
-      "Hero media — approved food, founder, brand, launch image or film",
-      "Collaboration credits — founder, MACS, Stavarai and any outside contributors",
-      "Process media — approved concepts, campaign assets or build artifacts",
-      "Launch evidence — live screenshots, before/after or documented result",
+      "Approved collaboration credits — founder, MACS, Stavarai and any outside contributors",
+      "Exact MACS contribution — approved role and scope",
+      "Before/after or launch-result evidence — only when documented",
       "Approved quote or testimonial — only if supplied or separately authorized",
     ],
   },

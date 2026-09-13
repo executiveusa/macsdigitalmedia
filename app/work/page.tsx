@@ -36,8 +36,12 @@ export default async function WorkPage() {
             {clientWork.map((study, index) => (
               <Link className={styles.card} href={`/work/${study.slug}`} key={study.slug}>
                 <span className={styles.cardIndex}>{String(index + 1).padStart(2, "0")}</span>
-                <div className={styles.cardMedia} aria-hidden="true">
-                  <span>{study.heroImage ? "Project media" : "Media placeholder"}</span>
+                <div
+                  className={`${styles.cardMedia} ${study.heroImage ? styles.cardMediaImage : ""}`}
+                  aria-hidden="true"
+                  style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
+                >
+                  {!study.heroImage ? <span>Media placeholder</span> : null}
                 </div>
                 <div className={styles.cardCopy}>
                   <p className="editorial-kicker">{study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : (es ? "Caso" : "Case Study")}</p>

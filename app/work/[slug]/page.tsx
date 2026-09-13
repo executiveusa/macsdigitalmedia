@@ -89,6 +89,23 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           ))}
         </div>
 
+        {study.media?.length ? (
+          <section className="editorial-case-study-media" aria-labelledby="case-media-title">
+            <p className="editorial-kicker">Project media</p>
+            <div>
+              <h2 id="case-media-title">The work in the world.</h2>
+              <div className="editorial-case-study-media__grid">
+                {study.media.map((item) => (
+                  <figure className="editorial-case-study-media__item" key={item.src}>
+                    <img src={item.src} alt={item.alt} loading="lazy" />
+                    {item.caption ? <figcaption>{item.caption}</figcaption> : null}
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         {study.placeholders?.length ? (
           <section className="editorial-case-study-assets" aria-labelledby="case-assets-title">
             <p className="editorial-kicker">Proof still needed</p>
