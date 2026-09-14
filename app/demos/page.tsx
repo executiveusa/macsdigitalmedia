@@ -24,7 +24,7 @@ export default async function DemosPage() {
           kicker: "Trabajo de cliente",
           name: "ASC3ND",
           line: "La puerta de entrada pública de una organización juvenil sin fines de lucro - mentoría, habilidades para la vida y oportunidad comunitaria.",
-          href: "https://asc3nd-org.31.220.58.212.sslip.io/",
+          href: "https://asc3nd-org.netlify.app/",
           img: "/demos/asc3nd.webp",
         },
         {
@@ -47,7 +47,7 @@ export default async function DemosPage() {
           kicker: "Client site",
           name: "ASC3ND",
           line: "A youth nonprofit's public front door - trusted guidance, life skills, and community opportunity.",
-          href: "https://asc3nd-org.31.220.58.212.sslip.io/",
+          href: "https://asc3nd-org.netlify.app/",
           img: "/demos/asc3nd.webp",
         },
         {
