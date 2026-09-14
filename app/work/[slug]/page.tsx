@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (slug === "agent-maxx") {
     return {
-      title: "Agent MAXX | MACS Digital Media",
+      title: "Agent MAXX",
       description: "Agent MAXX is built inside MACS and documented under Built Here.",
     };
   }
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!study) return {};
 
   return {
-    title: `${study.name} | MACS Digital Media`,
+    title: study.name,
     description: study.summary,
   };
 }

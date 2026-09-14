@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const article = getInsight(slug);
   if (!article) return {};
-  return { title: `${article.title} | MACS Digital Media`, description: article.dek };
+  return { title: article.title, description: article.dek };
 }
 
 export default async function InsightPage({ params }: { params: Promise<{ slug: string }> }) {

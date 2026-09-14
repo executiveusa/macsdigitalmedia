@@ -129,15 +129,15 @@ export const caseStudies: CaseStudy[] = [
     sections: [
       {
         title: "The problem",
-        body: "Add the business condition Pare’ was created to solve.",
+        body: "AI-built software accumulates faster than anyone can review it. Work that ships without a review-and-repair step breaks where nobody is watching.",
       },
       {
         title: "What we built",
-        body: "Add the product architecture and the parts of the workflow MACS designed or implemented.",
+        body: "Pare’ is the review-and-repair step in our own build workflow: a supervised tool we run against AI-built work before it reaches a client, so the first working version is never the final one.",
       },
       {
         title: "How it scales",
-        body: "Add the specific way Pare’ turns a working process into a repeatable system at greater volume.",
+        body: "Every product in the Built Here family passes through the same review loop, which is how quality stops depending on who happened to have time to check.",
       },
     ],
     placeholders: [
@@ -161,15 +161,15 @@ export const caseStudies: CaseStudy[] = [
     sections: [
       {
         title: "Why it exists",
-        body: "Add the original content problem or opportunity that led Stavarai to develop Posta Studio.",
+        body: "Consistent short-form content depends on recurring characters and a publishing rhythm, not one-off inspiration. Without a system, every post starts from zero.",
       },
       {
         title: "What Stavarai developed",
-        body: "Add the approved product details, including the UGC-character workflow and the parts of the experience Stavarai designed and developed.",
+        body: "Posta Studio turns UGC-style characters into a repeatable content system: recurring personas, scripted spots, and a publishing workflow that produces on schedule instead of on inspiration.",
       },
       {
         title: "How it becomes leverage",
-        body: "Add how the system turns character-led UGC production into a repeatable capability that can support more content, campaigns or clients.",
+        body: "A character-led system keeps producing after a single campaign ends. The same workflow can support more content, more campaigns, or a client’s own presence.",
       },
     ],
     placeholders: [

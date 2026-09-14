@@ -4,7 +4,7 @@ import { listInsights } from "@/lib/editorial";
 import styles from "./insights.module.css";
 
 export const metadata: Metadata = {
-  title: "Insights | MACS Digital Media",
+  title: "Insights",
   description: "Field notes on ownership, operations, technology, and building businesses that stay manageable.",
 };
 

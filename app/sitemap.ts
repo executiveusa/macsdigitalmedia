@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/story", "monthly", 0.8],
     ["/team", "monthly", 0.8],
     ["/built-here", "monthly", 0.8],
+    ["/demos", "monthly", 0.7],
     ["/notes", "weekly", 0.7],
     ["/maxx", "monthly", 0.8],
     ["/website-rescue", "monthly", 0.7],

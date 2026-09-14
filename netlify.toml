@@ -1,0 +1,8 @@
+# Secrets scanning: these env var VALUES legitimately appear in build output
+# (Next.js inlines NEXT_PUBLIC_* into client bundles; server vars into server
+# chunks; the URL is also quoted in docs/deployment/). None of these values are
+# credential-shaped in client output beyond the public Supabase URL by design.
+# SUPABASE_SERVICE_ROLE_KEY / APPLICATION_HASH_SECRET / SITE_AGENT_TOKEN stay
+# server-only; omit them from the scan so runtime env works on Netlify.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,SUPABASE_URL,SUPABASE_SERVICE_ROLE_KEY,APPLICATION_HASH_SECRET,SITE_AGENT_TOKEN"
