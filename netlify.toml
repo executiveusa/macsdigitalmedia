@@ -1,0 +1,5 @@
+# Secrets scanning: these server-side-only env vars are read at runtime by SSR
+# functions; their values must not fail the deploy scan when the Next.js build
+# inlines them into server bundles. They are never exposed to the client.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_SERVICE_ROLE_KEY,APPLICATION_HASH_SECRET,SITE_AGENT_TOKEN"
