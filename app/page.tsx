@@ -39,6 +39,9 @@ const proofLinks: Record<string, Array<{ label: string; href: string }> | null> 
   Launch: [{ label: "View ASC3ND", href: "/work/asc3nd" }],
 };
 
+// HERO ASSET: the directed photo drops in here. Add the new file under public/media/founders/ and change only this path.
+const HERO_IMAGE = "/media/founders/stacy-stavarai-waterfront-graded.webp";
+
 export default async function HomePage() {
   const locale = await getServerLocale();
   const home = editorialHome[locale];
@@ -54,7 +57,7 @@ export default async function HomePage() {
         <div className="editorial-hero__media">
           <Image
             className="editorial-hero__image"
-            src="/media/founders/stacy-stavarai-waterfront-graded.webp"
+            src={HERO_IMAGE}
             alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
             fill
             priority

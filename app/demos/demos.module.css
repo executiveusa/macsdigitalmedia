@@ -18,16 +18,26 @@
 .media {
   display: flex;
   justify-content: center;
-  border: 1px solid currentColor;
-  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border-radius: 1rem;
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.cardDark .media {
+  background: #14120f;
+}
+
+.cardLight .media {
+  background: #e9e4d6;
 }
 
 .video {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   aspect-ratio: 9 / 16;
   background: #000;
   display: block;
+  border-radius: 0.75rem;
+  box-shadow: 0 24px 48px -28px rgba(23, 21, 18, 0.55);
 }
 
 .copy h2 {

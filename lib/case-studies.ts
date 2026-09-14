@@ -14,6 +14,7 @@ export type CaseStudy = {
   heroImage?: string;
   sections: Array<{ title: string; body: string }>;
   placeholders?: string[];
+  evidence?: Array<{ image: string; caption: string }>;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -92,6 +93,7 @@ export const caseStudies: CaseStudy[] = [
     name: "Buffer Blaster",
     visibility: "internal",
     format: "product",
+    industry: "Creative Infrastructure",
     headline: "A content engine built to keep momentum moving.",
     liveUrl: "https://bufferblaster.netlify.app/",
     heroImage: "/work/buffer-blaster-hero.webp",
@@ -99,20 +101,30 @@ export const caseStudies: CaseStudy[] = [
       "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
     sections: [
       {
-        title: "Why we built it",
-        body: "We wanted a content workflow we could understand, control and improve ourselves instead of stacking more closed subscriptions on top of the work.",
+        title: "The problem",
+        body: "Content work drowns in disconnected tools: research in one place, scripts in another, generation somewhere else, results nowhere. Teams ship volume without learning what works, and every round starts from zero.",
       },
       {
-        title: "What it does",
-        body: "One governed loop runs the work: Learn (product truth, customer pain, brand context and the angles worth testing), Shape (scripts, concepts and controlled variations), Make (creative routed through the right generation path only after plan, rights and cost are clear), then Learn again (approvals, output, spend and performance evidence attached to the next round).",
+        title: "The constraints",
+        body: "The system had to move fast without removing judgment. Paid generation, publishing and activation stay explicit human decisions with limits enforced on the server, and every consequential job keeps its evidence: plan, rights, approval, cost and result.",
       },
       {
-        title: "How it stays governed",
-        body: "Automation removes busywork, not judgment. Paid generation, publishing and activation remain explicit decisions with limits enforced on the server, and every consequential job keeps its evidence: plan, rights, approval, cost and result. The Studio is the doorway; approved agents can call the same workflow over REST, MCP and CLI.",
+        title: "What MACS built",
+        body: "One governed loop runs the work: Learn (product truth, customer pain, brand context, the angles worth testing), Shape (scripts, concepts, controlled variations), Make (creative routed through the right generation path only after plan, rights and cost are clear), then Learn again. The Studio is the doorway; approved agents call the same workflow over REST, MCP and CLI.",
       },
       {
-        title: "What it proves",
-        body: "Momentum is not a burst of posts. It is a repeatable operating rhythm. Buffer Blaster is one example of how we build that rhythm into the system itself.",
+        title: "Real outputs",
+        body: "The public beta site is live, and the two spec ads on our demos page - ScuffReset and Pristine - were produced end to end by this pipeline: hook, presenter, product footage, captions and call to action.",
+      },
+    ],
+    evidence: [
+      {
+        image: "/work/bb-evidence-loop.webp",
+        caption: "The governed loop, live on the public site: Learn, Shape, Make, Learn again.",
+      },
+      {
+        image: "/work/bb-evidence-governance.webp",
+        caption: "Automation removes busywork, not judgment. Every consequential job keeps its evidence: plan, rights, approval, cost, result.",
       },
     ],
     placeholders: [
@@ -159,6 +171,8 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     credit: "Developed by Stavarai",
+    liveUrl: "https://postastudios.31.220.58.212.sslip.io/",
+    heroImage: "/work/posta-studios-hero.webp",
     headline: "UGC characters built into a repeatable content system.",
     summary:
       "Posta Studio is part of the MAXX Suite / Built Here story and was developed by Stavarai. It remains separate from the client-work gallery.",
@@ -178,11 +192,102 @@ export const caseStudies: CaseStudy[] = [
     ],
     placeholders: [
       "Full-page hero video",
-      "Live Posta Studio link",
       "UGC character gallery",
       "Product walkthrough",
       "Development story from Stavarai",
       "Documented result",
+    ],
+  },
+  {
+    slug: "sweet",
+    lane: "Momentum",
+    name: "Sweet",
+    visibility: "internal",
+    format: "product",
+    industry: "World / Experience",
+    headline: "A brand world you walk into, with its own sound and rules.",
+    summary:
+      "Sweet is a forest world built around one person's brand - navigation as places (the shop, the library, the blog, the machinery), a soundscape and bilingual storytelling. Part of the Built Here story.",
+    liveUrl: "https://sweet.31.220.58.212.sslip.io/",
+    heroImage: "/work/sweet-hero.webp",
+    sections: [
+      {
+        title: "What it is",
+        body: "Sweet is an interactive forest world for a personal brand. Visitors arrive at the edge of her forest and move through places - the shop, the library, the blog, the machinery - instead of scrolling another page of links.",
+      },
+      {
+        title: "What MACS built",
+        body: "The world, its art direction, its sound design and its bilingual EN/ES storytelling were designed and built as one experience. Even the rooms still in progress are labeled honestly inside the world: staged preview, soon.",
+      },
+      {
+        title: "What it proves",
+        body: "A brand can be a place, not a feed. The world is live now and keeps its own rules - her brand, her agents, her rules.",
+      },
+    ],
+    placeholders: [
+      "Directed walkthrough capture of the world",
+      "The founder's own account of the concept",
+    ],
+  },
+  {
+    slug: "fish-on",
+    lane: "Momentum",
+    name: "Fish On",
+    visibility: "internal",
+    format: "product",
+    industry: "Agent / Outdoors",
+    headline: "A fishing agent that answers from real Texas sources.",
+    summary:
+      "Fish On answers fishing questions in plain language from real Texas sources with checked dates - regulations, weather, tides - in English and Spanish. Part of the Built Here story.",
+    liveUrl: "https://executiveusa.github.io/fish-on/",
+    heroImage: "/work/fish-on-hero.webp",
+    sections: [
+      {
+        title: "The problem",
+        body: "Fishing regulations live in dense PDFs and scattered pages. Getting a straight answer - can I keep this redfish, what is biting near Houston this weekend - should not require a law degree.",
+      },
+      {
+        title: "What MACS built",
+        body: "An agent that answers from real Texas sources (TPWD and friends), shows checked dates, cites its source and speaks English and Spanish. Made in Texas, for Texans.",
+      },
+      {
+        title: "What's live",
+        body: "The public preview is live now with sample answers from real Texas sources. It is labeled as a preview because that is what it is.",
+      },
+    ],
+    placeholders: [
+      "Documented usage or result",
+      "Full agent walkthrough",
+    ],
+  },
+  {
+    slug: "foundry-fleet",
+    lane: "Scale",
+    name: "Foundry Fleet",
+    visibility: "internal",
+    format: "product",
+    industry: "Internal Tooling",
+    headline: "One control room for every agent computer.",
+    summary:
+      "Foundry Fleet is the private console MACS uses to see its agent computers live - fleet status, audit trail and product state in one place. The public page confirms it is deployed; the console itself stays behind a key.",
+    liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
+    heroImage: "/work/foundry-fleet-hero.webp",
+    sections: [
+      {
+        title: "Why it exists",
+        body: "A fleet of agent machines doing real work needs one live view: what is up, what is down, what changed, who did it. Without it, operations run on guesswork.",
+      },
+      {
+        title: "What MACS built",
+        body: "A control room with Fleet, Audit and Product views over every agent computer - the same discipline we bring to client systems, applied to our own infrastructure first.",
+      },
+      {
+        title: "What's live",
+        body: "The console is deployed and answers live; it requires an API key because it is private infrastructure. The public page is the proof it exists, not a demo.",
+      },
+    ],
+    placeholders: [
+      "Approved interior capture of the fleet view",
     ],
   },
 ];
