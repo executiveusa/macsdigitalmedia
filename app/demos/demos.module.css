@@ -1,3 +1,7 @@
+.introTight {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -20,7 +24,7 @@
 
 .video {
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   aspect-ratio: 9 / 16;
   background: #000;
   display: block;
@@ -47,7 +51,7 @@
 
 .liveGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: clamp(1.25rem, 3vw, 2rem);
 }
 

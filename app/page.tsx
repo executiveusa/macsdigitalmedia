@@ -54,7 +54,7 @@ export default async function HomePage() {
         <div className="editorial-hero__media">
           <Image
             className="editorial-hero__image"
-            src="/media/founders/stacy-stavarai-waterfront.webp"
+            src="/media/founders/stacy-stavarai-waterfront-graded.webp"
             alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
             fill
             priority

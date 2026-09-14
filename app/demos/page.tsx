@@ -103,39 +103,17 @@ export default async function DemosPage() {
   return (
     <div className="editorial-page editorial-page--white">
       <div className="editorial-shell">
-        <header className="editorial-page__intro">
+        <header className={`editorial-page__intro ${styles.introTight}`}>
           <p className="editorial-kicker">{es ? "Demos" : "Demos"}</p>
           <div>
             <h1>{es ? "Mira el trabajo antes de creer la propuesta." : "Watch the work before you believe the pitch."}</h1>
             <p>
               {es
-                ? "Construcciones en vivo que puedes abrir ahora mismo, más piezas de muestra de nuestro pipeline de contenido. Lo en vivo se etiqueta en vivo; lo de muestra se etiqueta de muestra. Sin maquetas falsas, sin resultados inventados."
-                : "Live builds you can open right now, plus spec pieces from our content pipeline. Live work is labeled live; spec work is labeled spec. No fake mockups, no invented results."}
+                ? "Construcciones en vivo que puedes abrir ahora mismo, más piezas de muestra de nuestro pipeline de contenido. Lo en vivo se etiqueta en vivo; lo de muestra se etiqueta de muestra."
+                : "Live builds you can open right now, plus spec pieces from our content pipeline. Live work is labeled live; spec work is labeled spec."}
             </p>
           </div>
         </header>
-
-        <section aria-labelledby="live-builds-title">
-          <div className={styles.sectionHeading}>
-            <p className="editorial-kicker">{es ? "En vivo ahora" : "Live right now"}</p>
-            <h2 id="live-builds-title">{es ? "Abre una construcción real." : "Open a real build."}</h2>
-          </div>
-          <div className={styles.liveGrid}>
-            {liveBuilds.map((build) => (
-              <a className={styles.liveCard} href={build.href} target="_blank" rel="noreferrer" key={build.name}>
-                <span className={styles.liveMedia} aria-hidden="true">
-                  <img src={build.img} alt="" loading="lazy" width={480} height={659} />
-                </span>
-                <span className={styles.liveCopy}>
-                  <span className="editorial-kicker">{build.kicker}</span>
-                  <span className={styles.liveName}>{build.name}</span>
-                  <span className={styles.liveLine}>{build.line}</span>
-                  <span className={styles.liveOpen}>{es ? "Abrir en vivo" : "Open it live"} <span aria-hidden="true">↗</span></span>
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
 
         <section aria-labelledby="spec-demos-title">
           <div className={styles.sectionHeading}>
@@ -161,6 +139,28 @@ export default async function DemosPage() {
                   <p>{demo.body}</p>
                 </div>
               </article>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="live-builds-title">
+          <div className={styles.sectionHeading}>
+            <p className="editorial-kicker">{es ? "En vivo ahora" : "Live right now"}</p>
+            <h2 id="live-builds-title">{es ? "Abre una construcción real." : "Open a real build."}</h2>
+          </div>
+          <div className={styles.liveGrid}>
+            {liveBuilds.map((build) => (
+              <a className={styles.liveCard} href={build.href} target="_blank" rel="noreferrer" key={build.name}>
+                <span className={styles.liveMedia} aria-hidden="true">
+                  <img src={build.img} alt="" loading="lazy" width={480} height={659} />
+                </span>
+                <span className={styles.liveCopy}>
+                  <span className="editorial-kicker">{build.kicker}</span>
+                  <span className={styles.liveName}>{build.name}</span>
+                  <span className={styles.liveLine}>{build.line}</span>
+                  <span className={styles.liveOpen}>{es ? "Abrir en vivo" : "Open it live"} <span aria-hidden="true">↗</span></span>
+                </span>
+              </a>
             ))}
           </div>
         </section>
