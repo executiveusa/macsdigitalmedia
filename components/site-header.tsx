@@ -32,6 +32,7 @@ export function SiteHeader() {
     { href: "/story", label: spanish ? "Historia" : "Story" },
     { href: "/team", label: spanish ? "Equipo" : "Team" },
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
+    { href: "/demos", label: "Demos" },
     { href: "/notes", label: spanish ? "Notas" : "Notes" },
   ];
   const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's important";

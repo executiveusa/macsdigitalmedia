@@ -3,7 +3,7 @@ import Link from "next/link";
 import { designTerritories, territoryOrder } from "@/lib/design-territories";
 
 export const metadata = {
-  title: "Phase 05 Design Lab | MACS Digital Media",
+  title: "Phase 05 Design Lab",
   robots: { index: false, follow: false },
 };
 
