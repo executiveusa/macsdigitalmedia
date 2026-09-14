@@ -73,6 +73,8 @@ export default async function DemosPage() {
           title: "ScuffReset - spot de producto de 28 segundos",
           body: "Un anuncio estilo UGC para un kit de limpieza de tenis de ejemplo, producido de principio a fin por nuestro pipeline: gancho, presentador, video del producto, subtítulos y llamado a la acción.",
           src: DEMO_VIDEOS.scuffReset,
+          poster: "/demos/scuffreset-poster.webp",
+          variant: "dark",
           label: "Demo de muestra ScuffReset, anuncio vertical de 28 segundos",
         },
         {
@@ -80,6 +82,8 @@ export default async function DemosPage() {
           title: "Pristine - spot local de 25 segundos",
           body: "Un anuncio estilo UGC para un servicio de limpieza de colonia de ejemplo. El mismo pipeline y el mismo operador, hecho para mostrar lo que un negocio pequeño puede poner frente a sus clientes locales.",
           src: DEMO_VIDEOS.pristine,
+          poster: "/demos/pristine-poster.webp",
+          variant: "light",
           label: "Demo de muestra Pristine, anuncio vertical de 25 segundos",
         },
       ]
@@ -89,6 +93,8 @@ export default async function DemosPage() {
           title: "ScuffReset - a 28-second product spot",
           body: "A UGC-style ad for a sample sneaker-cleaning kit, produced end to end by our pipeline: hook, presenter, product footage, captions and call to action.",
           src: DEMO_VIDEOS.scuffReset,
+          poster: "/demos/scuffreset-poster.webp",
+          variant: "dark",
           label: "ScuffReset spec demo, a 28-second vertical ad",
         },
         {
@@ -96,6 +102,8 @@ export default async function DemosPage() {
           title: "Pristine - a 25-second local spot",
           body: "A UGC-style ad for a sample neighborhood cleaning service. Same pipeline, same operator - built to show what a small business can put in front of local customers.",
           src: DEMO_VIDEOS.pristine,
+          poster: "/demos/pristine-poster.webp",
+          variant: "light",
           label: "Pristine spec demo, a 25-second vertical ad",
         },
       ];
@@ -122,11 +130,15 @@ export default async function DemosPage() {
           </div>
           <div className={styles.grid}>
             {specVideos.map((demo) => (
-              <article className={styles.card} key={demo.title}>
+              <article className={`${styles.card} ${demo.variant === "dark" ? styles.cardDark : styles.cardLight}`} key={demo.title}>
                 <div className={styles.media}>
                   <video
                     className={styles.video}
                     src={demo.src}
+                    poster={demo.poster}
+                    autoPlay
+                    muted
+                    loop
                     controls
                     playsInline
                     preload="metadata"

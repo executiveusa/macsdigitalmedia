@@ -195,6 +195,71 @@
   margin-top: 2rem;
 }
 
+.editorial-case-study-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.4rem;
+  margin: 0;
+  font: 600 0.76rem/1.5 var(--editorial-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+.editorial-case-study-meta > div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.editorial-case-study-meta dt {
+  margin: 0;
+  opacity: 0.65;
+}
+
+.editorial-case-study-meta dt::after {
+  content: ":";
+}
+
+.editorial-case-study-meta dd {
+  margin: 0;
+}
+
+.editorial-case-study-evidence {
+  margin: clamp(3rem, 7vw, 6rem) 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--editorial-line);
+}
+
+.editorial-case-study-evidence h2 {
+  max-width: 18ch;
+  margin: 0.6rem 0 1.75rem;
+  font: 400 clamp(1.9rem, 3.6vw, 3.4rem)/0.98 var(--editorial-serif);
+  letter-spacing: -0.04em;
+}
+
+.editorial-case-study-evidence__grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.editorial-case-study-evidence figure {
+  margin: 0;
+}
+
+.editorial-case-study-evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--editorial-line);
+  border-radius: 0.75rem;
+}
+
+.editorial-case-study-evidence figcaption {
+  margin-top: 0.6rem;
+  font: 500 0.85rem/1.5 var(--editorial-sans);
+  opacity: 0.7;
+}
+
 .editorial-case-study-hero__media {
   display: grid;
   place-items: center;
@@ -370,5 +435,18 @@
     aspect-ratio: 4 / 3;
     min-height: 12rem;
     margin-bottom: 0;
+  }
+
+  .editorial-case-study-hero__meta {
+    margin-top: 1.75rem;
+  }
+
+  .editorial-case-study-meta {
+    gap: 0.25rem 1.1rem;
+    font-size: 0.7rem;
+  }
+
+  .editorial-case-study-hero__actions {
+    margin-top: 1.4rem;
   }
 }

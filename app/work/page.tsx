@@ -13,8 +13,6 @@ export default async function WorkPage() {
   const locale = await getServerLocale();
   const es = locale === "es-MX";
   const quickView = [...clientWork, ...maxxSuiteWork];
-  const caseStudies = clientWork.filter((study) => study.format === "case-study");
-  const collaborations = clientWork.filter((study) => study.format === "collaboration");
 
   return (
     <div className="editorial-page editorial-page--white">
@@ -30,77 +28,36 @@ export default async function WorkPage() {
         <section className={styles.index} aria-labelledby="selected-work-title">
           <div className={styles.indexHeading}>
             <p className="editorial-kicker">{es ? "Trabajo seleccionado" : "Selected Work"}</p>
-            <h2 id="selected-work-title">{es ? "Una vista rápida." : "A quick view."}</h2>
+            <h2 id="selected-work-title">{es ? "El índice. Ábrelo, tócalo, verifícalo." : "The index. Open it, touch it, verify it."}</h2>
           </div>
 
           <div className={styles.grid}>
             {quickView.map((study, index) => (
-              <Link className={styles.card} href={`/work/${study.slug}`} key={study.slug}>
-                <span className={styles.cardIndex}>{String(index + 1).padStart(2, "0")}</span>
-                <div
-                  className={styles.cardMedia}
-                  aria-hidden="true"
-                  style={study.heroImage ? { backgroundImage: `url(${study.heroImage})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
-                >
-                  {!study.heroImage ? <span>Media placeholder</span> : null}
-                </div>
-                <div className={styles.cardCopy}>
-                  <p className="editorial-kicker">{study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}</p>
-                  <h3>{study.name}</h3>
-                  <p>{study.headline}</p>
-                  <div className={styles.cardMeta}>
-                    <span>{study.lane}</span>
-                    {study.industry ? <span>{study.industry}</span> : null}
-                    <span aria-hidden="true">↗</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.section} aria-labelledby="case-studies-title">
-          <div className={styles.sectionHeading}>
-            <p className="editorial-kicker">{es ? "Casos" : "Case Studies"}</p>
-            <h2 id="case-studies-title">{es ? "Historias con suficiente evidencia para profundizar." : "Stories with enough evidence to go deeper."}</h2>
-          </div>
-
-          <div className={styles.list}>
-            {caseStudies.map((study) => (
-              <Link className={styles.row} href={`/work/${study.slug}`} key={study.slug}>
-                <div>
-                  <strong>{study.name}</strong>
-                  <span>{study.headline}</span>
-                </div>
-                <div className={styles.rowMeta}>
-                  <span>{study.lane}</span>
-                  {study.industry ? <span>{study.industry}</span> : null}
-                  <span aria-hidden="true">↗</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.section} aria-labelledby="collaborations-title">
-          <div className={styles.sectionHeading}>
-            <p className="editorial-kicker">{es ? "Colaboraciones" : "Collaborations"}</p>
-            <h2 id="collaborations-title">{es ? "Trabajo hecho junto a fundadores, equipos y socios." : "Work made alongside founders, teams and partners."}</h2>
-          </div>
-
-          <div className={styles.list}>
-            {collaborations.map((study) => (
-              <Link className={styles.row} href={`/work/${study.slug}`} key={study.slug}>
-                <div>
-                  <strong>{study.collaboration ?? study.name}</strong>
-                  <span>{study.headline}</span>
-                </div>
-                <div className={styles.rowMeta}>
-                  <span>{study.lane}</span>
-                  {study.industry ? <span>{study.industry}</span> : null}
-                  <span aria-hidden="true">↗</span>
-                </div>
-              </Link>
+              <article className={styles.card} key={study.slug}>
+                <Link className={styles.cardMain} href={`/work/${study.slug}`}>
+                  <span
+                    className={styles.cardMedia}
+                    aria-hidden="true"
+                    style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
+                  >
+                    {!study.heroImage ? <span className={styles.cardPlaceholder}>Media placeholder</span> : null}
+                  </span>
+                  <span className={styles.cardCopy}>
+                    <span className={styles.cardKicker}>
+                      {String(index + 1).padStart(2, "0")} · {study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}
+                    </span>
+                    <span className={styles.cardName}>{study.name}</span>
+                    <span className={styles.cardRole}>{[study.industry, study.lane].filter(Boolean).join(" · ")}</span>
+                  </span>
+                </Link>
+                {study.liveUrl ? (
+                  <a className={styles.cardLive} href={study.liveUrl} target="_blank" rel="noreferrer">
+                    {es ? "En vivo" : "Live"} <span aria-hidden="true">↗</span>
+                  </a>
+                ) : (
+                  <span className={styles.cardLivePending}>{es ? "Enlace en preparación" : "Live link in progress"}</span>
+                )}
+              </article>
             ))}
           </div>
         </section>

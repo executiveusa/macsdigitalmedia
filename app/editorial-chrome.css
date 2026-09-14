@@ -62,6 +62,8 @@
   gap: 0.55rem;
   padding: 0 0.8rem 0 1rem;
   cursor: pointer;
+  background: #171512;
+  color: #f6f6e9;
 }
 
 .editorial-menu-button__glyph {
