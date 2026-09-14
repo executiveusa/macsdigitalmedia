@@ -221,62 +221,8 @@
 .editorial-built__item strong { margin: 0; font-size: clamp(2rem, 3.3vw, 4rem); }
 .editorial-built__item > span:nth-child(3) { padding-top: .4rem; }
 
-/* Case studies: cinematic hero fields with space for real media/live proof. */
-.editorial-case-study-hero {
-  min-height: min(78svh, 860px);
-  display: grid;
-  align-content: end;
-  grid-template-columns: minmax(8rem,.35fr) minmax(0,1.15fr) minmax(18rem,.5fr);
-  gap: 2rem;
-  padding: clamp(8rem, 14vw, 12rem) 0 clamp(3rem, 7vw, 6rem);
-  border-bottom: 1px solid var(--editorial-line);
-}
-
-.editorial-case-study-hero > .editorial-kicker { grid-column: 1; }
-.editorial-case-study-hero h1,
-.editorial-case-study-hero__credit,
-.editorial-case-study-hero__headline { grid-column: 2; }
-.editorial-case-study-hero__summary,
-.editorial-case-study-hero__actions { grid-column: 3; }
-
-.editorial-case-study-hero h1 {
-  margin: 0;
-  font: 400 clamp(4.5rem, 9vw, 10rem)/.84 var(--editorial-serif);
-  letter-spacing: -.06em;
-}
-
-.editorial-case-study-hero__headline {
-  margin: .5rem 0 0;
-  max-width: 18ch;
-  font: 400 clamp(2rem, 3.5vw, 4rem)/.98 var(--editorial-serif);
-  letter-spacing: -.04em;
-}
-
-.editorial-case-study-hero__credit,
-.editorial-case-study-hero__summary {
-  margin: 0;
-  font: 500 1rem/1.6 var(--editorial-sans);
-}
-
-.editorial-case-study-hero__credit { opacity: .64; }
-.editorial-case-study-hero__actions { align-self: end; }
-
-.editorial-case-study-hero__media {
-  min-height: min(78svh, 900px);
-  margin: 0 calc(50% - 50vw) clamp(5rem, 10vw, 9rem);
-  width: 100vw;
-  display: grid;
-  place-items: center;
-  background: #deded3 center/cover no-repeat;
-  border-bottom: 1px solid var(--editorial-line);
-}
-
-.editorial-case-study-hero__media > span {
-  font: 700 .75rem/1 var(--editorial-sans);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  opacity: .48;
-}
+/* Case studies: proof-first two-column hero lives in editorial-pages.css
+   (lead / media / meta structure). This file no longer lays it out. */
 
 /* Footer social row */
 .editorial-footer__social {
@@ -314,9 +260,6 @@
   .editorial-heading--programs .editorial-heading__intro { grid-column: 2; }
   .editorial-offer-proof__slot { grid-column: span 6; border-bottom: 1px solid var(--editorial-line); }
   .editorial-built__item { grid-template-columns: 3rem minmax(11rem,.6fr) 1fr auto; }
-  .editorial-case-study-hero { grid-template-columns: 8rem 1fr; }
-  .editorial-case-study-hero__summary,
-  .editorial-case-study-hero__actions { grid-column: 2; }
 }
 
 /* PHONE: a different composition. Image and message become separate readable scenes. */
@@ -334,23 +277,23 @@
   }
 
   .editorial-hero__media {
-    order: 1;
+    order: 2;
     width: 100%;
-    min-height: 48svh;
-    max-height: 34rem;
+    min-height: 36svh;
+    max-height: 26rem;
   }
 
   .editorial-hero__image { object-position: 53% 36%; }
   .editorial-hero__veil { background: linear-gradient(180deg, transparent 72%, rgba(23,21,18,.24)); }
 
   .editorial-hero__panel {
-    order: 2;
+    order: 1;
     display: block;
     min-height: 0;
   }
 
   .editorial-hero__content {
-    padding: 2.2rem .75rem 2.8rem;
+    padding: 4.9rem .75rem 2.8rem;
     gap: .95rem;
   }
 
@@ -466,24 +409,6 @@
   .editorial-fit__inner { min-height: 0; padding-block: 4.75rem; }
   .editorial-fit h2 { max-width: 10ch; font-size: clamp(2.9rem, 12.8vw, 4.1rem); }
 
-  .editorial-case-study-hero {
-    min-height: 0;
-    grid-template-columns: 1fr;
-    gap: .9rem;
-    padding: 8rem 0 3rem;
-  }
-  .editorial-case-study-hero > .editorial-kicker,
-  .editorial-case-study-hero h1,
-  .editorial-case-study-hero__credit,
-  .editorial-case-study-hero__headline,
-  .editorial-case-study-hero__summary,
-  .editorial-case-study-hero__actions { grid-column: 1; }
-  .editorial-case-study-hero h1 { font-size: clamp(4rem, 19vw, 6.3rem); }
-  .editorial-case-study-hero__headline { font-size: clamp(2rem, 9.5vw, 3rem); }
-  .editorial-case-study-hero__media {
-    min-height: 58svh;
-    margin-bottom: 4rem;
-  }
 
   .editorial-footer__top { gap: 2.5rem; }
   .editorial-footer__brand p { max-width: 13ch; font-size: clamp(2.3rem, 11vw, 3.7rem); }

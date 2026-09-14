@@ -40,16 +40,28 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const formatLabel = study.format === "collaboration" ? "Collaboration" : study.format === "product" ? "Built Here" : "Case Study";
 
   return (
-    <div className="editorial-page editorial-page--white">
+    <div className="editorial-page editorial-page--white editorial-page--case">
       <div className="editorial-shell">
         <header className="editorial-case-study-hero">
-          <p className="editorial-kicker">{study.lane} · {formatLabel}</p>
-          <h1>{study.name}</h1>
-          {study.collaboration ? <p className="editorial-case-study-hero__credit">{study.collaboration}</p> : null}
-          {study.credit ? <p className="editorial-case-study-hero__credit">{study.credit}</p> : null}
-          <p className="editorial-case-study-hero__headline">{study.headline}</p>
-          <p className="editorial-case-study-hero__summary">{study.summary}</p>
+          <div className="editorial-case-study-hero__lead">
+            <p className="editorial-kicker">{study.lane} · {formatLabel}</p>
+            <h1>{study.name}</h1>
+            {study.collaboration ? <p className="editorial-case-study-hero__credit">{study.collaboration}</p> : null}
+            {study.credit ? <p className="editorial-case-study-hero__credit">{study.credit}</p> : null}
+            <p className="editorial-case-study-hero__headline">{study.headline}</p>
+            <p className="editorial-case-study-hero__summary">{study.summary}</p>
+          </div>
 
+          <div
+            className="editorial-case-study-hero__media"
+            role={study.heroImage ? "img" : undefined}
+            aria-label={study.heroImage ? `${study.name} project hero` : undefined}
+            style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
+          >
+            {!study.heroImage ? <span>Hero media — approved project image or film</span> : null}
+          </div>
+
+          <div className="editorial-case-study-hero__meta">
           <dl className="editorial-case-study-meta">
             <div><dt>Program</dt><dd>{study.lane}</dd></div>
             {study.industry ? <div><dt>Industry</dt><dd>{study.industry}</dd></div> : null}
@@ -66,16 +78,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <span className="editorial-case-study-placeholder">Live project link — pending</span>
             )}
           </div>
+          </div>
         </header>
-
-        <div
-          className="editorial-case-study-hero__media"
-          role={study.heroImage ? "img" : undefined}
-          aria-label={study.heroImage ? `${study.name} project hero` : undefined}
-          style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
-        >
-          {!study.heroImage ? <span>Hero media — approved project image or film</span> : null}
-        </div>
 
         <div className="editorial-case-study-story">
           {study.sections.map((section, index) => (

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { clientWork } from "@/lib/case-studies";
+import { clientWork, maxxSuiteWork } from "@/lib/case-studies";
 import { getServerLocale } from "@/lib/server-preferences";
 import styles from "./work.module.css";
 
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default async function WorkPage() {
   const locale = await getServerLocale();
   const es = locale === "es-MX";
+  const quickView = [...clientWork, ...maxxSuiteWork];
   const caseStudies = clientWork.filter((study) => study.format === "case-study");
   const collaborations = clientWork.filter((study) => study.format === "collaboration");
 
@@ -33,7 +34,7 @@ export default async function WorkPage() {
           </div>
 
           <div className={styles.grid}>
-            {clientWork.map((study, index) => (
+            {quickView.map((study, index) => (
               <Link className={styles.card} href={`/work/${study.slug}`} key={study.slug}>
                 <span className={styles.cardIndex}>{String(index + 1).padStart(2, "0")}</span>
                 <div
@@ -44,7 +45,7 @@ export default async function WorkPage() {
                   {!study.heroImage ? <span>Media placeholder</span> : null}
                 </div>
                 <div className={styles.cardCopy}>
-                  <p className="editorial-kicker">{study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : (es ? "Caso" : "Case Study")}</p>
+                  <p className="editorial-kicker">{study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}</p>
                   <h3>{study.name}</h3>
                   <p>{study.headline}</p>
                   <div className={styles.cardMeta}>
