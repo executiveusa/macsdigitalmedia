@@ -30,25 +30,25 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Taste of Nawlins is the first MACS collaboration story in this format. The public case will show what the team was building, where MACS contributed, and the verified result without overstating authorship.",
     liveUrl: "https://tasteofnawlins.netlify.app",
+    heroImage: "/work/taste-of-nawlins-hero.webp",
     sections: [
       {
         title: "What they were building",
-        body: "Document the approved founder and brand context here: what Taste of Nawlins was creating, what already existed, and what mattered before MACS joined the work.",
+        body: "Taste of Nawlins brings New Orleans food to the Pacific Northwest: beignets, chicory coffee, red beans, and a kitchen that travels. The launch needed a focused digital home for the menu, catering and the story behind the food.",
       },
       {
         title: "Where MACS came in",
-        body: "Document the exact MACS contribution here. Separate strategy, design, technology, campaign, operations, and partner contributions so authorship stays clear.",
+        body: "MACS designed and built the public website in collaboration with the founder. The live site carries the menu, catering inquiries, drops and the follow-the-kitchen story in one place.",
       },
       {
         title: "What changed",
-        body: "Add only verified launch evidence here: the live experience, approved before-and-after material, documented operating improvement, customer response, or another supported outcome.",
+        body: "The brand has a live public home it can send people to. The founder's own words, launch results and before-and-after material are added here as they are approved.",
       },
     ],
     placeholders: [
-      "Hero media — approved food, founder, brand, launch image or film",
       "Collaboration credits — founder, MACS, Stavarai and any outside contributors",
       "Process media — approved concepts, campaign assets or build artifacts",
-      "Launch evidence — live screenshots, before/after or documented result",
+      "Documented launch result or before/after",
       "Approved quote or testimonial — only if supplied or separately authorized",
     ],
   },
@@ -64,7 +64,8 @@ export const caseStudies: CaseStudy[] = [
     headline: "A public website with an operating system behind it.",
     summary:
       "ASC3ND is our Launch example: a public-facing Next.js site connected to reusable operational systems for onboarding, opportunities, campaigns, approvals and organizational context.",
-    liveUrl: "https://asc3nd.org",
+    liveUrl: "https://asc3nd-org.netlify.app/",
+    heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {
         title: "The opportunity",
@@ -80,9 +81,8 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     placeholders: [
-      "Hero media — current ASC3ND launch image or film",
       "Before/after or early concept material",
-      "Current live product / operating-system links",
+      "Operating-system links beyond the public site",
       "Documented result or approved testimonial",
     ],
   },
@@ -93,6 +93,8 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     headline: "A content engine built to keep momentum moving.",
+    liveUrl: "https://bufferblaster.netlify.app/",
+    heroImage: "/work/buffer-blaster-hero.webp",
     summary:
       "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
     sections: [
@@ -102,7 +104,11 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "What it does",
-        body: "The system brings research, production, scoring and scheduling into one content-operations workflow so the team can produce consistently without making the owner the full-time operator.",
+        body: "One governed loop runs the work: Learn (product truth, customer pain, brand context and the angles worth testing), Shape (scripts, concepts and controlled variations), Make (creative routed through the right generation path only after plan, rights and cost are clear), then Learn again (approvals, output, spend and performance evidence attached to the next round).",
+      },
+      {
+        title: "How it stays governed",
+        body: "Automation removes busywork, not judgment. Paid generation, publishing and activation remain explicit decisions with limits enforced on the server, and every consequential job keeps its evidence: plan, rights, approval, cost and result. The Studio is the doorway; approved agents can call the same workflow over REST, MCP and CLI.",
       },
       {
         title: "What it proves",
@@ -110,9 +116,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     placeholders: [
-      "Product hero video",
-      "Live product link",
-      "Workflow walkthrough",
+      "Workflow walkthrough film",
       "Example campaign",
       "Documented output/result",
     ],
@@ -125,7 +129,9 @@ export const caseStudies: CaseStudy[] = [
     format: "product",
     headline: "Scale proof, ready for the full story.",
     summary:
-      "Pare’ is reserved for the MAXX Suite / Built Here story. Product details, walkthroughs, links and verified results remain placeholders until approved.",
+      "Pare’ is part of the MAXX Suite / Built Here story. The live product is linked; walkthroughs and verified results remain placeholders until approved.",
+    liveUrl: "https://pauli-para.netlify.app/",
+    heroImage: "/work/pare-hero.webp",
     sections: [
       {
         title: "The problem",
@@ -133,17 +139,15 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "What we built",
-        body: "Pare’ is the review-and-repair step in our own build workflow: a supervised tool we run against AI-built work before it reaches a client, so the first working version is never the final one.",
+        body: "Pare’ is one studio for making things with AI without the noise: it takes the models, tools, prompts, agents and infrastructure underneath modern digital work and removes that complexity from the person trying to make something good. People enter through the Studio; agents use the same system over API, MCP and CLI.",
       },
       {
         title: "How it scales",
-        body: "Every product in the Built Here family passes through the same review loop, which is how quality stops depending on who happened to have time to check.",
+        body: "The work stays yours: your projects, your files, your agents, your infrastructure. It is also the review-and-repair step in our own build workflow - supervised passes over AI-built work before it reaches a client, so quality stops depending on who happened to have time to check.",
       },
     ],
     placeholders: [
-      "Full-page hero media",
-      "Live product link",
-      "Product walkthrough",
+      "Product walkthrough film",
       "Development timeline",
       "Documented result",
     ],
