@@ -67,7 +67,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "A public website with an operating system behind it.",
     summary:
       "ASC3ND is our Launch example: a public-facing Next.js site connected to reusable operational systems for onboarding, opportunities, campaigns, approvals and organizational context.",
-    liveUrl: "https://asc3nd-org.netlify.app/",
+    liveUrl: "https://asc3nd-org.31.220.58.212.sslip.io/",
     heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {
@@ -97,7 +97,7 @@ export const caseStudies: CaseStudy[] = [
     format: "product",
     industry: "Creative Infrastructure",
     headline: "A content engine built to keep momentum moving.",
-    liveUrl: "https://bufferblaster.netlify.app/",
+    liveUrl: "https://buffer-blaster.31.220.58.212.sslip.io/",
     heroImage: "/work/buffer-blaster-hero.webp",
     summary:
       "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
@@ -145,6 +145,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Pare’ is part of the MAXX Suite / Built Here story. The live product is linked; walkthroughs and verified results remain placeholders until approved.",
     liveUrl: "https://pauli-para.netlify.app/",
+    liveAvailable: false,
     heroImage: "/work/pare-hero.webp",
     sections: [
       {
