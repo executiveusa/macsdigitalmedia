@@ -450,3 +450,11 @@
   z-index: 1;
   text-shadow: 0 0 6px #ecece1, 0 0 2px #ecece1;
 }
+/* mobile overlap fix: media box must not exceed its grid column */
+@media (max-width: 520px) {
+  .editorial-offer-proof__media {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
