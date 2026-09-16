@@ -4,6 +4,8 @@
 
 Before any meaningful work, read `docs/icm/HUMAN_MACHINE_CONTRACT.md` and `docs/icm/ICM_CORE.md`. They define the Human ↔ Machine Contract, ICM truth model, sovereignty rules, approval gates, proactivity requirement, and voice-first/disappearing-interface north star. Repository execution conventions must not weaken those controls.
 
+Before every meaningful user-facing edit, also read `HEART-AND-SOUL.md`. Treat it as the mandatory MACS design/editing constitution and pre-edit skill gate. Apply the relevant disciplines before changing copy, UX, UI, mobile behavior, landing-page structure, portfolio presentation, motion, forms, or conversion paths.
+
 ## Canonical site-transformation protocol
 
 For any audit, repositioning, redesign, rebuild, migration, or relaunch of this public site, load the canonical protocol from `executiveusa/maxx-migrations-agentic-systems/icm/site-transformation-protocol/00_router/CONTEXT.md` and the MACS Client Zero instance at `icm/clients/macs-digital-media/06_transform/` in that repository. A write-capable agent must pass the canonical `WALK_TEST.md` before transformation work. Do not use chat history as a substitute for ICM routing or evidence.
@@ -52,10 +54,21 @@ Finish with:
 
 Before creating or modifying any user-facing interface, read and obey:
 
+- `HEART-AND-SOUL.md`
 - `docs/design/brand-foundation.md`
 - `docs/design/krug-usability-gates.md`
 - `docs/design/pauli-design-guardrails.md`
 - `docs/design/transformation-visual-system.md` when present on an active transformation branch
+
+The required pre-edit skill stack is:
+
+- Landing Page Director for hero, positioning, offer, proof, objection, CTA, and conversion work;
+- Art of Reduction / ADHD Elegant Simplicity for cognitive-load reduction, copy, navigation, forms, and workflow simplification;
+- COLLINS-level protocol for strategy, editorial composition, distinction, proof, and art direction;
+- Apple-level mobile/premium UX discipline for mobile composition, touch feedback, responsive behavior, motion, and interaction polish;
+- ICM / brownfield evidence discipline for inspect-before-change, one owner per truth, verification, blast radius, and rollback;
+- Gauntlet / anti-slop review after meaningful implementation;
+- Netlify Portfolio Curator when discovering, validating, or populating public Work / Collaborations / Built Here content.
 
 No page or component passes review merely because it is visually impressive. It must remain self-evident or immediately self-explanatory, scannable, predictable, accessible, task-oriented, and specific to the MACS brand.
 
