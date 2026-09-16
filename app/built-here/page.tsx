@@ -4,7 +4,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Built Here",
-  description: "Tools and experiments MACS Digital Media built because they helped the team do better work for real businesses.",
+  description: "Products and experiments built inside MACS Digital Media.",
 };
 
 export default async function BuiltHerePage() {
@@ -13,20 +13,20 @@ export default async function BuiltHerePage() {
 
   const items = es
     ? [
-        ["agent-maxx", "01", "Agent MAXX", "Lo construimos para que un dueño pueda conversar con el contexto, las aprobaciones, el avance y la evidencia sin aprender la arquitectura detrás.", "/maxx"],
-        ["buffer-blaster", "02", "Buffer Blaster", "Un motor interno de operaciones de contenido para investigar, producir, evaluar y programar más trabajo sin convertir al cliente en operador del sistema.", "/work/buffer-blaster"],
-        ["pare", "03", "Pare’", "Caso de estudio de Scale listo para completar con la historia del producto, recorrido y resultados documentados.", "/work/pare"],
-        ["posta-studio", "04", "Posta Studio", "Un sistema de personajes UGC desarrollado por Stavarai y preparado como caso de estudio de Scale.", "/work/posta-studio"],
-        ["home-team", "05", "Home Team AI Lab", "Probamos modelos pequeños, locales y abiertos con tareas reales de negocio antes de agregar más complejidad.", "/notes"],
-        ["demos", "06", "Demos", "Piezas cortas de muestra de nuestro pipeline de contenido - etiquetadas como demos, nunca como resultados de clientes.", "/demos"],
+        ["agent-maxx", "01", "Agent MAXX", "Operación digital del día a día con límites claros y aprobación cuando importa.", "/maxx"],
+        ["buffer-blaster", "02", "Buffer Blaster", "Nuestro sistema para mantener el contenido en movimiento.", "/work/buffer-blaster"],
+        ["pare", "03", "Pare’", "[PLACEHOLDER — QUÉ HACE PARE’ EN UNA FRASE.]", "/work/pare"],
+        ["posta-studio", "04", "Posta Studio", "Contenido UGC convertido en un sistema repetible. Desarrollado por Stavarai.", "/work/posta-studio"],
+        ["home-team", "05", "Home Team Lab", "Donde probamos lo que realmente merece entrar al sistema.", "/notes"],
+        ["demos", "06", "Demos", "Pruebas de trabajo. No resultados de clientes.", "/demos"],
       ]
     : [
-        ["agent-maxx", "01", "Agent MAXX", "We built it so an owner can work with context, approvals, progress and evidence without learning the architecture underneath.", "/maxx"],
-        ["buffer-blaster", "02", "Buffer Blaster", "An internal content-operations engine for research, production, scoring and scheduling so the client does not have to become the system operator.", "/work/buffer-blaster"],
-        ["pare", "03", "Pare’", "A Scale case study ready for the full product story, walkthrough and documented results.", "/work/pare"],
-        ["posta-studio", "04", "Posta Studio", "A UGC-character system developed by Stavarai and prepared as a Scale case study.", "/work/posta-studio"],
-        ["home-team", "05", "Home Team AI Lab", "We test smaller local and open models with real business tasks before adding more complexity.", "/notes"],
-        ["demos", "06", "Demos", "Short spec pieces from our content pipeline - labeled as demos, never as client results.", "/demos"],
+        ["agent-maxx", "01", "Agent MAXX", "Day-to-day digital with clear limits and approval when it matters.", "/maxx"],
+        ["buffer-blaster", "02", "Buffer Blaster", "Our system for keeping content moving.", "/work/buffer-blaster"],
+        ["pare", "03", "Pare’", "[PLACEHOLDER — WHAT PARE’ DOES IN ONE SENTENCE.]", "/work/pare"],
+        ["posta-studio", "04", "Posta Studio", "UGC production built into a repeatable system. Developed by Stavarai.", "/work/posta-studio"],
+        ["home-team", "05", "Home Team Lab", "Where we test what earns a place in the stack.", "/notes"],
+        ["demos", "06", "Demos", "Working tests. Not client results.", "/demos"],
       ];
 
   return (
@@ -36,7 +36,7 @@ export default async function BuiltHerePage() {
           <p className="editorial-kicker">{es ? "Hecho aquí" : "Built Here"}</p>
           <div>
             <h1>{es ? "Construimos cosas cuando ayudan al trabajo. No para llenar un catálogo." : "We build things when they make the work better. Not to fill a catalog."}</h1>
-            <p>{es ? "La mayoría de estas herramientas son ventaja interna. Si algún día una merece convertirse en producto, primero tiene que demostrarlo en trabajo real." : "Most of these tools are internal leverage. If one ever deserves to become a product, it has to prove itself in real work first."}</p>
+            <p>{es ? "Primero tienen que demostrar su lugar en trabajo real." : "They earn their place in real work first."}</p>
           </div>
         </header>
 
@@ -46,13 +46,13 @@ export default async function BuiltHerePage() {
             <h2>{name}</h2>
             <div>
               <p>{line}</p>
-              <p><Link className="editorial-link editorial-link--light" href={href}>See more <span aria-hidden="true">↗</span></Link></p>
+              <p><Link className="editorial-link editorial-link--light" href={href}>{es ? "Ver más" : "See more"} <span aria-hidden="true">↗</span></Link></p>
             </div>
           </section>
         ))}
 
         <Link className="editorial-link editorial-link--light" href="/apply">
-          {es ? "Hablar de tu negocio" : "Tell us what's important"} <span aria-hidden="true">↗</span>
+          {es ? "Cuéntanos qué es importante" : "Tell us what's important"} <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </div>
