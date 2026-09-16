@@ -34,29 +34,37 @@ export default async function WorkPage() {
           <div className={styles.grid}>
             {quickView.map((study, index) => (
               <article className={styles.card} key={study.slug}>
-                <Link className={styles.cardMain} href={`/work/${study.slug}`}>
-                  <span
-                    className={styles.cardMedia}
-                    aria-hidden="true"
-                    style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
-                  >
-                    {!study.heroImage ? <span className={styles.cardPlaceholder}>Media placeholder</span> : null}
-                  </span>
-                  <span className={styles.cardCopy}>
-                    <span className={styles.cardKicker}>
-                      {String(index + 1).padStart(2, "0")} · {study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}
+                {study.liveUrl && study.liveAvailable !== false ? (
+                  <a className={styles.cardMain} href={study.liveUrl} target="_blank" rel="noreferrer" aria-label={`${study.name}: open live project`}>
+                    <span className={styles.cardMedia} aria-hidden="true" style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}>
+                      {!study.heroImage ? <span className={styles.cardPlaceholder}>Media coming soon</span> : null}
                     </span>
-                    <span className={styles.cardName}>{study.name}</span>
-                    <span className={styles.cardRole}>{[study.industry, study.lane].filter(Boolean).join(" · ")}</span>
-                  </span>
-                </Link>
-                {study.liveUrl ? (
-                  <a className={styles.cardLive} href={study.liveUrl} target="_blank" rel="noreferrer">
-                    {es ? "En vivo" : "Live"} <span aria-hidden="true">↗</span>
+                    <span className={styles.cardCopy}>
+                      <span className={styles.cardKicker}>{String(index + 1).padStart(2, "0")} · {study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}</span>
+                      <span className={styles.cardName}>{study.name}</span>
+                      <span className={styles.cardRole}>{[study.industry, study.lane].filter(Boolean).join(" · ")}</span>
+                    </span>
                   </a>
                 ) : (
-                  <span className={styles.cardLivePending}>{es ? "Enlace en preparación" : "Live link in progress"}</span>
+                  <Link className={styles.cardMain} href={`/work/${study.slug}`} aria-label={`${study.name}: view case details`}>
+                    <span className={styles.cardMedia} aria-hidden="true" style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}>
+                      {!study.heroImage ? <span className={styles.cardPlaceholder}>Media coming soon</span> : null}
+                    </span>
+                    <span className={styles.cardCopy}>
+                      <span className={styles.cardKicker}>{String(index + 1).padStart(2, "0")} · {study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}</span>
+                      <span className={styles.cardName}>{study.name}</span>
+                      <span className={styles.cardRole}>{[study.industry, study.lane].filter(Boolean).join(" · ")}</span>
+                    </span>
+                  </Link>
                 )}
+                <div className={styles.cardActions}>
+                  {study.liveUrl && study.liveAvailable !== false ? (
+                    <a className={styles.cardLive} href={study.liveUrl} target="_blank" rel="noreferrer">{es ? "Abrir proyecto" : "Open live project"} <span aria-hidden="true">↗</span></a>
+                  ) : (
+                    <span className={styles.cardLivePending}>{es ? "Próximamente" : "Coming soon"}</span>
+                  )}
+                  <Link className={styles.cardDetails} href={`/work/${study.slug}`}>{es ? "Ver detalles" : "View details"}</Link>
+                </div>
               </article>
             ))}
           </div>

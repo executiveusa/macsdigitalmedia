@@ -126,7 +126,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <Link className="editorial-link" href={isInternal ? "/built-here" : "/work"}>
             {isInternal ? "Back to Built Here" : "See all work"} <span aria-hidden="true">↗</span>
           </Link>
-          <Link className="editorial-link" href="/apply">Tell us what's important <span aria-hidden="true">↗</span></Link>
+          <Link className="editorial-link" href="/apply">Tell us what&apos;s important <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
     </div>

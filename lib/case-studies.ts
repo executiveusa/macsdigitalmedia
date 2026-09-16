@@ -11,6 +11,7 @@ export type CaseStudy = {
   headline: string;
   summary: string;
   liveUrl?: string;
+  liveAvailable?: boolean;
   heroImage?: string;
   sections: Array<{ title: string; body: string }>;
   placeholders?: string[];
@@ -31,6 +32,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Taste of Nawlins is the first MACS collaboration story in this format. The public case will show what the team was building, where MACS contributed, and the verified result without overstating authorship.",
     liveUrl: "https://tasteofnawlins.netlify.app",
+    liveAvailable: false,
     heroImage: "/work/taste-of-nawlins-hero.webp",
     sections: [
       {

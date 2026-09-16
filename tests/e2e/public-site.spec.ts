@@ -77,7 +77,8 @@ test("work page exposes exactly four public buckets and their verified proof rou
   }
 
   await expect(page.getByRole("heading", { name: "Agent MAXX", exact: true })).toHaveCount(0);
-  await expect(page.getByText("Case study placeholder", { exact: true })).toBeVisible();
+  await expect(page.getByText("Case study placeholder", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /View Taste of Nawlins/i })).toBeVisible();
 
   await page.goto("/work/asc3nd");
   await expect(page.getByRole("heading", { level: 1, name: "ASC3ND" })).toBeVisible();
