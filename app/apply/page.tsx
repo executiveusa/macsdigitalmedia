@@ -19,13 +19,15 @@ export default async function ApplyPage() {
       <div className="shell application-layout">
         <Reveal>
           <div>
-            <p className="eyebrow eyebrow--dark">{page.eyebrow}</p>
+            {page.eyebrow ? <p className="eyebrow eyebrow--dark">{page.eyebrow}</p> : null}
             <h1 id="application-title">{page.title}</h1>
             <p className="application-intro">{page.intro}</p>
 
-            <div className="intake-notice">
-              <strong>{page.nextLabel}</strong> {page.next}
-            </div>
+            {page.next ? (
+              <div className="intake-notice">
+                {page.nextLabel ? <strong>{page.nextLabel}</strong> : null} {page.next}
+              </div>
+            ) : null}
 
             <h2>{page.fitTitle}</h2>
             <ul className="check-list check-list--plain">
