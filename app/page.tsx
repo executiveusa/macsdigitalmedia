@@ -29,6 +29,13 @@ const organizationSchema = {
   },
 };
 
+const proofImages: Record<string, string> = {
+  Reset: "/work/taste-of-nawlins-hero.webp",
+  Momentum: "/work/buffer-blaster-hero.webp",
+  Scale: "/work/posta-studios-hero.webp",
+  Launch: "/work/asc3nd-hero.webp",
+};
+
 const proofLinks: Record<string, Array<{ label: string; href: string }>> = {
   Reset: [{ label: "View Taste of Nawlins", href: "/work/taste-of-nawlins" }],
   Momentum: [{ label: "View Buffer Blaster", href: "/work/buffer-blaster" }],
@@ -105,9 +112,11 @@ export default async function HomePage() {
             <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Prueba por programa" : "Proof by partnership lane"}>
               {home.programs.map((program, index) => {
                 const links = proofLinks[program.name];
+                const image = proofImages[program.name];
                 return (
                   <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
                     <div className="editorial-offer-proof__media" aria-hidden="true">
+                      {image ? <img src={image} alt="" loading="lazy" /> : null}
                       <span>0{index + 1}</span>
                       <small>{locale === "es-MX" ? "Caso verificable" : "Verifiable case"}</small>
                     </div>

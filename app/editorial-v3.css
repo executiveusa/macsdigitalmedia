@@ -430,3 +430,32 @@
 @media (prefers-reduced-motion: reduce) {
   .editorial-footer__social a { transition: none; }
 }
+
+.editorial-offer-proof__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.editorial-offer-proof__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #ecece1;
+}
+
+.editorial-offer-proof__media span,
+.editorial-offer-proof__media small {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 6px #ecece1, 0 0 2px #ecece1;
+}
+/* mobile overlap fix: media box must not exceed its grid column */
+@media (max-width: 520px) {
+  .editorial-offer-proof__media {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
