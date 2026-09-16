@@ -28,31 +28,30 @@ export const caseStudies: CaseStudy[] = [
     collaboration: "Taste of Nawlins × MACS Digital Media",
     industry: "Food / Hospitality",
     stage: "Launch",
-    headline: "A collaboration built around bringing the brand into a focused digital launch.",
-    summary:
-      "Taste of Nawlins is the first MACS collaboration story in this format. The public case will show what the team was building, where MACS contributed, and the verified result without overstating authorship.",
+    headline: "A focused digital home for a food brand built to move.",
+    summary: "Taste of Nawlins needed one place for the menu, catering and the story behind the food. MACS designed and built the public site with the founder.",
     liveUrl: "https://tasteofnawlins.netlify.app",
     liveAvailable: false,
     heroImage: "/work/taste-of-nawlins-hero.webp",
     sections: [
       {
-        title: "What they were building",
-        body: "Taste of Nawlins brings New Orleans food to the Pacific Northwest: beignets, chicory coffee, red beans, and a kitchen that travels. The launch needed a focused digital home for the menu, catering and the story behind the food.",
+        title: "The brand",
+        body: "Taste of Nawlins brings New Orleans food to the Pacific Northwest through a traveling kitchen.",
       },
       {
-        title: "Where MACS came in",
-        body: "MACS designed and built the public website in collaboration with the founder. The live site carries the menu, catering inquiries, drops and the follow-the-kitchen story in one place.",
+        title: "Our role",
+        body: "MACS designed and built the public site with the founder, bringing menu, catering and story into one place.",
       },
       {
         title: "What changed",
-        body: "The brand has a live public home it can send people to. The founder's own words, launch results and before-and-after material are added here as they are approved.",
+        body: "The brand now has one public home to send people to. Launch results will be added only when they are documented and approved.",
       },
     ],
     placeholders: [
-      "Collaboration credits — founder, MACS, Stavarai and any outside contributors",
-      "Process media — approved concepts, campaign assets or build artifacts",
+      "Collaboration credits — founder, MACS, Stavarai and outside contributors",
+      "Approved process media or campaign assets",
       "Documented launch result or before/after",
-      "Approved quote or testimonial — only if supplied or separately authorized",
+      "Approved quote or testimonial",
     ],
   },
   {
@@ -64,28 +63,27 @@ export const caseStudies: CaseStudy[] = [
     collaboration: "ASC3ND × MACS Digital Media",
     industry: "Nonprofit",
     stage: "Launch",
-    headline: "A public website with an operating system behind it.",
-    summary:
-      "ASC3ND is our Launch example: a public-facing Next.js site connected to reusable operational systems for onboarding, opportunities, campaigns, approvals and organizational context.",
+    headline: "A digital foundation for a new organization.",
+    summary: "MACS built the public site and the reusable systems behind it so ASC3ND could launch without rebuilding the foundation every time something changed.",
     liveUrl: "https://asc3nd-org.31.220.58.212.sslip.io/",
     heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {
-        title: "The opportunity",
-        body: "ASC3ND needed more than a public website. The launch had to create a clear digital front door while leaving room for the operational systems behind the organization to grow with it.",
+        title: "The need",
+        body: "ASC3ND needed a clear public front door and room for the organization behind it to grow.",
       },
       {
         title: "What we built",
-        body: "The documented system includes a public Next.js front end, a reusable operations console for onboarding, opportunities, campaigns and approvals, and a reusable backend layer for workflows and organizational context.",
+        body: "A public site plus reusable systems for onboarding, opportunities, campaigns and approvals.",
       },
       {
-        title: "How it develops",
-        body: "The website is the visible layer. The larger idea is a launch system that can continue adding useful tools without forcing the organization to rebuild its digital foundation every time something new is introduced.",
+        title: "What it leaves behind",
+        body: "A foundation the organization can keep building on instead of starting over with every new initiative.",
       },
     ],
     placeholders: [
       "Before/after or early concept material",
-      "Operating-system links beyond the public site",
+      "Approved operating-system captures",
       "Documented result or approved testimonial",
     ],
   },
@@ -96,37 +94,32 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     industry: "Creative Infrastructure",
-    headline: "A content engine built to keep momentum moving.",
+    headline: "Our system for keeping content moving.",
     liveUrl: "https://buffer-blaster.31.220.58.212.sslip.io/",
     heroImage: "/work/buffer-blaster-hero.webp",
-    summary:
-      "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
+    summary: "Buffer Blaster keeps research, production, scoring and scheduling in one governed workflow. It is part of the MAXX Suite / Built Here story.",
     sections: [
       {
         title: "The problem",
-        body: "Content work drowns in disconnected tools: research in one place, scripts in another, generation somewhere else, results nowhere. Teams ship volume without learning what works, and every round starts from zero.",
+        body: "Content work gets scattered across tools, people and handoffs. Every round can start from zero.",
       },
       {
-        title: "The constraints",
-        body: "The system had to move fast without removing judgment. Paid generation, publishing and activation stay explicit human decisions with limits enforced on the server, and every consequential job keeps its evidence: plan, rights, approval, cost and result.",
+        title: "What we built",
+        body: "One workflow for learning, shaping, making and reviewing content while important actions still require human judgment.",
       },
       {
-        title: "What MACS built",
-        body: "One governed loop runs the work: Learn (product truth, customer pain, brand context, the angles worth testing), Shape (scripts, concepts, controlled variations), Make (creative routed through the right generation path only after plan, rights and cost are clear), then Learn again. The Studio is the doorway; approved agents call the same workflow over REST, MCP and CLI.",
-      },
-      {
-        title: "Real outputs",
-        body: "The public beta site is live, and the two spec ads on our demos page - ScuffReset and Pristine - were produced end to end by this pipeline: hook, presenter, product footage, captions and call to action.",
+        title: "What is live",
+        body: "The public beta is live. Documented campaign results will be added when they are available.",
       },
     ],
     evidence: [
       {
         image: "/work/bb-evidence-loop.webp",
-        caption: "The governed loop, live on the public site: Learn, Shape, Make, Learn again.",
+        caption: "The live workflow: Learn, Shape, Make, Learn again.",
       },
       {
         image: "/work/bb-evidence-governance.webp",
-        caption: "Automation removes busywork, not judgment. Every consequential job keeps its evidence: plan, rights, approval, cost, result.",
+        caption: "Important actions keep a visible record of plan, approval, cost and result.",
       },
     ],
     placeholders: [
@@ -141,24 +134,23 @@ export const caseStudies: CaseStudy[] = [
     name: "Pare’",
     visibility: "internal",
     format: "product",
-    headline: "Scale proof, ready for the full story.",
-    summary:
-      "Pare’ is part of the MAXX Suite / Built Here story. The live product is linked; walkthroughs and verified results remain placeholders until approved.",
+    headline: "[PLACEHOLDER — WHAT PARE’ DOES IN ONE SENTENCE.]",
+    summary: "Pare’ is part of the MAXX Suite / Built Here story. The exact public description and verified result still need to be approved.",
     liveUrl: "https://pauli-para.netlify.app/",
     liveAvailable: false,
     heroImage: "/work/pare-hero.webp",
     sections: [
       {
-        title: "The problem",
-        body: "AI-built software accumulates faster than anyone can review it. Work that ships without a review-and-repair step breaks where nobody is watching.",
+        title: "What it solves",
+        body: "[PLACEHOLDER — THE PROBLEM PARE’ SOLVES.]",
       },
       {
         title: "What we built",
-        body: "Pare’ is one studio for making things with AI without the noise: it takes the models, tools, prompts, agents and infrastructure underneath modern digital work and removes that complexity from the person trying to make something good. People enter through the Studio; agents use the same system over API, MCP and CLI.",
+        body: "[PLACEHOLDER — THE PRODUCT IN PLAIN LANGUAGE.]",
       },
       {
-        title: "How it scales",
-        body: "The work stays yours: your projects, your files, your agents, your infrastructure. It is also the review-and-repair step in our own build workflow - supervised passes over AI-built work before it reaches a client, so quality stops depending on who happened to have time to check.",
+        title: "What changed",
+        body: "[PLACEHOLDER — VERIFIED RESULT.]",
       },
     ],
     placeholders: [
@@ -176,21 +168,20 @@ export const caseStudies: CaseStudy[] = [
     credit: "Developed by Stavarai",
     liveUrl: "https://postastudios.31.220.58.212.sslip.io/",
     heroImage: "/work/posta-studios-hero.webp",
-    headline: "UGC characters built into a repeatable content system.",
-    summary:
-      "Posta Studio is part of the MAXX Suite / Built Here story and was developed by Stavarai. It remains separate from the client-work gallery.",
+    headline: "UGC production built into a repeatable system.",
+    summary: "Developed by Stavarai. Posta Studio turns recurring characters and scripted spots into a repeatable content workflow.",
     sections: [
       {
-        title: "Why it exists",
-        body: "Consistent short-form content depends on recurring characters and a publishing rhythm, not one-off inspiration. Without a system, every post starts from zero.",
+        title: "The problem",
+        body: "Consistent short-form content is hard when every post starts from zero.",
       },
       {
-        title: "What Stavarai developed",
-        body: "Posta Studio turns UGC-style characters into a repeatable content system: recurring personas, scripted spots, and a publishing workflow that produces on schedule instead of on inspiration.",
+        title: "What Stavarai built",
+        body: "A system for recurring characters, scripted spots and scheduled production.",
       },
       {
-        title: "How it becomes leverage",
-        body: "A character-led system keeps producing after a single campaign ends. The same workflow can support more content, more campaigns, or a client’s own presence.",
+        title: "Why it matters",
+        body: "The workflow can keep producing after one campaign ends.",
       },
     ],
     placeholders: [
@@ -208,28 +199,27 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     industry: "World / Experience",
-    headline: "A brand world you walk into, with its own sound and rules.",
-    summary:
-      "Sweet is a forest world built around one person's brand - navigation as places (the shop, the library, the blog, the machinery), a soundscape and bilingual storytelling. Part of the Built Here story.",
+    headline: "A brand world you walk into.",
+    summary: "Sweet turns a personal brand into an interactive bilingual world with its own places, sound and rules.",
     liveUrl: "https://sweet.31.220.58.212.sslip.io/",
     heroImage: "/work/sweet-hero.webp",
     sections: [
       {
-        title: "What it is",
-        body: "Sweet is an interactive forest world for a personal brand. Visitors arrive at the edge of her forest and move through places - the shop, the library, the blog, the machinery - instead of scrolling another page of links.",
+        title: "The idea",
+        body: "Visitors move through places—the shop, library, blog and machinery—instead of scrolling another page of links.",
       },
       {
-        title: "What MACS built",
-        body: "The world, its art direction, its sound design and its bilingual EN/ES storytelling were designed and built as one experience. Even the rooms still in progress are labeled honestly inside the world: staged preview, soon.",
+        title: "What we built",
+        body: "The world, art direction, sound and EN/ES storytelling were designed as one experience.",
       },
       {
-        title: "What it proves",
-        body: "A brand can be a place, not a feed. The world is live now and keeps its own rules - her brand, her agents, her rules.",
+        title: "What it shows",
+        body: "A brand can behave like a place, not only a feed.",
       },
     ],
     placeholders: [
-      "Directed walkthrough capture of the world",
-      "The founder's own account of the concept",
+      "Directed walkthrough capture",
+      "The founder's account of the concept",
     ],
   },
   {
@@ -239,23 +229,22 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     industry: "Agent / Outdoors",
-    headline: "A fishing agent that answers from real Texas sources.",
-    summary:
-      "Fish On answers fishing questions in plain language from real Texas sources with checked dates - regulations, weather, tides - in English and Spanish. Part of the Built Here story.",
+    headline: "Fishing answers from real Texas sources.",
+    summary: "Fish On answers plain-language fishing questions from Texas sources with checked dates in English and Spanish.",
     liveUrl: "https://executiveusa.github.io/fish-on/",
     heroImage: "/work/fish-on-hero.webp",
     sections: [
       {
         title: "The problem",
-        body: "Fishing regulations live in dense PDFs and scattered pages. Getting a straight answer - can I keep this redfish, what is biting near Houston this weekend - should not require a law degree.",
+        body: "Fishing rules and conditions are spread across dense pages and PDFs.",
       },
       {
-        title: "What MACS built",
-        body: "An agent that answers from real Texas sources (TPWD and friends), shows checked dates, cites its source and speaks English and Spanish. Made in Texas, for Texans.",
+        title: "What we built",
+        body: "An agent that answers from Texas sources, shows checked dates and links back to the source.",
       },
       {
-        title: "What's live",
-        body: "The public preview is live now with sample answers from real Texas sources. It is labeled as a preview because that is what it is.",
+        title: "What is live",
+        body: "The public preview is live and labeled as a preview.",
       },
     ],
     placeholders: [
@@ -270,23 +259,22 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     industry: "Internal Tooling",
-    headline: "One control room for every agent computer.",
-    summary:
-      "Foundry Fleet is the private console MACS uses to see its agent computers live - fleet status, audit trail and product state in one place. The public page confirms it is deployed; the console itself stays behind a key.",
+    headline: "One control room for our agent computers.",
+    summary: "Foundry Fleet gives MACS one private view of fleet status, audit history and product state.",
     liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
     heroImage: "/work/foundry-fleet-hero.webp",
     sections: [
       {
-        title: "Why it exists",
-        body: "A fleet of agent machines doing real work needs one live view: what is up, what is down, what changed, who did it. Without it, operations run on guesswork.",
+        title: "The problem",
+        body: "A fleet doing real work needs one place to see what is up, what changed and what needs attention.",
       },
       {
-        title: "What MACS built",
-        body: "A control room with Fleet, Audit and Product views over every agent computer - the same discipline we bring to client systems, applied to our own infrastructure first.",
+        title: "What we built",
+        body: "A private control room for fleet, audit and product views across our agent computers.",
       },
       {
-        title: "What's live",
-        body: "The console is deployed and answers live; it requires an API key because it is private infrastructure. The public page is the proof it exists, not a demo.",
+        title: "What is live",
+        body: "The console is deployed and protected because it is private infrastructure.",
       },
     ],
     placeholders: [
