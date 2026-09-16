@@ -4,7 +4,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Notes",
-  description: "Notes from MACS Digital Media on ownership, business systems, content and the technology the team is actually testing.",
+  description: "What MACS Digital Media is seeing, testing and learning.",
 };
 
 export default async function NotesPage() {
@@ -13,24 +13,22 @@ export default async function NotesPage() {
 
   const notes = es
     ? [
-        ["Home Team AI", "Qué modelos pequeños y abiertos realmente pueden hacer trabajo de negocio antes de que agreguemos más infraestructura.", "/built-here#home-team"],
+        ["Home Team", "Qué modelos pequeños realmente pueden manejar trabajo de negocio.", "/built-here#home-team"],
         ["Propiedad", "Por qué una relación debe seguir porque funciona, no porque salir sea difícil.", "/story"],
-        ["Contenido", "Cómo usamos herramientas internas para producir y aprender más sin convertir al dueño en creador de contenido de tiempo completo.", "/built-here#buffer-blaster"],
+        ["Contenido", "Cómo mantenemos el contenido en movimiento sin convertir al dueño en el departamento de contenido.", "/built-here#buffer-blaster"],
       ]
     : [
-        ["Home Team AI", "What smaller and open models can actually do for business work before we add more infrastructure.", "/built-here#home-team"],
+        ["Home Team", "What smaller models can actually handle in real business work.", "/built-here#home-team"],
         ["Ownership", "Why a relationship should continue because it works, not because leaving is painful.", "/story"],
-        ["Content", "How we use internal tools to produce and learn more without turning the owner into a full-time content creator.", "/built-here#buffer-blaster"],
+        ["Content", "How we keep content moving without making the owner the content department.", "/built-here#buffer-blaster"],
       ];
 
   return (
     <div className="editorial-page">
       <div className="editorial-shell">
         <header className="editorial-page__intro">
-          <p className="editorial-kicker">{es ? "Notas" : "Notes"}</p>
           <div>
             <h1>{es ? "Lo que estamos viendo, probando y aprendiendo." : "What we're seeing, testing and learning."}</h1>
-            <p>{es ? "Menos publicaciones por publicar. Más notas que salen del trabajo real." : "Fewer posts for the sake of posting. More notes that come out of real work."}</p>
           </div>
         </header>
 
