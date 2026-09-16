@@ -436,7 +436,7 @@
   overflow: hidden;
 }
 
-.editorial-offer-proof__media video {
+.editorial-offer-proof__media img {
   position: absolute;
   inset: 0;
   width: 100%;

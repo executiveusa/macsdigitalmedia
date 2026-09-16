@@ -29,10 +29,11 @@ const organizationSchema = {
   },
 };
 
-const proofVideos: Record<string, string> = {
-  Momentum: "/work/buffer-blaster.mp4",
-  Scale: "/work/posta.mp4",
-  Launch: "/work/asc3nd.mp4",
+const proofImages: Record<string, string> = {
+  Reset: "/work/taste-of-nawlins-hero.webp",
+  Momentum: "/work/buffer-blaster-hero.webp",
+  Scale: "/work/posta-studios-hero.webp",
+  Launch: "/work/asc3nd-hero.webp",
 };
 
 const proofLinks: Record<string, Array<{ label: string; href: string }>> = {
@@ -111,11 +112,11 @@ export default async function HomePage() {
             <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Prueba por programa" : "Proof by partnership lane"}>
               {home.programs.map((program, index) => {
                 const links = proofLinks[program.name];
-                const video = proofVideos[program.name];
+                const image = proofImages[program.name];
                 return (
                   <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
                     <div className="editorial-offer-proof__media" aria-hidden="true">
-                      {video ? <video src={video} autoPlay muted loop playsInline preload="metadata" /> : null}
+                      {image ? <img src={image} alt="" loading="lazy" /> : null}
                       <span>0{index + 1}</span>
                       <small>{locale === "es-MX" ? "Caso verificable" : "Verifiable case"}</small>
                     </div>
