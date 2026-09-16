@@ -22,7 +22,7 @@ const organizationSchema = {
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
   description:
-    "A Pacific Northwest father-and-son technology partner helping owner-led businesses connect the digital side of the business.",
+    "A Pacific Northwest father-and-son team helping owner-led businesses bring websites, content, systems and follow-up under one accountable team.",
   areaServed: {
     "@type": "State",
     name: "Washington",
@@ -46,7 +46,6 @@ const proofLinks: Record<string, Array<{ label: string; href: string }>> = {
   Launch: [{ label: "View ASC3ND", href: "/work/asc3nd" }],
 };
 
-// HERO ASSET: the directed photo drops in here. Add the new file under public/media/founders/ and change only this path.
 const HERO_IMAGE = "/media/founders/stacy-stavarai-waterfront-graded.webp";
 
 export default async function HomePage() {
@@ -94,9 +93,9 @@ export default async function HomePage() {
         <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--programs">
-              <p className="editorial-kicker">{home.programsLabel}</p>
+              {home.programsLabel ? <p className="editorial-kicker">{home.programsLabel}</p> : null}
               <h2 id="programs-title">{home.programsTitle}</h2>
-              <p className="editorial-heading__intro">{home.programsIntro}</p>
+              {home.programsIntro ? <p className="editorial-heading__intro">{home.programsIntro}</p> : null}
             </div>
 
             <div className="editorial-rows">
@@ -140,7 +139,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
           <div className="editorial-shell editorial-partnership-bridge__inner">
-            <p className="editorial-kicker">{home.partnershipBridgeLabel}</p>
+            {home.partnershipBridgeLabel ? <p className="editorial-kicker">{home.partnershipBridgeLabel}</p> : null}
             <div>
               <h2 id="partnership-bridge-title">{home.partnershipBridgeTitle}</h2>
               <p>{home.partnershipBridgeLine}</p>
@@ -153,7 +152,7 @@ export default async function HomePage() {
         <section className="editorial-section editorial-work" aria-labelledby="work-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--split">
-              <p className="editorial-kicker">{home.workLabel}</p>
+              {home.workLabel ? <p className="editorial-kicker">{home.workLabel}</p> : null}
               <h2 id="work-title">{home.workTitle}</h2>
             </div>
 
@@ -219,11 +218,8 @@ export default async function HomePage() {
       </Reveal>
 
       <Reveal>
-        <section className="editorial-fit" aria-labelledby="fit-title">
+        <section className="editorial-fit" aria-label={home.fitCta}>
           <div className="editorial-shell editorial-fit__inner">
-            <p className="editorial-kicker">{home.fitLabel}</p>
-            <h2 id="fit-title">{home.fitTitle}</h2>
-            <p>{home.fitLine}</p>
             <Link className="editorial-link editorial-link--light" href="/apply">
               {home.fitCta} <span aria-hidden="true">↗</span>
             </Link>
