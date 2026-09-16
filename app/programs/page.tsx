@@ -4,7 +4,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Programs",
-  description: "Four ways MACS Digital Media begins an ongoing technology partnership with owner-led businesses: Reset, Momentum, Scale and Launch.",
+  description: "Reset, Momentum, Scale and Launch: four ways to start with MACS Digital Media.",
 };
 
 export default async function ProgramsPage() {
@@ -13,26 +13,24 @@ export default async function ProgramsPage() {
 
   const programs = es
     ? [
-        ["reset", "Reset", "Cuando el sitio web, las herramientas y los flujos digitales están creando más fricción que progreso.", "Empezamos por ordenar la base: auditamos lo que existe, conservamos lo que sirve, eliminamos duplicación y dejamos una estructura más clara para seguir mejorando."],
-        ["momentum", "Momentum", "Cuando el negocio necesita atención constante, mejor contenido y seguimiento más confiable.", "Construimos un ritmo repetible para contenido, distribución, UGC y seguimiento para que el crecimiento no dependa de campañas aisladas ni de que el dueño haga todo."],
-        ["scale", "Scale", "Cuando el volumen ya rebasó la forma en que el equipo maneja información, decisiones y trabajo.", "Conectamos automatización, IA, conocimiento, aprobaciones y seguimiento para que el negocio pueda manejar más trabajo sin sumar más caos."],
-        ["launch", "Launch", "Cuando una nueva oferta, producto o iniciativa necesita un sistema completo detrás.", "Unimos posicionamiento, sitio, contenido, distribución, captura de demanda y seguimiento para que el lanzamiento tenga una operación que continúe después del primer impulso."],
+        ["reset", "Reset", "Arregla lo que está estorbando.", "Ordenamos sitio web, herramientas y flujos que están haciendo más difícil el trabajo."],
+        ["momentum", "Momentum", "Mantente visible. Convierte atención en oportunidad.", "Creamos un ritmo más simple para contenido, distribución y seguimiento."],
+        ["scale", "Scale", "La idea funciona. Crece sin complejidad.", "Conectamos lo que ya funciona para que el negocio pueda manejar más sin sumar más caos."],
+        ["launch", "Launch", "Convierte nuevas ideas en campañas de marca.", "Construimos sitio, contenido y seguimiento alrededor de lo que vas a llevar al mercado."],
       ]
     : [
-        ["reset", "Reset", "When the website, tools, digital workflows and subscriptions are creating more friction than progress.", "We start by cleaning up the foundation: audit what exists, keep what works, remove overlapping software and leave a simple system that you own and can keep improving."],
-        ["momentum", "Momentum", "When the business needs consistent attention, stronger content and more reliable follow-up.", "We build a repeatable rhythm for content, distribution, UGC and eCommerce. We help automate follow-up so growth does not eat up your time through isolated campaigns or leave the founder doing everything."],
-        ["scale", "Scale", "When volume has outgrown the way your team handles information, decisions and the daily workflow.", "We consolidate automation, AI tools, company data and your personal founder knowledge into one repeatable system so the business can handle more work with less chaos."],
-        ["launch", "Launch", "When a new offer, product or initiative needs a complete system behind it.", "We connect positioning, branding, website, content, distribution, demand capture and follow-up so the launch has an operation that keeps working at scale after the first push."],
+        ["reset", "Reset", "Fix what’s getting in the way.", "We clean up the website, tools and workflows making the work harder than it needs to be."],
+        ["momentum", "Momentum", "Stay visible. Turn attention into opportunity.", "We build a simpler rhythm for content, distribution and follow-up."],
+        ["scale", "Scale", "The idea is working. Grow without complexity.", "We connect what already works so the business can handle more without adding more chaos."],
+        ["launch", "Launch", "Turn new ideas into branded campaigns.", "We build the site, content and follow-up around what you are bringing to market."],
       ];
 
   return (
     <div className="editorial-page">
       <div className="editorial-shell">
         <header className="editorial-page__intro">
-          <p className="editorial-kicker">{es ? "Cuatro caminos" : "Four partnership lanes"}</p>
           <div>
-            <h1>{es ? "Un socio tecnológico. Cuatro formas de empezar." : "One technology partner. Four ways to start."}</h1>
-            <p>{es ? "No son cuatro servicios sueltos. Son cuatro puntos de entrada a una relación continua. Empezamos por el problema más urgente y seguimos con el negocio conforme cambian las prioridades." : "These are not four disconnected services. They are four entry points into an ongoing relationship. We start with the most urgent pressure point and stay with the business as priorities change."}</p>
+            <h1>{es ? "Cuatro formas de empezar." : "Four ways to start."}</h1>
           </div>
         </header>
 
@@ -45,7 +43,7 @@ export default async function ProgramsPage() {
         ))}
 
         <Link className="editorial-link" href="/apply">
-          {es ? "Empezar la conversación" : "Start the conversation"} <span aria-hidden="true">↗</span>
+          {es ? "Cuéntanos qué es importante" : "Tell us what's important"} <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </div>
