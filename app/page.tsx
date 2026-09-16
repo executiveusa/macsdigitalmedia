@@ -29,8 +29,8 @@ const organizationSchema = {
   },
 };
 
-const proofLinks: Record<string, Array<{ label: string; href: string }> | null> = {
-  Reset: null,
+const proofLinks: Record<string, Array<{ label: string; href: string }>> = {
+  Reset: [{ label: "View Taste of Nawlins", href: "/work/taste-of-nawlins" }],
   Momentum: [{ label: "View Buffer Blaster", href: "/work/buffer-blaster" }],
   Scale: [
     { label: "View Pare’", href: "/work/pare" },
@@ -109,20 +109,16 @@ export default async function HomePage() {
                   <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
                     <div className="editorial-offer-proof__media" aria-hidden="true">
                       <span>0{index + 1}</span>
-                      <small>{links ? "Case study media" : "Case study reserved"}</small>
+                      <small>{locale === "es-MX" ? "Caso verificable" : "Verifiable case"}</small>
                     </div>
                     <div className="editorial-offer-proof__copy">
                       <strong>{program.proofLabel}</strong>
                       <span>{program.proofHint}</span>
-                      {links ? (
-                        <div className="editorial-offer-proof__links">
-                          {links.map((item) => (
-                            <Link href={item.href} key={item.href}>{item.label} <span aria-hidden="true">↗</span></Link>
-                          ))}
-                        </div>
-                      ) : (
-                        <span className="editorial-offer-proof__reserved">Full-page hero, live-site link and story placeholder</span>
-                      )}
+                      <div className="editorial-offer-proof__links">
+                        {links.map((item) => (
+                          <Link href={item.href} key={item.href}>{item.label} <span aria-hidden="true">↗</span></Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 );

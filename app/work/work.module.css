@@ -149,3 +149,17 @@
     font-size: 0.76rem;
   }
 }
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cardDetails {
+  color: inherit;
+  font-size: 0.78rem;
+  text-decoration: underline;
+  text-underline-offset: 0.24em;
+}
