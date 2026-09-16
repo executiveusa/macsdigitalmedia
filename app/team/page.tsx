@@ -3,7 +3,7 @@ import styles from "./team.module.css";
 
 export const metadata: Metadata = {
   title: "Meet the Team",
-  description: "Meet the MACS Digital Media team.",
+  description: "Meet the people behind MACS Digital Media.",
 };
 
 const people = [
@@ -18,7 +18,7 @@ const people = [
   },
   {
     index: "02",
-    name: "Stavari",
+    name: "Stavarai",
     initials: "ST",
     role: "Product / Commerce",
     statement: "Product, commerce and development.",
@@ -29,28 +29,28 @@ const people = [
     index: "03",
     name: "Ivette",
     initials: "IV",
-    role: "Role",
-    statement: "Bio",
-    owns: "Role",
-    proof: "Work",
+    role: "[ROLE]",
+    statement: "[ONE-SENTENCE RESPONSIBILITY]",
+    owns: "[ROLE]",
+    proof: "[WORK]",
   },
   {
     index: "04",
     name: "Akash",
     initials: "AK",
-    role: "Role",
-    statement: "Bio",
-    owns: "Role",
-    proof: "Work",
+    role: "[ROLE]",
+    statement: "[ONE-SENTENCE RESPONSIBILITY]",
+    owns: "[ROLE]",
+    proof: "[WORK]",
   },
   {
     index: "05",
     name: "Jeremy",
     initials: "JE",
-    role: "Role",
-    statement: "Bio",
-    owns: "Role",
-    proof: "Work",
+    role: "[ROLE]",
+    statement: "[ONE-SENTENCE RESPONSIBILITY]",
+    owns: "[ROLE]",
+    proof: "[WORK]",
   },
 ];
 
@@ -60,10 +60,9 @@ export default function TeamPage() {
       <section className={styles.hero} aria-labelledby="team-title">
         <div className={styles.heroCopy}>
           <h1 id="team-title">Meet the team</h1>
-          <p className={styles.heroLead}>Everyone here is invested in your success.</p>
         </div>
         <div className={styles.heroVisual} aria-label="Team photo placeholder">
-          <span className={styles.heroMark}>Team photo / video</span>
+          <span className={styles.heroMark}>[TEAM PHOTO / VIDEO]</span>
         </div>
       </section>
 
@@ -81,7 +80,7 @@ export default function TeamPage() {
                 </div>
                 <div className={styles.meta}>
                   <div className={styles.metaBlock}>
-                    <span>Position</span>
+                    <span>Role</span>
                     <strong>{person.owns}</strong>
                   </div>
                   <div className={styles.metaBlock}>
