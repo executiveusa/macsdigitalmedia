@@ -18,17 +18,16 @@ export default async function WorkPage() {
     <div className="editorial-page editorial-page--white">
       <div className="editorial-shell">
         <header className={`editorial-page__intro ${styles.intro}`}>
-          <p className="editorial-kicker">{es ? "Trabajo" : "Work"}</p>
           <div>
             <h1>{es ? "Trabajo hecho con gente que está construyendo algo real." : "Work made with people building something real."}</h1>
-            <p>{es ? "Casos y colaboraciones. Mostramos el trabajo, aclaramos nuestra participación y dejamos que la evidencia hable." : "Case studies and collaborations. We show the work, make our role clear, and let the evidence do the talking."}</p>
+            <p>{es ? "Mostramos el trabajo. Aclaramos nuestra participación. La evidencia habla." : "We show the work. We make our role clear. The evidence speaks."}</p>
           </div>
         </header>
 
         <section className={styles.index} aria-labelledby="selected-work-title">
           <div className={styles.indexHeading}>
             <p className="editorial-kicker">{es ? "Trabajo seleccionado" : "Selected Work"}</p>
-            <h2 id="selected-work-title">{es ? "El índice. Ábrelo, tócalo, verifícalo." : "The index. Open it, touch it, verify it."}</h2>
+            <h2 id="selected-work-title">{es ? "Ábrelo. Míralo. Verifícalo." : "Open it. See it. Verify it."}</h2>
           </div>
 
           <div className={styles.grid}>
@@ -63,7 +62,7 @@ export default async function WorkPage() {
                   ) : (
                     <span className={styles.cardLivePending}>{es ? "Próximamente" : "Coming soon"}</span>
                   )}
-                  <Link className={styles.cardDetails} href={`/work/${study.slug}`}>{es ? "Ver detalles" : "View details"}</Link>
+                  <Link className={styles.cardDetails} href={`/work/${study.slug}`}>{es ? "Detalles" : "Details"}</Link>
                 </div>
               </article>
             ))}
