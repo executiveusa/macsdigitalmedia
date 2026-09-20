@@ -30,10 +30,7 @@ export function SiteHeader() {
     { href: "/programs", label: spanish ? "Programas" : "Programs" },
     { href: "/work", label: spanish ? "Trabajo" : "Work" },
     { href: "/story", label: spanish ? "Historia" : "Story" },
-    { href: "/team", label: spanish ? "Equipo" : "Team" },
     { href: "/built-here", label: spanish ? "Hecho aquí" : "Built Here" },
-    { href: "/demos", label: "Demos" },
-    { href: "/notes", label: spanish ? "Notas" : "Notes" },
   ];
   const fitLabel = spanish ? "Cuéntanos qué está atorado" : "Tell us what's important";
 
@@ -137,9 +134,14 @@ export function SiteHeader() {
                 ))}
               </div>
               <div className="editorial-menu__meta">
+                <Link
+                  className="editorial-menu__mobile-cta"
+                  href="/apply"
+                  onClick={() => setOpen(false)}
+                >
+                  {fitLabel} ↗
+                </Link>
                 <PreferenceControls showTheme={false} />
-                <Link href="/apply" onClick={() => setOpen(false)}>{fitLabel} ↗</Link>
-                <span>Pacific Northwest</span>
               </div>
             </div>
           </m.nav>

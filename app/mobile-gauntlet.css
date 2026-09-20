@@ -327,3 +327,68 @@
     border-color: currentColor;
   }
 }
+
+
+/* 2026-09 mobile release pass: keep the primary action reachable when the header CTA collapses. */
+.editorial-menu__mobile-cta {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .editorial-menu__mobile-cta {
+    display: flex;
+    align-items: center;
+    min-height: var(--mobile-touch-target);
+    width: fit-content;
+    font-weight: 700;
+    text-underline-offset: .25em;
+  }
+}
+
+@media (max-width: 680px) {
+  /* Primary credibility is real content, not tiny metadata. */
+  .editorial-credibility p {
+    font-size: .875rem;
+    line-height: 1.45;
+    letter-spacing: .035em;
+  }
+
+  /* Prevent long editorial headings from clipping at 320–430px widths. */
+  .editorial-page__intro h1,
+  .editorial-program-detail h2,
+  .editorial-built-detail h2 {
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .editorial-page__intro p,
+  .editorial-program-detail p,
+  .editorial-built-detail p {
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  /* Footer links and booking actions remain thumb-safe. */
+  .editorial-footer__nav a,
+  .editorial-footer__meta a,
+  .route-cta a,
+  .cardDetails {
+    min-height: var(--mobile-touch-target);
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .editorial-hero {
+    min-height: 70svh;
+  }
+
+  .editorial-hero h1 {
+    max-width: 11ch;
+  }
+
+  .editorial-menu__primary a {
+    font-size: clamp(2.45rem, 12vw, 3.8rem);
+  }
+}

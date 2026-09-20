@@ -9,10 +9,91 @@ export const metadata: Metadata = {
   description: "Selected MACS Digital Media case studies and collaborations.",
 };
 
+const builtHereSlugs = new Set([
+  "buffer-blaster",
+  "pare",
+  "posta-studio",
+  "foundry-fleet",
+]);
+
+const cardCopy: Record<string, { title: string; line: string }> = {
+  "taste-of-nawlins": {
+    title: "Taste of Nawlins × MACS",
+    line: "A social-purpose kitchen supporting the next generation of boxing.",
+  },
+  asc3nd: {
+    title: "ASC3ND × MACS",
+    line: "Building the public presence and operational foundation for a growing nonprofit.",
+  },
+  "buffer-blaster": {
+    title: "Buffer Blaster",
+    line: "Own the system. Keep creating.",
+  },
+  pare: {
+    title: "PARÉ",
+    line: "Design without designers.",
+  },
+  "posta-studio": {
+    title: "Posta Studio",
+    line: "One calendar. Every channel.",
+  },
+  "foundry-fleet": {
+    title: "Foundry",
+    line: "Virtual computers for your AI agents.",
+  },
+};
+
 export default async function WorkPage() {
   const locale = await getServerLocale();
   const es = locale === "es-MX";
-  const quickView = [...clientWork, ...maxxSuiteWork];
+  const selectedWork = clientWork.filter((study) =>
+    ["taste-of-nawlins", "asc3nd"].includes(study.slug),
+  );
+  const builtHere = maxxSuiteWork.filter((study) => builtHereSlugs.has(study.slug));
+
+  const renderGrid = (studies: typeof selectedWork) => (
+    <div className={styles.grid}>
+      {studies.map((study) => {
+        const copy = cardCopy[study.slug] ?? {
+          title: study.collaboration ?? study.name,
+          line: study.headline,
+        };
+
+        return (
+          <article className={styles.card} key={study.slug}>
+            <Link
+              className={styles.cardMain}
+              href={`/work/${study.slug}`}
+              aria-label={`${copy.title}: view project`}
+            >
+              <span
+                className={styles.cardMedia}
+                aria-hidden="true"
+                style={
+                  study.heroImage
+                    ? { backgroundImage: `url(${study.heroImage})` }
+                    : undefined
+                }
+              >
+                {!study.heroImage ? (
+                  <span className={styles.cardPlaceholder}>Media coming soon</span>
+                ) : null}
+              </span>
+              <span className={styles.cardCopy}>
+                <span className={styles.cardName}>{copy.title}</span>
+                <span className={styles.cardRole}>{copy.line}</span>
+              </span>
+            </Link>
+            <div className={styles.cardActions}>
+              <Link className={styles.cardDetails} href={`/work/${study.slug}`}>
+                {es ? "Ver proyecto" : "View project"}
+              </Link>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div className="editorial-page editorial-page--white">
@@ -20,59 +101,40 @@ export default async function WorkPage() {
         <header className={`editorial-page__intro ${styles.intro}`}>
           <p className="editorial-kicker">{es ? "Trabajo" : "Work"}</p>
           <div>
-            <h1>{es ? "Trabajo hecho con gente que está construyendo algo real." : "Work made with people building something real."}</h1>
-            <p>{es ? "Casos y colaboraciones. Mostramos el trabajo, aclaramos nuestra participación y dejamos que la evidencia hable." : "Case studies and collaborations. We show the work, make our role clear, and let the evidence do the talking."}</p>
+            <h1>
+              {es
+                ? "Trabajo hecho con gente que está construyendo algo real."
+                : "Selected work and collaborations."}
+            </h1>
+            {es ? (
+              <p>
+                Casos y colaboraciones. Mostramos el trabajo, aclaramos nuestra
+                participación y dejamos que la evidencia hable.
+              </p>
+            ) : null}
           </div>
         </header>
 
         <section className={styles.index} aria-labelledby="selected-work-title">
           <div className={styles.indexHeading}>
-            <p className="editorial-kicker">{es ? "Trabajo seleccionado" : "Selected Work"}</p>
-            <h2 id="selected-work-title">{es ? "El índice. Ábrelo, tócalo, verifícalo." : "The index. Open it, touch it, verify it."}</h2>
+            <h2 id="selected-work-title">
+              {es ? "Trabajo seleccionado" : "Selected Work"}
+            </h2>
           </div>
+          {renderGrid(selectedWork)}
+        </section>
 
-          <div className={styles.grid}>
-            {quickView.map((study, index) => (
-              <article className={styles.card} key={study.slug}>
-                {study.liveUrl && study.liveAvailable !== false ? (
-                  <a className={styles.cardMain} href={study.liveUrl} target="_blank" rel="noreferrer" aria-label={`${study.name}: open live project`}>
-                    <span className={styles.cardMedia} aria-hidden="true" style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}>
-                      {!study.heroImage ? <span className={styles.cardPlaceholder}>Media coming soon</span> : null}
-                    </span>
-                    <span className={styles.cardCopy}>
-                      <span className={styles.cardKicker}>{String(index + 1).padStart(2, "0")} · {study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}</span>
-                      <span className={styles.cardName}>{study.name}</span>
-                      <span className={styles.cardRole}>{[study.industry, study.lane].filter(Boolean).join(" · ")}</span>
-                    </span>
-                  </a>
-                ) : (
-                  <Link className={styles.cardMain} href={`/work/${study.slug}`} aria-label={`${study.name}: view case details`}>
-                    <span className={styles.cardMedia} aria-hidden="true" style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}>
-                      {!study.heroImage ? <span className={styles.cardPlaceholder}>Media coming soon</span> : null}
-                    </span>
-                    <span className={styles.cardCopy}>
-                      <span className={styles.cardKicker}>{String(index + 1).padStart(2, "0")} · {study.format === "collaboration" ? (es ? "Colaboración" : "Collaboration") : study.format === "product" ? (es ? "Hecho Aquí" : "Built Here") : (es ? "Caso" : "Case Study")}</span>
-                      <span className={styles.cardName}>{study.name}</span>
-                      <span className={styles.cardRole}>{[study.industry, study.lane].filter(Boolean).join(" · ")}</span>
-                    </span>
-                  </Link>
-                )}
-                <div className={styles.cardActions}>
-                  {study.liveUrl && study.liveAvailable !== false ? (
-                    <a className={styles.cardLive} href={study.liveUrl} target="_blank" rel="noreferrer">{es ? "Abrir proyecto" : "Open live project"} <span aria-hidden="true">↗</span></a>
-                  ) : (
-                    <span className={styles.cardLivePending}>{es ? "Próximamente" : "Coming soon"}</span>
-                  )}
-                  <Link className={styles.cardDetails} href={`/work/${study.slug}`}>{es ? "Ver detalles" : "View details"}</Link>
-                </div>
-              </article>
-            ))}
+        <section className={styles.index} aria-labelledby="built-here-title">
+          <div className={styles.indexHeading}>
+            <h2 id="built-here-title">{es ? "Hecho Aquí" : "Built Here"}</h2>
           </div>
+          {renderGrid(builtHere)}
         </section>
 
         <div className={styles.footerCta}>
           <Link className="editorial-link" href="/apply">
-            {es ? "Cuéntanos qué es importante" : "Tell us what's important"} <span aria-hidden="true">↗</span>
+            {es ? "Cuéntanos qué es importante" : "Tell us what's important"}{" "}
+            <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>

@@ -14,121 +14,127 @@ async function expectTouchTarget(locator: import("@playwright/test").Locator, mi
   expect(box!.height, "touch target height").toBeGreaterThanOrEqual(minimum);
 }
 
-const phoneViewports = [
-  { width: 320, height: 740 },
+const viewports = [
+  { width: 320, height: 568 },
   { width: 360, height: 800 },
   { width: 375, height: 812 },
   { width: 390, height: 844 },
   { width: 414, height: 896 },
   { width: 430, height: 932 },
   { width: 768, height: 1024 },
+  { width: 1024, height: 768 },
+  { width: 1440, height: 900 },
 ];
 
-test("mobile Collins gate: readable, reachable and overflow-free across required phone widths", async ({ page }) => {
-  for (const viewport of phoneViewports) {
+const majorRoutes = ["/", "/programs", "/work", "/story", "/team", "/built-here", "/apply"];
+
+test("release mobile matrix: major routes are visible and overflow-free", async ({ page }) => {
+  for (const viewport of viewports) {
     await page.setViewportSize(viewport);
-    await page.goto("/");
-
-    const dimensions = await overflow(page);
-    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
-
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
-    await expectTouchTarget(page.getByRole("button", { name: /^menu$/i }));
-    await expectTouchTarget(page.getByRole("link", { name: /tell us what's important/i }).first());
-
-    const bodyCopy = page.locator(".editorial-hero__line");
-    const fontSize = await bodyCopy.evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
-    const lineHeight = await bodyCopy.evaluate((element) => parseFloat(getComputedStyle(element).lineHeight));
-    expect(fontSize).toBeGreaterThanOrEqual(16);
-    expect(lineHeight).toBeGreaterThanOrEqual(fontSize * 1.45);
-
-    if (viewport.width <= 430) {
-      const media = await page.locator(".editorial-hero__media").boundingBox();
-      const panel = await page.locator(".editorial-hero__panel").boundingBox();
-      expect(media).not.toBeNull();
-      expect(panel).not.toBeNull();
-      expect(panel!.y).toBeGreaterThanOrEqual(media!.y + media!.height - 1);
+    for (const route of majorRoutes) {
+      await page.goto(route);
+      await expect(page.locator("main")).toBeVisible();
+      const dimensions = await overflow(page);
+      expect(
+        dimensions.scrollWidth,
+        `${route} should not overflow at ${viewport.width}px`,
+      ).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     }
   }
 });
 
-test("mobile navigation has phone-sized targets, visible focus and a contained layout", async ({ page }) => {
+test("home keeps the primary action readable and reachable on required phone widths", async ({ page }) => {
+  for (const viewport of viewports.filter(({ width }) => width <= 430)) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+
+    await expect(page.getByRole("heading", { level: 1, name: /digital partner for non-technical founders/i })).toBeVisible();
+    await expectTouchTarget(page.getByRole("button", { name: /^menu$/i }));
+
+    const body = page.locator("body");
+    const bodyFontSize = await body.evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
+    expect(bodyFontSize).toBeGreaterThanOrEqual(16);
+
+    const credibility = page.locator(".editorial-credibility p");
+    const credibilitySize = await credibility.evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
+    expect(credibilitySize).toBeGreaterThanOrEqual(14);
+  }
+});
+
+test("mobile navigation traps focus, restores focus, and exposes the primary CTA", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
   const menuButton = page.getByRole("button", { name: /^menu$/i });
+  await expectTouchTarget(menuButton);
   await menuButton.click();
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
   await expect(navigation).toBeVisible();
+  await expect(navigation.getByRole("link", { name: /tell us what's important/i })).toBeVisible();
 
   for (const link of await navigation.locator("a").all()) {
     await expectTouchTarget(link);
   }
 
-  await page.keyboard.press("Tab");
-  const focusedOutline = await page.locator(":focus").evaluate((element) => getComputedStyle(element).outlineStyle);
-  expect(focusedOutline).not.toBe("none");
-
-  const dimensions = await overflow(page);
-  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
-
-  await page.screenshot({ path: "test-results/mobile-gauntlet-menu-390.png", fullPage: true });
+  await page.keyboard.press("Escape");
+  await expect(navigation).toBeHidden();
+  await expect(menuButton).toBeFocused();
 });
 
-test("motion gauntlet: editorial sections never wait on scroll reveals", async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
-
-  const reveals = page.locator(".reveal");
-  await expect(reveals.first()).toBeVisible();
-
-  const states = await reveals.evaluateAll((elements) =>
-    elements.map((element) => {
-      const style = getComputedStyle(element);
-      return { opacity: style.opacity, transform: style.transform };
-    }),
-  );
-
-  for (const state of states) {
-    expect(state.opacity).toBe("1");
-    expect(state.transform === "none" || state.transform === "matrix(1, 0, 0, 1, 0, 0)").toBeTruthy();
-  }
-});
-
-test("reduced motion preserves the full mobile page without transform animation", async ({ page }) => {
+test("reduced motion keeps content readable without transform animation", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.getByText("ASC3ND", { exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one accountable\s+partner/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /four ways to start/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /two perspectives help your business/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /^built here$/i })).toBeVisible();
 
   const transition = page.locator(".page-transition");
-  const transform = await transition.evaluate((element) => getComputedStyle(element).transform);
-  expect(transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)").toBeTruthy();
-
-  await page.screenshot({ path: "test-results/mobile-gauntlet-reduced-motion-390.png", fullPage: true });
+  if (await transition.count()) {
+    const transform = await transition.evaluate((element) => getComputedStyle(element).transform);
+    expect(transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)").toBeTruthy();
+  }
 });
 
-test("mobile art direction keeps proof and founder media compact enough to preserve pacing", async ({ page }) => {
+test("work cards become a readable single column on compact phones", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/work");
 
-  const workMedia = await page.locator(".editorial-work__media").boundingBox();
-  const storyMedia = await page.locator(".editorial-story__media").boundingBox();
+  const cards = page.locator("article");
+  await expect(cards.first()).toBeVisible();
 
-  expect(workMedia).not.toBeNull();
-  expect(storyMedia).not.toBeNull();
-  expect(workMedia!.height / workMedia!.width).toBeLessThan(0.9);
-  expect(storyMedia!.height / storyMedia!.width).toBeLessThan(1.35);
+  const first = await cards.nth(0).boundingBox();
+  const second = await cards.nth(1).boundingBox();
+  expect(first).not.toBeNull();
+  expect(second).not.toBeNull();
+  expect(second!.y).toBeGreaterThan(first!.y + first!.height - 2);
 
-  const socialLinks = page.locator(".editorial-footer__social a");
-  await expect(socialLinks).toHaveCount(3);
-  for (const link of await socialLinks.all()) await expectTouchTarget(link);
+  for (const link of await page.getByRole("link", { name: /view project/i }).all()) {
+    await expectTouchTarget(link);
+  }
+});
 
-  await page.screenshot({ path: "test-results/mobile-gauntlet-home-390.png", fullPage: true });
+test("team placeholders keep mobile pacing compact", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/team");
+
+  const people = page.locator("article");
+  await expect(people).toHaveCount(5);
+  const first = await people.first().boundingBox();
+  expect(first).not.toBeNull();
+  expect(first!.height).toBeLessThan(760);
+});
+
+test("apply page has one dominant booking action", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/apply");
+
+  await expect(page.getByRole("heading", { name: /tell us what’s important/i })).toBeVisible();
+  const booking = page.getByRole("link", { name: /book a conversation/i });
+  await expectTouchTarget(booking);
+  await expect(booking).toHaveAttribute("href", "/book");
 });

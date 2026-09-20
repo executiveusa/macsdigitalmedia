@@ -181,7 +181,7 @@
 
   .heroVisual {
     order: 1;
-    min-height: 48svh;
+    min-height: 40svh;
   }
 
   .heroCopy {
@@ -212,18 +212,19 @@
   .person .portrait,
   .person:nth-child(even) .portrait {
     order: 1;
-    min-height: 54svh;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .person .copy,
   .person:nth-child(even) .copy { order: 2; }
 
   .copy {
-    min-height: 50svh;
+    min-height: 0;
     padding: 1.3rem .75rem 2.2rem;
   }
 
-  .identity { padding-block: 3rem; }
+  .identity { padding-block: 2rem; }
 
   .personName { font-size: clamp(3.7rem, 17vw, 5.8rem); }
 

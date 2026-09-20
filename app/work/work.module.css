@@ -146,7 +146,30 @@
   }
 
   .cardRole {
-    font-size: 0.76rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .cardDetails {
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cardMedia {
+    aspect-ratio: 3 / 2;
+  }
+
+  .cardName {
+    font-size: clamp(1.55rem, 7vw, 2rem);
   }
 }
 

@@ -4,55 +4,66 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Built Here",
-  description: "Tools and experiments MACS Digital Media built because they helped the team do better work for real businesses.",
+  description: "Products built by MACS Digital Media.",
 };
 
 export default async function BuiltHerePage() {
   const locale = await getServerLocale();
   const es = locale === "es-MX";
 
-  const items = es
-    ? [
-        ["agent-maxx", "01", "Agent MAXX", "Lo construimos para que un dueño pueda conversar con el contexto, las aprobaciones, el avance y la evidencia sin aprender la arquitectura detrás.", "/maxx"],
-        ["buffer-blaster", "02", "Buffer Blaster", "Un motor interno de operaciones de contenido para investigar, producir, evaluar y programar más trabajo sin convertir al cliente en operador del sistema.", "/work/buffer-blaster"],
-        ["pare", "03", "Pare’", "Caso de estudio de Scale listo para completar con la historia del producto, recorrido y resultados documentados.", "/work/pare"],
-        ["posta-studio", "04", "Posta Studio", "Un sistema de personajes UGC desarrollado por Stavarai y preparado como caso de estudio de Scale.", "/work/posta-studio"],
-        ["home-team", "05", "Home Team AI Lab", "Probamos modelos pequeños, locales y abiertos con tareas reales de negocio antes de agregar más complejidad.", "/notes"],
-        ["demos", "06", "Demos", "Piezas cortas de muestra de nuestro pipeline de contenido - etiquetadas como demos, nunca como resultados de clientes.", "/demos"],
-      ]
-    : [
-        ["agent-maxx", "01", "Agent MAXX", "We built it so an owner can work with context, approvals, progress and evidence without learning the architecture underneath.", "/maxx"],
-        ["buffer-blaster", "02", "Buffer Blaster", "An internal content-operations engine for research, production, scoring and scheduling so the client does not have to become the system operator.", "/work/buffer-blaster"],
-        ["pare", "03", "Pare’", "A Scale case study ready for the full product story, walkthrough and documented results.", "/work/pare"],
-        ["posta-studio", "04", "Posta Studio", "A UGC-character system developed by Stavarai and prepared as a Scale case study.", "/work/posta-studio"],
-        ["home-team", "05", "Home Team AI Lab", "We test smaller local and open models with real business tasks before adding more complexity.", "/notes"],
-        ["demos", "06", "Demos", "Short spec pieces from our content pipeline - labeled as demos, never as client results.", "/demos"],
-      ];
+  const items = [
+    {
+      id: "buffer-blaster",
+      name: "Buffer Blaster",
+      line: "Own the system. Keep creating.",
+      support: "An open-source alternative to Buffer, built for businesses that want more control and fewer recurring subscriptions.",
+      href: "/work/buffer-blaster",
+    },
+    {
+      id: "pare",
+      name: "PARÉ",
+      line: "Design without designers.",
+      href: "/work/pare",
+    },
+    {
+      id: "posta-studio",
+      name: "Posta Studio",
+      line: "One calendar. Every channel.",
+      href: "/work/posta-studio",
+    },
+    {
+      id: "foundry",
+      name: "Foundry",
+      line: "Virtual computers for your AI agents.",
+      href: "/work/foundry-fleet",
+    },
+  ] as const;
 
   return (
     <div className="editorial-page editorial-page--blue">
       <div className="editorial-shell">
         <header className="editorial-page__intro">
-          <p className="editorial-kicker">{es ? "Hecho aquí" : "Built Here"}</p>
-          <div>
-            <h1>{es ? "Construimos cosas cuando ayudan al trabajo. No para llenar un catálogo." : "We build things when they make the work better. Not to fill a catalog."}</h1>
-            <p>{es ? "La mayoría de estas herramientas son ventaja interna. Si algún día una merece convertirse en producto, primero tiene que demostrarlo en trabajo real." : "Most of these tools are internal leverage. If one ever deserves to become a product, it has to prove itself in real work first."}</p>
-          </div>
+          <h1>{es ? "Hecho aquí" : "Built Here"}</h1>
         </header>
 
-        {items.map(([id, index, name, line, href]) => (
-          <section className="editorial-built-detail" id={id} key={id}>
-            <span className="editorial-built__index">{index}</span>
-            <h2>{name}</h2>
+        {items.map((item, index) => (
+          <section className="editorial-built-detail" id={item.id} key={item.id}>
+            <span className="editorial-built__index">{String(index + 1).padStart(2, "0")}</span>
+            <h2>{item.name}</h2>
             <div>
-              <p>{line}</p>
-              <p><Link className="editorial-link editorial-link--light" href={href}>See more <span aria-hidden="true">↗</span></Link></p>
+              <p><strong>{item.line}</strong></p>
+              {"support" in item ? <p>{item.support}</p> : null}
+              <p>
+                <Link className="editorial-link editorial-link--light" href={item.href}>
+                  View project <span aria-hidden="true">↗</span>
+                </Link>
+              </p>
             </div>
           </section>
         ))}
 
         <Link className="editorial-link editorial-link--light" href="/apply">
-          {es ? "Hablar de tu negocio" : "Tell us what's important"} <span aria-hidden="true">↗</span>
+          {es ? "Cuéntanos qué es importante" : "Tell us what's important"} <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </div>

@@ -1,40 +1,37 @@
 import type { Metadata } from "next";
-import { ApplicationForm } from "@/components/application-form";
-import { Reveal } from "@/components/motion";
-import { partnerIntakeCopy } from "@/lib/partner-intake-copy";
+import Link from "next/link";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
-  const copy = partnerIntakeCopy[locale].page;
-  return { title: copy.metadataTitle, description: copy.metadataDescription };
+  const es = locale === "es-MX";
+
+  return {
+    title: es ? "Cuéntanos qué es importante" : "Tell us what's important",
+    description: es
+      ? "Empieza la conversación con MACS Digital Media."
+      : "Book a conversation with MACS Digital Media.",
+  };
 }
 
 export default async function ApplyPage() {
   const locale = await getServerLocale();
-  const page = partnerIntakeCopy[locale].page;
+  const es = locale === "es-MX";
 
   return (
     <section className="section application-page" aria-labelledby="application-title">
       <div className="shell application-layout">
-        <Reveal>
-          <div>
-            <p className="eyebrow eyebrow--dark">{page.eyebrow}</p>
-            <h1 id="application-title">{page.title}</h1>
-            <p className="application-intro">{page.intro}</p>
-
-            <div className="intake-notice">
-              <strong>{page.nextLabel}</strong> {page.next}
-            </div>
-
-            <h2>{page.fitTitle}</h2>
-            <ul className="check-list check-list--plain">
-              {page.fitCriteria.map((criterion) => <li key={criterion}>{criterion}</li>)}
-            </ul>
+        <div>
+          <h1 id="application-title">
+            {es ? "Cuéntanos qué es importante." : "Tell us what’s important."}
+          </h1>
+          <div className="route-cta">
+            <Link className="button button--primary" href="/book">
+              {es ? "Empezar la conversación" : "Book a conversation"}{" "}
+              <span className="button-arrow" aria-hidden="true">→</span>
+            </Link>
           </div>
-        </Reveal>
-
-        <ApplicationForm />
+        </div>
       </div>
     </section>
   );

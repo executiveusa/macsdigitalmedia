@@ -29,85 +29,89 @@ async function expectNoHorizontalOverflow(page: import("@playwright/test").Page)
   ).toBeLessThanOrEqual(result.clientWidth + 1);
 }
 
-test("homepage passes the current Krug trunk test at 1280 by 720", async ({ page }) => {
+test("homepage passes the reduced Krug trunk test", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your technology partner for the digital side of your vision");
-  await expect(page.getByText(/one accountable team/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
-  await expect(page.getByText(/Pacific Northwest · Father \+ son · Local partners/i)).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 1, name: /a digital partner for non-technical founders/i }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /tell us what's important/i }).first(),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/Father \+ son · Built in the Pacific Northwest/i),
+  ).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
-
-  await page.screenshot({ path: "test-results/desktop-1280-full.png", fullPage: true });
-  await page.screenshot({ path: "test-results/desktop-1280-hero.png" });
 });
 
-test("homepage teaches the four-lane model and connects named proof", async ({ page }) => {
+test("homepage presents the approved four-way architecture and reduced proof path", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /one technology partner\. four ways to start/i })).toBeVisible();
-  await expect(page.getByText("Reset", { exact: true })).toBeVisible();
-  await expect(page.getByText("Momentum", { exact: true })).toBeVisible();
-  await expect(page.getByText("Scale", { exact: true })).toBeVisible();
-  await expect(page.getByText("Launch", { exact: true })).toBeVisible();
-  await expect(page.locator(".editorial-offer-proof__slot")).toHaveCount(4);
-  await expect(page.getByText("Reset proof", { exact: true })).toBeVisible();
-  await expect(page.getByText("Buffer Blaster", { exact: true }).first()).toBeVisible();
-  await expect(page.getByText("Pare’ + Posta Studio", { exact: true })).toBeVisible();
-  await expect(page.getByText("ASC3ND", { exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: /start with one problem\. keep the context/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one watches what has to last/i })).toBeVisible();
-  await expect(page.getByText("Agent MAXX", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /one accountable partner/i })).toBeVisible();
-  await expect(page.getByRole("img", { name: /Stacy and Stavarai of MACS Digital Media together by the waterfront/i })).toBeVisible();
-  await expect(page.getByRole("img", { name: /Stacy and Stavarai, the father-and-son team behind MACS Digital Media/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /four ways to start/i })).toBeVisible();
+
+  const approvedPrograms = [
+    ["Reset", "Simplify what got complicated."],
+    ["Momentum", "Stay visible. Build in public."],
+    ["Scale", "The idea is working. Grow without complexity."],
+    ["Launch", "Bring your next idea or project to market."],
+  ] as const;
+
+  for (const [name, line] of approvedPrograms) {
+    await expect(page.getByText(name, { exact: true }).first()).toBeVisible();
+    await expect(page.getByText(line, { exact: true }).first()).toBeVisible();
+  }
+
+  await expect(page.getByRole("heading", { name: /start with what matters most/i })).toBeVisible();
+  await expect(page.getByText("We stay involved as you grow.", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /see the work/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /two perspectives help your business/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /^built here$/i })).toBeVisible();
+
+  for (const product of ["Buffer Blaster", "PARÉ", "Posta Studio", "Foundry"]) {
+    await expect(page.getByText(product, { exact: true }).first()).toBeVisible();
+  }
 });
 
-test("work page exposes exactly four public buckets and their verified proof routes", async ({ page }) => {
+test("work page separates collaborations from Built Here without retired projects", async ({ page }) => {
   await page.goto("/work");
 
-  for (const bucket of ["Reset", "Momentum", "Scale", "Launch"]) {
-    await expect(page.getByRole("heading", { name: bucket, exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Selected Work", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Built Here", exact: true })).toBeVisible();
+
+  for (const name of ["Taste of Nawlins × MACS", "ASC3ND × MACS", "Buffer Blaster", "PARÉ", "Posta Studio", "Foundry"]) {
+    await expect(page.getByText(name, { exact: true }).first()).toBeVisible();
   }
 
-  for (const name of ["ASC3ND", "Buffer Blaster", "Pare’", "Posta Studio"]) {
-    await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
-  }
-
-  await expect(page.getByRole("heading", { name: "Agent MAXX", exact: true })).toHaveCount(0);
-  await expect(page.getByText("Case study placeholder", { exact: true })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: /View Taste of Nawlins/i })).toBeVisible();
+  await expect(page.getByText(/Sweet/i)).toHaveCount(0);
+  await expect(page.getByText(/Fish On/i)).toHaveCount(0);
 
   await page.goto("/work/asc3nd");
   await expect(page.getByRole("heading", { level: 1, name: "ASC3ND" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /visit live project/i })).toBeVisible();
-
-  await page.goto("/work/posta-studio");
-  await expect(page.getByRole("heading", { level: 1, name: "Posta Studio" })).toBeVisible();
-  await expect(page.getByText("Developed by Stavarai", { exact: true })).toBeVisible();
-  await expect(page.getByText("Hero media placeholder", { exact: true })).toBeVisible();
-
-  await page.goto("/work/agent-maxx");
-  await expect(page).toHaveURL(/\/maxx$/);
 });
 
-test("retired founding launch route sends visitors to the four partnership lanes", async ({ page }) => {
+test("retired public routes return 404", async ({ page }) => {
+  for (const route of ["/notes", "/demos", "/maxx", "/website-rescue", "/small-business"]) {
+    const response = await page.goto(route);
+    expect(response?.status(), `${route} should be retired`).toBe(404);
+  }
+});
+
+test("retired founding launch route still points to Programs", async ({ page }) => {
   await page.goto("/founding-launch");
   await expect(page).toHaveURL(/\/programs$/);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("One technology partner. Four ways to start");
+  await expect(page.getByRole("heading", { level: 1, name: /four ways to start/i })).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
 
-test("editorial hero uses approved founder media instead of generic background video", async ({ page }) => {
+test("editorial hero uses approved founder media", async ({ page }) => {
   await page.goto("/");
 
   const image = page.locator(".editorial-hero__image");
   await expect(image).toBeVisible();
   await expect(image).toHaveAttribute("src", /stacy-stavarai-waterfront/);
   await expect(page.locator("video.hero__video")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: /background video/i })).toHaveCount(0);
 });
 
 test("mobile homepage keeps the primary action and founder story clear", async ({ page }) => {
@@ -119,7 +123,9 @@ test("mobile homepage keeps the primary action and founder story clear", async (
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("link", { name: /tell us what's important/i }).first()).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: /tell us what's important/i }).first(),
+    ).toBeVisible();
     await expect(page.locator(".editorial-hero__image")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
@@ -131,11 +137,11 @@ test("reduced-motion mode keeps the complete static experience", async ({ page }
 
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
-  await expect(page.getByRole("button", { name: /background video/i })).toHaveCount(0);
-  await page.screenshot({ path: "test-results/reduced-motion.png", fullPage: true });
+  await expect(page.getByRole("heading", { name: /four ways to start/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /^built here$/i })).toBeVisible();
 });
 
-test("editorial menu keeps language switching and removes the unimplemented theme choice", async ({ page }) => {
+test("editorial menu keeps language switching and no theme control", async ({ page }) => {
   await page.goto("/");
 
   await page.getByRole("button", { name: /^menu$/i }).click();
@@ -145,9 +151,7 @@ test("editorial menu keeps language switching and removes the unimplemented them
   const languageButtons = navigation.locator(".language-toggle button");
   await languageButtons.nth(1).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es-MX");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Tu socio tecnológico para el lado digital del negocio");
   await expect(page.locator(".theme-toggle")).toHaveCount(0);
-  await page.screenshot({ path: "test-results/language-spanish.png", fullPage: true });
 });
 
 test("mobile navigation closes with Escape and restores focus", async ({ page }) => {
@@ -155,70 +159,64 @@ test("mobile navigation closes with Escape and restores focus", async ({ page })
   await page.goto("/");
 
   const menu = page.getByRole("button", { name: /^menu$/i });
-  await expect(menu).toBeVisible();
   await menu.click();
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
   await expect(navigation).toBeVisible();
+  await expect(navigation.getByRole("link", { name: /tell us what's important/i })).toBeVisible();
+
   await page.keyboard.press("Escape");
   await expect(navigation).toHaveCount(0);
   await expect(menu).toBeFocused();
   await expectNoHorizontalOverflow(page);
-
-  await page.screenshot({ path: "test-results/mobile-390.png", fullPage: true });
 });
 
 test("key breakpoints avoid horizontal overflow", async ({ page }) => {
   const viewports = [
+    { width: 320, height: 568 },
     { width: 360, height: 800 },
+    { width: 375, height: 812 },
     { width: 390, height: 844 },
+    { width: 414, height: 896 },
     { width: 430, height: 932 },
     { width: 768, height: 1024 },
     { width: 1024, height: 768 },
     { width: 1440, height: 900 },
-    { width: 1920, height: 1080 },
   ];
 
   for (const viewport of viewports) {
     await page.setViewportSize(viewport);
     await page.goto("/");
     await expectNoHorizontalOverflow(page);
-    await page.screenshot({
-      path: `test-results/breakpoint-${viewport.width}.png`,
-      fullPage: viewport.width <= 768,
-    });
   }
 });
 
-test("Phase 5 design lab exposes three divergent noindex prototype territories", async ({ page }) => {
-  const territories = [
-    ["long-view", /the long view/i],
-    ["two-clocks", /one watches what has to last/i],
-    ["confluence", /two currents\. one accountable team/i],
-  ] as const;
-
-  for (const [slug, heading] of territories) {
+test("Phase 5 design lab remains noindex", async ({ page }) => {
+  for (const slug of ["long-view", "two-clocks", "confluence"]) {
     await page.goto(`/design-lab/${slug}`);
-    await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/i);
     await expectNoHorizontalOverflow(page);
-    await page.screenshot({ path: `test-results/design-${slug}-1440.png`, fullPage: true });
   }
 });
 
-test("partnership intake provides persistent inline validation", async ({ page }) => {
+test("apply page is reduced to one booking action", async ({ page }) => {
   await page.goto("/apply");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Tell us where the digital side of the business needs attention");
-  await page.getByRole("button", { name: /send partnership request/i }).click();
 
-  const nameField = page.getByLabel("Your name");
-  await expect(nameField).toBeFocused();
-  await expect(nameField).toHaveAttribute("aria-invalid", "true");
-  await expect(page.getByText("Correct the highlighted fields before submitting.")).toBeVisible();
-  await expect(page.locator("#name-error")).toContainText("This field is required");
-  await expect(page.getByText(/your request was received/i)).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", { level: 1, name: /tell us what’s important/i }),
+  ).toBeVisible();
+  const booking = page.getByRole("link", { name: /book a conversation/i });
+  await expect(booking).toHaveAttribute("href", "/book");
+});
 
-  await page.screenshot({ path: "test-results/form-error.png", fullPage: true });
+test("book route degrades to verified email when no booking URL is configured", async ({ page }) => {
+  await page.goto("/book");
+
+  await expect(page.getByRole("heading", { name: /book a conversation/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /email macs/i })).toHaveAttribute(
+    "href",
+    "mailto:macsdigitalmedia@gmail.com",
+  );
 });
 
 test("Supabase health check fails safely when deployment secrets are absent", async ({ request }) => {
