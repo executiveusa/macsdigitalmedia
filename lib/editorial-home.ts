@@ -10,21 +10,27 @@ type EditorialHome = {
   heroLine: string;
   primaryCta: string;
   credibility: string;
+  programsLabel: string;
   programsTitle: string;
   programs: Program[];
   partnershipBridgeTitle: string;
   partnershipBridgeLine: string;
   workLabel: string;
   workTitle: string;
+  asc3ndTitle: string;
+  asc3ndLine: string;
   workCta: string;
   storyLabel: string;
   storyTitle: string;
   storyLine: string;
   storyCta: string;
+  builtLabel: string;
   builtTitle: string;
   builtItems: BuiltItem[];
   builtCta: string;
+  fitLabel: string;
   fitTitle: string;
+  fitLine: string;
   fitCta: string;
 };
 
@@ -37,6 +43,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     heroLine: "",
     primaryCta: "Tell us what's important",
     credibility: "Father + son · Built in the Pacific Northwest",
+    programsLabel: "Programs",
     programsTitle: "Four ways to start.",
     programs: [
       { name: "Reset", line: "Simplify what got complicated.", href: "/programs#reset" },
@@ -48,11 +55,14 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     partnershipBridgeLine: "We stay involved as you grow.",
     workLabel: "Proof before promise.",
     workTitle: "See the work.",
+    asc3ndTitle: "ASC3ND",
+    asc3ndLine: "Building the public presence and operational foundation for a growing nonprofit.",
     workCta: "View selected work",
     storyLabel: "Father + son",
     storyTitle: "Two perspectives help your business stay relevant and adapt to changing times.",
     storyLine: "One brings the long view. One stays close to what’s changing now.",
     storyCta: "Our story",
+    builtLabel: "Built Here",
     builtTitle: "Built Here",
     builtItems: [
       { name: "Buffer Blaster", line: "Own the system. Keep creating.", href: "/work/buffer-blaster" },
@@ -61,7 +71,9 @@ export const editorialHome: Record<Locale, EditorialHome> = {
       { name: "Foundry", line: "Virtual computers for your AI agents.", href: "/work/foundry-fleet" },
     ],
     builtCta: "View Built Here",
+    fitLabel: "Partnership",
     fitTitle: "Tell us what's important.",
+    fitLine: "",
     fitCta: "Book a conversation",
   },
   "es-MX": {
@@ -72,6 +84,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     heroLine: "Sitio web, contenido, sistemas y seguimiento: planeados y mejorados por un solo equipo responsable.",
     primaryCta: "Cuéntanos qué está atorado",
     credibility: "Noroeste del Pacífico · Padre + hijo · Socios locales",
+    programsLabel: "Cómo colaboramos",
     programsTitle: "Un socio tecnológico. Cuatro formas de empezar.",
     programs: [
       { name: "Reset", line: "Arregla lo que está regado: sitio web, herramientas, proveedores y flujos rotos.", href: "/programs#reset" },
@@ -83,11 +96,14 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     partnershipBridgeLine: "Conserva el contexto conforme cambia el negocio.",
     workLabel: "Prueba",
     workTitle: "Prueba antes que promesas.",
+    asc3ndTitle: "ASC3ND",
+    asc3ndLine: "Un sitio público para una organización sin fines de lucro.",
     workCta: "Ver el trabajo",
     storyLabel: "Padre + hijo",
     storyTitle: "Uno cuida lo que tiene que durar. El otro se mantiene cerca de lo que está cambiando.",
     storyLine: "Dos perspectivas para mantener el negocio relevante.",
     storyCta: "Nuestra historia",
+    builtLabel: "Hecho aquí",
     builtTitle: "Hecho aquí",
     builtItems: [
       { name: "Buffer Blaster", line: "Un motor de operaciones de contenido.", href: "/work/buffer-blaster" },
@@ -96,7 +112,9 @@ export const editorialHome: Record<Locale, EditorialHome> = {
       { name: "Foundry", line: "Computadoras virtuales para agentes de IA.", href: "/work/foundry-fleet" },
     ],
     builtCta: "Ver lo que construimos",
+    fitLabel: "Colaboración",
     fitTitle: "Cuéntanos qué es importante.",
+    fitLine: "",
     fitCta: "Reservar una conversación",
   },
 };
