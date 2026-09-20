@@ -8,11 +8,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
   const home = editorialHome[locale];
-
-  return {
-    title: home.metadataTitle,
-    description: home.metadataDescription,
-  };
+  return { title: home.metadataTitle, description: home.metadataDescription };
 }
 
 const organizationSchema = {
@@ -22,31 +18,10 @@ const organizationSchema = {
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
   description:
-    "A Pacific Northwest father-and-son technology partner helping owner-led businesses connect the digital side of the business.",
-  areaServed: {
-    "@type": "State",
-    name: "Washington",
-  },
+    "A Pacific Northwest father-and-son digital partner for non-technical founders.",
+  areaServed: { "@type": "State", name: "Washington" },
 };
 
-const proofImages: Record<string, string> = {
-  Reset: "/work/taste-of-nawlins-hero.webp",
-  Momentum: "/work/buffer-blaster-hero.webp",
-  Scale: "/work/posta-studios-hero.webp",
-  Launch: "/work/asc3nd-hero.webp",
-};
-
-const proofLinks: Record<string, Array<{ label: string; href: string }>> = {
-  Reset: [{ label: "View Taste of Nawlins", href: "/work/taste-of-nawlins" }],
-  Momentum: [{ label: "View Buffer Blaster", href: "/work/buffer-blaster" }],
-  Scale: [
-    { label: "View Pare’", href: "/work/pare" },
-    { label: "View Posta Studio", href: "/work/posta-studio" },
-  ],
-  Launch: [{ label: "View ASC3ND", href: "/work/asc3nd" }],
-};
-
-// HERO ASSET: the directed photo drops in here. Add the new file under public/media/founders/ and change only this path.
 const HERO_IMAGE = "/media/founders/stacy-stavarai-waterfront-graded.webp";
 
 export default async function HomePage() {
@@ -76,7 +51,7 @@ export default async function HomePage() {
           <div className="editorial-hero__content">
             <p className="editorial-kicker">MACS Digital Media</p>
             <h1 id="editorial-hero-title">{home.heroTitle}</h1>
-            <p className="editorial-hero__line">{home.heroLine}</p>
+            {home.heroLine ? <p className="editorial-hero__line">{home.heroLine}</p> : null}
             <Link className="editorial-link editorial-link--light" href="/apply">
               {home.primaryCta} <span aria-hidden="true">↗</span>
             </Link>
@@ -85,20 +60,15 @@ export default async function HomePage() {
       </section>
 
       <section className="editorial-credibility" aria-label={home.credibility}>
-        <div className="editorial-shell">
-          <p>{home.credibility}</p>
-        </div>
+        <div className="editorial-shell"><p>{home.credibility}</p></div>
       </section>
 
       <Reveal>
         <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--programs">
-              <p className="editorial-kicker">{home.programsLabel}</p>
               <h2 id="programs-title">{home.programsTitle}</h2>
-              <p className="editorial-heading__intro">{home.programsIntro}</p>
             </div>
-
             <div className="editorial-rows">
               {home.programs.map((program) => (
                 <Link className="editorial-row" href={program.href} key={program.name}>
@@ -108,31 +78,6 @@ export default async function HomePage() {
                 </Link>
               ))}
             </div>
-
-            <div className="editorial-offer-proof" aria-label={locale === "es-MX" ? "Prueba por programa" : "Proof by partnership lane"}>
-              {home.programs.map((program, index) => {
-                const links = proofLinks[program.name];
-                const image = proofImages[program.name];
-                return (
-                  <div className="editorial-offer-proof__slot" key={`${program.name}-proof`}>
-                    <div className="editorial-offer-proof__media" aria-hidden="true">
-                      {image ? <img src={image} alt="" loading="lazy" /> : null}
-                      <span>0{index + 1}</span>
-                      <small>{locale === "es-MX" ? "Caso verificable" : "Verifiable case"}</small>
-                    </div>
-                    <div className="editorial-offer-proof__copy">
-                      <strong>{program.proofLabel}</strong>
-                      <span>{program.proofHint}</span>
-                      <div className="editorial-offer-proof__links">
-                        {links.map((item) => (
-                          <Link href={item.href} key={item.href}>{item.label} <span aria-hidden="true">↗</span></Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </section>
       </Reveal>
@@ -140,7 +85,6 @@ export default async function HomePage() {
       <Reveal>
         <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
           <div className="editorial-shell editorial-partnership-bridge__inner">
-            <p className="editorial-kicker">{home.partnershipBridgeLabel}</p>
             <div>
               <h2 id="partnership-bridge-title">{home.partnershipBridgeTitle}</h2>
               <p>{home.partnershipBridgeLine}</p>
@@ -156,14 +100,6 @@ export default async function HomePage() {
               <p className="editorial-kicker">{home.workLabel}</p>
               <h2 id="work-title">{home.workTitle}</h2>
             </div>
-
-            <Link className="editorial-work__secondary" href="/built-here#agent-maxx">
-              <span className="editorial-work__index">02</span>
-              <strong>{home.clientZeroTitle}</strong>
-              <span>{home.clientZeroLine}</span>
-              <span aria-hidden="true">↗</span>
-            </Link>
-
             <Link className="editorial-link" href="/work">
               {home.workCta} <span aria-hidden="true">↗</span>
             </Link>
@@ -198,7 +134,6 @@ export default async function HomePage() {
         <section className="editorial-section editorial-built" aria-labelledby="built-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--wide">
-              <p className="editorial-kicker">{home.builtLabel}</p>
               <h2 id="built-title">{home.builtTitle}</h2>
             </div>
             <div className="editorial-built__grid">
@@ -221,9 +156,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="editorial-fit" aria-labelledby="fit-title">
           <div className="editorial-shell editorial-fit__inner">
-            <p className="editorial-kicker">{home.fitLabel}</p>
             <h2 id="fit-title">{home.fitTitle}</h2>
-            <p>{home.fitLine}</p>
             <Link className="editorial-link editorial-link--light" href="/apply">
               {home.fitCta} <span aria-hidden="true">↗</span>
             </Link>
