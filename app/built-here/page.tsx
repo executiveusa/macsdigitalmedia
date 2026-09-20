@@ -18,7 +18,6 @@ export default async function BuiltHerePage() {
         ["pare", "03", "Pare’", "Caso de estudio de Scale listo para completar con la historia del producto, recorrido y resultados documentados.", "/work/pare"],
         ["posta-studio", "04", "Posta Studio", "Un sistema de personajes UGC desarrollado por Stavarai y preparado como caso de estudio de Scale.", "/work/posta-studio"],
         ["home-team", "05", "Home Team AI Lab", "Probamos modelos pequeños, locales y abiertos con tareas reales de negocio antes de agregar más complejidad.", "/notes"],
-        ["demos", "06", "Demos", "Piezas cortas de muestra de nuestro pipeline de contenido - etiquetadas como demos, nunca como resultados de clientes.", "/demos"],
       ]
     : [
         ["agent-maxx", "01", "Agent MAXX", "We built it so an owner can work with context, approvals, progress and evidence without learning the architecture underneath.", "/maxx"],
@@ -26,7 +25,6 @@ export default async function BuiltHerePage() {
         ["pare", "03", "Pare’", "A Scale case study ready for the full product story, walkthrough and documented results.", "/work/pare"],
         ["posta-studio", "04", "Posta Studio", "A UGC-character system developed by Stavarai and prepared as a Scale case study.", "/work/posta-studio"],
         ["home-team", "05", "Home Team AI Lab", "We test smaller local and open models with real business tasks before adding more complexity.", "/notes"],
-        ["demos", "06", "Demos", "Short spec pieces from our content pipeline - labeled as demos, never as client results.", "/demos"],
       ];
 
   return (
