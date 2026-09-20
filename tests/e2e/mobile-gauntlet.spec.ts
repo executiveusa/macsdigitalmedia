@@ -23,6 +23,7 @@ const viewports = [
   { width: 430, height: 932 },
   { width: 768, height: 1024 },
   { width: 1024, height: 768 },
+  { width: 1440, height: 900 },
 ];
 
 const majorRoutes = ["/", "/programs", "/work", "/story", "/team", "/built-here", "/apply"];
