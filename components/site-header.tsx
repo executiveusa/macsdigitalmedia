@@ -134,6 +134,13 @@ export function SiteHeader() {
                 ))}
               </div>
               <div className="editorial-menu__meta">
+                <Link
+                  className="editorial-menu__mobile-cta"
+                  href="/apply"
+                  onClick={() => setOpen(false)}
+                >
+                  {fitLabel} ↗
+                </Link>
                 <PreferenceControls showTheme={false} />
               </div>
             </div>
