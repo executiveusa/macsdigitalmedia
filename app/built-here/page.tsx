@@ -43,7 +43,7 @@ export default async function BuiltHerePage() {
     <div className="editorial-page editorial-page--blue">
       <div className="editorial-shell">
         <header className="editorial-page__intro">
-          <p className="editorial-kicker">{es ? "Hecho aquí" : "Built Here"}</p>
+          <h1>{es ? "Hecho aquí" : "Built Here"}</h1>
         </header>
 
         {items.map((item, index) => (
