@@ -129,12 +129,12 @@ test("team placeholders keep mobile pacing compact", async ({ page }) => {
   expect(first!.height).toBeLessThan(760);
 });
 
-test("apply page has one dominant booking action", async ({ page }) => {
+test("apply page keeps the reduced intake touch-safe", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/apply");
 
   await expect(page.getByRole("heading", { name: /tell us what’s important/i })).toBeVisible();
-  const booking = page.getByRole("link", { name: /book a conversation/i });
-  await expectTouchTarget(booking);
-  await expect(booking).toHaveAttribute("href", "/book");
+  await expectTouchTarget(page.getByRole("button", { name: /send it/i }));
+  await expect(page.getByLabel(/what do you need help with/i)).toBeVisible();
+  await expect(page.getByLabel(/what’s most important right now/i)).toBeVisible();
 });
