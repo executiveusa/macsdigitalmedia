@@ -97,7 +97,7 @@ export const caseStudies: CaseStudy[] = [
     format: "product",
     industry: "Creative Infrastructure",
     headline: "A content engine built to keep momentum moving.",
-    liveUrl: "https://buffer-blaster.31.220.58.212.sslip.io/",
+    liveUrl: "https://buffer-blaster.netlify.app/",
     heroImage: "/work/buffer-blaster-hero.webp",
     summary:
       "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
