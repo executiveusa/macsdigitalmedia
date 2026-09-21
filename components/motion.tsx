@@ -10,7 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useRef, type CSSProperties, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
@@ -111,7 +111,7 @@ export function Reveal({
         "--motion-heading-y": headingY,
         "--motion-copy-y": copyY,
         "--motion-media-y": mediaY,
-      } as CSSProperties}
+      } as unknown as import("framer-motion").MotionStyle}
       transition={{ delay }}
     >
       {children}
