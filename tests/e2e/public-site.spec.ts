@@ -259,7 +259,7 @@ test("visual review artifacts cover phone, tablet and desktop", async ({ page })
     { width: 1440, height: 900, label: "desktop" },
   ] as const;
 
-  for (const route of publicRoutes) {
+  for (const route of [...publicRoutes, ...productRoutes]) {
     for (const viewport of proofViewports) {
       await page.setViewportSize(viewport);
       await page.goto(route, { waitUntil: "networkidle" });
