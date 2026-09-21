@@ -67,7 +67,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "A public website with an operating system behind it.",
     summary:
       "ASC3ND is our Launch example: a public-facing Next.js site connected to reusable operational systems for onboarding, opportunities, campaigns, approvals and organizational context.",
-    liveUrl: "https://asc3nd-org.31.220.58.212.sslip.io/",
+    liveUrl: "https://asc3nd-org.netlify.app/",
     heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {
