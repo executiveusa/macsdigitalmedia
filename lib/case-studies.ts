@@ -83,11 +83,6 @@ export const caseStudies: CaseStudy[] = [
         body: "The website is the visible layer. The larger idea is a launch system that can continue adding useful tools without forcing the organization to rebuild its digital foundation every time something new is introduced.",
       },
     ],
-    placeholders: [
-      "Before/after or early concept material",
-      "Operating-system links beyond the public site",
-      "Documented result or approved testimonial",
-    ],
   },
   {
     slug: "buffer-blaster",
