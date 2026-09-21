@@ -435,6 +435,12 @@ body.menu-open {
   object-fit: cover;
 }
 
+.editorial-hero__copy-motion {
+  width: 100%;
+  transform-origin: 0 100%;
+  will-change: transform, opacity;
+}
+
 
 /* Motion audit: consistent tactile feedback across interactive surfaces. */
 .editorial-link,
@@ -1076,6 +1082,7 @@ body.menu-open {
 
   .reveal,
   .editorial-hero__motion-layer,
+  .editorial-hero__copy-motion,
   .motion-scene .editorial-kicker,
   .motion-scene h1,
   .motion-scene h2,
