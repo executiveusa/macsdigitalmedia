@@ -111,6 +111,8 @@ body.menu-open {
 
 .reveal {
   width: 100%;
+  transform-origin: 50% 18%;
+  will-change: transform, opacity;
 }
 
 .skip-link {
@@ -388,6 +390,23 @@ body.menu-open {
 
 .hero {
   background: var(--macs-basalt);
+}
+
+.editorial-hero__motion-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.editorial-hero__motion-layer {
+  position: absolute;
+  inset: -4%;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.editorial-hero__motion-layer .editorial-hero__image {
+  object-fit: cover;
 }
 
 .hero__poster,
@@ -959,6 +978,11 @@ body.menu-open {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal,
+  .editorial-hero__motion-layer {
+    will-change: auto;
   }
 
   *,
