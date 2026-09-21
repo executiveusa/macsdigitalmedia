@@ -68,11 +68,6 @@ export function Reveal({
     [0, 0.34, 1],
     reduceMotion ? [0, 0, 0] : [distance, 0, exitLift],
   );
-  const scale = useTransform(
-    progress,
-    [0, 0.34, 1],
-    reduceMotion ? [1, 1, 1] : [0.982, 1, 0.998],
-  );
   const opacity = useTransform(
     progress,
     [0, 0.18, 1],
@@ -105,7 +100,6 @@ export function Reveal({
       className={className ? `reveal motion-scene ${className}` : "reveal motion-scene"}
       style={{
         y,
-        scale,
         opacity,
         "--motion-kicker-y": kickerY,
         "--motion-heading-y": headingY,
