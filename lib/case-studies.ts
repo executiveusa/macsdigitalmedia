@@ -231,31 +231,32 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "foundry-fleet",
     lane: "Scale",
-    name: "Foundry Fleet",
+    name: "Foundry",
     visibility: "internal",
     format: "product",
     industry: "Internal Tooling",
-    headline: "One control room for every agent computer.",
+    headline: "Give your AI agent its own computer.",
     summary:
-      "Foundry Fleet is the private console MACS uses to see its agent computers live - fleet status, audit trail and product state in one place. The public page confirms it is deployed; the console itself stays behind a key.",
+      "Foundry gives AI agents a secure computer they can use to browse websites, operate software, fill forms, gather information, and complete repetitive digital work for your business.",
     liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
     heroImage: "/work/foundry-fleet-hero.webp",
     sections: [
       {
-        title: "Why it exists",
-        body: "A fleet of agent machines doing real work needs one live view: what is up, what is down, what changed, who did it. Without it, operations run on guesswork.",
+        title: "The problem",
+        body: "Most AI can answer questions, but it cannot actually do the work inside the websites and software your business uses every day. People still have to copy information, click through dashboards, fill forms, move files, and repeat the same steps over and over. AI agents in Claude and ChatGPT are often blocked from finding public information, transcripts, and other data when scraping.",
       },
       {
-        title: "What MACS built",
-        body: "A control room with Fleet, Audit and Product views over every agent computer - the same discipline we bring to client systems, applied to our own infrastructure first.",
+        title: "Why you would use one",
+        body: "If your team spends hours doing repetitive work in a browser, Foundry can take over the routine parts. Your team stays in control of sensitive actions while the agent handles the visual clicking, searching, checking, and data gathering.",
       },
       {
-        title: "What's live",
-        body: "The console is deployed and answers live; it requires an API key because it is private infrastructure. The public page is the proof it exists, not a demo.",
+        title: "What it can do",
+        body: "Basically anything a human can do with a browser, Foundry can perform for you. Multiple agents and browsers can be used at the same time. It can use software, edit videos, organize files, search websites and gather information, use dashboards and browser-based software, watch websites for changes, fill repetitive forms and update systems, and install complex agents or software for you.",
       },
-    ],
-    placeholders: [
-      "Approved interior capture of the fleet view",
+      {
+        title: "Ownership / offer",
+        body: "Your agent. Its own computer. Your rules. MACS installs and configures Foundry around the work your company actually needs done. You decide what it can access, what it can do automatically, and where human approval is required.",
+      },
     ],
   },
 ];
