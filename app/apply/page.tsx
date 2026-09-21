@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LeadIntakeForm } from "@/components/lead-intake-form";
+import { ApplicationForm } from "@/components/application-form";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,7 +31,7 @@ export default async function ApplyPage() {
               : "You don’t need a technical brief. Tell us what you’re trying to accomplish and what’s getting in the way."}
           </p>
         </header>
-        <LeadIntakeForm />
+        <ApplicationForm />
       </div>
     </section>
   );
