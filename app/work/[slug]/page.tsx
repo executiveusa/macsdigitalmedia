@@ -53,7 +53,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           <div
-            className={`editorial-case-study-hero__media${study.slug === "buffer-blaster" ? " editorial-case-study-hero__media--contain" : ""}`}
+            className={`editorial-case-study-hero__media${isInternal ? " editorial-case-study-hero__media--contain" : ""}`}
             role={study.heroImage ? "img" : undefined}
             aria-label={study.heroImage ? `${study.name} project hero` : undefined}
             style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
