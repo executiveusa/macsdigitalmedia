@@ -146,6 +146,36 @@ export function HeroParallax({ children }: { children: ReactNode }) {
   );
 }
 
+export function HeroCopyMotion({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 96,
+    damping: 30,
+    mass: 0.52,
+    restDelta: 0.001,
+  });
+
+  const y = useTransform(progress, [0, 1], reduceMotion ? [0, 0] : [0, -42]);
+  const scale = useTransform(progress, [0, 1], reduceMotion ? [1, 1] : [1, 0.985]);
+  const opacity = useTransform(progress, [0, 0.82, 1], reduceMotion ? [1, 1, 1] : [1, 0.94, 0.82]);
+
+  return (
+    <m.div
+      ref={ref}
+      className="editorial-hero__copy-motion"
+      style={{ y, scale, opacity }}
+    >
+      {children}
+    </m.div>
+  );
+}
+
 export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
   const reduceMotion = useReducedMotion();
 
