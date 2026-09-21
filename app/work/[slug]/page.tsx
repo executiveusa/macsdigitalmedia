@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
@@ -105,7 +106,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <div className="editorial-case-study-evidence__grid">
               {study.evidence.map((item) => (
                 <figure key={item.image}>
-                  <img src={item.image} alt={item.caption} loading="lazy" />
+                  <Image src={item.image} alt={item.caption} width={1600} height={1000} sizes="(max-width: 800px) 100vw, 88vw" />
                   <figcaption>{item.caption}</figcaption>
                 </figure>
               ))}
