@@ -100,7 +100,7 @@ export function ApplicationForm() {
     if (value("name").length < 2) errors.name = c.required;
     const email = value("email");
     if (!email) errors.email = c.required;
-    else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) errors.email = c.emailInvalid;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = c.emailInvalid;
     if (!value("need")) errors.need = c.required;
     if (value("context").length < 10) errors.context = c.required;
     if (!value("timing")) errors.timing = c.required;
