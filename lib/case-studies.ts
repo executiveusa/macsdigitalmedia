@@ -103,36 +103,13 @@ export const caseStudies: CaseStudy[] = [
       "Buffer Blaster is an internal MACS product for creating UGC ads and media at scale without expensive lock in subscriptions. It belongs to the MAXX Suite and is our open source alternative we built for our clients. Pay once, we install it, you own it forever. No subscriptions needed.",
     sections: [
       {
-        title: "The problem",
-        body: "Content work drowns in disconnected tools: research in one place, scripts in another, generation somewhere else, results nowhere. Teams ship volume without learning what works, and every round starts from zero.",
+        title: "Create more. Own the system.",
+        body: "Buffer Blaster helps your company create UGC ads and social media at scale without stacking expensive subscriptions.",
       },
       {
-        title: "The constraints",
-        body: "The system had to move fast without removing judgment. Paid generation, publishing and activation stay explicit human decisions with limits enforced on the server, and every consequential job keeps its evidence: plan, rights, approval, cost and result.",
+        title: "We install it. You keep it.",
+        body: "MACS installs Buffer Blaster for your company. You pay once, own the system, and keep control of your workflow.",
       },
-      {
-        title: "What MACS built",
-        body: "One governed loop runs the work: Learn (product truth, customer pain, brand context, the angles worth testing), Shape (scripts, concepts, controlled variations), Make (creative routed through the right generation path only after plan, rights and cost are clear), then Learn again. The Studio is the doorway; approved agents call the same workflow over REST, MCP and CLI.",
-      },
-      {
-        title: "Real outputs",
-        body: "The public beta site is live, and the two spec ads on our demos page - ScuffReset and Pristine - were produced end to end by this pipeline: hook, presenter, product footage, captions and call to action.",
-      },
-    ],
-    evidence: [
-      {
-        image: "/work/bb-evidence-loop.webp",
-        caption: "The governed loop, live on the public site: Learn, Shape, Make, Learn again.",
-      },
-      {
-        image: "/work/bb-evidence-governance.webp",
-        caption: "Automation removes busywork, not judgment. Every consequential job keeps its evidence: plan, rights, approval, cost, result.",
-      },
-    ],
-    placeholders: [
-      "Workflow walkthrough film",
-      "Example campaign",
-      "Documented output/result",
     ],
   },
   {
