@@ -148,9 +148,9 @@ export const caseStudies: CaseStudy[] = [
     credit: "Developed by Stavarai",
     liveUrl: "https://postastudios.31.220.58.212.sslip.io/",
     heroImage: "/work/posta-studios-hero.webp",
-    headline: "UGC characters built into a repeatable content system.",
+    headline: "Automate your entire social media presence",
     summary:
-      "Posta Studio is part of the MAXX Suite / Built Here story and was developed by Stavarai. It remains separate from the client-work gallery.",
+      "Posta Studio is part of the MAXX Suite.",
     sections: [
       {
         title: "Why it exists",
@@ -158,11 +158,11 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "What Stavarai developed",
-        body: "Posta Studio turns UGC-style characters into a repeatable content system: recurring personas, scripted spots, and a publishing workflow that produces on schedule instead of on inspiration.",
+        body: "Posta Studio turns UGC-style content and social posts into a repeatable content system: recurring personas, scripted spots, and a publishing workflow that produces on schedule instead of when you find time.",
       },
       {
         title: "How it becomes leverage",
-        body: "A character-led system keeps producing after a single campaign ends. The same workflow can support more content, more campaigns, or a client’s own presence.",
+        body: "Reusable and consistent social media at scale, without you having to post, saves hours of time and lets you see your ads working across all platforms. Built for influencers, eCommerce, podcasts and much more.",
       },
     ],
     placeholders: [
