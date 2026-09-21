@@ -118,7 +118,7 @@ export const caseStudies: CaseStudy[] = [
     name: "Pare’",
     visibility: "internal",
     format: "product",
-    headline: "Scale proof, ready for the full story.",
+    headline: "Design high-level products without the AI slop problem.",
     summary:
       "Pare’ is part of the MAXX Suite design software.",
     liveUrl: "https://pauli-para.netlify.app/",
