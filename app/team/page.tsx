@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const people = [
   { index: "01", name: "Stacy McSwain", initials: "ST", role: "Founder & Client Relations" },
   { index: "02", name: "Stavarai", initials: "ST", role: "eCommerce & Shopify Expert" },
-  { index: "03", name: "Ivette", initials: "IV", role: "" },
+  { index: "03", name: "Ivette", initials: "IV", role: "Digital Project Management / Social Media Strategist" },
   { index: "04", name: "Akash", initials: "AK", role: "" },
   { index: "05", name: "Jeremy", initials: "JE", role: "" },
 ];
