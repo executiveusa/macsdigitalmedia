@@ -53,7 +53,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           <div
-            className="editorial-case-study-hero__media"
+            className={`editorial-case-study-hero__media${study.slug === "buffer-blaster" ? " editorial-case-study-hero__media--contain" : ""}`}
             role={study.heroImage ? "img" : undefined}
             aria-label={study.heroImage ? `${study.name} project hero` : undefined}
             style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
@@ -77,6 +77,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             ) : (
               <span className="editorial-case-study-placeholder">Live project link — pending</span>
             )}
+            {study.slug === "buffer-blaster" ? (
+              <Link className="editorial-link" href="/apply">
+                I want Buffer Blaster for my company <span aria-hidden="true">↗</span>
+              </Link>
+            ) : null}
           </div>
           </div>
         </header>
