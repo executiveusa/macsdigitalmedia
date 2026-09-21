@@ -23,7 +23,7 @@ const supabase = createClient(url, serviceRoleKey, {
 
 const { count, error } = await supabase
   .from("founding_applications")
-  .select("id", { count: "exact", head: true });
+  .select("id,need,context,timing", { count: "exact", head: true });
 
 if (error) {
   console.error(`Supabase verification failed: ${error.message}`);
