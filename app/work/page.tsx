@@ -27,19 +27,19 @@ const cardCopy: Record<string, { title: string; line: string }> = {
   },
   "buffer-blaster": {
     title: "Buffer Blaster",
-    line: "Own the system. Keep creating.",
+    line: "A content engine for your social media.",
   },
   pare: {
     title: "PARÉ",
-    line: "Design without designers.",
+    line: "Design high-level products without the AI slop problem.",
   },
   "posta-studio": {
     title: "Posta Studio",
-    line: "One calendar. Every channel.",
+    line: "Automate your entire social media presence.",
   },
   "foundry-fleet": {
     title: "Foundry",
-    line: "Virtual computers for your AI agents.",
+    line: "Give your AI agent its own computer.",
   },
 };
 
