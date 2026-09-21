@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Reveal } from "@/components/motion";
+import { HeroParallax, Reveal } from "@/components/motion";
 import { editorialHome } from "@/lib/editorial-home";
 import { getServerLocale } from "@/lib/server-preferences";
 
@@ -37,15 +37,17 @@ export default async function HomePage() {
 
       <section className="editorial-hero" aria-labelledby="editorial-hero-title">
         <div className="editorial-hero__media">
-          <Image
-            className="editorial-hero__image"
-            src={HERO_IMAGE}
-            alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
-            fill
-            priority
-            sizes="(max-width: 760px) 100vw, 56vw"
-          />
-          <div className="editorial-hero__veil" aria-hidden="true" />
+          <HeroParallax>
+            <Image
+              className="editorial-hero__image"
+              src={HERO_IMAGE}
+              alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
+              fill
+              priority
+              sizes="(max-width: 760px) 110vw, 62vw"
+            />
+            <div className="editorial-hero__veil" aria-hidden="true" />
+          </HeroParallax>
         </div>
         <div className="editorial-hero__panel">
           <div className="editorial-hero__content">
@@ -63,7 +65,7 @@ export default async function HomePage() {
         <div className="editorial-shell"><p>{home.credibility}</p></div>
       </section>
 
-      <Reveal>
+      <Reveal intensity="strong">
         <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--programs">
@@ -82,7 +84,7 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal intensity="soft">
         <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
           <div className="editorial-shell editorial-partnership-bridge__inner">
             <div>
@@ -93,7 +95,7 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal intensity="strong">
         <section className="editorial-section editorial-work" aria-labelledby="work-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--split">
@@ -107,7 +109,7 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal intensity="strong">
         <section className="editorial-section editorial-story" aria-labelledby="story-title">
           <div className="editorial-shell editorial-story__grid">
             <div className="editorial-story__media">
@@ -130,7 +132,7 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal intensity="strong">
         <section className="editorial-section editorial-built" aria-labelledby="built-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--wide">
@@ -153,7 +155,7 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
-      <Reveal>
+      <Reveal intensity="standard">
         <section className="editorial-fit" aria-labelledby="fit-title">
           <div className="editorial-shell editorial-fit__inner">
             <h2 id="fit-title">{home.fitTitle}</h2>
