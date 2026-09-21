@@ -66,7 +66,7 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     builtTitle: "Built Here",
     builtItems: [
       { name: "Buffer Blaster", line: "A content engine for your social media.", href: "/work/buffer-blaster" },
-      { name: "PARÉ", line: "Design without designers.", href: "/work/pare" },
+      { name: "PARÉ", line: "Design high-level digital products.", href: "/work/pare" },
       { name: "Posta Studio", line: "Automate your entire social media presence.", href: "/work/posta-studio" },
       { name: "Foundry", line: "Give your AI agent its own computer.", href: "/work/foundry-fleet" },
     ],
