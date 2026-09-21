@@ -7,12 +7,21 @@ import { useSitePreferences } from "@/components/site-preferences";
 
 const currentYear = new Date().getFullYear();
 
+function getFocusableElements(container: HTMLElement) {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter((element) => element.getAttribute("aria-hidden") !== "true");
+}
+
 export function SiteFooter() {
   const { copy, locale } = useSitePreferences();
   const common = copy.common;
   const spanish = locale === "es-MX";
   const [accessibilityOpen, setAccessibilityOpen] = useState(false);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const accessibilityTriggerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
 
   const navigation = [
     { href: "/programs", label: spanish ? "Programas" : "Programs" },
@@ -23,20 +32,43 @@ export function SiteFooter() {
   ];
 
   useEffect(() => {
-    if (!accessibilityOpen) return;
+    if (!accessibilityOpen || !drawerRef.current) return;
 
+    const drawer = drawerRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
+
+    const focusables = getFocusableElements(drawer);
+    requestAnimationFrame(() => focusables[0]?.focus());
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setAccessibilityOpen(false);
+      if (event.key === "Escape") {
+        setAccessibilityOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const current = getFocusableElements(drawer);
+      if (!current.length) return;
+
+      const first = current[0];
+      const last = current[current.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !drawer.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !drawer.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      requestAnimationFrame(() => accessibilityTriggerRef.current?.focus());
     };
   }, [accessibilityOpen]);
 
@@ -64,11 +96,13 @@ export function SiteFooter() {
               <span>Seattle, Washington</span>
               <Link href="/privacy">{common.privacy}</Link>
               <button
+                ref={accessibilityTriggerRef}
                 className="editorial-footer__text-button"
                 type="button"
                 onClick={() => setAccessibilityOpen(true)}
                 aria-haspopup="dialog"
                 aria-expanded={accessibilityOpen}
+                aria-controls="accessibility-drawer"
               >
                 {common.accessibility}
               </button>
@@ -82,14 +116,15 @@ export function SiteFooter() {
       </footer>
 
       {accessibilityOpen ? (
-        <div className="accessibility-drawer" role="presentation">
-          <button
+        <div className="accessibility-drawer">
+          <div
             className="accessibility-drawer__backdrop"
-            type="button"
-            aria-label={spanish ? "Cerrar accesibilidad" : "Close accessibility"}
-            onClick={() => setAccessibilityOpen(false)}
+            aria-hidden="true"
+            onMouseDown={() => setAccessibilityOpen(false)}
           />
           <section
+            ref={drawerRef}
+            id="accessibility-drawer"
             className="accessibility-drawer__panel"
             role="dialog"
             aria-modal="true"
@@ -105,7 +140,6 @@ export function SiteFooter() {
                 </h2>
               </div>
               <button
-                ref={closeButtonRef}
                 className="accessibility-drawer__close"
                 type="button"
                 onClick={() => setAccessibilityOpen(false)}
