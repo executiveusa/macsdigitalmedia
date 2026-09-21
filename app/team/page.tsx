@@ -38,7 +38,8 @@ export default function TeamPage() {
               <div className={styles.copy}>
                 <span className={styles.index}>{person.index}</span>
                 <div className={styles.identity}>
-                  <h2 className={styles.personName}>{person.name}</h2>\n                  {person.role ? <p className={styles.personRole}>{person.role}</p> : null}
+                  <h2 className={styles.personName}>{person.name}</h2>
+                  {person.role ? <p className={styles.role}>{person.role}</p> : null}
                 </div>
               </div>
             </article>
