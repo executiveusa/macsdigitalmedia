@@ -127,21 +127,16 @@ export const caseStudies: CaseStudy[] = [
     sections: [
       {
         title: "The problem",
-        body: "AI-built websites and apps create code faster than anyone can review it. Work that ships without a review-and-repair step breaks when nobody is watching and often creates sloppy, unsecure websites and apps that all look alike.",
+        body: "AI-built websites and apps create code faster than anyone can review it. Work that ships without a real design process can break when nobody is watching or create sloppy, insecure products that all look alike.",
       },
       {
         title: "What we built",
-        body: "Pare’ is one studio for creating high level products without the AI slop problem. Our in house alternative to Canva, Claude Design and basic vibe coding apps. One plugin turns your AI agent into an entire design team or simply login and use the canvas for a hands on approach.",
+        body: "Pare’ is one studio for designing high-level products without the AI slop problem. It’s our in-house alternative to Canva, Claude Design, and basic vibe-coding apps. One plugin turns your AI agent into an entire design team. Or, if you want a hands-on approach, log in and use the canvas. Our built-in security review audits your site for bugs before it ships.",
       },
       {
         title: "How it scales",
-        body: "The work stays yours: — supervised passes over AI-built work before it reaches a client, so quality stops depending on who happened to have time to check.",
+        body: "No subscriptions. One installation fee lets you own the system. Our built-in agents and process use a defined quality bar to review AI-built work before it ever reaches a client. Sign up for Pare’ and \"Stop the Slop.\"",
       },
-    ],
-    placeholders: [
-      "Product walkthrough film",
-      "Development timeline",
-      "Documented result",
     ],
   },
   {
