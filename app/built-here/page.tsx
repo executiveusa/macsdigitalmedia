@@ -15,26 +15,26 @@ export default async function BuiltHerePage() {
     {
       id: "buffer-blaster",
       name: "Buffer Blaster",
-      line: "Own the system. Keep creating.",
-      support: "An open-source alternative to Buffer, built for businesses that want more control and fewer recurring subscriptions.",
+      line: "A content engine for your social media.",
+      support: "Create UGC ads and media at scale without expensive lock-in subscriptions. Pay once, we install it, and you own it.",
       href: "/work/buffer-blaster",
     },
     {
       id: "pare",
       name: "PARÉ",
-      line: "Design without designers.",
+      line: "Design high-level products without the AI slop problem.",
       href: "/work/pare",
     },
     {
       id: "posta-studio",
       name: "Posta Studio",
-      line: "One calendar. Every channel.",
+      line: "Automate your entire social media presence.",
       href: "/work/posta-studio",
     },
     {
       id: "foundry",
       name: "Foundry",
-      line: "Virtual computers for your AI agents.",
+      line: "Give your AI agent its own computer.",
       href: "/work/foundry-fleet",
     },
   ] as const;
