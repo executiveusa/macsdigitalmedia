@@ -28,7 +28,7 @@ export default async function ApplyPage() {
           <p>
             {es
               ? "No necesitas un brief técnico. Cuéntanos qué quieres lograr y qué se interpone."
-              : "You don’t need a technical brief. Tell us what's important."}
+              : "You don’t need a technical brief."}
           </p>
         </header>
         <ApplicationForm />
