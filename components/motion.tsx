@@ -10,7 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useRef, type ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode } from "react";
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
@@ -78,12 +78,40 @@ export function Reveal({
     [0, 0.18, 1],
     reduceMotion ? [1, 1, 1] : [0.38, 1, 1],
   );
+  const kickerY = useTransform(
+    progress,
+    [0, 0.28, 1],
+    reduceMotion ? ["0px", "0px", "0px"] : ["18px", "0px", "-3px"],
+  );
+  const headingY = useTransform(
+    progress,
+    [0, 0.34, 1],
+    reduceMotion ? ["0px", "0px", "0px"] : ["42px", "0px", "-9px"],
+  );
+  const copyY = useTransform(
+    progress,
+    [0, 0.38, 1],
+    reduceMotion ? ["0px", "0px", "0px"] : ["28px", "0px", "-5px"],
+  );
+  const mediaY = useTransform(
+    progress,
+    [0, 0.42, 1],
+    reduceMotion ? ["0px", "0px", "0px"] : ["18px", "0px", "-7px"],
+  );
 
   return (
     <m.div
       ref={ref}
-      className={className ? `reveal ${className}` : "reveal"}
-      style={{ y, scale, opacity }}
+      className={className ? `reveal motion-scene ${className}` : "reveal motion-scene"}
+      style={{
+        y,
+        scale,
+        opacity,
+        "--motion-kicker-y": kickerY,
+        "--motion-heading-y": headingY,
+        "--motion-copy-y": copyY,
+        "--motion-media-y": mediaY,
+      } as CSSProperties}
       transition={{ delay }}
     >
       {children}
