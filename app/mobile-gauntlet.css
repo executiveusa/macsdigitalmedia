@@ -138,8 +138,8 @@
   .editorial-hero h1 {
     max-width: 10ch;
     font-size: clamp(3rem, 14.5vw, 4.65rem);
-    line-height: .92;
-    letter-spacing: -.042em;
+    line-height: .98;
+    letter-spacing: -.02em;
   }
 
   .editorial-hero__line {
