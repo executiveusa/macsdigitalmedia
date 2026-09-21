@@ -377,6 +377,26 @@
   font: 400 clamp(1rem, 1.4vw, 1.2rem)/1.68 var(--editorial-sans);
 }
 
+.editorial-story-long__chapter > div {
+  display: grid;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.editorial-story-long__chapter blockquote {
+  margin: 0;
+}
+
+.editorial-story-long__chapter blockquote p {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.editorial-story-long__chapter blockquote footer {
+  margin-top: 0.8rem;
+  font: 600 0.82rem/1.4 var(--editorial-sans);
+}
+
 .editorial-built-detail {
   display: grid;
   grid-template-columns: 4rem minmax(12rem, 0.65fr) minmax(0, 1.35fr);
