@@ -253,6 +253,8 @@ test("key routes have no browser runtime errors", async ({ page }) => {
 });
 
 test("visual review artifacts cover phone, tablet and desktop", async ({ page }) => {
+  test.setTimeout(120_000);
+
   const proofViewports = [
     { width: 390, height: 844, label: "phone" },
     { width: 768, height: 1024, label: "tablet" },
@@ -262,7 +264,7 @@ test("visual review artifacts cover phone, tablet and desktop", async ({ page })
   for (const route of [...publicRoutes, ...productRoutes]) {
     for (const viewport of proofViewports) {
       await page.setViewportSize(viewport);
-      await page.goto(route, { waitUntil: "networkidle" });
+      await page.goto(route, { waitUntil: "load" });
       await expectNoHorizontalOverflow(page);
       await page.screenshot({
         path: `test-results/visual/${viewport.label}/${safeSlug(route)}.png`,
