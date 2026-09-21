@@ -185,7 +185,9 @@ body {
 .editorial-row__line {
   max-width: 48rem;
   font-family: var(--editorial-sans);
-  font-size: clamp(0.96rem, 1.2vw, 1.15rem);
+  font-size: clamp(1.08rem, 1.35vw, 1.3rem);
+  font-weight: 700;
+  font-style: italic;
   line-height: 1.5;
 }
 
