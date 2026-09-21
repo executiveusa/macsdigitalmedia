@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal } from "@/components/motion";
 import { clientWork, maxxSuiteWork } from "@/lib/case-studies";
 import { getServerLocale } from "@/lib/server-preferences";
 import styles from "./work.module.css";
@@ -115,6 +116,7 @@ export default async function WorkPage() {
           </div>
         </header>
 
+        <Reveal intensity="strong">
         <section className={styles.index} aria-labelledby="selected-work-title">
           <div className={styles.indexHeading}>
             <h2 id="selected-work-title">
@@ -123,13 +125,16 @@ export default async function WorkPage() {
           </div>
           {renderGrid(selectedWork)}
         </section>
+        </Reveal>
 
+        <Reveal intensity="strong">
         <section className={styles.index} aria-labelledby="built-here-title">
           <div className={styles.indexHeading}>
             <h2 id="built-here-title">{es ? "Hecho Aquí" : "Built Here"}</h2>
           </div>
           {renderGrid(builtHere)}
         </section>
+        </Reveal>
 
         <div className={styles.footerCta}>
           <Link className="editorial-link" href="/apply">

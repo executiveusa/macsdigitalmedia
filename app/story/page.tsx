@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/motion";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default async function StoryPage() {
           </div>
         </header>
 
+        <Reveal intensity="strong">
         <div className="editorial-story__media" style={{ marginBottom: "clamp(5rem, 10vw, 9rem)" }}>
           <Image
             src="/media/founders/stacy-stavarai-waterfront.webp"
@@ -32,8 +34,10 @@ export default async function StoryPage() {
             sizes="100vw"
           />
         </div>
+        </Reveal>
 
         <div className="editorial-story-long">
+          <Reveal intensity="strong">
           <section className="editorial-story-long__chapter">
             <p className="editorial-kicker">{es ? "01 · Stacy" : "01"}</p>
             <div>
@@ -51,7 +55,9 @@ export default async function StoryPage() {
               )}
             </div>
           </section>
+          </Reveal>
 
+          <Reveal intensity="strong">
           <section className="editorial-story-long__chapter">
             <p className="editorial-kicker">{es ? "02 · Stavarai" : "02"}</p>
             <div>
@@ -66,6 +72,7 @@ export default async function StoryPage() {
               )}
             </div>
           </section>
+          </Reveal>
         </div>
 
         <div style={{ marginTop: "clamp(5rem, 10vw, 9rem)", display: "flex", flexWrap: "wrap", gap: "1.5rem" }}>

@@ -111,6 +111,34 @@ body.menu-open {
 
 .reveal {
   width: 100%;
+  transform-origin: 50% 18%;
+  will-change: transform, opacity;
+}
+
+.motion-scene .editorial-kicker {
+  transform: translate3d(0, var(--motion-kicker-y, 0px), 0);
+  will-change: transform;
+}
+
+.motion-scene h1,
+.motion-scene h2 {
+  transform: translate3d(0, var(--motion-heading-y, 0px), 0);
+  will-change: transform;
+}
+
+.motion-scene p:not(.editorial-kicker),
+.motion-scene .editorial-link,
+.motion-scene blockquote {
+  transform: translate3d(0, var(--motion-copy-y, 0px), 0);
+  will-change: transform;
+}
+
+.motion-scene img,
+.motion-scene .editorial-story__media,
+.motion-scene .editorial-case-study-hero__media,
+.motion-scene [class*="cardMedia"] {
+  transform: translate3d(0, var(--motion-media-y, 0px), 0);
+  will-change: transform;
 }
 
 .skip-link {
@@ -388,6 +416,97 @@ body.menu-open {
 
 .hero {
   background: var(--macs-basalt);
+}
+
+.editorial-hero__motion-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.editorial-hero__motion-layer {
+  position: absolute;
+  inset: -4%;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.editorial-hero__motion-layer .editorial-hero__image {
+  object-fit: cover;
+}
+
+.editorial-hero__copy-motion {
+  width: 100%;
+  transform-origin: 0 100%;
+  will-change: transform, opacity;
+}
+
+
+/* Motion audit: consistent tactile feedback across interactive surfaces. */
+.editorial-link,
+.editorial-row,
+.editorial-built__item,
+.editorial-work__feature,
+.editorial-work__secondary,
+.application-form button,
+.application-form input,
+.application-form select,
+.application-form textarea,
+.accessibility-drawer__close,
+.editorial-footer__text-button,
+[class*="cardMain"],
+[class*="cardDetails"] {
+  transition:
+    transform 150ms cubic-bezier(.22,1,.36,1),
+    box-shadow 180ms cubic-bezier(.22,1,.36,1),
+    opacity 150ms cubic-bezier(.22,1,.36,1),
+    border-color 180ms cubic-bezier(.22,1,.36,1),
+    background-color 180ms cubic-bezier(.22,1,.36,1);
+}
+
+.editorial-link > span[aria-hidden="true"],
+.editorial-row__arrow,
+.editorial-built__arrow {
+  display: inline-block;
+  transition: transform 180ms cubic-bezier(.22,1,.36,1);
+}
+
+.editorial-link:hover > span[aria-hidden="true"],
+.editorial-link:focus-visible > span[aria-hidden="true"],
+.editorial-row:hover .editorial-row__arrow,
+.editorial-row:focus-visible .editorial-row__arrow,
+.editorial-built__item:hover .editorial-built__arrow,
+.editorial-built__item:focus-visible .editorial-built__arrow {
+  transform: translate3d(3px, -2px, 0);
+}
+
+.editorial-link:active,
+.editorial-row:active,
+.editorial-built__item:active,
+.editorial-work__feature:active,
+.editorial-work__secondary:active,
+.application-form button:active,
+.accessibility-drawer__close:active,
+.editorial-footer__text-button:active,
+[class*="cardMain"]:active,
+[class*="cardDetails"]:active {
+  transform: translateY(1px) scale(.975);
+}
+
+.application-form input:focus,
+.application-form select:focus,
+.application-form textarea:focus {
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .editorial-row:hover,
+  .editorial-built__item:hover,
+  .editorial-work__feature:hover,
+  .editorial-work__secondary:hover,
+  [class*="cardMain"]:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .hero__poster,
@@ -959,6 +1078,22 @@ body.menu-open {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal,
+  .editorial-hero__motion-layer,
+  .editorial-hero__copy-motion,
+  .motion-scene .editorial-kicker,
+  .motion-scene h1,
+  .motion-scene h2,
+  .motion-scene p,
+  .motion-scene .editorial-link,
+  .motion-scene blockquote,
+  .motion-scene img,
+  .motion-scene .editorial-story__media,
+  .motion-scene .editorial-case-study-hero__media {
+    will-change: auto;
+    transform: none !important;
   }
 
   *,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { Reveal } from "@/components/motion";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
 
 export function generateStaticParams() {
@@ -43,6 +44,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <div className="editorial-page editorial-page--white editorial-page--case">
       <div className="editorial-shell">
+        <Reveal intensity="soft">
         <header className="editorial-case-study-hero">
           <div className="editorial-case-study-hero__lead">
             <p className="editorial-kicker">{study.lane} · {formatLabel}</p>
@@ -86,16 +88,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
           </div>
         </header>
+        </Reveal>
 
         <div className="editorial-case-study-story">
           {study.sections.map((section, index) => (
-            <section className="editorial-case-study-story__section" key={section.title}>
+            <Reveal intensity="strong" key={section.title}>
+            <section className="editorial-case-study-story__section">
               <p className="editorial-kicker">0{index + 1}</p>
               <div>
                 <h2>{section.title}</h2>
                 <p>{section.body}</p>
               </div>
             </section>
+            </Reveal>
           ))}
         </div>
 

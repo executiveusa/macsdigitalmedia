@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal } from "@/components/motion";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
@@ -35,11 +36,13 @@ export default async function ProgramsPage() {
         </header>
 
         {programs.map(([id, name, line, response]) => (
-          <section className="editorial-program-detail" id={id} key={id}>
+          <Reveal intensity="strong" key={id}>
+          <section className="editorial-program-detail" id={id}>
             <p className="editorial-kicker">{name}</p>
             {line ? <h2>{line}</h2> : null}
             {response ? <p>{response}</p> : null}
           </section>
+          </Reveal>
         ))}
 
         <Link className="editorial-link" href="/apply">
