@@ -20,7 +20,7 @@ export default async function ProgramsPage() {
       ]
     : [
         ["reset", "Reset", "Simplify what got complicated.", "We help you clean up the digital side of the business and build the systems to help you grow."],
-        ["momentum", "Momentum", "", "We help you show up consistently online, build in public and turn attention to opportunity."],
+        ["momentum", "Momentum", "We help you show up consistently online, build in public and turn attention to opportunity.", ""],
         ["scale", "Scale", "The idea is working. Grow without complexity.", "We use social campaigns and automation to simplify your growth."],
         ["launch", "Launch", "Bring your next idea or project to market.", "We help you take the idea from concept to launch without having to figure out the digital side yourself."],
       ];
@@ -38,7 +38,7 @@ export default async function ProgramsPage() {
           <section className="editorial-program-detail" id={id} key={id}>
             <p className="editorial-kicker">{name}</p>
             {line ? <h2>{line}</h2> : null}
-            <p>{response}</p>
+            <p>{response ? <p>{response}</p> : null}
           </section>
         ))}
 
