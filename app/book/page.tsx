@@ -32,6 +32,11 @@ export default async function BookPage() {
           <h1 id="booking-title">
             {es ? "Empezar la conversación" : "Book a conversation."}
           </h1>
+          <p>
+            {es
+              ? "Cuéntanos en qué estás trabajando y juntos veremos cuál es el mejor siguiente paso."
+              : "Tell us what you’re working on and we’ll figure out the best next step together."}
+          </p>
           <div className="route-cta">
             <a
               className="button button--primary"

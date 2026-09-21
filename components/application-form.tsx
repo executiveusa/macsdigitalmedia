@@ -1,10 +1,8 @@
 "use client";
 
-import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useSitePreferences } from "@/components/site-preferences";
-import { partnerIntakeCopy } from "@/lib/partner-intake-copy";
 
 type SubmissionState = {
   kind: "idle" | "submitting" | "success" | "error";
@@ -12,38 +10,85 @@ type SubmissionState = {
   errors: Record<string, string>;
 };
 
-const initialState: SubmissionState = {
-  kind: "idle",
-  message: "",
-  errors: {},
-};
+const initialState: SubmissionState = { kind: "idle", message: "", errors: {} };
 
-function FieldError({ id, message }: { id: string; message?: string }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <AnimatePresence initial={false}>
-      {message ? (
-        <m.span
-          id={id}
-          className="field-error"
-          initial={reduceMotion ? false : { opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -2 }}
-          transition={{ duration: reduceMotion ? 0 : 0.18 }}
-        >
-          {message}
-        </m.span>
-      ) : null}
-    </AnimatePresence>
-  );
-}
+const copy = {
+  en: {
+    name: "Your name",
+    email: "Email",
+    need: "What do you need help with?",
+    needOptions: [
+      ["fix", "Fix something that isn’t working"],
+      ["improve", "Improve something I already have"],
+      ["build", "Build something new"],
+      ["automate", "Automate part of my business"],
+      ["unsure", "I’m not sure yet"],
+    ],
+    context: "What’s most important right now?",
+    contextPlaceholder: "Tell us what you’re trying to accomplish, what’s getting in the way, or what you wish worked better.",
+    website: "Website or existing setup",
+    optional: "Optional",
+    timing: "Timing",
+    timingOptions: [
+      ["now", "Right now"],
+      ["month", "This month"],
+      ["quarter", "Next 1–3 months"],
+      ["exploring", "Just exploring"],
+    ],
+    consent: "MACS may use this information to review my request and contact me about next steps.",
+    privacy: "Privacy notice",
+    submit: "Send it",
+    submitting: "Sending…",
+    success: "Got it. A real person will read this.",
+    book: "Book a conversation",
+    required: "This field is required.",
+    contextRequired: "Tell us a little more about what matters right now.",
+    emailInvalid: "Enter a valid email address.",
+    urlInvalid: "Enter a complete website address beginning with http:// or https://.",
+    error: "Review the highlighted fields and try again.",
+    connection: "We couldn’t send this. Check your connection and try again.",
+  },
+  "es-MX": {
+    name: "Tu nombre",
+    email: "Correo",
+    need: "¿En qué necesitas ayuda?",
+    needOptions: [
+      ["fix", "Arreglar algo que no funciona"],
+      ["improve", "Mejorar algo que ya tengo"],
+      ["build", "Construir algo nuevo"],
+      ["automate", "Automatizar parte de mi negocio"],
+      ["unsure", "Todavía no estoy seguro"],
+    ],
+    context: "¿Qué es lo más importante ahora?",
+    contextPlaceholder: "Cuéntanos qué quieres lograr, qué se interpone o qué te gustaría que funcionara mejor.",
+    website: "Sitio web o sistema actual",
+    optional: "Opcional",
+    timing: "Cuándo",
+    timingOptions: [
+      ["now", "Ahora mismo"],
+      ["month", "Este mes"],
+      ["quarter", "Próximos 1–3 meses"],
+      ["exploring", "Solo estoy explorando"],
+    ],
+    consent: "MACS puede usar esta información para revisar mi solicitud y contactarme sobre los siguientes pasos.",
+    privacy: "Aviso de privacidad",
+    submit: "Enviar",
+    submitting: "Enviando…",
+    success: "Listo. Una persona real leerá esto.",
+    book: "Reservar una conversación",
+    required: "Este campo es obligatorio.",
+    contextRequired: "Cuéntanos un poco más sobre lo que importa ahora.",
+    emailInvalid: "Ingresa un correo válido.",
+    urlInvalid: "Ingresa una dirección completa que empiece con http:// o https://.",
+    error: "Revisa los campos marcados e inténtalo de nuevo.",
+    connection: "No pudimos enviarlo. Revisa tu conexión e inténtalo de nuevo.",
+  },
+} as const;
 
 export function ApplicationForm() {
   const startedAt = useRef(0);
   const { locale } = useSitePreferences();
-  const c = partnerIntakeCopy[locale].form;
-  const reduceMotion = useReducedMotion();
+  const c = copy[locale];
   const [submission, setSubmission] = useState<SubmissionState>(initialState);
 
   useEffect(() => {
@@ -60,26 +105,21 @@ export function ApplicationForm() {
     if (!email) errors.email = c.required;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = c.emailInvalid;
 
-    if (value("organization").length < 2) errors.organization = c.required;
-    if (value("location").length < 2) errors.location = c.required;
-    if (!value("organizationType")) errors.organizationType = c.selectRequired;
-    if (!value("staffSize")) errors.staffSize = c.selectRequired;
+    if (!value("need")) errors.need = c.required;
+    if (value("context").length < 10) errors.context = c.contextRequired;
+    if (!value("timing")) errors.timing = c.required;
 
     const website = value("website");
     if (website) {
       try {
         const parsed = new URL(website);
-        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") errors.website = c.urlInvalid;
+        if (!["http:", "https:"].includes(parsed.protocol)) errors.website = c.urlInvalid;
       } catch {
         errors.website = c.urlInvalid;
       }
     }
 
-    if (value("problem").length < 30) errors.problem = c.tooShort;
-    if (value("result").length < 30) errors.result = c.tooShort;
-    if (formData.get("decisionMaker") !== "on") errors.decisionMaker = c.checkboxRequired;
-    if (formData.get("consent") !== "on") errors.consent = c.checkboxRequired;
-
+    if (formData.get("consent") !== "on") errors.consent = c.required;
     return errors;
   }
 
@@ -94,52 +134,27 @@ export function ApplicationForm() {
     }
   }
 
-  function localizeServerFieldError(field: string, englishMessage: string) {
-    if (locale === "en") return englishMessage;
-
-    const messages: Record<string, string> = {
-      name: c.required,
-      email: c.emailInvalid,
-      organization: c.required,
-      website: c.urlInvalid,
-      location: c.required,
-      organizationType: c.selectRequired,
-      staffSize: c.selectRequired,
-      problem: c.tooShort,
-      result: c.tooShort,
-      decisionMaker: c.checkboxRequired,
-      consent: c.checkboxRequired,
-    };
-
-    return messages[field] || c.review;
-  }
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const clientErrors = validate(formData);
+    const errors = validate(formData);
 
-    if (Object.keys(clientErrors).length > 0) {
-      setSubmission({ kind: "error", message: c.errorSummary, errors: clientErrors });
-      focusFirstError(form, clientErrors);
+    if (Object.keys(errors).length) {
+      setSubmission({ kind: "error", message: c.error, errors });
+      focusFirstError(form, errors);
       return;
     }
 
-    setSubmission({ kind: "submitting", message: c.submittingMessage, errors: {} });
+    setSubmission({ kind: "submitting", message: c.submitting, errors: {} });
 
     const payload = {
       name: formData.get("name"),
       email: formData.get("email"),
-      phone: formData.get("phone"),
-      organization: formData.get("organization"),
+      need: formData.get("need"),
+      context: formData.get("context"),
       website: formData.get("website"),
-      location: formData.get("location"),
-      organizationType: formData.get("organizationType"),
-      staffSize: formData.get("staffSize"),
-      problem: formData.get("problem"),
-      result: formData.get("result"),
-      decisionMaker: formData.get("decisionMaker") === "on",
+      timing: formData.get("timing"),
       consent: formData.get("consent") === "on",
       company: formData.get("company"),
       sourceUrl: window.location.href,
@@ -153,27 +168,19 @@ export function ApplicationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
       const result = (await response.json()) as {
         ok?: boolean;
-        applicationId?: string;
         errors?: Record<string, string>;
       };
 
       if (!response.ok || !result.ok) {
-        const serverErrors = result.errors || {};
-        const localizedErrors = Object.fromEntries(
-          Object.entries(serverErrors)
-            .filter(([key]) => key !== "form")
-            .map(([key, message]) => [key, localizeServerFieldError(key, message)]),
-        );
-
+        const errors = result.errors || {};
         setSubmission({
           kind: "error",
-          message: locale === "en" ? serverErrors.form || c.review : c.review,
-          errors: localizedErrors,
+          message: errors.form || c.error,
+          errors,
         });
-        focusFirstError(form, localizedErrors);
+        focusFirstError(form, errors);
         return;
       }
 
@@ -185,109 +192,130 @@ export function ApplicationForm() {
     }
   }
 
-  const fieldError = (name: string) => submission.errors[name];
-  const describedBy = (name: string, helpId?: string) =>
-    [helpId, fieldError(name) ? `${name}-error` : undefined].filter(Boolean).join(" ") || undefined;
+  const error = (name: string) => submission.errors[name];
+  const describedBy = (name: string) => error(name) ? `${name}-error` : undefined;
   const submitting = submission.kind === "submitting";
 
   return (
     <form className="application-form" onSubmit={handleSubmit} noValidate aria-busy={submitting}>
       <fieldset className="application-form__controls" disabled={submitting}>
         <div className="form-honeypot" aria-hidden="true">
-          <label htmlFor="company">{c.companyFax}</label>
+          <label htmlFor="company">Company fax</label>
           <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
         </div>
 
         <div className="form-grid">
           <div className="form-field">
             <label htmlFor="name">{c.name}</label>
-            <input id="name" name="name" type="text" autoComplete="name" required minLength={2} maxLength={120} aria-invalid={Boolean(fieldError("name"))} aria-describedby={describedBy("name")} />
-            <FieldError id="name-error" message={fieldError("name")} />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              minLength={2}
+              maxLength={120}
+              aria-invalid={Boolean(error("name"))}
+              aria-describedby={describedBy("name")}
+            />
+            {error("name") ? <span id="name-error" className="field-error">{error("name")}</span> : null}
           </div>
 
           <div className="form-field">
             <label htmlFor="email">{c.email}</label>
-            <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} aria-invalid={Boolean(fieldError("email"))} aria-describedby={describedBy("email")} />
-            <FieldError id="email-error" message={fieldError("email")} />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              required
+              maxLength={254}
+              aria-invalid={Boolean(error("email"))}
+              aria-describedby={describedBy("email")}
+            />
+            {error("email") ? <span id="email-error" className="field-error">{error("email")}</span> : null}
           </div>
+        </div>
 
-          <div className="form-field">
-            <label htmlFor="phone">{c.phone} <span className="optional-label">{c.optional}</span></label>
-            <input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={40} />
-          </div>
+        <div className="form-field">
+          <label htmlFor="need">{c.need}</label>
+          <select
+            id="need"
+            name="need"
+            defaultValue=""
+            required
+            aria-invalid={Boolean(error("need"))}
+            aria-describedby={describedBy("need")}
+          >
+            <option value="" disabled>—</option>
+            {c.needOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+          </select>
+          {error("need") ? <span id="need-error" className="field-error">{error("need")}</span> : null}
+        </div>
 
-          <div className="form-field">
-            <label htmlFor="organization">{c.organization}</label>
-            <input id="organization" name="organization" type="text" autoComplete="organization" required minLength={2} maxLength={180} aria-invalid={Boolean(fieldError("organization"))} aria-describedby={describedBy("organization")} />
-            <FieldError id="organization-error" message={fieldError("organization")} />
-          </div>
+        <div className="form-field">
+          <label htmlFor="context">{c.context}</label>
+          <textarea
+            id="context"
+            name="context"
+            rows={5}
+            maxLength={3000}
+            placeholder={c.contextPlaceholder}
+            required
+            aria-invalid={Boolean(error("context"))}
+            aria-describedby={describedBy("context")}
+          />
+          {error("context") ? <span id="context-error" className="field-error">{error("context")}</span> : null}
+        </div>
 
+        <div className="form-grid">
           <div className="form-field">
             <label htmlFor="website">{c.website} <span className="optional-label">{c.optional}</span></label>
-            <input id="website" name="website" type="url" inputMode="url" placeholder="https://" maxLength={500} aria-invalid={Boolean(fieldError("website"))} aria-describedby={describedBy("website")} />
-            <FieldError id="website-error" message={fieldError("website")} />
+            <input
+              id="website"
+              name="website"
+              type="url"
+              inputMode="url"
+              autoComplete="url"
+              placeholder="https://"
+              maxLength={500}
+              aria-invalid={Boolean(error("website"))}
+              aria-describedby={describedBy("website")}
+            />
+            {error("website") ? <span id="website-error" className="field-error">{error("website")}</span> : null}
           </div>
 
           <div className="form-field">
-            <label htmlFor="location">{c.location}</label>
-            <input id="location" name="location" type="text" autoComplete="address-level2" required minLength={2} maxLength={160} aria-invalid={Boolean(fieldError("location"))} aria-describedby={describedBy("location")} />
-            <FieldError id="location-error" message={fieldError("location")} />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="organizationType">{c.organizationType}</label>
-            <select id="organizationType" name="organizationType" defaultValue="" required aria-invalid={Boolean(fieldError("organizationType"))} aria-describedby={describedBy("organizationType")}>
-              <option value="" disabled>{c.selectOne}</option>
-              <option value="nonprofit">{c.nonprofit}</option>
-              <option value="social-purpose">{c.socialPurpose}</option>
-              <option value="small-business">{c.smallBusiness}</option>
+            <label htmlFor="timing">{c.timing}</label>
+            <select
+              id="timing"
+              name="timing"
+              defaultValue=""
+              required
+              aria-invalid={Boolean(error("timing"))}
+              aria-describedby={describedBy("timing")}
+            >
+              <option value="" disabled>—</option>
+              {c.timingOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
             </select>
-            <FieldError id="organizationType-error" message={fieldError("organizationType")} />
+            {error("timing") ? <span id="timing-error" className="field-error">{error("timing")}</span> : null}
           </div>
-
-          <div className="form-field">
-            <label htmlFor="staffSize">{c.staffSize}</label>
-            <select id="staffSize" name="staffSize" defaultValue="" required aria-invalid={Boolean(fieldError("staffSize"))} aria-describedby={describedBy("staffSize")}>
-              <option value="" disabled>{c.selectOne}</option>
-              <option value="1-2">1–2</option>
-              <option value="3-10">3–10</option>
-              <option value="11-25">11–25</option>
-              <option value="26-50">26–50</option>
-              <option value="51+">51+</option>
-            </select>
-            <FieldError id="staffSize-error" message={fieldError("staffSize")} />
-          </div>
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="problem">{c.problem}</label>
-          <textarea id="problem" name="problem" rows={6} required minLength={30} maxLength={3000} aria-invalid={Boolean(fieldError("problem"))} aria-describedby={describedBy("problem", "problem-help")} />
-          <span id="problem-help" className="field-help">{c.problemHelp}</span>
-          <FieldError id="problem-error" message={fieldError("problem")} />
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="result">{c.result}</label>
-          <textarea id="result" name="result" rows={6} required minLength={30} maxLength={3000} aria-invalid={Boolean(fieldError("result"))} aria-describedby={describedBy("result")} />
-          <FieldError id="result-error" message={fieldError("result")} />
-        </div>
-
-        <div className="checkbox-field">
-          <label className="checkbox-label" htmlFor="decisionMaker">
-            <input id="decisionMaker" name="decisionMaker" type="checkbox" required aria-invalid={Boolean(fieldError("decisionMaker"))} aria-describedby={describedBy("decisionMaker")} />
-            <span>{c.decisionMaker}</span>
-          </label>
-          <FieldError id="decisionMaker-error" message={fieldError("decisionMaker")} />
         </div>
 
         <div className="checkbox-field">
           <label className="checkbox-label" htmlFor="consent">
-            <input id="consent" name="consent" type="checkbox" required aria-invalid={Boolean(fieldError("consent"))} aria-describedby={describedBy("consent")} />
-            <span>
-              {c.consentStart} <Link href="/privacy">{c.privacyNotice}</Link>.
-            </span>
+            <input
+              id="consent"
+              name="consent"
+              type="checkbox"
+              required
+              aria-invalid={Boolean(error("consent"))}
+              aria-describedby={describedBy("consent")}
+            />
+            <span>{c.consent} <Link href="/privacy">{c.privacy}</Link>.</span>
           </label>
-          <FieldError id="consent-error" message={fieldError("consent")} />
+          {error("consent") ? <span id="consent-error" className="field-error">{error("consent")}</span> : null}
         </div>
 
         <button className="button button--primary form-submit" type="submit">
@@ -296,22 +324,16 @@ export function ApplicationForm() {
         </button>
       </fieldset>
 
-      <AnimatePresence mode="wait" initial={false}>
-        {submission.message ? (
-          <m.p
-            key={`${submission.kind}:${submission.message}`}
-            className={`form-status form-status--${submission.kind}`}
-            role={submission.kind === "error" ? "alert" : "status"}
-            aria-live="polite"
-            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.22 }}
-          >
-            {submission.message}
-          </m.p>
-        ) : null}
-      </AnimatePresence>
+      {submission.message ? (
+        <div
+          className={"form-status form-status--" + submission.kind}
+          role={submission.kind === "error" ? "alert" : "status"}
+          aria-live="polite"
+        >
+          <p>{submission.message}</p>
+          {submission.kind === "success" ? <p><Link href="/book">{c.book} ↗</Link></p> : null}
+        </div>
+      ) : null}
     </form>
   );
 }

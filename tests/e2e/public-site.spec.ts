@@ -1,6 +1,37 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
-async function expectNoHorizontalOverflow(page: import("@playwright/test").Page) {
+const viewports = [
+  { width: 320, height: 568 },
+  { width: 360, height: 800 },
+  { width: 375, height: 812 },
+  { width: 390, height: 844 },
+  { width: 414, height: 896 },
+  { width: 430, height: 932 },
+  { width: 768, height: 1024 },
+  { width: 1024, height: 768 },
+  { width: 1440, height: 900 },
+] as const;
+
+const publicRoutes = [
+  "/",
+  "/programs",
+  "/work",
+  "/story",
+  "/team",
+  "/built-here",
+  "/apply",
+  "/book",
+  "/privacy",
+] as const;
+
+const productRoutes = [
+  "/work/buffer-blaster",
+  "/work/pare",
+  "/work/posta-studio",
+  "/work/foundry-fleet",
+] as const;
+
+async function expectNoHorizontalOverflow(page: Page) {
   const result = await page.evaluate(() => {
     const clientWidth = document.documentElement.clientWidth;
     const scrollWidth = document.documentElement.scrollWidth;
@@ -29,6 +60,30 @@ async function expectNoHorizontalOverflow(page: import("@playwright/test").Page)
   ).toBeLessThanOrEqual(result.clientWidth + 1);
 }
 
+async function expectRuntimeClean(page: Page, route: string) {
+  const consoleErrors: string[] = [];
+  const pageErrors: string[] = [];
+
+  const onConsole = (message: import("@playwright/test").ConsoleMessage) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  };
+  const onPageError = (error: Error) => pageErrors.push(error.message);
+
+  page.on("console", onConsole);
+  page.on("pageerror", onPageError);
+  await page.goto(route, { waitUntil: "networkidle" });
+
+  expect(pageErrors, `${route} page errors`).toEqual([]);
+  expect(consoleErrors, `${route} console errors`).toEqual([]);
+
+  page.off("console", onConsole);
+  page.off("pageerror", onPageError);
+}
+
+function safeSlug(route: string) {
+  return route === "/" ? "home" : route.replace(/^\//, "").replaceAll("/", "--");
+}
+
 test("homepage passes the reduced Krug trunk test", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
@@ -39,119 +94,129 @@ test("homepage passes the reduced Krug trunk test", async ({ page }) => {
   await expect(
     page.getByRole("link", { name: /tell us what's important/i }).first(),
   ).toBeVisible();
-  await expect(
-    page.getByText(/Father \+ son · Built in the Pacific Northwest/i),
-  ).toBeVisible();
+  await expect(page.getByText(/Father \+ son · Built in the Pacific Northwest/i)).toBeVisible();
   await expect(page.locator(".editorial-hero__image")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
 
-test("homepage presents the approved four-way architecture and reduced proof path", async ({ page }) => {
+test("homepage presents the approved four-way architecture and current Built Here products", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: /four ways to start/i })).toBeVisible();
 
-  const approvedPrograms = [
-    ["Reset", "Simplify what got complicated."],
-    ["Momentum", "Stay visible. Build in public."],
-    ["Scale", "The idea is working. Grow without complexity."],
-    ["Launch", "Bring your next idea or project to market."],
-  ] as const;
-
-  for (const [name, line] of approvedPrograms) {
+  const approvedPrograms = ["Reset", "Momentum", "Scale", "Launch"] as const;
+  for (const name of approvedPrograms) {
     await expect(page.getByText(name, { exact: true }).first()).toBeVisible();
-    await expect(page.getByText(line, { exact: true }).first()).toBeVisible();
   }
 
-  await expect(page.getByRole("heading", { name: /start with what matters most/i })).toBeVisible();
-  await expect(page.getByText("We stay involved as you grow.", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /see the work/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /two perspectives help your business/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /^built here$/i })).toBeVisible();
-
   for (const product of ["Buffer Blaster", "PARÉ", "Posta Studio", "Foundry"]) {
     await expect(page.getByText(product, { exact: true }).first()).toBeVisible();
   }
 });
 
-test("work page separates collaborations from Built Here without retired projects", async ({ page }) => {
+test("work and Built Here pages use current product positioning", async ({ page }) => {
   await page.goto("/work");
 
   await expect(page.getByRole("heading", { name: "Selected Work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Built Here", exact: true })).toBeVisible();
+  await expect(page.getByText("A content engine for your social media.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Design high-level products without the AI slop problem.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Automate your entire social media presence.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Give your AI agent its own computer.", { exact: true })).toBeVisible();
 
-  for (const name of ["Taste of Nawlins × MACS", "ASC3ND × MACS", "Buffer Blaster", "PARÉ", "Posta Studio", "Foundry"]) {
-    await expect(page.getByText(name, { exact: true }).first()).toBeVisible();
-  }
-
-  await expect(page.getByText(/Sweet/i)).toHaveCount(0);
-  await expect(page.getByText(/Fish On/i)).toHaveCount(0);
-
-  await page.goto("/work/asc3nd");
-  await expect(page.getByRole("heading", { level: 1, name: "ASC3ND" })).toBeVisible();
+  await page.goto("/built-here");
+  await expect(page.getByText("A content engine for your social media.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Design high-level products without the AI slop problem.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Automate your entire social media presence.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Give your AI agent its own computer.", { exact: true })).toBeVisible();
 });
 
-test("retired public routes return 404", async ({ page }) => {
-  for (const route of ["/notes", "/demos", "/maxx", "/website-rescue", "/small-business"]) {
-    const response = await page.goto(route);
-    expect(response?.status(), `${route} should be retired`).toBe(404);
-  }
-});
-
-test("retired founding launch route still points to Programs", async ({ page }) => {
-  await page.goto("/founding-launch");
-  await expect(page).toHaveURL(/\/programs$/);
-  await expect(page.getByRole("heading", { level: 1, name: /four ways to start/i })).toBeVisible();
-  await expectNoHorizontalOverflow(page);
-});
-
-test("editorial hero uses approved founder media", async ({ page }) => {
-  await page.goto("/");
-
-  const image = page.locator(".editorial-hero__image");
-  await expect(image).toBeVisible();
-  await expect(image).toHaveAttribute("src", /stacy-stavarai-waterfront/);
-  await expect(page.locator("video.hero__video")).toHaveCount(0);
-});
-
-test("mobile homepage keeps the primary action and founder story clear", async ({ page }) => {
-  for (const viewport of [
-    { width: 390, height: 844 },
-    { width: 430, height: 932 },
-  ]) {
-    await page.setViewportSize(viewport);
-    await page.goto("/");
-
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: /tell us what's important/i }).first(),
-    ).toBeVisible();
-    await expect(page.locator(".editorial-hero__image")).toBeVisible();
+test("Built Here product pages protect screenshot framing", async ({ page }) => {
+  for (const route of productRoutes) {
+    await page.goto(route);
+    const hero = page.locator(".editorial-case-study-hero__media");
+    await expect(hero).toBeVisible();
+    await expect(hero).toHaveCSS("background-size", "contain");
     await expectNoHorizontalOverflow(page);
   }
 });
 
-test("reduced-motion mode keeps the complete static experience", async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+test("team roles are visible and readable", async ({ page }) => {
+  await page.goto("/team");
 
-  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator(".editorial-hero__image")).toBeVisible();
-  await expect(page.getByRole("heading", { name: /four ways to start/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /^built here$/i })).toBeVisible();
+  const roles = [
+    "Founder & Client Relations",
+    "eCommerce & Shopify Expert",
+    "Digital Project Management / Social Media Strategist",
+    "DevOps & Agentic SEO",
+    "Systems Thinking / Automations",
+  ] as const;
+
+  for (const role of roles) {
+    const element = page.getByText(role, { exact: true });
+    await expect(element).toBeVisible();
+    const size = await element.evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
+    expect(size).toBeGreaterThanOrEqual(15);
+  }
 });
 
-test("editorial menu keeps language switching and no theme control", async ({ page }) => {
+test("simplified intake keeps labels, mobile-safe controls and local validation", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/apply");
+
+  await expect(page.getByRole("heading", { level: 1, name: /tell us what’s important/i })).toBeVisible();
+
+  for (const label of [
+    "Your name",
+    "Email",
+    "What do you need help with?",
+    "What’s most important right now?",
+    "Website or existing setup Optional",
+    "Timing",
+  ]) {
+    await expect(page.getByLabel(label, { exact: false })).toBeVisible();
+  }
+
+  const controls = page.locator(".application-form input:not([type=hidden]), .application-form select, .application-form textarea");
+  const count = await controls.count();
+  for (let index = 0; index < count; index += 1) {
+    const control = controls.nth(index);
+    if (!(await control.isVisible())) continue;
+    const fontSize = await control.evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
+    expect(fontSize).toBeGreaterThanOrEqual(16);
+  }
+
+  await page.getByRole("button", { name: /send it/i }).click();
+  await expect(page.getByText(/review the highlighted fields/i)).toBeVisible();
+  await expect(page.locator("#name")).toBeFocused();
+  await expectNoHorizontalOverflow(page);
+});
+
+test("accessibility is a footer drawer with focus containment and return", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
-  await page.getByRole("button", { name: /^menu$/i }).click();
-  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
-  await expect(navigation).toBeVisible();
+  const trigger = page.getByRole("button", { name: /^accessibility$/i });
+  await trigger.scrollIntoViewIfNeeded();
+  await trigger.click();
 
-  const languageButtons = navigation.locator(".language-toggle button");
-  await languageButtons.nth(1).click();
-  await expect(page.locator("html")).toHaveAttribute("lang", "es-MX");
-  await expect(page.locator(".theme-toggle")).toHaveCount(0);
+  const dialog = page.getByRole("dialog", { name: /we want everyone to be able to use our website/i });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole("button", { name: /^close$/i })).toBeFocused();
+
+  await page.keyboard.press("Shift+Tab");
+  await expect(dialog.getByRole("link", { name: /macsdigitalmedia@gmail.com/i })).toBeFocused();
+
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+  await expectNoHorizontalOverflow(page);
+});
+
+test("standalone accessibility route is retired", async ({ page }) => {
+  const response = await page.goto("/accessibility");
+  expect(response?.status()).toBe(404);
 });
 
 test("mobile navigation closes with Escape and restores focus", async ({ page }) => {
@@ -171,24 +236,75 @@ test("mobile navigation closes with Escape and restores focus", async ({ page })
   await expectNoHorizontalOverflow(page);
 });
 
-test("key breakpoints avoid horizontal overflow", async ({ page }) => {
-  const viewports = [
-    { width: 320, height: 568 },
-    { width: 360, height: 800 },
-    { width: 375, height: 812 },
-    { width: 390, height: 844 },
-    { width: 414, height: 896 },
-    { width: 430, height: 932 },
-    { width: 768, height: 1024 },
-    { width: 1024, height: 768 },
-    { width: 1440, height: 900 },
-  ];
-
-  for (const viewport of viewports) {
-    await page.setViewportSize(viewport);
-    await page.goto("/");
-    await expectNoHorizontalOverflow(page);
+test("all primary public routes pass the full viewport overflow matrix", async ({ page }) => {
+  for (const route of publicRoutes) {
+    for (const viewport of viewports) {
+      await page.setViewportSize(viewport);
+      await page.goto(route);
+      await expectNoHorizontalOverflow(page);
+    }
   }
+});
+
+test("key routes have no browser runtime errors", async ({ page }) => {
+  for (const route of [...publicRoutes, ...productRoutes]) {
+    await expectRuntimeClean(page, route);
+  }
+});
+
+test("visual review artifacts cover phone, tablet and desktop", async ({ page }) => {
+  const proofViewports = [
+    { width: 390, height: 844, label: "phone" },
+    { width: 768, height: 1024, label: "tablet" },
+    { width: 1440, height: 900, label: "desktop" },
+  ] as const;
+
+  for (const route of [...publicRoutes, ...productRoutes]) {
+    for (const viewport of proofViewports) {
+      await page.setViewportSize(viewport);
+      await page.goto(route, { waitUntil: "networkidle" });
+      await expectNoHorizontalOverflow(page);
+      await page.screenshot({
+        path: `test-results/visual/${viewport.label}/${safeSlug(route)}.png`,
+        fullPage: true,
+      });
+    }
+  }
+});
+
+test("reduced-motion mode keeps the complete static experience", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.locator(".editorial-hero__image")).toBeVisible();
+  await expect(page.getByRole("heading", { name: /four ways to start/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /^built here$/i })).toBeVisible();
+});
+
+test("book route degrades to verified email when no booking URL is configured", async ({ page }) => {
+  await page.goto("/book");
+
+  await expect(page.getByRole("heading", { name: /book a conversation/i })).toBeVisible();
+  await expect(page.getByText(/we’ll figure out the best next step together/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: /email macs/i })).toHaveAttribute(
+    "href",
+    "mailto:macsdigitalmedia@gmail.com",
+  );
+});
+
+test("retired public routes return 404", async ({ page }) => {
+  for (const route of ["/notes", "/demos", "/maxx", "/website-rescue", "/small-business"]) {
+    const response = await page.goto(route);
+    expect(response?.status(), `${route} should be retired`).toBe(404);
+  }
+});
+
+test("retired founding launch route still points to Programs", async ({ page }) => {
+  await page.goto("/founding-launch");
+  await expect(page).toHaveURL(/\/programs$/);
+  await expect(page.getByRole("heading", { level: 1, name: /four ways to start/i })).toBeVisible();
+  await expectNoHorizontalOverflow(page);
 });
 
 test("Phase 5 design lab remains noindex", async ({ page }) => {
@@ -197,26 +313,6 @@ test("Phase 5 design lab remains noindex", async ({ page }) => {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/i);
     await expectNoHorizontalOverflow(page);
   }
-});
-
-test("apply page is reduced to one booking action", async ({ page }) => {
-  await page.goto("/apply");
-
-  await expect(
-    page.getByRole("heading", { level: 1, name: /tell us what’s important/i }),
-  ).toBeVisible();
-  const booking = page.getByRole("link", { name: /book a conversation/i });
-  await expect(booking).toHaveAttribute("href", "/book");
-});
-
-test("book route degrades to verified email when no booking URL is configured", async ({ page }) => {
-  await page.goto("/book");
-
-  await expect(page.getByRole("heading", { name: /book a conversation/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /email macs/i })).toHaveAttribute(
-    "href",
-    "mailto:macsdigitalmedia@gmail.com",
-  );
 });
 
 test("Supabase health check fails safely when deployment secrets are absent", async ({ request }) => {

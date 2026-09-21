@@ -96,43 +96,20 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     industry: "Creative Infrastructure",
-    headline: "A content engine built to keep momentum moving.",
+    headline: "A content engine for your social media",
     liveUrl: "https://buffer-blaster.netlify.app/",
     heroImage: "/work/buffer-blaster-hero.webp",
     summary:
-      "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
+      "Buffer Blaster is an internal MACS product for creating UGC ads and media at scale without expensive lock in subscriptions. It belongs to the MAXX Suite and is our open source alternative we built for our clients. Pay once, we install it, you own it forever. No subscriptions needed.",
     sections: [
       {
-        title: "The problem",
-        body: "Content work drowns in disconnected tools: research in one place, scripts in another, generation somewhere else, results nowhere. Teams ship volume without learning what works, and every round starts from zero.",
+        title: "Create more. Own the system.",
+        body: "Buffer Blaster helps your company create UGC ads and social media at scale without stacking expensive subscriptions.",
       },
       {
-        title: "The constraints",
-        body: "The system had to move fast without removing judgment. Paid generation, publishing and activation stay explicit human decisions with limits enforced on the server, and every consequential job keeps its evidence: plan, rights, approval, cost and result.",
+        title: "We install it. You keep it.",
+        body: "MACS installs Buffer Blaster for your company. You pay once, own the system, and keep control of your workflow.",
       },
-      {
-        title: "What MACS built",
-        body: "One governed loop runs the work: Learn (product truth, customer pain, brand context, the angles worth testing), Shape (scripts, concepts, controlled variations), Make (creative routed through the right generation path only after plan, rights and cost are clear), then Learn again. The Studio is the doorway; approved agents call the same workflow over REST, MCP and CLI.",
-      },
-      {
-        title: "Real outputs",
-        body: "The public beta site is live, and the two spec ads on our demos page - ScuffReset and Pristine - were produced end to end by this pipeline: hook, presenter, product footage, captions and call to action.",
-      },
-    ],
-    evidence: [
-      {
-        image: "/work/bb-evidence-loop.webp",
-        caption: "The governed loop, live on the public site: Learn, Shape, Make, Learn again.",
-      },
-      {
-        image: "/work/bb-evidence-governance.webp",
-        caption: "Automation removes busywork, not judgment. Every consequential job keeps its evidence: plan, rights, approval, cost, result.",
-      },
-    ],
-    placeholders: [
-      "Workflow walkthrough film",
-      "Example campaign",
-      "Documented output/result",
     ],
   },
   {
@@ -141,30 +118,25 @@ export const caseStudies: CaseStudy[] = [
     name: "Pare’",
     visibility: "internal",
     format: "product",
-    headline: "Scale proof, ready for the full story.",
+    headline: "Design high-level products without the AI slop problem.",
     summary:
-      "Pare’ is part of the MAXX Suite / Built Here story. The live product is linked; walkthroughs and verified results remain placeholders until approved.",
+      "Pare’ is part of the MAXX Suite design software.",
     liveUrl: "https://pauli-para.netlify.app/",
     liveAvailable: false,
     heroImage: "/work/pare-hero.webp",
     sections: [
       {
         title: "The problem",
-        body: "AI-built software accumulates faster than anyone can review it. Work that ships without a review-and-repair step breaks where nobody is watching.",
+        body: "AI-built websites and apps create code faster than anyone can review it. Work that ships without a real design process can break when nobody is watching or create sloppy, insecure products that all look alike.",
       },
       {
         title: "What we built",
-        body: "Pare’ is one studio for making things with AI without the noise: it takes the models, tools, prompts, agents and infrastructure underneath modern digital work and removes that complexity from the person trying to make something good. People enter through the Studio; agents use the same system over API, MCP and CLI.",
+        body: "Pare’ is one studio for designing high-level products without the AI slop problem. It’s our in-house alternative to Canva, Claude Design, and basic vibe-coding apps. One plugin turns your AI agent into an entire design team. Or, if you want a hands-on approach, log in and use the canvas. Our built-in security review audits your site for bugs before it ships.",
       },
       {
         title: "How it scales",
-        body: "The work stays yours: your projects, your files, your agents, your infrastructure. It is also the review-and-repair step in our own build workflow - supervised passes over AI-built work before it reaches a client, so quality stops depending on who happened to have time to check.",
+        body: "No subscriptions. One installation fee lets you own the system. Our built-in agents and process use a defined quality bar to review AI-built work before it ever reaches a client. Sign up for Pare’ and \"Stop the Slop.\"",
       },
-    ],
-    placeholders: [
-      "Product walkthrough film",
-      "Development timeline",
-      "Documented result",
     ],
   },
   {
@@ -176,9 +148,9 @@ export const caseStudies: CaseStudy[] = [
     credit: "Developed by Stavarai",
     liveUrl: "https://postastudios.31.220.58.212.sslip.io/",
     heroImage: "/work/posta-studios-hero.webp",
-    headline: "UGC characters built into a repeatable content system.",
+    headline: "Automate your entire social media presence",
     summary:
-      "Posta Studio is part of the MAXX Suite / Built Here story and was developed by Stavarai. It remains separate from the client-work gallery.",
+      "Posta Studio is part of the MAXX Suite.",
     sections: [
       {
         title: "Why it exists",
@@ -186,19 +158,12 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "What Stavarai developed",
-        body: "Posta Studio turns UGC-style characters into a repeatable content system: recurring personas, scripted spots, and a publishing workflow that produces on schedule instead of on inspiration.",
+        body: "Stavarai and our team created Posta Studio to turn UGC-style content and social posts into a repeatable system: automated posts, scripted ads, and a publishing workflow that produces on schedule instead of when you find time.",
       },
       {
         title: "How it becomes leverage",
-        body: "A character-led system keeps producing after a single campaign ends. The same workflow can support more content, more campaigns, or a client’s own presence.",
+        body: "Reusable and consistent social media at scale, without you having to post, saves hours of time and lets you see your ads working across all platforms. Built for influencers, eCommerce, podcasts and much more.",
       },
-    ],
-    placeholders: [
-      "Full-page hero video",
-      "UGC character gallery",
-      "Product walkthrough",
-      "Development story from Stavarai",
-      "Documented result",
     ],
   },
   {
@@ -266,31 +231,32 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "foundry-fleet",
     lane: "Scale",
-    name: "Foundry Fleet",
+    name: "Foundry",
     visibility: "internal",
     format: "product",
     industry: "Internal Tooling",
-    headline: "One control room for every agent computer.",
+    headline: "Give your AI agent its own computer.",
     summary:
-      "Foundry Fleet is the private console MACS uses to see its agent computers live - fleet status, audit trail and product state in one place. The public page confirms it is deployed; the console itself stays behind a key.",
+      "Foundry gives AI agents a secure computer they can use to browse websites, operate software, fill forms, gather information, and complete repetitive digital work for your business.",
     liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
     heroImage: "/work/foundry-fleet-hero.webp",
     sections: [
       {
-        title: "Why it exists",
-        body: "A fleet of agent machines doing real work needs one live view: what is up, what is down, what changed, who did it. Without it, operations run on guesswork.",
+        title: "The problem",
+        body: "Most AI can answer questions, but it cannot actually do the browser work inside the websites or software your business uses every day. People still have to copy information, click through dashboards, fill forms, move files, and repeat the same steps over and over. AI agents in Claude and ChatGPT are often blocked from finding public information, transcripts, and other data when scraping.",
       },
       {
-        title: "What MACS built",
-        body: "A control room with Fleet, Audit and Product views over every agent computer - the same discipline we bring to client systems, applied to our own infrastructure first.",
+        title: "Why you would use one",
+        body: "If your team spends hours doing repetitive work in a browser, Foundry can take over the routine parts. Your team stays in control of sensitive actions while the agent handles the visual clicking, searching, checking, and data gathering.",
       },
       {
-        title: "What's live",
-        body: "The console is deployed and answers live; it requires an API key because it is private infrastructure. The public page is the proof it exists, not a demo.",
+        title: "What it can do",
+        body: "Basically anything a human can do with a browser, Foundry can perform for you. Multiple agents and browsers can be used at the same time. It can use software, edit videos, organize files, search websites and gather information, use dashboards and browser-based software, watch websites for changes, fill repetitive forms and update systems, and install complex agents or software for you.",
       },
-    ],
-    placeholders: [
-      "Approved interior capture of the fleet view",
+      {
+        title: "Ownership / offer",
+        body: "Your agent. Its own computer. Your rules. MACS installs and configures Foundry around the work your company actually needs done. You decide what it can access, what it can do automatically, and where human approval is required.",
+      },
     ],
   },
 ];

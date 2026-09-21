@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/built-here", "monthly", 0.8],
     ["/apply", "monthly", 0.9],
     ["/privacy", "yearly", 0.3],
-    ["/accessibility", "yearly", 0.3],
   ] as const;
 
   const staticEntries: MetadataRoute.Sitemap = routes.map(([path, changeFrequency, priority]) => ({

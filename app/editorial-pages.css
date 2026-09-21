@@ -275,6 +275,18 @@
   background-repeat: no-repeat;
 }
 
+.editorial-case-study-hero__media--contain {
+  background-size: contain;
+  background-color: #171512;
+}
+
+.editorial-case-study-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+}
+
 .editorial-case-study-hero__media > span,
 .editorial-case-study-placeholder {
   font: 600 0.75rem/1.4 var(--editorial-sans);
@@ -363,6 +375,26 @@
   max-width: 44rem;
   margin: 0;
   font: 400 clamp(1rem, 1.4vw, 1.2rem)/1.68 var(--editorial-sans);
+}
+
+.editorial-story-long__chapter > div {
+  display: grid;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.editorial-story-long__chapter blockquote {
+  margin: 0;
+}
+
+.editorial-story-long__chapter blockquote p {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.editorial-story-long__chapter blockquote footer {
+  margin-top: 0.8rem;
+  font: 600 0.82rem/1.4 var(--editorial-sans);
 }
 
 .editorial-built-detail {

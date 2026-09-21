@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
@@ -53,7 +54,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           <div
-            className="editorial-case-study-hero__media"
+            className={`editorial-case-study-hero__media${isInternal ? " editorial-case-study-hero__media--contain" : ""}`}
             role={study.heroImage ? "img" : undefined}
             aria-label={study.heroImage ? `${study.name} project hero` : undefined}
             style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
@@ -77,6 +78,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             ) : (
               <span className="editorial-case-study-placeholder">Live project link — pending</span>
             )}
+            {study.slug === "buffer-blaster" ? (
+              <Link className="editorial-link" href="/apply">
+                I want Buffer Blaster for my company <span aria-hidden="true">↗</span>
+              </Link>
+            ) : null}
           </div>
           </div>
         </header>
@@ -100,7 +106,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <div className="editorial-case-study-evidence__grid">
               {study.evidence.map((item) => (
                 <figure key={item.image}>
-                  <img src={item.image} alt={item.caption} loading="lazy" />
+                  <Image src={item.image} alt={item.caption} width={1600} height={1000} sizes="(max-width: 800px) 100vw, 88vw" />
                   <figcaption>{item.caption}</figcaption>
                 </figure>
               ))}
