@@ -175,6 +175,114 @@
   text-decoration: none;
 }
 
+.editorial-footer__text-button {
+  width: fit-content;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accessibility-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  align-items: end;
+}
+
+.accessibility-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(8px);
+}
+
+.accessibility-drawer__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 62rem);
+  max-height: min(86vh, 54rem);
+  margin: 0 auto;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 1.75rem 1.75rem 0 0;
+  background: #f6f6e9;
+  color: #171512;
+  box-shadow: 0 -1.25rem 4rem rgba(0, 0, 0, 0.22);
+}
+
+.accessibility-drawer__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(23, 21, 18, 0.14);
+}
+
+.accessibility-drawer__header h2 {
+  max-width: 14ch;
+  margin: 0.4rem 0 0;
+  font: 400 clamp(2rem, 4vw, 4.2rem)/0.98 var(--editorial-serif);
+  letter-spacing: -0.045em;
+}
+
+.accessibility-drawer__close {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(23, 21, 18, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: 400 1.6rem/1 var(--editorial-sans);
+  cursor: pointer;
+}
+
+.accessibility-drawer__body {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 46rem;
+  padding-top: 1.5rem;
+  font: 400 1rem/1.65 var(--editorial-sans);
+}
+
+.accessibility-drawer__body p,
+.accessibility-drawer__body ul {
+  margin: 0;
+}
+
+.accessibility-drawer__body h3 {
+  margin: 0.75rem 0 0;
+  font: 600 1rem/1.3 var(--editorial-sans);
+}
+
+.accessibility-drawer__body ul {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 680px) {
+  .accessibility-drawer__panel {
+    width: calc(100% - 0.75rem);
+    max-height: 90vh;
+    padding: 1.25rem;
+    border-radius: 1.4rem 1.4rem 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accessibility-drawer__backdrop {
+    backdrop-filter: none;
+  }
+}
+
 .editorial-footer__bottom {
   display: flex;
   flex-wrap: wrap;
