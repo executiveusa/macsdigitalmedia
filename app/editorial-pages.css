@@ -275,6 +275,18 @@
   background-repeat: no-repeat;
 }
 
+.editorial-case-study-hero__media--contain {
+  background-size: contain;
+  background-color: #171512;
+}
+
+.editorial-case-study-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+}
+
 .editorial-case-study-hero__media > span,
 .editorial-case-study-placeholder {
   font: 600 0.75rem/1.4 var(--editorial-sans);
