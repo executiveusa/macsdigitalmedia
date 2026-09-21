@@ -2,6 +2,11 @@ name: Deploy Hostinger Supabase schema
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "supabase/migrations/202609210001_simplify_founding_application_intake.sql"
 
 permissions:
   contents: read
