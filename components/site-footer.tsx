@@ -35,6 +35,7 @@ export function SiteFooter() {
     if (!accessibilityOpen || !drawerRef.current) return;
 
     const drawer = drawerRef.current;
+    const trigger = accessibilityTriggerRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -68,7 +69,7 @@ export function SiteFooter() {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
-      requestAnimationFrame(() => accessibilityTriggerRef.current?.focus());
+      requestAnimationFrame(() => trigger?.focus());
     };
   }, [accessibilityOpen]);
 
