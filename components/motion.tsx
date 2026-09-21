@@ -110,7 +110,7 @@ export function HeroParallax({ children }: { children: ReactNode }) {
   const scale = useTransform(progress, [0, 1], reduceMotion ? [1, 1] : [1.025, 1.075]);
 
   return (
-    <div ref={ref} className="editorial-hero__motion-frame" aria-hidden="true">
+    <div ref={ref} className="editorial-hero__motion-frame">
       <m.div className="editorial-hero__motion-layer" style={{ y, scale }}>
         {children}
       </m.div>
