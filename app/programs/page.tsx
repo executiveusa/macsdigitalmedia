@@ -38,7 +38,7 @@ export default async function ProgramsPage() {
           <section className="editorial-program-detail" id={id} key={id}>
             <p className="editorial-kicker">{name}</p>
             {line ? <h2>{line}</h2> : null}
-            <p>{response ? <p>{response}</p> : null}
+            {response ? <p>{response}</p> : null}
           </section>
         ))}
 
