@@ -70,12 +70,16 @@ test("primary controls provide pressed-state visual feedback", async ({ page }) 
 
   const menu = page.getByRole("button", { name: /^menu$/i });
   const before = await menu.evaluate((node) => getComputedStyle(node).transform);
-  await menu.dispatchEvent("pointerdown");
-  await page.waitForTimeout(80);
+  const box = await menu.boundingBox();
+  expect(box).not.toBeNull();
+
+  await page.mouse.move(box!.x + box!.width / 2, box!.y + box!.height / 2);
+  await page.mouse.down();
+  await page.waitForTimeout(90);
   const pressed = await menu.evaluate((node) => getComputedStyle(node).transform);
 
   expect(pressed).not.toBe(before);
-  await menu.dispatchEvent("pointerup");
+  await page.mouse.up();
 });
 
 test("accessibility drawer enters as a spatial spring", async ({ page }) => {
