@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -20,6 +21,7 @@ export function SiteFooter() {
   const common = copy.common;
   const spanish = locale === "es-MX";
   const [accessibilityOpen, setAccessibilityOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
   const accessibilityTriggerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
 
@@ -116,20 +118,39 @@ export function SiteFooter() {
         </div>
       </footer>
 
-      {accessibilityOpen ? (
-        <div className="accessibility-drawer">
-          <div
+      <AnimatePresence>
+        {accessibilityOpen ? (
+        <m.div
+          className="accessibility-drawer"
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.2 }}
+        >
+          <m.div
             className="accessibility-drawer__backdrop"
             aria-hidden="true"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
             onMouseDown={() => setAccessibilityOpen(false)}
           />
-          <section
+          <m.section
             ref={drawerRef}
             id="accessibility-drawer"
             className="accessibility-drawer__panel"
             role="dialog"
             aria-modal="true"
             aria-labelledby="accessibility-drawer-title"
+            initial={reduceMotion ? false : { y: 72, scale: 0.985, opacity: 0.86 }}
+            animate={{ y: 0, scale: 1, opacity: 1 }}
+            exit={{ y: 52, scale: 0.99, opacity: 0 }}
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : { type: "spring", stiffness: 360, damping: 34, mass: 0.62 }
+            }
           >
             <div className="accessibility-drawer__header">
               <div>
@@ -176,9 +197,10 @@ export function SiteFooter() {
                 macsdigitalmedia@gmail.com <span aria-hidden="true">↗</span>
               </a>
             </div>
-          </section>
-        </div>
-      ) : null}
+          </m.section>
+        </m.div>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }
