@@ -96,11 +96,11 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     industry: "Creative Infrastructure",
-    headline: "A content engine built to keep momentum moving.",
+    headline: "A content engine for your social media",
     liveUrl: "https://buffer-blaster.netlify.app/",
     heroImage: "/work/buffer-blaster-hero.webp",
     summary:
-      "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite / Built Here story rather than the client-work gallery.",
+      "Buffer Blaster is an internal MACS product for research, production, scoring and scheduling. It belongs to the MAXX Suite and is our open source alternative we build and install for our clients. Pay once, own it forever. No subscriptions needed.",
     sections: [
       {
         title: "The problem",
