@@ -42,6 +42,7 @@ const copy = {
     success: "Got it. A real person will read this.",
     book: "Book a conversation",
     required: "This field is required.",
+    contextRequired: "Tell us a little more about what matters right now.",
     emailInvalid: "Enter a valid email address.",
     urlInvalid: "Enter a complete website address beginning with http:// or https://.",
     error: "Review the highlighted fields and try again.",
@@ -76,6 +77,7 @@ const copy = {
     success: "Listo. Una persona real leerá esto.",
     book: "Reservar una conversación",
     required: "Este campo es obligatorio.",
+    contextRequired: "Cuéntanos un poco más sobre lo que importa ahora.",
     emailInvalid: "Ingresa un correo válido.",
     urlInvalid: "Ingresa una dirección completa que empiece con http:// o https://.",
     error: "Revisa los campos marcados e inténtalo de nuevo.",
@@ -98,11 +100,13 @@ export function ApplicationForm() {
     const value = (name: string) => String(formData.get(name) || "").trim();
 
     if (value("name").length < 2) errors.name = c.required;
+
     const email = value("email");
     if (!email) errors.email = c.required;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = c.emailInvalid;
+
     if (!value("need")) errors.need = c.required;
-    if (value("context").length < 10) errors.context = c.required;
+    if (value("context").length < 10) errors.context = c.contextRequired;
     if (!value("timing")) errors.timing = c.required;
 
     const website = value("website");
@@ -119,6 +123,17 @@ export function ApplicationForm() {
     return errors;
   }
 
+  function focusFirstError(form: HTMLFormElement, errors: Record<string, string>) {
+    const control = Array.from(form.elements).find((element) => {
+      const name = element.getAttribute("name");
+      return Boolean(name && Object.prototype.hasOwnProperty.call(errors, name));
+    });
+
+    if (control instanceof HTMLElement) {
+      requestAnimationFrame(() => control.focus());
+    }
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -127,6 +142,7 @@ export function ApplicationForm() {
 
     if (Object.keys(errors).length) {
       setSubmission({ kind: "error", message: c.error, errors });
+      focusFirstError(form, errors);
       return;
     }
 
@@ -152,14 +168,19 @@ export function ApplicationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = await response.json();
+      const result = (await response.json()) as {
+        ok?: boolean;
+        errors?: Record<string, string>;
+      };
 
       if (!response.ok || !result.ok) {
+        const errors = result.errors || {};
         setSubmission({
           kind: "error",
-          message: result.errors?.form || c.error,
-          errors: result.errors || {},
+          message: errors.form || c.error,
+          errors,
         });
+        focusFirstError(form, errors);
         return;
       }
 
@@ -172,6 +193,7 @@ export function ApplicationForm() {
   }
 
   const error = (name: string) => submission.errors[name];
+  const describedBy = (name: string) => error(name) ? `${name}-error` : undefined;
   const submitting = submission.kind === "submitting";
 
   return (
@@ -185,55 +207,115 @@ export function ApplicationForm() {
         <div className="form-grid">
           <div className="form-field">
             <label htmlFor="name">{c.name}</label>
-            <input id="name" name="name" type="text" autoComplete="name" required />
-            {error("name") ? <span className="field-error">{error("name")}</span> : null}
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              minLength={2}
+              maxLength={120}
+              aria-invalid={Boolean(error("name"))}
+              aria-describedby={describedBy("name")}
+            />
+            {error("name") ? <span id="name-error" className="field-error">{error("name")}</span> : null}
           </div>
 
           <div className="form-field">
             <label htmlFor="email">{c.email}</label>
-            <input id="email" name="email" type="email" autoComplete="email" required />
-            {error("email") ? <span className="field-error">{error("email")}</span> : null}
+            <input
+              id="email"
+              name="email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              required
+              maxLength={254}
+              aria-invalid={Boolean(error("email"))}
+              aria-describedby={describedBy("email")}
+            />
+            {error("email") ? <span id="email-error" className="field-error">{error("email")}</span> : null}
           </div>
         </div>
 
         <div className="form-field">
           <label htmlFor="need">{c.need}</label>
-          <select id="need" name="need" defaultValue="" required>
+          <select
+            id="need"
+            name="need"
+            defaultValue=""
+            required
+            aria-invalid={Boolean(error("need"))}
+            aria-describedby={describedBy("need")}
+          >
             <option value="" disabled>—</option>
             {c.needOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
           </select>
-          {error("need") ? <span className="field-error">{error("need")}</span> : null}
+          {error("need") ? <span id="need-error" className="field-error">{error("need")}</span> : null}
         </div>
 
         <div className="form-field">
           <label htmlFor="context">{c.context}</label>
-          <textarea id="context" name="context" rows={5} placeholder={c.contextPlaceholder} required />
-          {error("context") ? <span className="field-error">{error("context")}</span> : null}
+          <textarea
+            id="context"
+            name="context"
+            rows={5}
+            maxLength={3000}
+            placeholder={c.contextPlaceholder}
+            required
+            aria-invalid={Boolean(error("context"))}
+            aria-describedby={describedBy("context")}
+          />
+          {error("context") ? <span id="context-error" className="field-error">{error("context")}</span> : null}
         </div>
 
         <div className="form-grid">
           <div className="form-field">
             <label htmlFor="website">{c.website} <span className="optional-label">{c.optional}</span></label>
-            <input id="website" name="website" type="url" inputMode="url" placeholder="https://" />
-            {error("website") ? <span className="field-error">{error("website")}</span> : null}
+            <input
+              id="website"
+              name="website"
+              type="url"
+              inputMode="url"
+              autoComplete="url"
+              placeholder="https://"
+              maxLength={500}
+              aria-invalid={Boolean(error("website"))}
+              aria-describedby={describedBy("website")}
+            />
+            {error("website") ? <span id="website-error" className="field-error">{error("website")}</span> : null}
           </div>
 
           <div className="form-field">
             <label htmlFor="timing">{c.timing}</label>
-            <select id="timing" name="timing" defaultValue="" required>
+            <select
+              id="timing"
+              name="timing"
+              defaultValue=""
+              required
+              aria-invalid={Boolean(error("timing"))}
+              aria-describedby={describedBy("timing")}
+            >
               <option value="" disabled>—</option>
               {c.timingOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
             </select>
-            {error("timing") ? <span className="field-error">{error("timing")}</span> : null}
+            {error("timing") ? <span id="timing-error" className="field-error">{error("timing")}</span> : null}
           </div>
         </div>
 
         <div className="checkbox-field">
           <label className="checkbox-label" htmlFor="consent">
-            <input id="consent" name="consent" type="checkbox" required />
+            <input
+              id="consent"
+              name="consent"
+              type="checkbox"
+              required
+              aria-invalid={Boolean(error("consent"))}
+              aria-describedby={describedBy("consent")}
+            />
             <span>{c.consent} <Link href="/privacy">{c.privacy}</Link>.</span>
           </label>
-          {error("consent") ? <span className="field-error">{error("consent")}</span> : null}
+          {error("consent") ? <span id="consent-error" className="field-error">{error("consent")}</span> : null}
         </div>
 
         <button className="button button--primary form-submit" type="submit">
@@ -243,7 +325,11 @@ export function ApplicationForm() {
       </fieldset>
 
       {submission.message ? (
-        <div className={"form-status form-status--" + submission.kind} role={submission.kind === "error" ? "alert" : "status"}>
+        <div
+          className={"form-status form-status--" + submission.kind}
+          role={submission.kind === "error" ? "alert" : "status"}
+          aria-live="polite"
+        >
           <p>{submission.message}</p>
           {submission.kind === "success" ? <p><Link href="/book">{c.book} ↗</Link></p> : null}
         </div>
