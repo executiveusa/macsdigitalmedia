@@ -7,11 +7,11 @@ export const metadata: Metadata = {
 };
 
 const people = [
-  { index: "01", name: "Stacy", initials: "ST" },
-  { index: "02", name: "Stavarai", initials: "ST" },
-  { index: "03", name: "Ivette", initials: "IV" },
-  { index: "04", name: "Akash", initials: "AK" },
-  { index: "05", name: "Jeremy", initials: "JE" },
+  { index: "01", name: "Stacy McSwain", initials: "ST", role: "Founder & Client Relations" },
+  { index: "02", name: "Stavarai", initials: "ST", role: "" },
+  { index: "03", name: "Ivette", initials: "IV", role: "" },
+  { index: "04", name: "Akash", initials: "AK", role: "" },
+  { index: "05", name: "Jeremy", initials: "JE", role: "" },
 ];
 
 export default function TeamPage() {
@@ -38,7 +38,7 @@ export default function TeamPage() {
               <div className={styles.copy}>
                 <span className={styles.index}>{person.index}</span>
                 <div className={styles.identity}>
-                  <h2 className={styles.personName}>{person.name}</h2>
+                  <h2 className={styles.personName}>{person.name}</h2>\n                  {person.role ? <p className={styles.personRole}>{person.role}</p> : null}
                 </div>
               </div>
             </article>
