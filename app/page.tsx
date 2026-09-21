@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroParallax, Reveal } from "@/components/motion";
+import { HeroCopyMotion, HeroParallax, Reveal } from "@/components/motion";
 import { editorialHome } from "@/lib/editorial-home";
 import { getServerLocale } from "@/lib/server-preferences";
 
@@ -50,14 +50,16 @@ export default async function HomePage() {
           </HeroParallax>
         </div>
         <div className="editorial-hero__panel">
-          <div className="editorial-hero__content">
-            <p className="editorial-kicker">MACS Digital Media</p>
-            <h1 id="editorial-hero-title">{home.heroTitle}</h1>
-            {home.heroLine ? <p className="editorial-hero__line">{home.heroLine}</p> : null}
-            <Link className="editorial-link editorial-link--light" href="/apply">
-              {home.primaryCta} <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
+          <HeroCopyMotion>
+            <div className="editorial-hero__content">
+              <p className="editorial-kicker">MACS Digital Media</p>
+              <h1 id="editorial-hero-title">{home.heroTitle}</h1>
+              {home.heroLine ? <p className="editorial-hero__line">{home.heroLine}</p> : null}
+              <Link className="editorial-link editorial-link--light" href="/apply">
+                {home.primaryCta} <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </HeroCopyMotion>
         </div>
       </section>
 
