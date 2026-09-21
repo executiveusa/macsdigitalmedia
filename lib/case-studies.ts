@@ -158,7 +158,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "What Stavarai developed",
-        body: "Posta Studio turns UGC-style content and social posts into a repeatable content system: recurring personas, scripted spots, and a publishing workflow that produces on schedule instead of when you find time.",
+        body: "Stavarai and our team created Posta Studio to turn UGC-style content and social posts into a repeatable system: automated posts, scripted ads, and a publishing workflow that produces on schedule instead of when you find time.",
       },
       {
         title: "How it becomes leverage",
