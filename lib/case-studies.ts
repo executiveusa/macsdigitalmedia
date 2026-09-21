@@ -120,22 +120,22 @@ export const caseStudies: CaseStudy[] = [
     format: "product",
     headline: "Scale proof, ready for the full story.",
     summary:
-      "Pare’ is part of the MAXX Suite / Built Here story. The live product is linked; walkthroughs and verified results remain placeholders until approved.",
+      "Pare’ is part of the MAXX Suite design software.",
     liveUrl: "https://pauli-para.netlify.app/",
     liveAvailable: false,
     heroImage: "/work/pare-hero.webp",
     sections: [
       {
         title: "The problem",
-        body: "AI-built software accumulates faster than anyone can review it. Work that ships without a review-and-repair step breaks where nobody is watching.",
+        body: "AI-built websites and apps create code faster than anyone can review it. Work that ships without a review-and-repair step breaks when nobody is watching and often creates sloppy, unsecure websites and apps that all look alike.",
       },
       {
         title: "What we built",
-        body: "Pare’ is one studio for making things with AI without the noise: it takes the models, tools, prompts, agents and infrastructure underneath modern digital work and removes that complexity from the person trying to make something good. People enter through the Studio; agents use the same system over API, MCP and CLI.",
+        body: "Pare’ is one studio for creating high level products without the AI slop problem. Our in house alternative to Canva, Claude Design and basic vibe coding apps. One plugin turns your AI agent into an entire design team or simply login and use the canvas for a hands on approach.",
       },
       {
         title: "How it scales",
-        body: "The work stays yours: your projects, your files, your agents, your infrastructure. It is also the review-and-repair step in our own build workflow - supervised passes over AI-built work before it reaches a client, so quality stops depending on who happened to have time to check.",
+        body: "The work stays yours: — supervised passes over AI-built work before it reaches a client, so quality stops depending on who happened to have time to check.",
       },
     ],
     placeholders: [
