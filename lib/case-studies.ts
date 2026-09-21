@@ -243,7 +243,7 @@ export const caseStudies: CaseStudy[] = [
     sections: [
       {
         title: "The problem",
-        body: "Most AI can answer questions, but it cannot actually do the work inside the websites and software your business uses every day. People still have to copy information, click through dashboards, fill forms, move files, and repeat the same steps over and over. AI agents in Claude and ChatGPT are often blocked from finding public information, transcripts, and other data when scraping.",
+        body: "Most AI can answer questions, but it cannot actually do the browser work inside the websites or software your business uses every day. People still have to copy information, click through dashboards, fill forms, move files, and repeat the same steps over and over. AI agents in Claude and ChatGPT are often blocked from finding public information, transcripts, and other data when scraping.",
       },
       {
         title: "Why you would use one",
