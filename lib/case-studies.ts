@@ -165,13 +165,6 @@ export const caseStudies: CaseStudy[] = [
         body: "Reusable and consistent social media at scale, without you having to post, saves hours of time and lets you see your ads working across all platforms. Built for influencers, eCommerce, podcasts and much more.",
       },
     ],
-    placeholders: [
-      "Full-page hero video",
-      "UGC character gallery",
-      "Product walkthrough",
-      "Development story from Stavarai",
-      "Documented result",
-    ],
   },
   {
     slug: "sweet",
