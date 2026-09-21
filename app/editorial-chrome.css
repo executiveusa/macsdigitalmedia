@@ -177,6 +177,9 @@
 
 .editorial-footer__text-button {
   width: fit-content;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
   padding: 0;
   border: 0;
   background: transparent;
@@ -184,6 +187,13 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
+  touch-action: manipulation;
+}
+
+.editorial-footer__text-button:focus-visible,
+.accessibility-drawer__close:focus-visible {
+  outline: 3px solid var(--editorial-coral);
+  outline-offset: 4px;
 }
 
 .accessibility-drawer {
