@@ -114,7 +114,7 @@ export const partnerIntakeCopy: Record<Locale, {
       metadataDescription: "How MACS Digital Media handles partnership-intake information.",
       eyebrow: "Privacy",
       title: "What we collect, why we collect it, and how we limit access.",
-      updated: "Last updated September 1, 2026.",
+      updated: "Last updated September 21, 2026.",
       sections: [
         ["Partnership request information", "The intake collects your name, email, what you need help with, what matters most right now, an optional website or existing setup, your timing, and consent to contact you. Do not submit passwords, credentials, medical records, financial account information, or private client records."],
         ["Why MACS uses this information", "MACS uses this information to understand your request, prepare the right next step, contact you, prevent abusive submissions, and maintain an internal intake record."],
@@ -183,7 +183,7 @@ export const partnerIntakeCopy: Record<Locale, {
       metadataDescription: "Cómo MACS Digital Media maneja la información de solicitudes de colaboración.",
       eyebrow: "Privacidad",
       title: "Qué recopilamos, por qué y cómo limitamos el acceso.",
-      updated: "Última actualización: 1 de septiembre de 2026.",
+      updated: "Última actualización: 21 de septiembre de 2026.",
       sections: [
         ["Información de la solicitud", "El formulario recopila tu nombre, correo, en qué necesitas ayuda, qué es lo más importante ahora, un sitio web o sistema actual opcional, el tiempo estimado y tu consentimiento para contactarte. No envíes contraseñas, credenciales, expedientes médicos, información de cuentas financieras ni registros privados de clientes."],
         ["Por qué usamos esta información", "MACS usa esta información para entender tu solicitud, preparar el siguiente paso adecuado, contactarte, prevenir envíos abusivos y mantener un registro interno."],
