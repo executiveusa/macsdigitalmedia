@@ -18,8 +18,8 @@
 .editorial-brand {
   display: grid;
   place-items: center;
-  width: 3.9rem;
-  height: 3.9rem;
+  width: 4.485rem;
+  height: 4.485rem;
   border-radius: 999px;
   background: rgba(246, 246, 233, 0.92);
   backdrop-filter: blur(18px) saturate(130%);
@@ -27,7 +27,7 @@
 }
 
 .editorial-brand img {
-  width: 3.05rem;
+  width: 3.5075rem;
   height: auto;
 }
 
