@@ -765,6 +765,11 @@ body.menu-open {
 }
 
 @media (max-width: 900px) {
+  .intake-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   .intake-intro {
     max-width: 42rem;
   }
