@@ -11,7 +11,7 @@ const people = [
   { index: "02", name: "Stavarai", initials: "ST", role: "eCommerce & Shopify Expert" },
   { index: "03", name: "Ivette", initials: "IV", role: "Digital Project Management / Social Media Strategist" },
   { index: "04", name: "Akash", initials: "AK", role: "DevOps & Agentic SEO" },
-  { index: "05", name: "Jeremy", initials: "JE", role: "" },
+  { index: "05", name: "Jeremy", initials: "JE", role: "Systems Thinking / Automations" },
 ];
 
 export default function TeamPage() {
