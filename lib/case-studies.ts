@@ -4,6 +4,7 @@ export type CaseStudy = {
   name: string;
   visibility: "client" | "internal";
   format: "case-study" | "collaboration" | "product";
+  formatLabel?: string;
   collaboration?: string;
   industry?: string;
   stage?: string;
@@ -62,8 +63,8 @@ export const caseStudies: CaseStudy[] = [
     visibility: "client",
     format: "case-study",
     collaboration: "ASC3ND × MACS Digital Media",
-    industry: "Nonprofit",
-    stage: "Launch",
+    industry: "Youth / Community",
+    formatLabel: "Brand + Digital Platform",
     headline: "A public website with an operating system behind it.",
     summary:
       "ASC3ND is our Launch example: a public-facing Next.js site connected to reusable operational systems for onboarding, opportunities, campaigns, approvals and organizational context.",
@@ -71,8 +72,8 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {
-        title: "The opportunity",
-        body: "ASC3ND needed more than a public website. The launch had to create a clear digital front door while leaving room for the operational systems behind the organization to grow with it.",
+        title: "The Collaboration",
+        body: "ASC3ND already had the mission and the big idea. What it needed was a digital presence that made the organization clear, credible and easy to understand without overstating programs or inventing impact.",
       },
       {
         title: "What we built",
