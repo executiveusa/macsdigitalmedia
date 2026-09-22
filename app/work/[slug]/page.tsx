@@ -119,20 +119,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </section>
         ) : null}
 
-        {study.placeholders?.length ? (
-          <section className="editorial-case-study-assets" aria-labelledby="case-assets-title">
-            <p className="editorial-kicker">Proof still needed</p>
-            <div>
-              <h2 id="case-assets-title">Complete the story with approved evidence.</h2>
-              <div className="editorial-case-study-assets__grid">
-                {study.placeholders.map((placeholder) => (
-                  <div className="editorial-case-study-placeholder" key={placeholder}>{placeholder}</div>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : null}
-
         <div className="editorial-case-study-footer">
           <Link className="editorial-link" href={isInternal ? "/built-here" : "/work"}>
             {isInternal ? "Back to Built Here" : "See all work"} <span aria-hidden="true">↗</span>
