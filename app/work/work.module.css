@@ -57,6 +57,34 @@
   transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
+.cardMediaProduct {
+  background-color: #211f1c;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.035);
+}
+
+.cardMediaProduct[data-product="buffer-blaster"] {
+  background-color: #e7e4dc;
+  background-size: 92% auto;
+}
+
+.cardMediaProduct[data-product="pare"] {
+  background-color: #27241f;
+  background-size: 88% auto;
+}
+
+.cardMediaProduct[data-product="posta-studio"] {
+  background-color: #241d30;
+  background-size: 90% auto;
+}
+
+.cardMediaProduct[data-product="foundry-fleet"] {
+  background-color: #171512;
+  background-size: 91% auto;
+}
+
 .cardMain:hover .cardMedia,
 .cardMain:focus-visible .cardMedia {
   transform: translateY(-3px);
@@ -82,7 +110,7 @@
   font: 700 0.66rem/1.3 var(--editorial-sans);
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  opacity: 0.62;
+  color: #625e58;
 }
 
 .cardName {
@@ -92,7 +120,7 @@
 
 .cardRole {
   font: 500 0.85rem/1.4 var(--editorial-sans);
-  opacity: 0.75;
+  color: #514d47;
 }
 
 .cardLive,
