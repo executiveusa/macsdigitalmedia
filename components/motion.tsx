@@ -26,7 +26,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
     <m.div
       key={pathname}
       className="page-transition"
-      initial={reduceMotion ? false : { opacity: 0.72, y: 12, scale: 0.998 }}
+      initial={reduceMotion ? false : { opacity: 0.92, y: 8, scale: 0.998 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: reduceMotion ? 0 : 0.42, ease: easing }}
     >
