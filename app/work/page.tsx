@@ -20,11 +20,11 @@ const builtHereSlugs = new Set([
 const cardCopy: Record<string, { title: string; line: string }> = {
   "taste-of-nawlins": {
     title: "Taste of Nawlins × MACS",
-    line: "A social-purpose kitchen supporting the next generation of boxing.",
+    line: "New Orleans food, catering and a traveling kitchen with a focused digital home.",
   },
   asc3nd: {
     title: "ASC3ND × MACS",
-    line: "Building the public presence and operational foundation for a growing nonprofit.",
+    line: "A documentary-led public brand built around founders, community work and participation.",
   },
   "buffer-blaster": {
     title: "Buffer Blaster",
