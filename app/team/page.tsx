@@ -21,8 +21,8 @@ export default function TeamPage() {
         <div className={styles.heroCopy}>
           <h1 id="team-title">Meet the team</h1>
         </div>
-        <div className={styles.heroVisual} aria-label="Team photo placeholder">
-          <span className={styles.heroMark}>Team photo / video</span>
+        <div className={styles.heroVisual} aria-hidden="true">
+          <span className={styles.heroMark}>MACS / TEAM</span>
         </div>
       </section>
 
@@ -33,7 +33,7 @@ export default function TeamPage() {
               <div
                 className={styles.portrait}
                 data-initials={person.initials}
-                aria-label={`${person.name} photo placeholder`}
+                aria-hidden="true"
               />
               <div className={styles.copy}>
                 <span className={styles.index}>{person.index}</span>
