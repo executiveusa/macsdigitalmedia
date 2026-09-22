@@ -29,31 +29,24 @@ export const caseStudies: CaseStudy[] = [
     collaboration: "Taste of Nawlins × MACS Digital Media",
     industry: "Food / Hospitality",
     stage: "Launch",
-    headline: "A collaboration built around bringing the brand into a focused digital launch.",
+    headline: "A focused digital launch for a traveling New Orleans kitchen.",
     summary:
-      "Taste of Nawlins is the first MACS collaboration story in this format. The public case will show what the team was building, where MACS contributed, and the verified result without overstating authorship.",
+      "Taste of Nawlins brings New Orleans food to the Pacific Northwest. MACS worked with the founder to shape a focused public site around the menu, catering, drops and the story behind the kitchen.",
     liveUrl: "https://tasteofnawlins.netlify.app",
-    liveAvailable: false,
     heroImage: "/work/taste-of-nawlins-hero.webp",
     sections: [
       {
-        title: "What they were building",
-        body: "Taste of Nawlins brings New Orleans food to the Pacific Northwest: beignets, chicory coffee, red beans, and a kitchen that travels. The launch needed a focused digital home for the menu, catering and the story behind the food.",
+        title: "The Collaboration",
+        body: "Taste of Nawlins already had the food, the voice and the founder’s story. The digital work was to give that identity a clear public home for the menu, catering and the story behind a kitchen that travels.",
       },
       {
-        title: "Where MACS came in",
-        body: "MACS designed and built the public website in collaboration with the founder. The live site carries the menu, catering inquiries, drops and the follow-the-kitchen story in one place.",
+        title: "What we built",
+        body: "MACS designed and built the public website in collaboration with the founder. The site brings the menu, catering, drops and the follow-the-kitchen story together in one focused experience.",
       },
       {
-        title: "What changed",
-        body: "The brand has a live public home it can send people to. The founder's own words, launch results and before-and-after material are added here as they are approved.",
+        title: "Where it stands",
+        body: "The brand now has a live public home that brings its food, catering and ongoing kitchen story together without turning the experience into a generic restaurant site.",
       },
-    ],
-    placeholders: [
-      "Collaboration credits — founder, MACS, Stavarai and any outside contributors",
-      "Process media — approved concepts, campaign assets or build artifacts",
-      "Documented launch result or before/after",
-      "Approved quote or testimonial — only if supplied or separately authorized",
     ],
   },
   {
