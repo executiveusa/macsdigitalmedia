@@ -2,7 +2,7 @@
    Loaded after the editorial system so these are deliberate behavioral overrides. */
 
 :root {
-  --mobile-touch-target: 2.75rem;
+  --mobile-touch-target: 2.9rem;
   --mobile-reading-width: 38rem;
 }
 
