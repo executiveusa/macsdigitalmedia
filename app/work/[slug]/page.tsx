@@ -39,7 +39,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   if (!study) notFound();
 
   const isInternal = study.visibility === "internal";
-  const formatLabel = study.format === "collaboration" ? "Collaboration" : study.format === "product" ? "Built Here" : "Case Study";
+  const formatLabel = study.formatLabel ?? (study.format === "collaboration" ? "Collaboration" : study.format === "product" ? "Built Here" : "Case Study");
 
   return (
     <div className="editorial-page editorial-page--white editorial-page--case">
