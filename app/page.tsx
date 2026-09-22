@@ -104,6 +104,18 @@ export default async function HomePage() {
               <p className="editorial-kicker">{home.workLabel}</p>
               <h2 id="work-title">{home.workTitle}</h2>
             </div>
+            <Link className="editorial-work__feature" href="/work/asc3nd" aria-label={`${home.asc3ndTitle}: ${home.asc3ndLine}`}>
+              <span
+                className="editorial-work__media"
+                aria-hidden="true"
+                style={{ backgroundImage: "url(/work/asc3nd-hero.webp)" }}
+              />
+              <span className="editorial-work__caption">
+                <strong>{home.asc3ndTitle}</strong>
+                <span>{home.asc3ndLine}</span>
+                <span aria-hidden="true">↗</span>
+              </span>
+            </Link>
             <Link className="editorial-link" href="/work">
               {home.workCta} <span aria-hidden="true">↗</span>
             </Link>
