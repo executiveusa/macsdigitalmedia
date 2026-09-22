@@ -140,7 +140,7 @@
   font: 600 .68rem/1.25 var(--editorial-sans);
   letter-spacing: .08em;
   text-transform: uppercase;
-  opacity: .52;
+  color: #625e58;
 }
 
 .editorial-offer-proof__copy {
@@ -157,7 +157,7 @@
 
 .editorial-offer-proof__copy > span {
   font: 500 .78rem/1.45 var(--editorial-sans);
-  opacity: .7;
+  color: #514d47;
 }
 
 .editorial-offer-proof__links {
@@ -190,15 +190,37 @@
   border-top: 1px solid var(--editorial-line);
 }
 
-/* Give real work more authority. */
+/* Give real work more authority and carry it into the human story. */
+.editorial-work {
+  padding-bottom: clamp(3.75rem, 7vw, 6rem);
+}
+
+.editorial-work__feature {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
 .editorial-work__media {
+  display: block;
+  width: 100%;
   min-height: 0;
   aspect-ratio: 16 / 8.4;
   border-radius: 0;
+  background-position: center;
+  transition: transform 420ms cubic-bezier(.22,1,.36,1), filter 420ms cubic-bezier(.22,1,.36,1);
+}
+
+.editorial-work__feature:hover .editorial-work__media,
+.editorial-work__feature:focus-visible .editorial-work__media {
+  transform: scale(1.008);
+  filter: saturate(1.04) contrast(1.015);
 }
 
 .editorial-work__caption {
-  padding: 1.25rem 0 4rem;
+  padding: 1.25rem 0 2.25rem;
+}
+
+.editorial-story {
+  padding-top: clamp(3.75rem, 7vw, 6.5rem);
 }
 
 /* Built Here becomes an editorial index rather than a wall of equal cards. */

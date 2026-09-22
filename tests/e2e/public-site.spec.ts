@@ -84,6 +84,35 @@ function safeSlug(route: string) {
   return route === "/" ? "home" : route.replace(/^\//, "").replaceAll("/", "--");
 }
 
+async function settleMotionForVisualCapture(page: Page) {
+  const scenes = page.locator(".reveal");
+  const count = await scenes.count();
+
+  for (let index = 0; index < count; index += 1) {
+    await scenes.nth(index).scrollIntoViewIfNeeded();
+    await page.waitForTimeout(90);
+  }
+
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await page.addStyleTag({
+    content: `
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .motion-scene .editorial-kicker,
+      .motion-scene h1,
+      .motion-scene h2,
+      .motion-scene p,
+      .motion-scene .editorial-link,
+      .motion-scene blockquote,
+      .motion-scene img,
+      .motion-scene .editorial-story__media,
+      .motion-scene .editorial-case-study-hero__media,
+      .motion-scene [class*="cardMedia"] {
+        transform: none !important;
+      }
+    `,
+  });
+}
+
 test("homepage passes the reduced Krug trunk test", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
@@ -266,6 +295,7 @@ test("visual review artifacts cover phone, tablet and desktop", async ({ page })
       await page.setViewportSize(viewport);
       await page.goto(route, { waitUntil: "load" });
       await expectNoHorizontalOverflow(page);
+      await settleMotionForVisualCapture(page);
       await page.screenshot({
         path: `test-results/visual/${viewport.label}/${safeSlug(route)}.png`,
         fullPage: true,
@@ -325,4 +355,16 @@ test("Supabase health check fails safely when deployment secrets are absent", as
   expect(body).toEqual({ ok: false, service: "supabase", status: "unavailable" });
   expect(JSON.stringify(body)).not.toContain("SUPABASE");
   expect(JSON.stringify(body)).not.toContain("http");
+});
+
+
+test("Built Here work cards use intentional media stages instead of edge-to-edge pale UI", async ({ page }) => {
+  await page.goto("/work");
+
+  for (const slug of ["buffer-blaster", "pare", "posta-studio", "foundry-fleet"]) {
+    const media = page.locator(`[data-product="${slug}"]`);
+    await expect(media).toBeVisible();
+    const backgroundSize = await media.evaluate((node) => getComputedStyle(node).backgroundSize);
+    expect(backgroundSize).not.toBe("cover");
+  }
 });

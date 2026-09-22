@@ -68,7 +68,12 @@ export default async function WorkPage() {
               aria-label={`${copy.title}: view project`}
             >
               <span
-                className={styles.cardMedia}
+                className={
+                  builtHereSlugs.has(study.slug)
+                    ? `${styles.cardMedia} ${styles.cardMediaProduct}`
+                    : styles.cardMedia
+                }
+                data-product={builtHereSlugs.has(study.slug) ? study.slug : undefined}
                 aria-hidden="true"
                 style={
                   study.heroImage

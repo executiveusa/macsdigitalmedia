@@ -96,3 +96,46 @@ test("accessibility drawer enters as a spatial spring", async ({ page }) => {
   const transform = await drawer.evaluate((node) => getComputedStyle(node).transform);
   expect(transform === "none" || transform.includes("matrix")).toBeTruthy();
 });
+
+
+test("meaningful lower-page copy stays readable before reveal settles", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const story = page.locator(".editorial-story");
+  const storyCopy = story.locator(".editorial-story__copy > p:not(.editorial-kicker)");
+  await expect(storyCopy).toBeAttached();
+
+  const effectiveOpacity = await storyCopy.evaluate((node) => {
+    let current: Element | null = node;
+    let opacity = 1;
+    while (current) {
+      opacity *= Number.parseFloat(getComputedStyle(current).opacity || "1");
+      current = current.parentElement;
+    }
+    return opacity;
+  });
+
+  expect(effectiveOpacity).toBeGreaterThanOrEqual(0.8);
+});
+
+test("rendered primary touch targets remain at least 44px after motion transforms", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const targets = [
+    page.getByRole("button", { name: /^menu$/i }),
+    page.getByRole("link", { name: /tell us what's important/i }).first(),
+  ];
+
+  await page.evaluate(() => window.scrollTo({ top: 620, behavior: "instant" }));
+  await page.waitForTimeout(250);
+
+  for (const target of targets) {
+    await expect(target).toBeVisible();
+    const box = await target.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+    expect(box!.width).toBeGreaterThanOrEqual(44);
+  }
+});
