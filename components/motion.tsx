@@ -71,7 +71,7 @@ export function Reveal({
   const opacity = useTransform(
     progress,
     [0, 0.18, 1],
-    reduceMotion ? [1, 1, 1] : [0.38, 1, 1],
+    reduceMotion ? [1, 1, 1] : [0.86, 1, 1],
   );
   const kickerY = useTransform(
     progress,
