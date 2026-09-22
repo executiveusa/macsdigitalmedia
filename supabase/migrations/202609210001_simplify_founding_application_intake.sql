@@ -9,12 +9,11 @@ alter table public.founding_applications
   alter column organization_type drop not null,
   alter column staff_size drop not null,
   alter column operational_problem drop not null,
-  alter column desired_result drop not null,
-  alter column decision_maker_available drop not null;
+  alter column desired_result drop not null;
 
-alter table public.founding_applications
-  drop constraint if exists founding_applications_organization_type_check,
-  drop constraint if exists founding_applications_staff_size_check;
+-- Keep the existing organization/staff CHECK constraints: PostgreSQL CHECK
+-- constraints permit NULL, so they remain valid for the simplified intake.
+-- Keep decision_maker_available NOT NULL with its existing default false.
 
 do $$
 begin
