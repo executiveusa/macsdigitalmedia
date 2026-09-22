@@ -65,10 +65,10 @@ export const caseStudies: CaseStudy[] = [
     collaboration: "ASC3ND × MACS Digital Media",
     industry: "Youth / Community",
     formatLabel: "Brand + Digital Platform",
-    headline: "A public website with an operating system behind it.",
+    headline: "Turning a community organization into a credible public brand.",
     summary:
-      "ASC3ND is our Launch example: a public-facing Next.js site connected to reusable operational systems for onboarding, opportunities, campaigns, approvals and organizational context.",
-    liveUrl: "https://asc3nd-org.netlify.app/",
+      "ASC3ND already had the mission, the founders and the big idea. MACS helped turn that foundation into a clear public brand built around real community work, documentary proof and simple ways for families, mentors, volunteers and partners to connect.",
+    liveUrl: "https://asc3nd-brand-site.vercel.app/",
     heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {
@@ -77,11 +77,11 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "What we built",
-        body: "The documented system includes a public Next.js front end, a reusable operations console for onboarding, opportunities, campaigns and approvals, and a reusable backend layer for workflows and organizational context.",
+        body: "MACS created a documentary-led brand site centered on ASC3ND’s founders, real community work and clear ways to participate. Community Cuts for Kids became the first documented project, bringing together the event film, approved photography and the story behind the work.",
       },
       {
-        title: "How it develops",
-        body: "The website is the visible layer. The larger idea is a launch system that can continue adding useful tools without forcing the organization to rebuild its digital foundation every time something new is introduced.",
+        title: "Building forward",
+        body: "The site was designed to grow as ASC3ND grows. New programs, projects and opportunities can be added when they are confirmed, while families, mentors, volunteers and community partners already have a clear way to connect.",
       },
     ],
   },
