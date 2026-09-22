@@ -200,6 +200,8 @@
 }
 
 .editorial-work__media {
+  display: block;
+  width: 100%;
   min-height: 0;
   aspect-ratio: 16 / 8.4;
   border-radius: 0;
