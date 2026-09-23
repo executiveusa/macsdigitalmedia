@@ -15,7 +15,6 @@ export type CaseStudy = {
   liveAvailable?: boolean;
   heroImage?: string;
   sections: Array<{ title: string; body: string }>;
-  placeholders?: string[];
   evidence?: Array<{ image: string; caption: string }>;
 };
 
@@ -181,10 +180,6 @@ export const caseStudies: CaseStudy[] = [
         body: "A brand can be a place, not a feed. The world is live now and keeps its own rules - her brand, her agents, her rules.",
       },
     ],
-    placeholders: [
-      "Directed walkthrough capture of the world",
-      "The founder's own account of the concept",
-    ],
   },
   {
     slug: "fish-on",
@@ -211,10 +206,6 @@ export const caseStudies: CaseStudy[] = [
         title: "What's live",
         body: "The public preview is live now with sample answers from real Texas sources. It is labeled as a preview because that is what it is.",
       },
-    ],
-    placeholders: [
-      "Documented usage or result",
-      "Full agent walkthrough",
     ],
   },
   {
