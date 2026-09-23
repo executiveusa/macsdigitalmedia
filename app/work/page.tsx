@@ -80,11 +80,7 @@ export default async function WorkPage() {
                     ? { backgroundImage: `url(${study.heroImage})` }
                     : undefined
                 }
-              >
-                {!study.heroImage ? (
-                  <span className={styles.cardPlaceholder}>Media coming soon</span>
-                ) : null}
-              </span>
+              />
               <span className={styles.cardCopy}>
                 <span className={styles.cardName}>{copy.title}</span>
                 <span className={styles.cardRole}>{copy.line}</span>
