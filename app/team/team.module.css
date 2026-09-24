@@ -31,13 +31,13 @@
   margin: 0;
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   font-weight: 400;
-  letter-spacing: -.05em;
+  letter-spacing: -.025em;
 }
 
 .hero h1 {
   max-width: 8ch;
-  font-size: clamp(4.2rem, 9.6vw, 9.8rem);
-  line-height: .86;
+  font-size: clamp(4rem, 8.6vw, 8.8rem);
+  line-height: .94;
 }
 
 .heroLead {
@@ -121,20 +121,17 @@
   padding: clamp(2rem, 5vw, 5rem);
 }
 
-.index {
-  font: 700 .72rem/1 Inter, ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: .12em;
-}
-
 .identity {
   margin-block: auto;
   padding-block: 4rem;
 }
 
 .personName {
-  font-size: clamp(4rem, 8vw, 8.4rem);
-  line-height: .9;
-  overflow-wrap: anywhere;
+  max-width: 10ch;
+  font-size: clamp(3.6rem, 6.6vw, 7.2rem);
+  line-height: .96;
+  overflow-wrap: normal;
+  word-break: normal;
   text-wrap: balance;
 }
 
@@ -183,7 +180,8 @@
 
   .heroVisual {
     order: 1;
-    min-height: 40svh;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .heroCopy {
@@ -195,8 +193,9 @@
 
   .hero h1 {
     max-width: 9ch;
-    font-size: clamp(3.8rem, 17vw, 5.8rem);
-    line-height: .88;
+    font-size: clamp(3.25rem, 14vw, 5rem);
+    line-height: .96;
+    letter-spacing: -.02em;
   }
 
   .heroLead {
@@ -223,14 +222,16 @@
 
   .copy {
     min-height: 0;
-    padding: 1.3rem .75rem 2.2rem;
+    padding: 1.5rem 1rem 2.5rem;
   }
 
-  .identity { padding-block: 2rem; }
+  .identity { padding-block: 1.5rem; }
 
   .personName {
-    font-size: clamp(3.4rem, 16vw, 5.5rem);
-    line-height: .94;
+    max-width: 100%;
+    font-size: clamp(3rem, 13vw, 4.7rem);
+    line-height: 1;
+    letter-spacing: -.015em;
   }
 
   .role {
@@ -251,8 +252,11 @@
 }
 
 @media (max-width: 360px) {
-  .hero h1,
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 4.3rem);
+  }
+
   .personName {
-    font-size: clamp(3.25rem, 16vw, 4.8rem);
+    font-size: clamp(2.8rem, 12vw, 4rem);
   }
 }
