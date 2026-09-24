@@ -46,7 +46,15 @@ export default function TeamPage() {
           <h1 id="team-title">Meet the team</h1>
         </div>
         <div className={styles.heroVisual} aria-hidden="true">
-          <span className={styles.heroMark}>MACS / TEAM</span>
+          <video
+            className={styles.heroVideo}
+            src="https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/63822dfb-7370-4b4a-ba36-ce52884a9001.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
         </div>
       </section>
 
