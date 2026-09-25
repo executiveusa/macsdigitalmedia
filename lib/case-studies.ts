@@ -13,6 +13,7 @@ export type CaseStudy = {
   summary: string;
   liveUrl?: string;
   liveAvailable?: boolean;
+  access?: "client-gate";
   heroImage?: string;
   sections: Array<{ title: string; body: string }>;
   evidence?: Array<{ image: string; caption: string }>;
@@ -134,7 +135,7 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     credit: "Developed by Stavarai",
-    liveUrl: "https://postastudios.2.25.241.209.sslip.io/",
+    access: "client-gate",
     heroImage: "/work/posta-studios-hero.webp",
     headline: "Automate your entire social media presence",
     summary:

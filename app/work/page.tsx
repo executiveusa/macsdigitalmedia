@@ -82,7 +82,12 @@ export default async function WorkPage() {
                 }
               />
               <span className={styles.cardCopy}>
-                <span className={styles.cardName}>{copy.title}</span>
+                <span className={styles.cardName}>
+                  {copy.title}
+                  {study.access === "client-gate" ? (
+                    <span className={styles.cardTag}>{es ? "Beta privada" : "Private beta"}</span>
+                  ) : null}
+                </span>
                 <span className={styles.cardRole}>{copy.line}</span>
               </span>
             </Link>
