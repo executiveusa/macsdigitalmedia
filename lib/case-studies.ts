@@ -134,7 +134,7 @@ export const caseStudies: CaseStudy[] = [
     visibility: "internal",
     format: "product",
     credit: "Developed by Stavarai",
-    liveUrl: "https://postastudios.31.220.58.212.sslip.io/",
+    liveUrl: "https://postastudios.2.25.241.209.sslip.io/",
     heroImage: "/work/posta-studios-hero.webp",
     headline: "Automate your entire social media presence",
     summary:
