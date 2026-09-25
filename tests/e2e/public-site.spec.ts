@@ -368,3 +368,37 @@ test("Built Here work cards use intentional media stages instead of edge-to-edge
     expect(backgroundSize).not.toBe("cover");
   }
 });
+
+test.describe("Posta Studio client gate", () => {
+  // Demo-gate seed password (private beta preview only; rotate by replacing
+  // the hash in components/client-gate.tsx CLIENT_PASSWORD_HASHES).
+  const seedPassword = "posta-520f01bc";
+
+  test("case study shows the gate instead of a live link", async ({ page }) => {
+    await page.goto("/work/posta-studio");
+    await expect(page.getByRole("button", { name: /client access|acceso de clientes/i })).toBeVisible();
+    await expect(page.locator('a[href*="sslip.io"]')).toHaveCount(0);
+  });
+
+  test("work grid card carries the private beta tag", async ({ page }) => {
+    await page.goto("/work");
+    await expect(page.getByText(/private beta|beta privada/i).first()).toBeVisible();
+  });
+
+  test("wrong password shows an error, right password unlocks the preview", async ({ page }) => {
+    await page.goto("/work/posta-studio");
+    await page.getByRole("button", { name: /client access|acceso de clientes/i }).click();
+
+    const dialog = page.locator("dialog");
+    await expect(dialog).toBeVisible();
+
+    await dialog.locator('input[type="password"]').fill("definitely-wrong");
+    await dialog.getByRole("button", { name: /^(enter|entrar)$/i }).click();
+    await expect(dialog.getByRole("alert")).toBeVisible();
+
+    await dialog.locator('input[type="password"]').fill(seedPassword);
+    await dialog.getByRole("button", { name: /^(enter|entrar)$/i }).click();
+    await expect(dialog).not.toBeVisible();
+    await expect(page.getByText(/posta studio is in private beta|está en beta privada/i).first()).toBeVisible();
+  });
+});

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Reveal } from "@/components/motion";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
+import { ClientGate } from "@/components/client-gate";
+import { getServerLocale } from "@/lib/server-preferences";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
@@ -38,6 +40,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const study = getCaseStudy(slug);
   if (!study) notFound();
 
+  const locale = await getServerLocale();
   const isInternal = study.visibility === "internal";
   const formatLabel = study.formatLabel ?? (study.format === "collaboration" ? "Collaboration" : study.format === "product" ? "Built Here" : "Case Study");
 
@@ -72,6 +75,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </dl>
 
           <div className="editorial-case-study-hero__actions">
+            {study.access === "client-gate" ? (
+              <ClientGate locale={locale} heroImage={study.heroImage} name={study.name} />
+            ) : null}
             {study.liveUrl ? (
               <a className="editorial-link" href={study.liveUrl} target="_blank" rel="noreferrer">
                 Visit live project <span aria-hidden="true">↗</span>

@@ -1,0 +1,132 @@
+.gate {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+
+.opener {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--macs-muted);
+  font-size: 0.92rem;
+}
+
+.dialog {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0;
+  max-width: min(480px, calc(100vw - 40px));
+  background: var(--macs-surface);
+  color: var(--macs-ink);
+  box-shadow: var(--shadow-soft);
+}
+
+.dialog::backdrop {
+  background: rgba(5, 6, 7, 0.55);
+}
+
+.dialogInner {
+  display: grid;
+  gap: 14px;
+  padding: 32px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+}
+
+.body {
+  margin: 0;
+  color: var(--macs-muted);
+  line-height: 1.55;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid var(--macs-line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  background: var(--macs-warm-white);
+  color: var(--macs-ink);
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--macs-focus);
+  outline-offset: 2px;
+  border-color: var(--macs-blue);
+}
+
+.inputError {
+  border-color: var(--macs-coral);
+}
+
+.error {
+  margin: 0;
+  color: var(--macs-coral);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.actions button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.footnote {
+  margin: 6px 0 0;
+  color: var(--macs-muted);
+  font-size: 0.92rem;
+}
+
+.footnote a {
+  color: var(--macs-blue-dark);
+  font-weight: 700;
+}
+
+.preview {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.previewLine {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  line-height: 1.15;
+}
+
+.previewMedia {
+  display: block;
+  width: min(520px, 100%);
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--macs-soft);
+  border: 1px solid var(--macs-line);
+}
