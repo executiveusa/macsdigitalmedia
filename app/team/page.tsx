@@ -27,7 +27,7 @@ const people = [
   {
     name: "Akash",
     initials: "AK",
-    role: "DevOps & Agentic SEO",
+    role: "Performance Marketing. Google/Meta Expert",
     image: "/team/akash.jpg",
     imagePosition: "50% 28%",
   },
