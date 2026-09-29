@@ -24,7 +24,13 @@ const people = [
       "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/3efe9721-ff61-40dd-bb77-ae11fa385f25.jpg",
     imagePosition: "50% 28%",
   },
-  { name: "Akash", initials: "AK", role: "DevOps & Agentic SEO" },
+  {
+    name: "Akash",
+    initials: "AK",
+    role: "DevOps & Agentic SEO",
+    image: "/team/akash.jpg",
+    imagePosition: "50% 28%",
+  },
   {
     name: "Jeremy",
     initials: "JE",
