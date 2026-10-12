@@ -174,7 +174,6 @@ export function ClientGate({
             id={`client-gate-password-${productId}`}
             ref={inputRef}
             type="password"
-            inputMode="numeric"
             autoComplete="off"
             value={password}
             onChange={(event) => {
