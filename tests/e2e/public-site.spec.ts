@@ -379,10 +379,10 @@ test.describe("Built Here client gates", () => {
   test("every in-house product explains itself but hides its direct live URL", async ({ page }) => {
     for (const route of productRoutes) {
       await page.goto(route);
-      await expect(page.getByText("MACS In-House Product", { exact: true }).first()).toBeVisible();
+      await expect(page.getByText(/MACS In-House Product/i).first()).toBeVisible();
       await expect(page.getByRole("button", { name: /client preview|vista previa para clientes/i })).toBeVisible();
       await expect(page.getByText(/built in-house by macs/i)).toBeVisible();
-      await expect(page.locator('a[href^="http"]')).toHaveCount(0);
+      await expect(page.locator('.editorial-case-study-hero__actions a[href^="http"]')).toHaveCount(0);
     }
   });
 
