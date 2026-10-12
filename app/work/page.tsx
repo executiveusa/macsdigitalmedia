@@ -84,8 +84,8 @@ export default async function WorkPage() {
               <span className={styles.cardCopy}>
                 <span className={styles.cardName}>
                   {copy.title}
-                  {study.access === "client-gate" ? (
-                    <span className={styles.cardTag}>{es ? "Beta privada" : "Private beta"}</span>
+                  {study.visibility === "internal" ? (
+                    <span className={styles.cardTag}>{es ? "Producto interno · Acceso de clientes" : "In-house product · Client access"}</span>
                   ) : null}
                 </span>
                 <span className={styles.cardRole}>{copy.line}</span>
@@ -136,7 +136,10 @@ export default async function WorkPage() {
         <Reveal intensity="strong">
         <section className={styles.index} aria-labelledby="built-here-title">
           <div className={styles.indexHeading}>
-            <h2 id="built-here-title">{es ? "Hecho Aquí" : "Built Here"}</h2>
+            <div>
+              <h2 id="built-here-title">{es ? "Hecho Aquí" : "Built Here"}</h2>
+              <p>{es ? "Sistemas que creamos internamente e instalamos para nuestros clientes." : "Systems we build in-house and install for our customers."}</p>
+            </div>
           </div>
           {renderGrid(builtHere)}
         </section>

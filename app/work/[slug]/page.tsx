@@ -42,7 +42,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   const locale = await getServerLocale();
   const isInternal = study.visibility === "internal";
-  const formatLabel = study.formatLabel ?? (study.format === "collaboration" ? "Collaboration" : study.format === "product" ? "Built Here" : "Case Study");
+  const isGated = isInternal || study.access === "client-gate";
+  const formatLabel = isInternal
+    ? "MACS In-House Product"
+    : study.formatLabel ?? (study.format === "collaboration" ? "Collaboration" : "Case Study");
 
   return (
     <div className="editorial-page editorial-page--white editorial-page--case">
@@ -56,6 +59,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {study.credit ? <p className="editorial-case-study-hero__credit">{study.credit}</p> : null}
             <p className="editorial-case-study-hero__headline">{study.headline}</p>
             <p className="editorial-case-study-hero__summary">{study.summary}</p>
+            {isInternal ? (
+              <p className="editorial-case-study-hero__credit">
+                Built in-house by MACS. We install and configure it for customers around the work they actually need done.
+              </p>
+            ) : null}
           </div>
 
           <div
@@ -75,17 +83,17 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </dl>
 
           <div className="editorial-case-study-hero__actions">
-            {study.access === "client-gate" ? (
-              <ClientGate locale={locale} heroImage={study.heroImage} name={study.name} />
+            {isGated ? (
+              <ClientGate locale={locale} heroImage={study.heroImage} name={study.name} productId={study.slug} />
             ) : null}
-            {study.liveUrl ? (
+            {study.liveUrl && !isGated ? (
               <a className="editorial-link" href={study.liveUrl} target="_blank" rel="noreferrer">
                 Visit live project <span aria-hidden="true">↗</span>
               </a>
             ) : null}
-            {study.slug === "buffer-blaster" ? (
+            {isInternal ? (
               <Link className="editorial-link" href="/apply">
-                I want Buffer Blaster for my company <span aria-hidden="true">↗</span>
+                Ask about installing {study.name} <span aria-hidden="true">↗</span>
               </Link>
             ) : null}
           </div>

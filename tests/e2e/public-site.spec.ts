@@ -28,6 +28,8 @@ const productRoutes = [
   "/work/buffer-blaster",
   "/work/pare",
   "/work/posta-studio",
+  "/work/sweet",
+  "/work/fish-on",
   "/work/foundry-fleet",
 ] as const;
 
@@ -85,17 +87,17 @@ function safeSlug(route: string) {
 }
 
 async function settleMotionForVisualCapture(page: Page) {
-  const scenes = page.locator(".reveal");
-  const count = await scenes.count();
-
-  for (let index = 0; index < count; index += 1) {
-    await scenes.nth(index).scrollIntoViewIfNeeded();
-    await page.waitForTimeout(90);
-  }
-
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  // Freeze motion before capture instead of waiting for animated elements to
+  // become "stable" one by one. Full-page screenshots then capture the complete
+  // static composition deterministically.
   await page.addStyleTag({
     content: `
+      *, *::before, *::after {
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+      }
       .reveal { opacity: 1 !important; transform: none !important; }
       .motion-scene .editorial-kicker,
       .motion-scene h1,
@@ -107,10 +109,12 @@ async function settleMotionForVisualCapture(page: Page) {
       .motion-scene .editorial-story__media,
       .motion-scene .editorial-case-study-hero__media,
       .motion-scene [class*="cardMedia"] {
+        opacity: 1 !important;
         transform: none !important;
       }
     `,
   });
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
 }
 
 test("homepage passes the reduced Krug trunk test", async ({ page }) => {
@@ -149,6 +153,7 @@ test("work and Built Here pages use current product positioning", async ({ page 
 
   await expect(page.getByRole("heading", { name: "Selected Work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Built Here", exact: true })).toBeVisible();
+  await expect(page.getByText("Systems we build in-house and install for our customers.", { exact: true })).toBeVisible();
   await expect(page.getByText("A content engine for your social media.", { exact: true })).toBeVisible();
   await expect(page.getByText("Design high-level products without the AI slop problem.", { exact: true })).toBeVisible();
   await expect(page.getByText("Automate your entire social media presence.", { exact: true })).toBeVisible();
@@ -178,7 +183,7 @@ test("team roles are visible and readable", async ({ page }) => {
     "Founder & Client Relations",
     "eCommerce & Shopify Expert",
     "Digital Project Management / Social Media Strategist",
-    "DevOps & Agentic SEO",
+    "Performance Marketing. Google/Meta Expert",
     "Systems Thinking / Automations",
   ] as const;
 
@@ -369,25 +374,28 @@ test("Built Here work cards use intentional media stages instead of edge-to-edge
   }
 });
 
-test.describe("Posta Studio client gate", () => {
-  // Demo-gate seed password (private beta preview only; rotate by replacing
-  // the hash in components/client-gate.tsx CLIENT_PASSWORD_HASHES).
-  const seedPassword = "posta-520f01bc";
+test.describe("Built Here client gates", () => {
+  // Preview-gate seed PIN only. Real customer systems require server-side auth.
+  const seedPin = "posta-520f01bc";
 
-  test("case study shows the gate instead of a live link", async ({ page }) => {
-    await page.goto("/work/posta-studio");
-    await expect(page.getByRole("button", { name: /client access|acceso de clientes/i })).toBeVisible();
-    await expect(page.locator('a[href*="sslip.io"]')).toHaveCount(0);
+  test("every in-house product explains itself but hides its direct live URL", async ({ page }) => {
+    for (const route of productRoutes) {
+      await page.goto(route);
+      await expect(page.getByText(/MACS In-House Product/i).first()).toBeVisible();
+      await expect(page.getByRole("button", { name: /client preview|vista previa para clientes/i })).toBeVisible();
+      await expect(page.locator(".editorial-case-study-hero__credit").filter({ hasText: /Built in-house by MACS/i })).toBeVisible();
+      await expect(page.locator('.editorial-case-study-hero__actions a[href^="http"]')).toHaveCount(0);
+    }
   });
 
-  test("work grid card carries the private beta tag", async ({ page }) => {
+  test("work grid labels Built Here products as in-house client access", async ({ page }) => {
     await page.goto("/work");
-    await expect(page.getByText(/private beta|beta privada/i).first()).toBeVisible();
+    await expect(page.getByText(/in-house product · client access/i).first()).toBeVisible();
   });
 
-  test("wrong password shows an error, right password unlocks the preview", async ({ page }) => {
+  test("wrong PIN shows an error, right PIN unlocks the product preview", async ({ page }) => {
     await page.goto("/work/posta-studio");
-    await page.getByRole("button", { name: /client access|acceso de clientes/i }).click();
+    await page.getByRole("button", { name: /client preview|vista previa para clientes/i }).click();
 
     const dialog = page.locator("dialog");
     await expect(dialog).toBeVisible();
@@ -396,9 +404,9 @@ test.describe("Posta Studio client gate", () => {
     await dialog.getByRole("button", { name: /^(enter|entrar)$/i }).click();
     await expect(dialog.getByRole("alert")).toBeVisible();
 
-    await dialog.locator('input[type="password"]').fill(seedPassword);
+    await dialog.locator('input[type="password"]').fill(seedPin);
     await dialog.getByRole("button", { name: /^(enter|entrar)$/i }).click();
     await expect(dialog).not.toBeVisible();
-    await expect(page.getByText(/posta studio is in private beta|está en beta privada/i).first()).toBeVisible();
+    await expect(page.getByText(/private client preview|vista previa privada/i).first()).toBeVisible();
   });
 });

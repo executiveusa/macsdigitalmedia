@@ -84,12 +84,13 @@ export const caseStudies: CaseStudy[] = [
     name: "Buffer Blaster",
     visibility: "internal",
     format: "product",
+    access: "client-gate",
     industry: "Creative Infrastructure",
     headline: "A content engine for your social media",
     liveUrl: "https://buffer-blaster.netlify.app/",
     heroImage: "/work/buffer-blaster-hero.webp",
     summary:
-      "Buffer Blaster is an internal MACS product for creating UGC ads and media at scale without expensive lock in subscriptions. It belongs to the MAXX Suite and is our open source alternative we built for our clients. Pay once, we install it, you own it forever. No subscriptions needed.",
+      "Buffer Blaster is an in-house MACS content system we install for customers who need UGC ads and social media production at scale without stacking expensive subscriptions. MACS installs and configures it around the company workflow, then the customer keeps control of the system.",
     sections: [
       {
         title: "Create more. Own the system.",
@@ -107,9 +108,10 @@ export const caseStudies: CaseStudy[] = [
     name: "Pare’",
     visibility: "internal",
     format: "product",
+    access: "client-gate",
     headline: "Design high-level products without the AI slop problem.",
     summary:
-      "Pare’ is part of the MAXX Suite design software.",
+      "PARÉ is an in-house MACS design system we install for customers who want stronger product design, visual direction and review without adding another subscription stack.",
     liveUrl: "https://pauli-para.netlify.app/",
     liveAvailable: false,
     heroImage: "/work/pare-hero.webp",
@@ -139,7 +141,7 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "/work/posta-studios-hero.webp",
     headline: "Automate your entire social media presence",
     summary:
-      "Posta Studio is part of the MAXX Suite.",
+      "Posta Studio is an in-house MACS social publishing system we install for customers who need repeatable content, scheduled publishing and campaign workflows without doing every post by hand.",
     sections: [
       {
         title: "Why it exists",
@@ -161,10 +163,11 @@ export const caseStudies: CaseStudy[] = [
     name: "Sweet",
     visibility: "internal",
     format: "product",
+    access: "client-gate",
     industry: "World / Experience",
     headline: "A brand world you walk into, with its own sound and rules.",
     summary:
-      "Sweet is a forest world built around one person's brand - navigation as places (the shop, the library, the blog, the machinery), a soundscape and bilingual storytelling. Part of the Built Here story.",
+      "Sweet is an in-house MACS immersive brand-world framework we install and adapt for customers who need a digital experience that feels like their own place, not another generic website.",
     liveUrl: "https://sweet.31.220.58.212.sslip.io/",
     heroImage: "/work/sweet-hero.webp",
     sections: [
@@ -188,10 +191,11 @@ export const caseStudies: CaseStudy[] = [
     name: "Fish On",
     visibility: "internal",
     format: "product",
+    access: "client-gate",
     industry: "Agent / Outdoors",
     headline: "A fishing agent that answers from real Texas sources.",
     summary:
-      "Fish On answers fishing questions in plain language from real Texas sources with checked dates - regulations, weather, tides - in English and Spanish. Part of the Built Here story.",
+      "Fish On is an in-house MACS source-grounded agent pattern we install and adapt for customers who need a specialized assistant that answers from trusted sources instead of guessing.",
     liveUrl: "https://executiveusa.github.io/fish-on/",
     heroImage: "/work/fish-on-hero.webp",
     sections: [
@@ -215,10 +219,11 @@ export const caseStudies: CaseStudy[] = [
     name: "Foundry",
     visibility: "internal",
     format: "product",
+    access: "client-gate",
     industry: "Internal Tooling",
     headline: "Give your AI agent its own computer.",
     summary:
-      "Foundry gives AI agents a secure computer they can use to browse websites, operate software, fill forms, gather information, and complete repetitive digital work for your business.",
+      "Foundry is an in-house MACS agent-computer system we install for customers who need AI agents to safely browse websites, operate software, gather information and handle repetitive digital work.",
     liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
     heroImage: "/work/foundry-fleet-hero.webp",
     sections: [

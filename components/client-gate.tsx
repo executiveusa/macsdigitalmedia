@@ -6,49 +6,52 @@ import type { Locale } from "@/lib/i18n";
 import styles from "./client-gate.module.css";
 
 /**
- * Posta Studio client gate.
+ * Shared gate for MACS Built Here / in-house products.
  *
- * Demo-gate, honestly labeled "Private beta": the app backend is being
- * redeployed on MACS infrastructure, so for now a correct password opens the
- * client preview, not the live product. When the real backend lands, swap
- * verifyClientPassword() for a real auth call - the design stays.
+ * This is a preview gate, not a security boundary for sensitive client data.
+ * Internal product pages remain public so visitors can understand the product,
+ * while the working preview stays behind client access. Real customer systems
+ * must use server-side authentication at the product boundary.
  *
- * Passwords live as SHA-256 hashes below, keyed by client id so per-client
- * passwords (DWY / DFY tiers) slot in without a redesign. Rotate by adding a
- * new entry and retiring the old one. Plaintext never ships to the browser.
+ * Passwords are represented as SHA-256 hashes so plaintext is not committed.
+ * Replace this browser-side verification with real auth when a product carries
+ * private data or production capability.
  */
 const CLIENT_PASSWORD_HASHES: Record<string, string> = {
   seed: "32158baf766612141b44d5fe19d610df5b0be4139d48e31733cb67021191255f",
 };
 
-const copy = {
-  en: {
-    cta: "Client access",
-    tagline: "In private beta.",
-    kicker: "Posta Studio · Private beta",
-    headline: "Enter your client password.",
-    body: "Posta Studio is in private beta. Your client preview is behind this door.",
-    fieldLabel: "Client password",
+function copyFor(locale: Locale, name: string) {
+  if (locale === "es-MX") {
+    return {
+      cta: "Vista previa para clientes",
+      tagline: "Producto interno de MACS.",
+      kicker: `${name} · Producto interno de MACS`,
+      headline: "Ingresa tu PIN de cliente.",
+      body: `${name} es un sistema creado por MACS que instalamos y configuramos para nuestros clientes. Ingresa tu PIN para abrir la vista previa privada.`,
+      fieldLabel: "PIN de cliente",
+      submit: "Entrar",
+      error: "Ese PIN no funcionó. Revísalo y vuelve a intentarlo.",
+      footnote: "¿Quieres este sistema para tu negocio?",
+      footnoteLink: "Cuéntanos qué necesitas",
+      unlockedLine: `${name} está disponible como vista previa privada para clientes.`,
+    };
+  }
+
+  return {
+    cta: "Client preview",
+    tagline: "MACS in-house product.",
+    kicker: `${name} · MACS in-house product`,
+    headline: "Enter your client PIN.",
+    body: `${name} is built in-house by MACS and installed and configured for our customers. Enter your PIN to open the private client preview.`,
+    fieldLabel: "Client PIN",
     submit: "Enter",
-    error: "That password didn't work. Check it and try again.",
-    footnote: "Not a client yet?",
-    footnoteLink: "Tell us what's important",
-    unlockedLine: "Posta Studio is in private beta.",
-  },
-  "es-MX": {
-    cta: "Acceso de clientes",
-    tagline: "En beta privada.",
-    kicker: "Posta Studio · Beta privada",
-    headline: "Ingresa tu contraseña de cliente.",
-    body: "Posta Studio está en beta privada. Tu vista previa de cliente está detrás de esta puerta.",
-    fieldLabel: "Contraseña de cliente",
-    submit: "Entrar",
-    error: "Esa contraseña no funcionó. Revisa y vuelve a intentarlo.",
-    footnote: "¿Aún no eres cliente?",
-    footnoteLink: "Cuéntanos qué es importante",
-    unlockedLine: "Posta Studio está en beta privada.",
-  },
-} as const;
+    error: "That PIN didn't work. Check it and try again.",
+    footnote: "Want this system for your business?",
+    footnoteLink: "Tell us what you need",
+    unlockedLine: `${name} is available as a private client preview.`,
+  };
+}
 
 async function sha256Hex(value: string): Promise<string> {
   const data = new TextEncoder().encode(value);
@@ -67,32 +70,34 @@ export function ClientGate({
   locale,
   heroImage,
   name,
+  productId,
 }: {
   locale: Locale;
   heroImage?: string;
   name: string;
+  productId: string;
 }) {
-  const t = copy[locale];
+  const t = copyFor(locale, name);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [checking, setChecking] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const storageKey = `macs-client-access-${productId}`;
 
   useEffect(() => {
     if (unlocked) {
-      sessionStorage.setItem("macs-posta-access", "granted");
+      sessionStorage.setItem(storageKey, "granted");
     }
-  }, [unlocked]);
+  }, [storageKey, unlocked]);
 
   useEffect(() => {
-    // Restore an earlier unlock after hydration (server render must start locked).
-    if (sessionStorage.getItem("macs-posta-access") === "granted") {
+    if (sessionStorage.getItem(storageKey) === "granted") {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration-safe session restore
       setUnlocked(true);
     }
-  }, []);
+  }, [storageKey]);
 
   const openDialog = () => {
     setError(false);
@@ -152,21 +157,21 @@ export function ClientGate({
       <dialog
         ref={dialogRef}
         className={styles.dialog}
-        aria-labelledby="client-gate-title"
+        aria-labelledby={`client-gate-title-${productId}`}
         onClose={() => setError(false)}
       >
         <form className={styles.dialogInner} onSubmit={onSubmit} method="dialog" noValidate>
           <p className="editorial-kicker">{t.kicker}</p>
-          <h2 id="client-gate-title" className={styles.title}>
+          <h2 id={`client-gate-title-${productId}`} className={styles.title}>
             {t.headline}
           </h2>
           <p className={styles.body}>{t.body}</p>
 
-          <label className={styles.label} htmlFor="client-gate-password">
+          <label className={styles.label} htmlFor={`client-gate-password-${productId}`}>
             {t.fieldLabel}
           </label>
           <input
-            id="client-gate-password"
+            id={`client-gate-password-${productId}`}
             ref={inputRef}
             type="password"
             autoComplete="off"
@@ -177,10 +182,10 @@ export function ClientGate({
             }}
             className={`${styles.input}${error ? ` ${styles.inputError}` : ""}`}
             aria-invalid={error || undefined}
-            aria-describedby={error ? "client-gate-error" : undefined}
+            aria-describedby={error ? `client-gate-error-${productId}` : undefined}
           />
           {error ? (
-            <p id="client-gate-error" className={styles.error} role="alert">
+            <p id={`client-gate-error-${productId}`} className={styles.error} role="alert">
               {t.error}
             </p>
           ) : null}
