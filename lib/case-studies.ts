@@ -156,33 +156,6 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    slug: "sweet",
-    lane: "Momentum",
-    name: "Sweet",
-    visibility: "internal",
-    format: "product",
-    access: "client-gate",
-    industry: "World / Experience",
-    headline: "A brand world you walk into, with its own sound and rules.",
-    summary:
-      "Sweet is an in-house MACS immersive brand-world framework we install and adapt for customers who need a digital experience that feels like their own place, not another generic website.",
-    heroImage: "/work/sweet-hero.webp",
-    sections: [
-      {
-        title: "What it is",
-        body: "Sweet is an interactive forest world for a personal brand. Visitors arrive at the edge of her forest and move through places - the shop, the library, the blog, the machinery - instead of scrolling another page of links.",
-      },
-      {
-        title: "What MACS built",
-        body: "The world, its art direction, its sound design and its bilingual EN/ES storytelling were designed and built as one experience. Even the rooms still in progress are labeled honestly inside the world: staged preview, soon.",
-      },
-      {
-        title: "What it proves",
-        body: "A brand can be a place, not a feed. The world is live now and keeps its own rules - her brand, her agents, her rules.",
-      },
-    ],
-  },
-  {
     slug: "fish-on",
     lane: "Momentum",
     name: "Fish On",
