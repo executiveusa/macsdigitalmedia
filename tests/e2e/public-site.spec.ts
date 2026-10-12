@@ -381,7 +381,7 @@ test.describe("Built Here client gates", () => {
       await page.goto(route);
       await expect(page.getByText(/MACS In-House Product/i).first()).toBeVisible();
       await expect(page.getByRole("button", { name: /client preview|vista previa para clientes/i })).toBeVisible();
-      await expect(page.getByText(/built in-house by macs/i)).toBeVisible();
+      await expect(page.locator(".editorial-case-study-hero__credit").filter({ hasText: /Built in-house by MACS/i })).toBeVisible();
       await expect(page.locator('.editorial-case-study-hero__actions a[href^="http"]')).toHaveCount(0);
     }
   });
