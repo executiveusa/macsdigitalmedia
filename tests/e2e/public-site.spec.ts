@@ -87,17 +87,17 @@ function safeSlug(route: string) {
 }
 
 async function settleMotionForVisualCapture(page: Page) {
-  const scenes = page.locator(".reveal");
-  const count = await scenes.count();
-
-  for (let index = 0; index < count; index += 1) {
-    await scenes.nth(index).scrollIntoViewIfNeeded();
-    await page.waitForTimeout(90);
-  }
-
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  // Freeze motion before capture instead of waiting for animated elements to
+  // become "stable" one by one. Full-page screenshots then capture the complete
+  // static composition deterministically.
   await page.addStyleTag({
     content: `
+      *, *::before, *::after {
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+      }
       .reveal { opacity: 1 !important; transform: none !important; }
       .motion-scene .editorial-kicker,
       .motion-scene h1,
@@ -109,10 +109,12 @@ async function settleMotionForVisualCapture(page: Page) {
       .motion-scene .editorial-story__media,
       .motion-scene .editorial-case-study-hero__media,
       .motion-scene [class*="cardMedia"] {
+        opacity: 1 !important;
         transform: none !important;
       }
     `,
   });
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
 }
 
 test("homepage passes the reduced Krug trunk test", async ({ page }) => {
@@ -181,7 +183,7 @@ test("team roles are visible and readable", async ({ page }) => {
     "Founder & Client Relations",
     "eCommerce & Shopify Expert",
     "Digital Project Management / Social Media Strategist",
-    "DevOps & Agentic SEO",
+    "Performance Marketing. Google/Meta Expert",
     "Systems Thinking / Automations",
   ] as const;
 
