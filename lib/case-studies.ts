@@ -87,7 +87,6 @@ export const caseStudies: CaseStudy[] = [
     access: "client-gate",
     industry: "Creative Infrastructure",
     headline: "A content engine for your social media",
-    liveUrl: "https://buffer-blaster.netlify.app/",
     heroImage: "/work/buffer-blaster-hero.webp",
     summary:
       "Buffer Blaster is an in-house MACS content system we install for customers who need UGC ads and social media production at scale without stacking expensive subscriptions. MACS installs and configures it around the company workflow, then the customer keeps control of the system.",
@@ -112,7 +111,6 @@ export const caseStudies: CaseStudy[] = [
     headline: "Design high-level products without the AI slop problem.",
     summary:
       "PARÉ is an in-house MACS design system we install for customers who want stronger product design, visual direction and review without adding another subscription stack.",
-    liveUrl: "https://pauli-para.netlify.app/",
     liveAvailable: false,
     heroImage: "/work/pare-hero.webp",
     sections: [
@@ -168,7 +166,6 @@ export const caseStudies: CaseStudy[] = [
     headline: "A brand world you walk into, with its own sound and rules.",
     summary:
       "Sweet is an in-house MACS immersive brand-world framework we install and adapt for customers who need a digital experience that feels like their own place, not another generic website.",
-    liveUrl: "https://sweet.31.220.58.212.sslip.io/",
     heroImage: "/work/sweet-hero.webp",
     sections: [
       {
@@ -196,7 +193,6 @@ export const caseStudies: CaseStudy[] = [
     headline: "A fishing agent that answers from real Texas sources.",
     summary:
       "Fish On is an in-house MACS source-grounded agent pattern we install and adapt for customers who need a specialized assistant that answers from trusted sources instead of guessing.",
-    liveUrl: "https://executiveusa.github.io/fish-on/",
     heroImage: "/work/fish-on-hero.webp",
     sections: [
       {
@@ -208,8 +204,8 @@ export const caseStudies: CaseStudy[] = [
         body: "An agent that answers from real Texas sources (TPWD and friends), shows checked dates, cites its source and speaks English and Spanish. Made in Texas, for Texans.",
       },
       {
-        title: "What's live",
-        body: "The public preview is live now with sample answers from real Texas sources. It is labeled as a preview because that is what it is.",
+        title: "How it is delivered",
+        body: "The public shared demo has been retired. MACS installs Fish On as a private customer-controlled system with its own authentication, sources and operating rules.",
       },
     ],
   },
@@ -224,7 +220,6 @@ export const caseStudies: CaseStudy[] = [
     headline: "Give your AI agent its own computer.",
     summary:
       "Foundry is an in-house MACS agent-computer system we install for customers who need AI agents to safely browse websites, operate software, gather information and handle repetitive digital work.",
-    liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
     heroImage: "/work/foundry-fleet-hero.webp",
     sections: [
       {
