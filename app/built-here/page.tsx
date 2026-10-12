@@ -5,7 +5,7 @@ import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
   title: "Built Here",
-  description: "Products built by MACS Digital Media.",
+  description: "In-house products built by MACS Digital Media and installed for customers.",
 };
 
 export default async function BuiltHerePage() {
@@ -45,6 +45,7 @@ export default async function BuiltHerePage() {
       <div className="editorial-shell">
         <header className="editorial-page__intro">
           <h1>{es ? "Hecho aquí" : "Built Here"}</h1>
+          <p>{es ? "Sistemas que construimos internamente e instalamos y configuramos para nuestros clientes." : "Systems we build in-house, then install and configure for our customers."}</p>
         </header>
 
         {items.map((item, index) => (
@@ -57,7 +58,7 @@ export default async function BuiltHerePage() {
               {"support" in item ? <p>{item.support}</p> : null}
               <p>
                 <Link className="editorial-link editorial-link--light" href={item.href}>
-                  View project <span aria-hidden="true">↗</span>
+                  {es ? "Ver producto" : "View product"} <span aria-hidden="true">↗</span>
                 </Link>
               </p>
             </div>
