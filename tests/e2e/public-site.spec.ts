@@ -28,7 +28,6 @@ const productRoutes = [
   "/work/buffer-blaster",
   "/work/pare",
   "/work/posta-studio",
-  "/work/sweet",
   "/work/fish-on",
   "/work/foundry-fleet",
 ] as const;
