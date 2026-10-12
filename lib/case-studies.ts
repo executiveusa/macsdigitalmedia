@@ -223,7 +223,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Internal Tooling",
     headline: "Give your AI agent its own computer.",
     summary:
-      "Foundry is an in-house MACS agent-computer system we install for customers who need AI agents to safely browse websites, operate software, gather information and handle repetitive digital work."
+      "Foundry is an in-house MACS agent-computer system we install for customers who need AI agents to safely browse websites, operate software, gather information and handle repetitive digital work.",
     liveUrl: "https://foundry-cp.31.220.58.212.sslip.io/fleet.html",
     heroImage: "/work/foundry-fleet-hero.webp",
     sections: [
