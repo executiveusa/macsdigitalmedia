@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Reveal } from "@/components/motion";
 import { getServerLocale } from "@/lib/server-preferences";
 
 export const metadata: Metadata = {
@@ -48,10 +47,8 @@ export default async function BuiltHerePage() {
           <p>{es ? "Sistemas que construimos internamente e instalamos y configuramos para nuestros clientes." : "Systems we build in-house, then install and configure for our customers."}</p>
         </header>
 
-        {items.map((item, index) => (
-          <Reveal intensity="strong" key={item.id}>
-          <section className="editorial-built-detail" id={item.id}>
-            <span className="editorial-built__index">{String(index + 1).padStart(2, "0")}</span>
+        {items.map((item) => (
+          <section className="editorial-built-detail" id={item.id} key={item.id}>
             <h2>{item.name}</h2>
             <div>
               <p><strong>{item.line}</strong></p>
@@ -63,7 +60,6 @@ export default async function BuiltHerePage() {
               </p>
             </div>
           </section>
-          </Reveal>
         ))}
 
         <Link className="editorial-link editorial-link--light" href="/apply">
