@@ -399,7 +399,7 @@
 
 .editorial-built-detail {
   display: grid;
-  grid-template-columns: 4rem minmax(12rem, 0.65fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1.35fr);
   gap: 1.5rem;
   padding: 2rem 0 5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.35);
