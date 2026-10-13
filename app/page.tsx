@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroCopyMotion, HeroParallax, Reveal } from "@/components/motion";
+import { HeroCopyMotion, HeroParallax } from "@/components/motion";
 import { editorialHome } from "@/lib/editorial-home";
 import { getServerLocale } from "@/lib/server-preferences";
 
@@ -66,8 +66,6 @@ export default async function HomePage() {
       <section className="editorial-credibility" aria-label={home.credibility}>
         <div className="editorial-shell"><p>{home.credibility}</p></div>
       </section>
-
-      <Reveal intensity="strong">
         <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--programs">
@@ -84,9 +82,6 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
-      </Reveal>
-
-      <Reveal intensity="soft">
         <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
           <div className="editorial-shell editorial-partnership-bridge__inner">
             <div>
@@ -95,9 +90,6 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
-      </Reveal>
-
-      <Reveal intensity="strong">
         <section className="editorial-section editorial-work" aria-labelledby="work-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--split">
@@ -121,9 +113,6 @@ export default async function HomePage() {
             </Link>
           </div>
         </section>
-      </Reveal>
-
-      <Reveal intensity="strong">
         <section className="editorial-section editorial-story" aria-labelledby="story-title">
           <div className="editorial-shell editorial-story__grid">
             <div className="editorial-story__media">
@@ -144,18 +133,14 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
-      </Reveal>
-
-      <Reveal intensity="strong">
         <section className="editorial-section editorial-built" aria-labelledby="built-title">
           <div className="editorial-shell">
             <div className="editorial-heading editorial-heading--wide">
               <h2 id="built-title">{home.builtTitle}</h2>
             </div>
             <div className="editorial-built__grid">
-              {home.builtItems.map((item, index) => (
+              {home.builtItems.map((item) => (
                 <Link className="editorial-built__item" href={item.href} key={item.name}>
-                  <span className="editorial-built__index">0{index + 1}</span>
                   <strong>{item.name}</strong>
                   <span>{item.line}</span>
                   <span className="editorial-built__arrow" aria-hidden="true">↗</span>
@@ -167,9 +152,6 @@ export default async function HomePage() {
             </Link>
           </div>
         </section>
-      </Reveal>
-
-      <Reveal intensity="standard">
         <section className="editorial-fit" aria-labelledby="fit-title">
           <div className="editorial-shell editorial-fit__inner">
             <h2 id="fit-title">{home.fitTitle}</h2>
@@ -178,7 +160,6 @@ export default async function HomePage() {
             </Link>
           </div>
         </section>
-      </Reveal>
     </>
   );
 }
