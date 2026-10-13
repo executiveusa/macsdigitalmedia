@@ -9,7 +9,6 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { useRef, type ReactNode } from "react";
 
 const easing = [0.22, 1, 0.36, 1] as const;
@@ -19,20 +18,7 @@ export function MotionRoot({ children }: { children: ReactNode }) {
 }
 
 export function PageTransition({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <m.div
-      key={pathname}
-      className="page-transition"
-      initial={reduceMotion ? false : { opacity: 0.92, y: 8, scale: 0.998 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: reduceMotion ? 0 : 0.42, ease: easing }}
-    >
-      {children}
-    </m.div>
-  );
+  return <div className="page-transition">{children}</div>;
 }
 
 export function Reveal({
