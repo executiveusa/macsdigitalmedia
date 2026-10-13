@@ -111,34 +111,6 @@ body.menu-open {
 
 .reveal {
   width: 100%;
-  transform-origin: 50% 18%;
-  will-change: transform, opacity;
-}
-
-.motion-scene .editorial-kicker {
-  transform: translate3d(0, var(--motion-kicker-y, 0px), 0);
-  will-change: transform;
-}
-
-.motion-scene h1,
-.motion-scene h2 {
-  transform: translate3d(0, var(--motion-heading-y, 0px), 0);
-  will-change: transform;
-}
-
-.motion-scene p:not(.editorial-kicker),
-.motion-scene .editorial-link,
-.motion-scene blockquote {
-  transform: translate3d(0, var(--motion-copy-y, 0px), 0);
-  will-change: transform;
-}
-
-.motion-scene img,
-.motion-scene .editorial-story__media,
-.motion-scene .editorial-case-study-hero__media,
-.motion-scene [class*="cardMedia"] {
-  transform: translate3d(0, var(--motion-media-y, 0px), 0);
-  will-change: transform;
 }
 
 .skip-link {
@@ -1080,18 +1052,8 @@ body.menu-open {
     scroll-behavior: auto;
   }
 
-  .reveal,
   .editorial-hero__motion-layer,
-  .editorial-hero__copy-motion,
-  .motion-scene .editorial-kicker,
-  .motion-scene h1,
-  .motion-scene h2,
-  .motion-scene p,
-  .motion-scene .editorial-link,
-  .motion-scene blockquote,
-  .motion-scene img,
-  .motion-scene .editorial-story__media,
-  .motion-scene .editorial-case-study-hero__media {
+  .editorial-hero__copy-motion {
     will-change: auto;
     transform: none !important;
   }
