@@ -601,8 +601,8 @@ body.menu-open {
 .system-card:hover,
 .rescue-card:hover,
 .phase-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  transform: none;
+  box-shadow: var(--shadow-raised);
 }
 
 .system-card:hover {
@@ -1042,19 +1042,4 @@ body.menu-open {
   .button::before {
     display: none;
   }
-}
-
-
-/* Reduction pass 05 — hover feedback without floating surfaces. */
-.system-card:hover,
-.rescue-card:hover,
-.phase-card:hover {
-  transform: none;
-  box-shadow: var(--shadow-raised);
-}
-
-.application-form input:focus,
-.application-form select:focus,
-.application-form textarea:focus {
-  transform: none;
 }
