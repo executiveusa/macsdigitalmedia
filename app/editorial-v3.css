@@ -206,13 +206,12 @@
   aspect-ratio: 16 / 8.4;
   border-radius: 0;
   background-position: center;
-  transition: transform 420ms cubic-bezier(.22,1,.36,1), filter 420ms cubic-bezier(.22,1,.36,1);
+  transition: filter 180ms ease;
 }
 
 .editorial-work__feature:hover .editorial-work__media,
 .editorial-work__feature:focus-visible .editorial-work__media {
-  transform: scale(1.008);
-  filter: saturate(1.04) contrast(1.015);
+  filter: saturate(1.02) contrast(1.01);
 }
 
 .editorial-work__caption {
