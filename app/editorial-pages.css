@@ -604,3 +604,32 @@
     max-width: none;
   }
 }
+
+
+/* Reduction pass 09 — utility/evidence headings use the sans system. */
+.editorial-program-detail h2,
+.editorial-built-detail h2,
+.editorial-case-study-evidence h2,
+.editorial-case-study-assets h2,
+.editorial-note strong {
+  font-family: var(--editorial-sans);
+  font-weight: 650;
+  letter-spacing: -.025em;
+}
+
+.editorial-program-detail h2,
+.editorial-built-detail h2 {
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  line-height: 1.02;
+}
+
+.editorial-case-study-evidence h2,
+.editorial-case-study-assets h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2.7rem);
+  line-height: 1.05;
+}
+
+.editorial-note strong {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.1;
+}
