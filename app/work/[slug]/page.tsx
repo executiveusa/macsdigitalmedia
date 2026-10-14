@@ -102,10 +102,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </Reveal>
 
         <div className="editorial-case-study-story">
-          {study.sections.map((section, index) => (
+          {study.sections.map((section) => (
             <Reveal intensity="strong" key={section.title}>
             <section className="editorial-case-study-story__section">
-              <p className="editorial-kicker">0{index + 1}</p>
               <div>
                 <h2>{section.title}</h2>
                 <p>{section.body}</p>
