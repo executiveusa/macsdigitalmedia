@@ -1043,3 +1043,18 @@ body.menu-open {
     display: none;
   }
 }
+
+
+/* Reduction pass 05 — hover feedback without floating surfaces. */
+.system-card:hover,
+.rescue-card:hover,
+.phase-card:hover {
+  transform: none;
+  box-shadow: var(--shadow-raised);
+}
+
+.application-form input:focus,
+.application-form select:focus,
+.application-form textarea:focus {
+  transform: none;
+}
