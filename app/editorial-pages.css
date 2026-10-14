@@ -53,6 +53,15 @@
   letter-spacing: -0.045em;
 }
 
+.editorial-program-detail h2,
+.editorial-built-detail h2 {
+  font-family: var(--editorial-sans);
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-weight: 650;
+  line-height: 1.02;
+  letter-spacing: -.025em;
+}
+
 .editorial-program-detail p,
 .editorial-case p,
 .editorial-built-detail p {
