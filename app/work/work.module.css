@@ -54,7 +54,7 @@
   border: 1px solid var(--editorial-line);
   border-radius: 0;
   background: var(--editorial-paper) center / cover no-repeat;
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition: opacity 160ms ease;
 }
 
 .cardMediaProduct {
@@ -87,8 +87,7 @@
 
 .cardMain:hover .cardMedia,
 .cardMain:focus-visible .cardMedia {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px -18px rgba(23, 21, 18, 0.45);
+  opacity: .94;
 }
 
 .cardPlaceholder {
