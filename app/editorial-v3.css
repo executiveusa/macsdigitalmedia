@@ -675,3 +675,30 @@
 .editorial-story__media {
   border-radius: 0;
 }
+
+
+/* Reduction pass 06 — whitespace must serve hierarchy, not signal status. */
+.editorial-work {
+  padding-top: clamp(4rem, 6vw, 5.75rem);
+  padding-bottom: clamp(3.5rem, 5vw, 4.75rem);
+}
+
+.editorial-built {
+  padding-block: clamp(4rem, 5.5vw, 5.5rem);
+}
+
+.editorial-fit__inner {
+  min-height: min(54vh, 580px);
+  padding-block: clamp(4rem, 6vw, 5.5rem);
+}
+
+@media (max-width: 760px) {
+  .editorial-work,
+  .editorial-built {
+    padding-block: 3.5rem;
+  }
+
+  .editorial-fit__inner {
+    padding-block: 4rem;
+  }
+}
