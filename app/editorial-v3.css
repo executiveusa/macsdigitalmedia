@@ -670,3 +670,9 @@
     padding: 1.15rem 0 1.35rem;
   }
 }
+
+
+/* Reduction pass 04 — large editorial media stays architectural, not card-like. */
+.editorial-story__media {
+  border-radius: 0;
+}
