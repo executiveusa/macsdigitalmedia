@@ -39,8 +39,10 @@ export default async function ProgramsPage() {
           <Reveal intensity="strong" key={id}>
           <section className="editorial-program-detail" id={id}>
             <p className="editorial-kicker">{name}</p>
-            {line ? <h2>{line}</h2> : null}
-            {response ? <p>{response}</p> : null}
+            <div className="editorial-program-detail__content">
+              {line ? <h2>{line}</h2> : null}
+              {response ? <p>{response}</p> : null}
+            </div>
           </section>
           </Reveal>
         ))}
