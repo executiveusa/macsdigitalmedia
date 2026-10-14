@@ -39,7 +39,7 @@ export default async function StoryPage() {
         <div className="editorial-story-long">
           <Reveal intensity="strong">
           <section className="editorial-story-long__chapter">
-            <p className="editorial-kicker">{es ? "01 · Stacy" : "01"}</p>
+            <p className="editorial-kicker">Stacy</p>
             <div>
               <h2>{es ? "El problema no era una sola herramienta." : "Meet Stacy"}</h2>
               {es ? (
@@ -59,7 +59,7 @@ export default async function StoryPage() {
 
           <Reveal intensity="strong">
           <section className="editorial-story-long__chapter">
-            <p className="editorial-kicker">{es ? "02 · Stavarai" : "02"}</p>
+            <p className="editorial-kicker">Stavarai</p>
             <div>
               <h2>{es ? "Lo que dura también tiene que seguir siendo actual." : "Meet Stavarai"}</h2>
               {es ? (
