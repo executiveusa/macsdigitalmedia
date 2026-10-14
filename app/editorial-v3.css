@@ -702,3 +702,10 @@
     padding-block: 4rem;
   }
 }
+
+
+/* Reduction pass 10 — neutral narrative sections share one field. */
+.editorial-work,
+.editorial-story {
+  background: var(--editorial-paper);
+}
