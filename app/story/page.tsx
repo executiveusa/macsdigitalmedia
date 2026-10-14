@@ -75,12 +75,9 @@ export default async function StoryPage() {
           </Reveal>
         </div>
 
-        <div style={{ marginTop: "clamp(5rem, 10vw, 9rem)", display: "flex", flexWrap: "wrap", gap: "1.5rem" }}>
+        <div style={{ marginTop: "clamp(3.5rem, 6vw, 5.5rem)" }}>
           <Link className="editorial-link" href="/team">
             {es ? "Conoce al equipo" : "Meet the team"} <span aria-hidden="true">↗</span>
-          </Link>
-          <Link className="editorial-link" href="/apply">
-            {es ? "Veamos si encajamos" : "Tell us what's important"} <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>
