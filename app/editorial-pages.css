@@ -482,3 +482,67 @@
     margin-top: 1.4rem;
   }
 }
+
+
+/* Reduction pass 06 — content pages use space for grouping, not prestige. */
+.editorial-page {
+  padding-top: 6.5rem;
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
+}
+
+.editorial-page__intro {
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.editorial-case {
+  padding-bottom: clamp(4.5rem, 8vw, 7rem);
+}
+
+.editorial-case-study-hero {
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.editorial-case-study-evidence {
+  margin-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.editorial-case-study-story {
+  gap: clamp(3rem, 6vw, 5.5rem);
+}
+
+.editorial-case-study-assets {
+  margin-top: clamp(4rem, 7vw, 6.5rem);
+}
+
+.editorial-case-study-footer {
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.editorial-story-long {
+  gap: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.editorial-built-detail {
+  padding-bottom: 3.75rem;
+}
+
+@media (max-width: 800px) {
+  .editorial-page {
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .editorial-page__intro {
+    margin-bottom: 3rem;
+  }
+
+  .editorial-case-study-story,
+  .editorial-story-long {
+    gap: 3rem;
+  }
+
+  .editorial-case-study-assets,
+  .editorial-case-study-footer {
+    margin-top: 3rem;
+  }
+}
