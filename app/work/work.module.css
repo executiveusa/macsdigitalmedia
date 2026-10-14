@@ -52,7 +52,7 @@
   aspect-ratio: 3 / 2;
   margin-bottom: 0.8rem;
   border: 1px solid var(--editorial-line);
-  border-radius: 0.6rem;
+  border-radius: 0;
   background: var(--editorial-paper) center / cover no-repeat;
   transition: transform 200ms ease, box-shadow 200ms ease;
 }
@@ -162,7 +162,7 @@
   .cardMedia {
     aspect-ratio: 4 / 3;
     margin-bottom: 0.55rem;
-    border-radius: 0.45rem;
+    border-radius: 0;
   }
 
   .cardKicker {
@@ -216,15 +216,14 @@
 }
 
 .cardTag {
-  display: inline-block;
-  margin-left: 10px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  border: 1.5px solid var(--macs-blue);
+  display: inline;
+  margin-left: 8px;
+  padding: 0;
+  border: 0;
   color: var(--macs-blue-dark);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  vertical-align: middle;
+  vertical-align: baseline;
 }
