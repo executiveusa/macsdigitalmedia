@@ -320,13 +320,10 @@
 @media (max-width: 390px) {
   .editorial-hero__media { min-height: 44svh; }
   .editorial-hero h1 { font-size: clamp(2.9rem, 14vw, 4rem); }
-  .editorial-offer-proof__slot { grid-template-columns: minmax(6.5rem, 32%) 1fr; }
 }
 
 @media (max-width: 340px) {
   .editorial-hero h1 { font-size: 2.75rem; }
-  .editorial-offer-proof__slot { grid-template-columns: 1fr; }
-  .editorial-offer-proof__media { aspect-ratio: 16 / 8; border-right: 0; border-bottom: 1px solid var(--editorial-line); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -562,4 +559,33 @@
 .editorial-work,
 .editorial-story {
   background: var(--editorial-paper);
+}
+
+
+/* Reduction pass 11 — imagery follows content type. */
+.editorial-work__media {
+  aspect-ratio: 16 / 7.6;
+  background-size: cover;
+  background-position: center 38%;
+}
+
+.editorial-story__media {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+  background: transparent;
+}
+
+.editorial-story__media img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (max-width: 760px) {
+  .editorial-work__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .editorial-story__media {
+    aspect-ratio: 4 / 5;
+  }
 }
