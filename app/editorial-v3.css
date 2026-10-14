@@ -569,13 +569,13 @@
   background-position: center 38%;
 }
 
-.editorial-story__media {
+.editorial-story .editorial-story__media {
   aspect-ratio: 4 / 5;
   min-height: 0;
   background: transparent;
 }
 
-.editorial-story__media img {
+.editorial-story .editorial-story__media img {
   object-fit: cover;
   object-position: center top;
 }
@@ -585,7 +585,7 @@
     aspect-ratio: 16 / 10;
   }
 
-  .editorial-story__media {
+  .editorial-story .editorial-story__media {
     aspect-ratio: 4 / 5;
   }
 }
