@@ -348,28 +348,12 @@ body.menu-open {
     box-shadow 180ms ease;
 }
 
-.button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.28) 48%, transparent 76%);
-  transform: translateX(-140%);
-  transition: transform 520ms var(--ease-out);
-}
-
 .button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(5, 6, 7, 0.18);
-}
-
-.button:hover::before {
-  transform: translateX(140%);
+  text-decoration: none;
 }
 
 .button:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 4px 12px rgba(5, 6, 7, 0.12);
+  transform: scale(0.98);
 }
 
 .button:disabled {
