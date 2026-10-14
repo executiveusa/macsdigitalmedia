@@ -546,3 +546,61 @@
     margin-top: 3rem;
   }
 }
+
+
+/* Reduction pass 07 — generic pages read directly instead of repeating split-editorial composition. */
+.editorial-page__intro {
+  display: block;
+  max-width: 62rem;
+}
+
+.editorial-page__intro > .editorial-kicker {
+  margin-bottom: .7rem;
+}
+
+.editorial-page__intro h1 {
+  max-width: 13ch;
+}
+
+.editorial-page__intro p:not(.editorial-kicker) {
+  max-width: 42rem;
+}
+
+.editorial-program-detail {
+  grid-template-columns: minmax(8rem, .35fr) minmax(0, 1.65fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: 1.75rem 3.25rem;
+}
+
+.editorial-program-detail__content {
+  display: grid;
+  gap: .9rem;
+  max-width: 58rem;
+}
+
+.editorial-case-study-story__section {
+  display: block;
+  max-width: 64rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.editorial-case-study-story__section h2 {
+  margin-bottom: 1rem;
+}
+
+.editorial-case-study-story__section p {
+  max-width: 48rem;
+}
+
+@media (max-width: 800px) {
+  .editorial-program-detail {
+    grid-template-columns: 1fr;
+    gap: .65rem;
+    padding-block: 1.5rem 2.75rem;
+  }
+
+  .editorial-page__intro {
+    max-width: none;
+  }
+}
