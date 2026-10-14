@@ -6,55 +6,6 @@
   line-height: 1.6;
 }
 
-.editorial-offer-proof {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: 2rem;
-  border: 1px solid var(--editorial-line);
-  background: var(--editorial-line);
-}
-
-.editorial-offer-proof__slot {
-  min-width: 0;
-  background: var(--editorial-paper);
-}
-
-.editorial-offer-proof__media {
-  aspect-ratio: 16 / 9;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(135deg, rgba(58, 110, 165, 0.045), rgba(254, 110, 96, 0.035)),
-    var(--editorial-paper);
-  border-bottom: 1px solid var(--editorial-line);
-  color: rgba(23, 21, 18, 0.42);
-  font-family: var(--editorial-sans);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.editorial-offer-proof__copy {
-  display: grid;
-  gap: 0.35rem;
-  padding: 0.9rem 1rem 1rem;
-  font-family: var(--editorial-sans);
-}
-
-.editorial-offer-proof__copy strong {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.editorial-offer-proof__copy span {
-  max-width: 22rem;
-  color: rgba(23, 21, 18, 0.62);
-  font-size: 0.78rem;
-  line-height: 1.45;
-}
-
 .editorial-partnership-bridge {
   padding: clamp(4.5rem, 9vw, 8rem) 0;
   background: var(--editorial-coral);
@@ -91,11 +42,7 @@
   line-height: 1.62;
 }
 
-@media (max-width: 960px) {
-  .editorial-offer-proof {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+
 
 @media (max-width: 680px) {
   .editorial-heading__intro {
@@ -103,30 +50,7 @@
     line-height: 1.58;
   }
 
-  .editorial-offer-proof {
-    grid-template-columns: 1fr;
-    margin-top: 1.5rem;
-  }
-
-  .editorial-offer-proof__slot {
-    display: grid;
-    grid-template-columns: minmax(7.5rem, 0.42fr) minmax(0, 1fr);
-    min-height: 7.5rem;
-  }
-
-  .editorial-offer-proof__media {
-    aspect-ratio: auto;
-    min-height: 7.5rem;
-    border-right: 1px solid var(--editorial-line);
-    border-bottom: 0;
-  }
-
-  .editorial-offer-proof__copy {
-    align-content: center;
-    padding: 0.9rem;
-  }
-
-  .editorial-partnership-bridge {
+.editorial-partnership-bridge {
     padding-block: 4.5rem;
   }
 
@@ -141,12 +65,7 @@
   }
 }
 
-@media (prefers-contrast: more) {
-  .editorial-offer-proof,
-  .editorial-offer-proof__media {
-    border-color: currentColor;
-  }
-}
+
 
 
 /* Reduction pass 10 — color marks meaning, not every section boundary. */
