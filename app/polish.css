@@ -398,7 +398,7 @@ body.menu-open {
 }
 
 
-/* Motion audit: consistent tactile feedback across interactive surfaces. */
+/* Interaction feedback stays functional: color, underline and direct pressed states. */
 .editorial-link,
 .editorial-row,
 .editorial-built__item,
@@ -413,11 +413,10 @@ body.menu-open {
 [class*="cardMain"],
 [class*="cardDetails"] {
   transition:
-    transform 150ms cubic-bezier(.22,1,.36,1),
-    box-shadow 180ms cubic-bezier(.22,1,.36,1),
-    opacity 150ms cubic-bezier(.22,1,.36,1),
-    border-color 180ms cubic-bezier(.22,1,.36,1),
-    background-color 180ms cubic-bezier(.22,1,.36,1);
+    opacity 150ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 .editorial-link > span[aria-hidden="true"],
@@ -436,33 +435,10 @@ body.menu-open {
   transform: translate3d(3px, -2px, 0);
 }
 
-.editorial-link:active,
-.editorial-row:active,
-.editorial-built__item:active,
-.editorial-work__feature:active,
-.editorial-work__secondary:active,
 .application-form button:active,
 .accessibility-drawer__close:active,
-.editorial-footer__text-button:active,
-[class*="cardMain"]:active,
-[class*="cardDetails"]:active {
-  transform: translateY(1px) scale(.975);
-}
-
-.application-form input:focus,
-.application-form select:focus,
-.application-form textarea:focus {
-  transform: translateY(-1px);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .editorial-row:hover,
-  .editorial-built__item:hover,
-  .editorial-work__feature:hover,
-  .editorial-work__secondary:hover,
-  [class*="cardMain"]:hover {
-    transform: translateY(-2px);
-  }
+.editorial-footer__text-button:active {
+  transform: scale(.98);
 }
 
 .hero__poster,
