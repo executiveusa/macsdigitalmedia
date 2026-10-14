@@ -226,3 +226,33 @@
   text-transform: none;
   vertical-align: baseline;
 }
+
+
+/* Reduction pass 11 — client work and product imagery use different image languages. */
+.cardMedia {
+  aspect-ratio: 16 / 10;
+  border: 0;
+  background-color: transparent;
+}
+
+.cardMediaProduct {
+  aspect-ratio: 4 / 3;
+  background-size: contain;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .cardMedia {
+    aspect-ratio: 16 / 10;
+  }
+
+  .cardMediaProduct {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 620px) {
+  .cardMedia {
+    aspect-ratio: 16 / 10;
+  }
+}
