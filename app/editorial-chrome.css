@@ -443,3 +443,98 @@
     transform: none;
   }
 }
+
+
+/* Reduction pass 08 — header is infrastructure, not glassmorphic theater. */
+.editorial-header__inner::before {
+  inset: 0 -1rem;
+  border: 0;
+  border-radius: 0;
+  background: rgba(246, 246, 233, .96);
+  box-shadow: none;
+  backdrop-filter: none;
+  transition: background-color 160ms ease;
+}
+
+.editorial-header--up .editorial-header__inner::before,
+.editorial-header--down .editorial-header__inner::before {
+  border-color: transparent;
+  background: rgba(246, 246, 233, .96);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.editorial-brand {
+  transition: opacity 150ms ease;
+}
+
+.editorial-brand:hover,
+.editorial-brand:focus-visible {
+  box-shadow: none;
+  opacity: .92;
+}
+
+.editorial-brand:active {
+  transform: none;
+  box-shadow: none;
+  opacity: .82;
+}
+
+.editorial-header__fit,
+.editorial-menu-button {
+  min-height: 2.75rem;
+  border-radius: 0;
+  backdrop-filter: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.editorial-header__fit {
+  padding-inline: 1rem;
+}
+
+.editorial-menu-button {
+  padding-inline: .85rem;
+}
+
+.editorial-header__fit:hover,
+.editorial-menu-button:hover {
+  transform: none;
+  box-shadow: none;
+  opacity: .86;
+}
+
+.editorial-header__fit:active,
+.editorial-menu-button:active {
+  transform: none;
+  box-shadow: none;
+  opacity: .72;
+}
+
+.editorial-menu-button__glyph,
+.editorial-menu-button:hover .editorial-menu-button__glyph,
+.editorial-menu-button:active .editorial-menu-button__glyph {
+  transform: none;
+}
+
+.editorial-menu__primary a {
+  transition: opacity 140ms ease;
+}
+
+.editorial-menu__primary a:hover,
+.editorial-menu__primary a:focus-visible {
+  opacity: .66;
+  transform: none;
+}
+
+@media (max-width: 680px) {
+  .editorial-header__inner::before {
+    inset-inline: -.625rem;
+  }
+
+  .editorial-menu-button {
+    min-height: 2.75rem;
+  }
+}
