@@ -600,3 +600,73 @@
     padding-block: 4.5rem;
   }
 }
+
+
+/* Reduction pass 03 — spacing and hierarchy replace decorative rule dependence. */
+.editorial-programs .editorial-rows {
+  border-top: 0;
+  display: grid;
+  gap: .4rem;
+}
+
+.editorial-programs .editorial-row {
+  min-height: 0;
+  padding: 1.35rem 0;
+  border-bottom: 0;
+}
+
+.editorial-programs .editorial-row + .editorial-row {
+  margin-top: .35rem;
+}
+
+.editorial-work__caption {
+  border-bottom: 0;
+  padding-bottom: 1.5rem;
+}
+
+.editorial-built__grid {
+  display: grid;
+  gap: clamp(.35rem, .8vw, .7rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.editorial-built__item,
+.editorial-built__item:first-child {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.editorial-built__item {
+  padding: 1.45rem 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .editorial-programs .editorial-row:hover,
+  .editorial-programs .editorial-row:focus-visible {
+    background: transparent;
+    padding-inline: 0;
+  }
+
+  .editorial-built__item:hover,
+  .editorial-built__item:focus-visible {
+    background: color-mix(in srgb, var(--editorial-blue) 92%, white 8%);
+  }
+}
+
+@media (max-width: 760px) {
+  .editorial-programs .editorial-rows {
+    gap: .15rem;
+  }
+
+  .editorial-programs .editorial-row {
+    padding: 1.1rem 0 1.25rem;
+  }
+
+  .editorial-built__grid {
+    gap: .1rem;
+  }
+
+  .editorial-built__item {
+    padding: 1.15rem 0 1.35rem;
+  }
+}
