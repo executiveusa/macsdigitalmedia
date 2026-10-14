@@ -91,11 +91,6 @@ export default async function WorkPage() {
                 <span className={styles.cardRole}>{copy.line}</span>
               </span>
             </Link>
-            <div className={styles.cardActions}>
-              <Link className={styles.cardDetails} href={`/work/${study.slug}`}>
-                {es ? "Ver proyecto" : "View project"}
-              </Link>
-            </div>
           </article>
         );
       })}
