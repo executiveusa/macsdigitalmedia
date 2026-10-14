@@ -98,98 +98,6 @@
 }
 
 /* Proof is evidence-led: wide media fields and thin editorial rules, not SaaS cards. */
-.editorial-offer-proof {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 0;
-  margin-top: clamp(3rem, 7vw, 6rem);
-  border-top: 1px solid var(--editorial-line);
-  border-bottom: 1px solid var(--editorial-line);
-  background: transparent;
-}
-
-.editorial-offer-proof__slot {
-  grid-column: span 3;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-width: 0;
-  color: inherit;
-  text-decoration: none;
-  border-right: 1px solid var(--editorial-line);
-}
-
-.editorial-offer-proof__slot:last-child { border-right: 0; }
-
-.editorial-offer-proof__media {
-  aspect-ratio: 5 / 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem;
-  background: #ecece1;
-  border-bottom: 1px solid var(--editorial-line);
-}
-
-.editorial-offer-proof__media span {
-  font: 500 .72rem/1 var(--editorial-sans);
-  letter-spacing: .12em;
-}
-
-.editorial-offer-proof__media small {
-  font: 600 .68rem/1.25 var(--editorial-sans);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #625e58;
-}
-
-.editorial-offer-proof__copy {
-  display: grid;
-  align-content: start;
-  gap: .55rem;
-  padding: 1.15rem 1rem 1.35rem;
-}
-
-.editorial-offer-proof__copy strong {
-  font: 400 clamp(1.55rem, 2vw, 2.4rem)/1 var(--editorial-serif);
-  letter-spacing: -.035em;
-}
-
-.editorial-offer-proof__copy > span {
-  font: 500 .78rem/1.45 var(--editorial-sans);
-  color: #514d47;
-}
-
-.editorial-offer-proof__links {
-  display: grid;
-  gap: .35rem;
-  margin-top: .65rem;
-}
-
-.editorial-offer-proof__links a {
-  min-height: 2.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
-  color: inherit;
-  font: 650 .82rem/1.2 var(--editorial-sans);
-  text-decoration: none;
-  border-top: 1px solid var(--editorial-line);
-}
-
-.editorial-offer-proof__links a:hover,
-.editorial-offer-proof__links a:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: .22rem;
-}
-
-.editorial-offer-proof__reserved {
-  margin-top: .65rem;
-  padding-top: .7rem;
-  border-top: 1px solid var(--editorial-line);
-}
-
 /* Give real work more authority and carry it into the human story. */
 .editorial-work {
   padding-bottom: clamp(3.75rem, 7vw, 6rem);
@@ -357,31 +265,6 @@
   .editorial-row__name { font-size: clamp(2.25rem, 10vw, 3rem); }
   .editorial-row__line { grid-column: 1 / -1; font-size: 1rem; line-height: 1.55; }
 
-  .editorial-offer-proof {
-    display: block;
-    margin-top: 3.5rem;
-    border-bottom: 0;
-  }
-
-  .editorial-offer-proof__slot {
-    display: grid;
-    grid-template-columns: minmax(7.5rem, 34%) minmax(0, 1fr);
-    border-right: 0;
-    border-bottom: 1px solid var(--editorial-line);
-  }
-
-  .editorial-offer-proof__media {
-    aspect-ratio: 1 / 1;
-    min-height: 100%;
-    border-bottom: 0;
-    border-right: 1px solid var(--editorial-line);
-    padding: .85rem;
-  }
-
-  .editorial-offer-proof__copy { padding: 1rem .9rem 1.15rem; }
-  .editorial-offer-proof__copy strong { font-size: clamp(1.55rem, 7.5vw, 2.1rem); }
-  .editorial-offer-proof__links a { font-size: .78rem; }
-
   .editorial-partnership-bridge__inner { gap: 1.4rem; }
   .editorial-partnership-bridge h2 { max-width: 10.5ch; }
 
@@ -452,34 +335,7 @@
   .editorial-footer__social a { transition: none; }
 }
 
-.editorial-offer-proof__media {
-  position: relative;
-  overflow: hidden;
-}
 
-.editorial-offer-proof__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: #ecece1;
-}
-
-.editorial-offer-proof__media span,
-.editorial-offer-proof__media small {
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 0 6px #ecece1, 0 0 2px #ecece1;
-}
-/* mobile overlap fix: media box must not exceed its grid column */
-@media (max-width: 520px) {
-  .editorial-offer-proof__media {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
-}
 
 /* Reduction pass 02 — hierarchy follows section purpose, not one editorial template. */
 .editorial-programs {
