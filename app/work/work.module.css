@@ -106,9 +106,9 @@
 }
 
 .cardKicker {
-  font: 700 0.66rem/1.3 var(--editorial-sans);
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  font: 650 0.76rem/1.35 var(--editorial-sans);
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: #625e58;
 }
 
@@ -223,6 +223,6 @@
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: none;
   vertical-align: baseline;
 }
