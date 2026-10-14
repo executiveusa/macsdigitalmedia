@@ -97,7 +97,6 @@
   font: 400 clamp(1rem, 1.25vw, 1.15rem)/1.62 var(--editorial-sans);
 }
 
-/* Proof is evidence-led: wide media fields and thin editorial rules, not SaaS cards. */
 /* Give real work more authority and carry it into the human story. */
 .editorial-work {
   padding-bottom: clamp(3.75rem, 7vw, 6rem);
@@ -187,7 +186,6 @@
   .editorial-hero h1 { font-size: clamp(3.55rem, 7.4vw, 5.4rem); }
   .editorial-heading--programs { grid-template-columns: 8rem 1fr; }
   .editorial-heading--programs .editorial-heading__intro { grid-column: 2; }
-  .editorial-offer-proof__slot { grid-column: span 6; border-bottom: 1px solid var(--editorial-line); }
   .editorial-built__item { grid-template-columns: minmax(11rem,.6fr) 1fr auto; }
 }
 
