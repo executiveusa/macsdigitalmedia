@@ -176,13 +176,6 @@
     font-size: 0.9rem;
     line-height: 1.5;
   }
-
-  .cardDetails {
-    min-height: 2.8rem;
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.9rem;
-  }
 }
 
 @media (max-width: 620px) {
@@ -200,19 +193,6 @@
   }
 }
 
-.cardActions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.cardDetails {
-  color: inherit;
-  font-size: 0.78rem;
-  text-decoration: underline;
-  text-underline-offset: 0.24em;
-}
 
 .cardTag {
   display: inline;
