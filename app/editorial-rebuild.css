@@ -23,6 +23,16 @@ body {
 .editorial-kicker {
   margin: 0;
   font-family: var(--editorial-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.editorial-hero .editorial-kicker,
+.editorial-work .editorial-kicker,
+.editorial-story .editorial-kicker {
   font-size: 0.82rem;
   font-weight: 650;
   letter-spacing: 0.015em;
