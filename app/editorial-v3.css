@@ -481,3 +481,122 @@
     min-width: 0;
   }
 }
+
+/* Reduction pass 02 — hierarchy follows section purpose, not one editorial template. */
+.editorial-programs {
+  padding-block: clamp(4.5rem, 7vw, 6.5rem);
+}
+
+.editorial-programs .editorial-heading {
+  margin-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+.editorial-programs .editorial-heading h2 {
+  max-width: none;
+  font-family: var(--editorial-sans);
+  font-size: clamp(1.65rem, 2.4vw, 2.5rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+
+.editorial-work {
+  padding-top: clamp(4.75rem, 7vw, 7rem);
+}
+
+.editorial-work .editorial-heading {
+  margin-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+.editorial-work .editorial-heading--split {
+  grid-template-columns: minmax(9rem, .32fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+}
+
+.editorial-work .editorial-kicker {
+  padding-top: .35rem;
+  font-size: .88rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+.editorial-work .editorial-heading h2 {
+  max-width: 14ch;
+  font-size: clamp(2.4rem, 4vw, 4.5rem);
+  line-height: .98;
+}
+
+.editorial-story {
+  padding-block: clamp(5.5rem, 9vw, 9rem);
+}
+
+.editorial-story__copy .editorial-kicker {
+  letter-spacing: .08em;
+}
+
+.editorial-built {
+  padding-block: clamp(4.75rem, 7vw, 7rem);
+}
+
+.editorial-built .editorial-heading {
+  margin-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+.editorial-built .editorial-heading h2 {
+  max-width: none;
+  font-family: var(--editorial-sans);
+  font-size: clamp(1.7rem, 2.5vw, 2.7rem);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+}
+
+.editorial-built__item strong {
+  font-size: clamp(1.9rem, 2.8vw, 3.35rem);
+}
+
+.editorial-fit__inner {
+  min-height: min(62vh, 660px);
+}
+
+@media (max-width: 760px) {
+  .editorial-programs,
+  .editorial-work,
+  .editorial-story,
+  .editorial-built {
+    padding-block: 4rem;
+  }
+
+  .editorial-programs .editorial-heading h2,
+  .editorial-built .editorial-heading h2 {
+    font-size: clamp(1.45rem, 6.5vw, 2rem);
+  }
+
+  .editorial-work .editorial-heading--split {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+  }
+
+  .editorial-work .editorial-kicker {
+    padding-top: 0;
+  }
+
+  .editorial-work .editorial-heading h2 {
+    font-size: clamp(2.5rem, 10vw, 3.35rem);
+  }
+
+  .editorial-story__copy h2 {
+    font-size: clamp(2.8rem, 11.5vw, 3.8rem);
+  }
+
+  .editorial-built__item strong {
+    font-size: clamp(1.9rem, 8.5vw, 2.55rem);
+  }
+
+  .editorial-fit__inner {
+    min-height: 0;
+    padding-block: 4.5rem;
+  }
+}
