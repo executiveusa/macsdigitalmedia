@@ -147,3 +147,41 @@
     border-color: currentColor;
   }
 }
+
+
+/* Reduction pass 10 — color marks meaning, not every section boundary. */
+.editorial-partnership-bridge {
+  padding: clamp(3.75rem, 6vw, 5.5rem) 0;
+  background: var(--editorial-paper);
+  color: var(--editorial-ink);
+}
+
+.editorial-partnership-bridge__inner {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  max-width: 64rem;
+}
+
+.editorial-partnership-bridge h2 {
+  max-width: 16ch;
+  font-family: var(--editorial-sans);
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-weight: 650;
+  line-height: 1.02;
+  letter-spacing: -.025em;
+}
+
+.editorial-partnership-bridge__inner > div {
+  gap: .9rem;
+}
+
+@media (max-width: 680px) {
+  .editorial-partnership-bridge {
+    padding-block: 3.25rem;
+  }
+
+  .editorial-partnership-bridge h2 {
+    font-size: clamp(1.7rem, 7.5vw, 2.45rem);
+    line-height: 1.04;
+  }
+}
