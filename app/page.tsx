@@ -108,6 +108,18 @@ export default async function HomePage() {
                 <span aria-hidden="true">↗</span>
               </span>
             </Link>
+            <Link className="editorial-work__feature" href="/work#reel" aria-label={`${home.reelTitle}: ${home.reelLine}`}>
+              <span
+                className="editorial-work__media"
+                aria-hidden="true"
+                style={{ backgroundImage: "url(/media/macs-commercial-poster.webp)" }}
+              />
+              <span className="editorial-work__caption">
+                <strong>{home.reelTitle}</strong>
+                <span>{home.reelLine}</span>
+                <span aria-hidden="true">↗</span>
+              </span>
+            </Link>
             <Link className="editorial-link" href="/work">
               {home.workCta} <span aria-hidden="true">↗</span>
             </Link>
