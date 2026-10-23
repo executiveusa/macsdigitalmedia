@@ -122,6 +122,35 @@ export default async function WorkPage() {
           </div>
         </header>
 
+        <section className={styles.reel} id="reel" aria-labelledby="reel-title">
+          <div className={styles.indexHeading}>
+            <h2 id="reel-title">
+              {es
+                ? "Lo que hacemos - en 30 segundos."
+                : "What we make - in 30 seconds."}
+            </h2>
+          </div>
+          <video
+            className={styles.reelVideo}
+            controls
+            playsInline
+            preload="none"
+            poster="/media/macs-commercial-poster.webp"
+            aria-label={
+              es
+                ? "Video: lo que hacemos en 30 segundos"
+                : "Video: what we make in 30 seconds"
+            }
+          >
+            <source src="/media/macs-commercial-30s.mp4" type="video/mp4" />
+          </video>
+          <p className={styles.reelCaption}>
+            {es
+              ? "Sitios web · Tiendas · Anuncios · UGC · Motion"
+              : "Websites · Shops · Ads · UGC · Motion"}
+          </p>
+        </section>
+
         <Reveal intensity="strong">
         <section className={styles.index} aria-labelledby="selected-work-title">
           <div className={styles.indexHeading}>

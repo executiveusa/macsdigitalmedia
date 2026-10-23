@@ -19,6 +19,8 @@ type EditorialHome = {
   workTitle: string;
   asc3ndTitle: string;
   asc3ndLine: string;
+  reelTitle: string;
+  reelLine: string;
   workCta: string;
   storyLabel: string;
   storyTitle: string;
@@ -57,6 +59,8 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     workTitle: "See the work.",
     asc3ndTitle: "ASC3ND",
     asc3ndLine: "Building the public presence and operational foundation for a growing nonprofit.",
+    reelTitle: "What we make - in 30 seconds.",
+    reelLine: "Websites · Shops · Ads · UGC · Motion",
     workCta: "View selected work",
     storyLabel: "Father + son",
     storyTitle: "Two perspectives help your business stay relevant and adapt to changing times.",
@@ -98,6 +102,8 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     workTitle: "Prueba antes que promesas.",
     asc3ndTitle: "ASC3ND",
     asc3ndLine: "Un sitio público para una organización sin fines de lucro.",
+    reelTitle: "Lo que hacemos - en 30 segundos.",
+    reelLine: "Sitios web · Tiendas · Anuncios · UGC · Motion",
     workCta: "Ver el trabajo",
     storyLabel: "Padre + hijo",
     storyTitle: "Uno cuida lo que tiene que durar. El otro se mantiene cerca de lo que está cambiando.",

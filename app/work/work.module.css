@@ -11,6 +11,26 @@
   margin-top: clamp(2rem, 4vw, 3rem);
 }
 
+.reel {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.reelVideo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--editorial-line);
+  border-radius: 0.6rem;
+  background: #000;
+}
+
+.reelCaption {
+  margin: 0.8rem 0 0;
+  font-size: 0.95rem;
+  color: var(--editorial-ink);
+  opacity: 0.72;
+}
+
 .indexHeading {
   display: grid;
   grid-template-columns: minmax(8rem, 0.42fr) minmax(0, 1.58fr);
