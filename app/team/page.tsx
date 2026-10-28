@@ -15,7 +15,13 @@ const people = [
       "https://d8j0ntlcm91z4.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/hf_20260924_075446_e562bcfc-005d-42e7-a103-01f56e03f6c4.png",
     imagePosition: "50% 30%",
   },
-  { name: "Stavarai", initials: "ST", role: "eCommerce & Shopify Expert" },
+  {
+    name: "Stavarai",
+    initials: "ST",
+    role: "eCommerce & Shopify Expert",
+    image: "/team/stavarai.jpg",
+    imagePosition: "50% 20%",
+  },
   {
     name: "Ivette",
     initials: "IV",
