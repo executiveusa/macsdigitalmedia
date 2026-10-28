@@ -20,7 +20,7 @@ const people = [
     initials: "ST",
     role: "eCommerce & Shopify Expert",
     image: "/team/stavarai.jpg",
-    imagePosition: "50% 20%",
+    imagePosition: "50% 12%",
   },
   {
     name: "Ivette",
