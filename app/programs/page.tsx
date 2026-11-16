@@ -45,6 +45,13 @@ export default async function ProgramsPage() {
           </Reveal>
         ))}
 
+        <div className="restaurant-offer-program-link">
+          <p>{es ? "¿Tienes un restaurante? También tenemos un proceso especializado de creadores, contenido y promociones medibles." : "Run a restaurant? See our focused local-creator, content and promotion service."}</p>
+          <Link className="editorial-link" href="/restaurants">
+            {es ? "Ver crecimiento para restaurantes" : "Explore restaurant growth"} <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+
         <Link className="editorial-link" href="/apply">
           {es ? "Empezar la conversación" : "Tell us what's important"} <span aria-hidden="true">↗</span>
         </Link>
