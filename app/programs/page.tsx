@@ -45,6 +45,14 @@ export default async function ProgramsPage() {
           </Reveal>
         ))}
 
+        <section className="editorial-program-detail" aria-labelledby="restaurant-program-link">
+          <p className="editorial-kicker">{es ? "Restaurantes" : "Restaurants"}</p>
+          <h2 id="restaurant-program-link">{es ? "Creadores locales. Visitas reales. Promociones medibles." : "Local creators. Real visits. Measurable promotions."}</h2>
+          <Link className="editorial-link" href="/restaurants">
+            {es ? "Ver crecimiento para restaurantes" : "Explore restaurant growth"} <span aria-hidden="true">↗</span>
+          </Link>
+        </section>
+
         <Link className="editorial-link" href="/apply">
           {es ? "Empezar la conversación" : "Tell us what's important"} <span aria-hidden="true">↗</span>
         </Link>
