@@ -10,9 +10,18 @@ MACS Digital Media uses the existing self-hosted Supabase stack on the Hostinger
 - Supabase Studio on the VPS: `http://31.220.58.212:3001`
 - PostgreSQL host: `31.220.58.212`
 - PostgreSQL port: `5434`
-- Shared database: `second_brain`
+- Database: `postgres` (the Supabase stack's own database; `public.founding_applications` lives here)
+- Supabase compose project on the VPS: `/opt/supabase`
 
-Use the HTTPS gateway from Vercel. Direct IP endpoints are for trusted infrastructure and maintenance only.
+Use the HTTPS gateway from Vercel. Direct IP endpoints are for trusted infrastructure and maintenance only. Kong on port 8001 is intentionally not reachable from outside the VPS; external callers go through the HTTPS gateway.
+
+Earlier versions of this doc named the database `second_brain`. That was wrong: the leads table is in `postgres`, confirmed during the 2026-11-19 intake repair.
+
+## Hosting
+
+The live site (`www.macsdigitalmedia.com`) is served by the Vercel project `macsdigitalmedia` in the Vercel team `pauli-4426s-projects`. Set the environment variables below there.
+
+The `the-pauli-effect` team also has a project named `macsdigitalmedia`, but it has no custom domain and does not serve the live site. Changing its settings has no effect on production.
 
 ## Secret source
 
@@ -22,7 +31,7 @@ The service-role value must be the self-hosted Supabase `service_role` JWT. A Su
 
 ## Application environment
 
-Configure these values for Preview and Production in Vercel:
+Configure these values for Preview and Production in the Vercel project `macsdigitalmedia` (team `pauli-4426s-projects`):
 
 ```text
 SUPABASE_URL=https://api.thepaulieffect.com/supabase
@@ -37,7 +46,7 @@ APPLICATION_HASH_SECRET=<32+ random characters>
 The migration runner requires a direct PostgreSQL connection stored as a protected secret:
 
 ```text
-SUPABASE_DB_URL=postgresql://postgres:<password>@31.220.58.212:5434/second_brain
+SUPABASE_DB_URL=postgresql://postgres:<password>@31.220.58.212:5434/postgres
 ```
 
 Add these GitHub **production environment secrets**:
