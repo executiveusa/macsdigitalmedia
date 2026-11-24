@@ -6,6 +6,7 @@ import {
   HeroCopyMotion,
   HeroParallax,
   RollingTextLink,
+  StaggerItem,
 } from "@/components/motion";
 import { editorialHome } from "@/lib/editorial-home";
 import { getServerLocale } from "@/lib/server-preferences";
@@ -89,12 +90,47 @@ export default async function HomePage() {
             <h2 id="clarity-title">{home.clarityTitle}</h2>
             <p>{home.claritySubtitle}</p>
           </div>
-          <div className="macs-clarity__grid">
+
+          <div className="macs-clarity__legend" aria-hidden="true">
+            <div className="macs-clarity__legend-col macs-clarity__legend-col--before">
+              <span className="macs-clarity__badge macs-clarity__badge--before">×</span>
+              <span>{home.clarityBeforeLabel}</span>
+            </div>
+            <div className="macs-clarity__legend-spacer" />
+            <div className="macs-clarity__legend-col macs-clarity__legend-col--after">
+              <span className="macs-clarity__badge macs-clarity__badge--after">✓</span>
+              <span>{home.clarityAfterLabel}</span>
+            </div>
+          </div>
+
+          <div className="macs-clarity__list" role="list">
             {home.clarityPairs.map((pair) => (
-              <div className="macs-clarity__row" key={pair.before}>
-                <div className="macs-clarity__before">{pair.before}</div>
-                <div className="macs-clarity__after">{pair.after}</div>
-              </div>
+              <StaggerItem className="macs-clarity__pair" key={pair.topic}>
+                <div className="macs-clarity__card macs-clarity__card--before" role="listitem">
+                  <div className="macs-clarity__meta">
+                    <span className="macs-clarity__topic">{pair.topic}</span>
+                    <span className="macs-clarity__state macs-clarity__state--before">
+                      <span aria-hidden="true">×</span> {home.clarityBeforeLabel.split(" · ")[0]}
+                    </span>
+                  </div>
+                  <p className="macs-clarity__text">{pair.before}</p>
+                </div>
+
+                <div className="macs-clarity__arrow" aria-hidden="true">
+                  <span className="macs-clarity__arrow-desktop">→</span>
+                  <span className="macs-clarity__arrow-mobile">↓</span>
+                </div>
+
+                <div className="macs-clarity__card macs-clarity__card--after">
+                  <div className="macs-clarity__meta">
+                    <span className="macs-clarity__topic">{pair.topic}</span>
+                    <span className="macs-clarity__state macs-clarity__state--after">
+                      <span aria-hidden="true">✓</span> {home.clarityAfterLabel.split(" · ")[0]}
+                    </span>
+                  </div>
+                  <p className="macs-clarity__text">{pair.after}</p>
+                </div>
+              </StaggerItem>
             ))}
           </div>
         </div>

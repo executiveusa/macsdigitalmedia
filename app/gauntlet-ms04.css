@@ -240,8 +240,14 @@ section[id],
   color: var(--macs-ink);
 }
 
-/* 4. Conversion Factory Clarity Band (Problem -> Outcome) */
+/* 4. Conversion Factory + Steve Krug Color-Coded Clarity Band (Before -> After) */
 .macs-clarity {
+  --macs-problem-bg: #fdf3f2;
+  --macs-problem-border: #c43b2b;
+  --macs-problem-ink: #991b1b;
+  --macs-solution-bg: #f1f8f4;
+  --macs-solution-border: #157347;
+  --macs-solution-ink: #0f5132;
   padding-block: clamp(4rem, 7vw, 6.5rem);
   background: #ffffff;
   color: var(--macs-ink);
@@ -250,8 +256,8 @@ section[id],
 }
 
 .macs-clarity__head {
-  max-width: 44rem;
-  margin-bottom: clamp(2.25rem, 4vw, 3.5rem);
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 3.8vw, 3rem);
 }
 
 .macs-clarity__head h2 {
@@ -266,28 +272,137 @@ section[id],
   color: rgba(23, 21, 18, 0.76);
 }
 
-.macs-clarity__grid {
+.macs-clarity__legend {
   display: grid;
-  border-top: 1px solid rgba(23, 21, 18, 0.14);
+  grid-template-columns: minmax(0, 1fr) 2.75rem minmax(0, 1.15fr);
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(23, 21, 18, 0.1);
 }
 
-.macs-clarity__row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 1.5rem 2.5rem;
-  padding-block: 1.5rem;
-  border-bottom: 1px solid rgba(23, 21, 18, 0.12);
-  align-items: start;
+.macs-clarity__legend-col {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font: 650 0.88rem/1.2 var(--editorial-sans);
+  letter-spacing: -0.01em;
 }
 
-.macs-clarity__before {
-  font: 500 1rem/1.5 var(--editorial-sans);
+.macs-clarity__legend-col--before {
+  color: var(--macs-problem-ink);
+}
+
+.macs-clarity__legend-col--after {
+  color: var(--macs-solution-ink);
+}
+
+.macs-clarity__badge {
+  display: inline-grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 6px;
+  font: 700 0.9rem/1 var(--editorial-sans);
+}
+
+.macs-clarity__badge--before {
+  background: rgba(196, 59, 43, 0.14);
+  color: var(--macs-problem-ink);
+}
+
+.macs-clarity__badge--after {
+  background: rgba(21, 115, 71, 0.14);
+  color: var(--macs-solution-ink);
+}
+
+.macs-clarity__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.macs-clarity__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.75rem minmax(0, 1.15fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.macs-clarity__card {
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--macs-radius-btn);
+  border: 1px solid transparent;
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.macs-clarity__card--before {
+  background: var(--macs-problem-bg);
+  border-color: rgba(196, 59, 43, 0.18);
+  border-left: 4px solid var(--macs-problem-border);
+}
+
+.macs-clarity__card--after {
+  background: var(--macs-solution-bg);
+  border-color: rgba(21, 115, 71, 0.22);
+  border-left: 4px solid var(--macs-solution-border);
+}
+
+.macs-clarity__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.macs-clarity__topic {
+  font: 700 0.78rem/1.2 var(--editorial-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: rgba(23, 21, 18, 0.62);
 }
 
-.macs-clarity__after {
-  font: 600 1.04rem/1.55 var(--editorial-sans);
+.macs-clarity__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font: 650 0.78rem/1.2 var(--editorial-sans);
+}
+
+.macs-clarity__state--before {
+  color: var(--macs-problem-ink);
+}
+
+.macs-clarity__state--after {
+  color: var(--macs-solution-ink);
+}
+
+.macs-clarity__text {
+  margin: 0;
+  font: 500 1.02rem/1.55 var(--editorial-sans);
   color: var(--macs-ink);
+}
+
+.macs-clarity__card--before .macs-clarity__text {
+  color: rgba(23, 21, 18, 0.82);
+}
+
+.macs-clarity__card--after .macs-clarity__text {
+  font-weight: 600;
+  color: var(--macs-ink);
+}
+
+.macs-clarity__arrow {
+  display: grid;
+  place-items: center;
+  color: rgba(23, 21, 18, 0.45);
+  font: 700 1.15rem/1 var(--editorial-sans);
+}
+
+.macs-clarity__arrow-mobile {
+  display: none;
 }
 
 /* 5. Enriched Programs Rows & Segmented Toggle */
@@ -655,7 +770,28 @@ section[id],
     padding-top: calc(var(--header-clearance-mobile) + 1.5rem) !important;
   }
 
-  .macs-clarity__row,
+  .macs-clarity__legend {
+    display: none;
+  }
+
+  .macs-clarity__pair {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .macs-clarity__arrow {
+    height: 1.4rem;
+  }
+
+  .macs-clarity__arrow-desktop {
+    display: none;
+  }
+
+  .macs-clarity__arrow-mobile {
+    display: inline;
+  }
+
   .macs-program-card,
   .macs-faq-section__grid {
     grid-template-columns: 1fr;

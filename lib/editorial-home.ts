@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n";
 
 type Program = { name: string; line: string; href: string };
 type BuiltItem = { name: string; line: string; href: string };
-type ClarityPair = { before: string; after: string };
+type ClarityPair = { topic: string; before: string; after: string };
 type FaqItem = { question: string; answer: string };
 
 type EditorialHome = {
@@ -16,6 +16,8 @@ type EditorialHome = {
   credibility: string;
   clarityTitle: string;
   claritySubtitle: string;
+  clarityBeforeLabel: string;
+  clarityAfterLabel: string;
   clarityPairs: ClarityPair[];
   programsLabel: string;
   programsTitle: string;
@@ -62,20 +64,26 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     clarityTitle: "Stop paying three vendors who never talk to each other.",
     claritySubtitle:
       "Most owners already spend money on a site, social media, or ads. The leak happens in the handoff between them.",
+    clarityBeforeLabel: "Before MACS · Where growth leaks",
+    clarityAfterLabel: "With MACS · One connected system",
     clarityPairs: [
       {
+        topic: "Website",
         before: "A slow or dated website that makes serious buyers hesitate before calling.",
         after: "A clear, mobile-first digital home built to convert visitors into booked conversations.",
       },
       {
+        topic: "Paid Ads",
         before: "Wasted Google and Meta ad spend with vague agency reports and no clear ROI.",
         after: "Disciplined paid campaigns with tight targeting, fast stop-loss rules, and plain-English reporting.",
       },
       {
+        topic: "Lead Follow-Up",
         before: "Leads slipping through the cracks when you are on a job site or with clients.",
         after: "Automated 60-second lead capture and follow-up that keeps every real inquiry warm.",
       },
       {
+        topic: "Ownership",
         before: "Software lock-in where an agency holds your domain, site, or ad accounts hostage.",
         after: "100% client-owned websites, ad accounts, and installed AI workflows you keep forever.",
       },
@@ -192,20 +200,26 @@ export const editorialHome: Record<Locale, EditorialHome> = {
     clarityTitle: "Deja de pagar tres proveedores que no se hablan entre sí.",
     claritySubtitle:
       "La mayoría de los negocios ya invierten en sitio, redes o anuncios. El dinero se pierde en las desconexiones.",
+    clarityBeforeLabel: "Antes de MACS · Donde se escapa el crecimiento",
+    clarityAfterLabel: "Con MACS · Un solo sistema conectado",
     clarityPairs: [
       {
+        topic: "Sitio web",
         before: "Un sitio lento o confuso que hace dudar a clientes listos para comprar.",
         after: "Un hogar digital claro y rápido en móvil diseñado para convertir visitas en llamadas.",
       },
       {
+        topic: "Anuncios",
         before: "Presupuesto desperdiciado en Google y Meta con reportes vagos y sin retorno claro.",
         after: "Campañas disciplinadas con segmentación precisa, reglas de freno rápido y reportes claros.",
       },
       {
+        topic: "Seguimiento",
         before: "Prospectos que se enfrían cuando estás atendiendo clientes o en operación.",
         after: "Respuesta automática en 60 segundos y seguimiento constante para no perder ventas.",
       },
       {
+        topic: "Propiedad",
         before: "Agencias que retienen tu dominio, sitio web o cuentas publicitarias.",
         after: "100% propiedad del cliente en sitios, cuentas de anuncios y sistemas de IA instalados.",
       },

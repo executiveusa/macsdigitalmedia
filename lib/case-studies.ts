@@ -61,7 +61,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Turning a community organization into a credible public brand.",
     summary:
       "ASC3ND already had the mission, the founders and the big idea. MACS helped turn that foundation into a clear public brand built around real community work, documentary proof and simple ways for families, mentors, volunteers and partners to connect.",
-    liveUrl: "https://www.asc3nd.org",
+    liveUrl: "https://asc3nd.org",
     heroImage: "/work/asc3nd-hero.webp",
     sections: [
       {

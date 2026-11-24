@@ -24,7 +24,7 @@ Owner-led local service businesses, clinics, eCommerce brands, and community org
 Clients keep 100% ownership of their domain, website codebase, ad accounts, data, and installed workflows. No 12-month agency lock-in contracts. Consequential actions use clear human approval gates.
 
 ## Selected work
-- ASC3ND: https://www.asc3nd.org (Case study: https://www.macsdigitalmedia.com/work/asc3nd)
+- ASC3ND: https://asc3nd.org (Case study: https://www.macsdigitalmedia.com/work/asc3nd)
 - Taste of Nawlins: https://www.macsdigitalmedia.com/work/taste-of-nawlins
 
 ## Contact and public resources
