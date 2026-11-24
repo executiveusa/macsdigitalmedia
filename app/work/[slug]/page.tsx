@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
-import { Reveal } from "@/components/motion";
+import { RollingTextLink, StaggerItem } from "@/components/motion";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
-import { ClientGate } from "@/components/client-gate";
-import { getServerLocale } from "@/lib/server-preferences";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
 
   if (slug === "agent-maxx") {
@@ -30,7 +32,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CaseStudyPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
 
   if (slug === "agent-maxx") {
@@ -40,89 +46,195 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const study = getCaseStudy(slug);
   if (!study) notFound();
 
-  const locale = await getServerLocale();
   const isInternal = study.visibility === "internal";
-  const isGated = isInternal || study.access === "client-gate";
   const formatLabel = isInternal
-    ? "MACS In-House Product"
-    : study.formatLabel ?? (study.format === "collaboration" ? "Collaboration" : "Case Study");
+    ? "Built Here · In-House System"
+    : study.formatLabel ??
+      (study.format === "collaboration" ? "Client Collaboration" : "Client Case Study");
+
+  const currentIndex = caseStudies.findIndex((item) => item.slug === study.slug);
+  const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 
   return (
-    <div className="editorial-page editorial-page--white editorial-page--case">
+    <div className="editorial-page editorial-page--white macs-case-page">
       <div className="editorial-shell">
-        <Reveal intensity="soft">
-        <header className="editorial-case-study-hero">
-          <div className="editorial-case-study-hero__lead">
-            <p className="editorial-kicker">{study.lane} · {formatLabel}</p>
+        <header className="macs-case-hero">
+          <div className="macs-case-hero__copy">
+            <p className="macs-case-hero__category">
+              {study.lane} · {formatLabel}
+            </p>
             <h1>{study.name}</h1>
-            {study.collaboration ? <p className="editorial-case-study-hero__credit">{study.collaboration}</p> : null}
-            {study.credit ? <p className="editorial-case-study-hero__credit">{study.credit}</p> : null}
-            <p className="editorial-case-study-hero__headline">{study.headline}</p>
-            <p className="editorial-case-study-hero__summary">{study.summary}</p>
-            {isInternal ? (
-              <p className="editorial-case-study-hero__credit">
-                Built in-house by MACS. We install and configure it for customers around the work they actually need done.
-              </p>
+            <p className="macs-case-hero__headline">{study.headline}</p>
+            <p className="macs-case-hero__summary">{study.summary}</p>
+            {study.collaboration ? (
+              <p className="macs-case-hero__credit">{study.collaboration}</p>
             ) : null}
-          </div>
-
-          <div
-            className={`editorial-case-study-hero__media${isInternal ? " editorial-case-study-hero__media--contain" : ""}`}
-            role={study.heroImage ? "img" : undefined}
-            aria-label={study.heroImage ? `${study.name} project hero` : undefined}
-            style={study.heroImage ? { backgroundImage: `url(${study.heroImage})` } : undefined}
-          >
-          </div>
-
-          <div className="editorial-case-study-hero__meta">
-          <dl className="editorial-case-study-meta">
-            <div><dt>Program</dt><dd>{study.lane}</dd></div>
-            {study.industry ? <div><dt>Industry</dt><dd>{study.industry}</dd></div> : null}
-            {study.stage ? <div><dt>Stage</dt><dd>{study.stage}</dd></div> : null}
-            <div><dt>Format</dt><dd>{formatLabel}</dd></div>
-          </dl>
-
-          <div className="editorial-case-study-hero__actions">
-            {isGated ? (
-              <ClientGate locale={locale} heroImage={study.heroImage} name={study.name} productId={study.slug} />
+            {study.credit ? (
+              <p className="macs-case-hero__credit">{study.credit}</p>
             ) : null}
-            {study.liveUrl && !isGated ? (
-              <a className="editorial-link" href={study.liveUrl} target="_blank" rel="noreferrer">
-                Visit live project <span aria-hidden="true">↗</span>
-              </a>
-            ) : null}
-            {isInternal ? (
-              <Link className="editorial-link" href="/apply">
-                Ask about installing {study.name} <span aria-hidden="true">↗</span>
+
+            <div className="macs-case-hero__actions">
+              {study.liveUrl ? (
+                <a
+                  className="macs-btn macs-btn--primary"
+                  href={study.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>Visit live site</span>
+                  <span className="macs-btn__arrow" aria-hidden="true">↗</span>
+                </a>
+              ) : (
+                <RollingTextLink
+                  href={`/apply?program=${study.lane.toLowerCase()}`}
+                  label={`Ask about installing ${study.name}`}
+                  className="macs-btn macs-btn--primary"
+                />
+              )}
+              <Link className="macs-underline-cta macs-underline-cta--dark" href="/work">
+                <span>All selected work</span>
+                <span aria-hidden="true">↗</span>
               </Link>
-            ) : null}
+            </div>
           </div>
-          </div>
-        </header>
-        </Reveal>
 
-        <div className="editorial-case-study-story">
-          {study.sections.map((section, index) => (
-            <Reveal intensity="strong" key={section.title}>
-            <section className="editorial-case-study-story__section">
-              <p className="editorial-kicker">0{index + 1}</p>
+          <dl className="macs-case-meta">
+            <div>
+              <dt>Program</dt>
+              <dd>{study.lane}</dd>
+            </div>
+            {study.industry ? (
               <div>
-                <h2>{section.title}</h2>
-                <p>{section.body}</p>
+                <dt>Category</dt>
+                <dd>{study.industry}</dd>
               </div>
-            </section>
-            </Reveal>
+            ) : null}
+            {study.stage ? (
+              <div>
+                <dt>Status</dt>
+                <dd>{study.stage}</dd>
+              </div>
+            ) : null}
+            <div>
+              <dt>Ownership</dt>
+              <dd>{isInternal ? "Installed & client-owned" : "100% client-owned"}</dd>
+            </div>
+          </dl>
+        </header>
+
+        {study.heroImage ? (
+          <figure className="macs-case-stage">
+            <div className="macs-case-stage__frame">
+              <Image
+                src={study.heroImage}
+                alt={`${study.name} showcase preview`}
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 90vw"
+                className={
+                  isInternal
+                    ? "macs-case-stage__img macs-case-stage__img--contain"
+                    : "macs-case-stage__img"
+                }
+              />
+            </div>
+          </figure>
+        ) : null}
+
+        <section className="macs-case-tension" aria-labelledby="case-tension-title">
+          <div className="macs-case-tension__head">
+            <h2 id="case-tension-title">
+              {isInternal
+                ? `What changes when you install ${study.name}.`
+                : `What changed for ${study.name}.`}
+            </h2>
+          </div>
+
+          <div className="macs-clarity__legend" aria-hidden="true">
+            <div className="macs-clarity__legend-col macs-clarity__legend-col--before">
+              <span className="macs-clarity__badge macs-clarity__badge--before">×</span>
+              <span>Before · What was broken</span>
+            </div>
+            <div className="macs-clarity__legend-spacer" />
+            <div className="macs-clarity__legend-col macs-clarity__legend-col--after">
+              <span className="macs-clarity__badge macs-clarity__badge--after">✓</span>
+              <span>After · What we delivered</span>
+            </div>
+          </div>
+
+          <div className="macs-clarity__list" role="list">
+            {study.beforeAfter.map((pair) => (
+              <StaggerItem className="macs-clarity__pair" key={pair.topic}>
+                <div className="macs-clarity__card macs-clarity__card--before" role="listitem">
+                  <div className="macs-clarity__meta">
+                    <span className="macs-clarity__topic">{pair.topic}</span>
+                    <span className="macs-clarity__state macs-clarity__state--before">
+                      <span aria-hidden="true">×</span> Before
+                    </span>
+                  </div>
+                  <p className="macs-clarity__text">{pair.before}</p>
+                </div>
+
+                <div className="macs-clarity__arrow" aria-hidden="true">
+                  <span className="macs-clarity__arrow-desktop">→</span>
+                  <span className="macs-clarity__arrow-mobile">↓</span>
+                </div>
+
+                <div className="macs-clarity__card macs-clarity__card--after">
+                  <div className="macs-clarity__meta">
+                    <span className="macs-clarity__topic">{pair.topic}</span>
+                    <span className="macs-clarity__state macs-clarity__state--after">
+                      <span aria-hidden="true">✓</span> Delivered
+                    </span>
+                  </div>
+                  <p className="macs-clarity__text">{pair.after}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </div>
+        </section>
+
+        <section className="macs-case-chapters" aria-label={`${study.name} editorial story`}>
+          {study.sections.map((section) => (
+            <article className="macs-case-chapter" key={section.title}>
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+            </article>
           ))}
-        </div>
+        </section>
+
+        <section className="macs-case-proof" aria-labelledby="case-proof-title">
+          <div>
+            <h2 id="case-proof-title">
+              {isInternal ? `Included with ${study.name}` : "Key deliverables"}
+            </h2>
+            <ul className="macs-case-proof__list">
+              {study.highlights.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="macs-case-proof__ownership">{study.ownershipNote}</p>
+          </div>
+          <div className="macs-case-proof__cta">
+            <RollingTextLink
+              href={`/apply?program=${study.lane.toLowerCase()}`}
+              label={
+                isInternal
+                  ? `Install ${study.name} for your business`
+                  : "Start a project like this"
+              }
+              className="macs-btn macs-btn--primary"
+            />
+          </div>
+        </section>
 
         {study.evidence?.length ? (
           <section className="editorial-case-study-evidence" aria-labelledby="case-evidence-title">
-            <p className="editorial-kicker">Evidence</p>
-            <h2 id="case-evidence-title">Straight from the live product.</h2>
+            <h2 id="case-evidence-title">Additional proof</h2>
             <div className="editorial-case-study-evidence__grid">
               {study.evidence.map((item) => (
                 <figure key={item.image}>
-                  <Image src={item.image} alt={item.caption} width={1600} height={1000} sizes="(max-width: 800px) 100vw, 88vw" />
+                  <Image src={item.image} alt={item.caption} width={1600} height={1000} />
                   <figcaption>{item.caption}</figcaption>
                 </figure>
               ))}
@@ -130,12 +242,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </section>
         ) : null}
 
-        <div className="editorial-case-study-footer">
-          <Link className="editorial-link" href={isInternal ? "/built-here" : "/work"}>
-            {isInternal ? "Back to Built Here" : "See all work"} <span aria-hidden="true">↗</span>
+        <nav className="macs-case-next" aria-label="Next case study">
+          <Link className="macs-underline-cta macs-underline-cta--dark" href="/work">
+            <span>Back to all work</span>
+            <span aria-hidden="true">↗</span>
           </Link>
-          <Link className="editorial-link" href="/apply">Tell us what&apos;s important <span aria-hidden="true">↗</span></Link>
-        </div>
+          <Link className="macs-case-next__link" href={`/work/${nextStudy.slug}`}>
+            <span className="macs-case-next__label">Next showcase</span>
+            <strong className="macs-case-next__name">
+              {nextStudy.name} <span aria-hidden="true">→</span>
+            </strong>
+          </Link>
+        </nav>
       </div>
     </div>
   );

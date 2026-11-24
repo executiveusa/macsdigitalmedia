@@ -757,8 +757,230 @@ section[id],
   gap: 1.25rem;
 }
 
-/* 10. Mobile Breakpoints (390x844 Gauntlet) */
+/* 10. COLLINS-Level Public Proof-of-Work Pages (/work/[slug]) */
+.macs-case-page {
+  --macs-problem-bg: #fdf3f2;
+  --macs-problem-border: #c43b2b;
+  --macs-problem-ink: #991b1b;
+  --macs-solution-bg: #f1f8f4;
+  --macs-solution-border: #157347;
+  --macs-solution-ink: #0f5132;
+}
+
+.macs-case-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.65fr);
+  gap: 2.5rem 4rem;
+  align-items: end;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(23, 21, 18, 0.12);
+}
+
+.macs-case-hero__category {
+  margin: 0 0 0.75rem;
+  font: 650 0.84rem/1.3 var(--editorial-sans);
+  color: var(--macs-blue);
+  letter-spacing: 0.02em;
+}
+
+.macs-case-hero h1 {
+  margin: 0;
+  font: 400 clamp(3rem, 6.2vw, 5.6rem)/1.02 var(--editorial-serif);
+  letter-spacing: -0.04em;
+  color: var(--macs-ink);
+}
+
+.macs-case-hero__headline {
+  margin: 1.15rem 0 0;
+  max-width: 38rem;
+  font: 500 clamp(1.25rem, 2vw, 1.65rem)/1.35 var(--editorial-sans);
+  letter-spacing: -0.02em;
+  color: var(--macs-ink);
+}
+
+.macs-case-hero__summary {
+  margin: 0.9rem 0 0;
+  max-width: 42rem;
+  font: 400 1.03rem/1.65 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.78);
+}
+
+.macs-case-hero__credit {
+  margin: 0.75rem 0 0;
+  font: 600 0.88rem/1.4 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.62);
+}
+
+.macs-case-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  margin-top: 1.65rem;
+}
+
+.macs-case-meta {
+  margin: 0;
+  padding: 1.35rem 1.5rem;
+  border-radius: 12px;
+  background: var(--macs-paper);
+  border: 1px solid rgba(23, 21, 18, 0.1);
+  display: grid;
+  gap: 0.95rem;
+}
+
+.macs-case-meta dt {
+  font: 650 0.74rem/1.2 var(--editorial-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(23, 21, 18, 0.54);
+}
+
+.macs-case-meta dd {
+  margin: 0.2rem 0 0;
+  font: 600 0.96rem/1.4 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.macs-case-stage {
+  margin: clamp(2.25rem, 4.5vw, 3.75rem) 0 0;
+}
+
+.macs-case-stage__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9.5;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #171512;
+  border: 1px solid rgba(23, 21, 18, 0.12);
+}
+
+.macs-case-stage__img {
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
+.macs-case-stage__img--contain {
+  object-fit: contain;
+  padding: clamp(0.75rem, 2vw, 1.75rem);
+}
+
+.macs-case-tension {
+  padding-block: clamp(3.5rem, 6vw, 5.25rem);
+  border-bottom: 1px solid rgba(23, 21, 18, 0.12);
+}
+
+.macs-case-tension__head h2 {
+  margin: 0 0 1.75rem;
+  font: 400 clamp(2rem, 3.6vw, 3.1rem)/1.08 var(--editorial-serif);
+  letter-spacing: -0.03em;
+}
+
+.macs-case-chapters {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+}
+
+.macs-case-chapter {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  gap: 1.25rem 3rem;
+  padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
+  border-bottom: 1px solid rgba(23, 21, 18, 0.12);
+  align-items: start;
+}
+
+.macs-case-chapter h2 {
+  margin: 0;
+  font: 400 clamp(1.65rem, 2.6vw, 2.3rem)/1.12 var(--editorial-serif);
+  letter-spacing: -0.025em;
+  color: var(--macs-ink);
+}
+
+.macs-case-chapter p {
+  margin: 0;
+  max-width: 44rem;
+  font: 400 1.05rem/1.7 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.84);
+}
+
+.macs-case-proof {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  border-radius: 14px;
+  background: var(--macs-ink);
+  color: var(--macs-paper);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem 3rem;
+}
+
+.macs-case-proof h2 {
+  margin: 0 0 0.9rem;
+  font: 400 clamp(1.65rem, 2.6vw, 2.25rem)/1.12 var(--editorial-serif);
+}
+
+.macs-case-proof__list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+  font: 400 0.98rem/1.55 var(--editorial-sans);
+  color: rgba(246, 246, 233, 0.9);
+}
+
+.macs-case-proof__ownership {
+  margin: 1rem 0 0;
+  max-width: 40rem;
+  font: 500 0.9rem/1.5 var(--editorial-sans);
+  color: rgba(246, 246, 233, 0.7);
+}
+
+.macs-case-next {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: 2rem;
+  border-top: 1px solid rgba(23, 21, 18, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.macs-case-next__link {
+  display: grid;
+  gap: 0.2rem;
+  text-align: right;
+  text-decoration: none;
+  color: var(--macs-ink);
+}
+
+.macs-case-next__label {
+  font: 600 0.78rem/1.2 var(--editorial-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(23, 21, 18, 0.56);
+}
+
+.macs-case-next__name {
+  font: 400 clamp(1.5rem, 2.5vw, 2.1rem)/1.1 var(--editorial-serif);
+  color: var(--macs-ink);
+}
+
+/* 11. Mobile Breakpoints (390x844 Gauntlet) */
 @media (max-width: 900px) {
+  .macs-case-hero,
+  .macs-case-chapter {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .macs-case-next__link {
+    text-align: left;
+  }
   .editorial-page,
   .application-page,
   .application-page--intake,
