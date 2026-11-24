@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroCopyMotion, HeroParallax } from "@/components/motion";
+import {
+  FaqAccordion,
+  HeroCopyMotion,
+  HeroParallax,
+  RollingTextLink,
+} from "@/components/motion";
 import { editorialHome } from "@/lib/editorial-home";
 import { getServerLocale } from "@/lib/server-preferences";
 
@@ -17,8 +22,9 @@ const organizationSchema = {
   name: "MACS Digital Media",
   url: "https://www.macsdigitalmedia.com",
   logo: "https://www.macsdigitalmedia.com/logo.png",
+  email: "info@macsdigitalmedia.com",
   description:
-    "A Pacific Northwest father-and-son digital partner for non-technical founders.",
+    "A Pacific Northwest father-and-son digital partner building AI-ready websites, Google and Meta ads, and automated lead capture for owner-led businesses.",
   areaServed: { "@type": "State", name: "Washington" },
 };
 
@@ -41,7 +47,7 @@ export default async function HomePage() {
             <Image
               className="editorial-hero__image"
               src={HERO_IMAGE}
-              alt="Stacy and Stavarai of MACS Digital Media together by the waterfront"
+              alt="Stacy and Stavarai of MACS Digital Media together in the Pacific Northwest"
               fill
               priority
               sizes="(max-width: 760px) 110vw, 62vw"
@@ -52,126 +58,173 @@ export default async function HomePage() {
         <div className="editorial-hero__panel">
           <HeroCopyMotion>
             <div className="editorial-hero__content">
-              <p className="editorial-kicker">MACS Digital Media</p>
               <h1 id="editorial-hero-title">{home.heroTitle}</h1>
-              {home.heroLine ? <p className="editorial-hero__line">{home.heroLine}</p> : null}
-              <Link className="editorial-link editorial-link--light" href="/apply">
-                {home.primaryCta} <span aria-hidden="true">↗</span>
-              </Link>
+              <p className="editorial-hero__line">{home.heroLine}</p>
+              <div className="macs-hero-actions">
+                <RollingTextLink
+                  href="/apply"
+                  label={home.primaryCta}
+                  className="macs-btn macs-btn--primary"
+                />
+                <Link className="macs-underline-cta" href="#programs">
+                  <span>{home.secondaryCta}</span>
+                  <span aria-hidden="true">↓</span>
+                </Link>
+              </div>
+              <p className="macs-hero-trust">{home.heroTrust}</p>
             </div>
           </HeroCopyMotion>
         </div>
       </section>
 
       <section className="editorial-credibility" aria-label={home.credibility}>
-        <div className="editorial-shell"><p>{home.credibility}</p></div>
+        <div className="editorial-shell">
+          <p>{home.credibility}</p>
+        </div>
       </section>
-        <section className="editorial-section editorial-programs" aria-labelledby="programs-title">
-          <div className="editorial-shell">
-            <div className="editorial-heading editorial-heading--programs">
-              <h2 id="programs-title">{home.programsTitle}</h2>
-            </div>
-            <div className="editorial-rows">
-              {home.programs.map((program) => (
-                <Link className="editorial-row" href={program.href} key={program.name}>
-                  <span className="editorial-row__name">{program.name}</span>
-                  <span className="editorial-row__line">{program.line}</span>
-                  <span className="editorial-row__arrow" aria-hidden="true">↗</span>
-                </Link>
-              ))}
-            </div>
+
+      <section className="macs-clarity" aria-labelledby="clarity-title">
+        <div className="editorial-shell">
+          <div className="macs-clarity__head">
+            <h2 id="clarity-title">{home.clarityTitle}</h2>
+            <p>{home.claritySubtitle}</p>
           </div>
-        </section>
-        <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
-          <div className="editorial-shell editorial-partnership-bridge__inner">
-            <div>
-              <h2 id="partnership-bridge-title">{home.partnershipBridgeTitle}</h2>
-              <p>{home.partnershipBridgeLine}</p>
-            </div>
+          <div className="macs-clarity__grid">
+            {home.clarityPairs.map((pair) => (
+              <div className="macs-clarity__row" key={pair.before}>
+                <div className="macs-clarity__before">{pair.before}</div>
+                <div className="macs-clarity__after">{pair.after}</div>
+              </div>
+            ))}
           </div>
-        </section>
-        <section className="editorial-section editorial-work" aria-labelledby="work-title">
-          <div className="editorial-shell">
-            <div className="editorial-heading editorial-heading--split">
-              <p className="editorial-kicker">{home.workLabel}</p>
-              <h2 id="work-title">{home.workTitle}</h2>
-            </div>
-            <Link className="editorial-work__feature" href="/work/asc3nd" aria-label={`${home.asc3ndTitle}: ${home.asc3ndLine}`}>
-              <span
-                className="editorial-work__media"
-                aria-hidden="true"
-                style={{ backgroundImage: "url(/work/asc3nd-hero.webp)" }}
-              />
-              <span className="editorial-work__caption">
-                <strong>{home.asc3ndTitle}</strong>
-                <span>{home.asc3ndLine}</span>
-                <span aria-hidden="true">↗</span>
-              </span>
-            </Link>
-            <Link className="editorial-work__feature" href="/work#reel" aria-label={`${home.reelTitle}: ${home.reelLine}`}>
-              <span
-                className="editorial-work__media"
-                aria-hidden="true"
-                style={{ backgroundImage: "url(/media/macs-commercial-poster.webp)" }}
-              />
-              <span className="editorial-work__caption">
-                <strong>{home.reelTitle}</strong>
-                <span>{home.reelLine}</span>
-                <span aria-hidden="true">↗</span>
-              </span>
-            </Link>
-            <Link className="editorial-link" href="/work">
-              {home.workCta} <span aria-hidden="true">↗</span>
-            </Link>
+        </div>
+      </section>
+
+      <section className="editorial-section editorial-programs" id="programs" aria-labelledby="programs-title">
+        <div className="editorial-shell">
+          <div className="editorial-heading editorial-heading--programs">
+            <h2 id="programs-title">{home.programsTitle}</h2>
           </div>
-        </section>
-        <section className="editorial-section editorial-story" aria-labelledby="story-title">
-          <div className="editorial-shell editorial-story__grid">
-            <div className="editorial-story__media">
-              <Image
-                src="/media/founders/stacy-stavarai-portrait.webp"
-                alt="Stacy and Stavarai, the father-and-son team behind MACS Digital Media"
-                fill
-                sizes="(max-width: 800px) 100vw, 54vw"
-              />
-            </div>
-            <div className="editorial-story__copy">
-              <p className="editorial-kicker">{home.storyLabel}</p>
-              <h2 id="story-title">{home.storyTitle}</h2>
-              <p>{home.storyLine}</p>
-              <Link className="editorial-link" href="/story">
-                {home.storyCta} <span aria-hidden="true">↗</span>
+          <div className="editorial-rows">
+            {home.programs.map((program) => (
+              <Link className="editorial-row" href={program.href} key={program.name}>
+                <span className="editorial-row__name">{program.name}</span>
+                <span className="editorial-row__line">{program.line}</span>
+                <span className="editorial-row__arrow" aria-hidden="true">↗</span>
               </Link>
-            </div>
+            ))}
           </div>
-        </section>
-        <section className="editorial-section editorial-built" aria-labelledby="built-title">
-          <div className="editorial-shell">
-            <div className="editorial-heading editorial-heading--wide">
-              <h2 id="built-title">{home.builtTitle}</h2>
-            </div>
-            <div className="editorial-built__grid">
-              {home.builtItems.map((item) => (
-                <Link className="editorial-built__item" href={item.href} key={item.name}>
-                  <strong>{item.name}</strong>
-                  <span>{item.line}</span>
-                  <span className="editorial-built__arrow" aria-hidden="true">↗</span>
-                </Link>
-              ))}
-            </div>
-            <Link className="editorial-link" href="/built-here">
-              {home.builtCta} <span aria-hidden="true">↗</span>
+        </div>
+      </section>
+
+      <section className="editorial-partnership-bridge" aria-labelledby="partnership-bridge-title">
+        <div className="editorial-shell editorial-partnership-bridge__inner">
+          <div>
+            <h2 id="partnership-bridge-title">{home.partnershipBridgeTitle}</h2>
+            <p>{home.partnershipBridgeLine}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="editorial-section editorial-work" aria-labelledby="work-title">
+        <div className="editorial-shell">
+          <div className="editorial-heading editorial-heading--split">
+            <h2 id="work-title">{home.workTitle}</h2>
+          </div>
+          <Link className="editorial-work__feature" href="/work/asc3nd" aria-label={`${home.asc3ndTitle}: ${home.asc3ndLine}`}>
+            <span
+              className="editorial-work__media"
+              aria-hidden="true"
+              style={{ backgroundImage: "url(/work/asc3nd-hero.webp)" }}
+            />
+            <span className="editorial-work__caption">
+              <strong>{home.asc3ndTitle}</strong>
+              <span>{home.asc3ndLine}</span>
+              <span aria-hidden="true">↗</span>
+            </span>
+          </Link>
+          <Link className="editorial-work__feature" href="/work#reel" aria-label={`${home.reelTitle}: ${home.reelLine}`}>
+            <span
+              className="editorial-work__media"
+              aria-hidden="true"
+              style={{ backgroundImage: "url(/media/macs-commercial-poster.webp)" }}
+            />
+            <span className="editorial-work__caption">
+              <strong>{home.reelTitle}</strong>
+              <span>{home.reelLine}</span>
+              <span aria-hidden="true">↗</span>
+            </span>
+          </Link>
+          <Link className="macs-underline-cta macs-underline-cta--dark" href="/work">
+            <span>{home.workCta}</span>
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </section>
+
+      <section className="editorial-section editorial-story" aria-labelledby="story-title">
+        <div className="editorial-shell editorial-story__grid">
+          <div className="editorial-story__media">
+            <Image
+              src="/media/founders/stacy-stavarai-portrait.webp"
+              alt="Stacy and Stavarai, the father-and-son team behind MACS Digital Media"
+              fill
+              sizes="(max-width: 800px) 100vw, 54vw"
+            />
+          </div>
+          <div className="editorial-story__copy">
+            <h2 id="story-title">{home.storyTitle}</h2>
+            <p>{home.storyLine}</p>
+            <Link className="macs-underline-cta macs-underline-cta--dark" href="/story">
+              <span>{home.storyCta}</span>
+              <span aria-hidden="true">↗</span>
             </Link>
           </div>
-        </section>
-        <section className="editorial-fit" aria-labelledby="fit-title">
-          <div className="editorial-shell editorial-fit__inner">
-            <h2 id="fit-title">{home.fitTitle}</h2>
-            <Link className="editorial-link editorial-link--light" href="/apply">
-              {home.fitCta} <span aria-hidden="true">↗</span>
-            </Link>
+        </div>
+      </section>
+
+      <section className="editorial-section editorial-built" aria-labelledby="built-title">
+        <div className="editorial-shell">
+          <div className="editorial-heading editorial-heading--wide">
+            <h2 id="built-title">{home.builtTitle}</h2>
           </div>
-        </section>
+          <div className="editorial-built__grid">
+            {home.builtItems.map((item) => (
+              <Link className="editorial-built__item" href={item.href} key={item.name}>
+                <strong>{item.name}</strong>
+                <span>{item.line}</span>
+                <span className="editorial-built__arrow" aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+          <Link className="macs-underline-cta" href="/built-here">
+            <span>{home.builtCta}</span>
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </section>
+
+      <section className="macs-faq-section" aria-labelledby="faq-title">
+        <div className="editorial-shell macs-faq-section__grid">
+          <div className="macs-faq-section__intro">
+            <h2 id="faq-title">{home.faqTitle}</h2>
+            <p>{home.faqSubtitle}</p>
+          </div>
+          <FaqAccordion items={home.faqs} />
+        </div>
+      </section>
+
+      <section className="editorial-fit" aria-labelledby="fit-title">
+        <div className="editorial-shell editorial-fit__inner">
+          <h2 id="fit-title">{home.fitTitle}</h2>
+          <p className="editorial-hero__line">{home.fitLine}</p>
+          <RollingTextLink
+            href="/apply"
+            label={home.fitCta}
+            className="macs-btn macs-btn--primary"
+          />
+        </div>
+      </section>
     </>
   );
 }

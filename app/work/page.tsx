@@ -126,15 +126,15 @@ export default async function WorkPage() {
           <div className={styles.indexHeading}>
             <h2 id="reel-title">
               {es
-                ? "Lo que hacemos - en 30 segundos."
-                : "What we make - in 30 seconds."}
+                ? "Lo que hacemos, en 30 segundos."
+                : "What we make, in 30 seconds."}
             </h2>
           </div>
           <video
             className={styles.reelVideo}
             controls
             playsInline
-            preload="none"
+            preload="metadata"
             poster="/media/macs-commercial-poster.webp"
             aria-label={
               es
