@@ -1,0 +1,680 @@
+/* MACS-MS04 Gauntlet & Taste Pass
+   Authoritative contrast, spacing, typography, and Motion.dev UI component layer.
+   Obeys HEART-AND-SOUL.md, krug-usability-gates.md, pauli-design-guardrails.md, and Cook anti-slop rules. */
+
+:root {
+  --header-clearance-desktop: clamp(6.75rem, 9vw, 8.75rem);
+  --header-clearance-mobile: 6.25rem;
+  --macs-ink: #171512;
+  --macs-paper: #f6f6e9;
+  --macs-coral: #e85d3f;
+  --macs-blue: #2f65a7;
+  --macs-radius-btn: 10px;
+}
+
+/* 1. Unbreakable Header Contrast & Consistent Brand Frame */
+.editorial-header__fit,
+.editorial-menu-button {
+  border-radius: var(--macs-radius-btn) !important;
+  background: var(--macs-ink) !important;
+  color: var(--macs-paper) !important;
+  border: 1px solid rgba(246, 246, 233, 0.24) !important;
+  box-shadow: 0 6px 18px rgba(23, 21, 18, 0.16);
+}
+
+.editorial-header__fit:hover,
+.editorial-menu-button:hover {
+  background: #27231e !important;
+  color: #ffffff !important;
+  border-color: rgba(246, 246, 233, 0.42) !important;
+}
+
+.editorial-header__fit:focus-visible,
+.editorial-menu-button:focus-visible {
+  outline: 3px solid var(--macs-coral);
+  outline-offset: 3px;
+}
+
+.editorial-brand {
+  border-radius: var(--macs-radius-btn) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(23, 21, 18, 0.12);
+  box-shadow: 0 4px 14px rgba(23, 21, 18, 0.08);
+  padding: 0.35rem;
+}
+
+/* 2. Unified Header Clearance & Scroll Margins Across All Routes */
+.editorial-page {
+  padding-top: var(--header-clearance-desktop) !important;
+}
+
+.editorial-page__intro {
+  grid-template-columns: 1fr !important;
+  gap: 1rem !important;
+  max-width: 54rem;
+}
+
+.editorial-page__intro h1 {
+  max-width: 18ch !important;
+}
+
+.application-page,
+.application-page--intake {
+  padding-top: var(--header-clearance-desktop) !important;
+  background: var(--macs-paper);
+  color: var(--macs-ink);
+}
+
+section[id],
+[id="programs"],
+[id="reset"],
+[id="momentum"],
+[id="scale"],
+[id="launch"],
+[id="reel"] {
+  scroll-margin-top: calc(var(--header-clearance-desktop) + 0.5rem);
+}
+
+/* Unify editorial serif display H1 on /book and /apply */
+.application-page h1,
+.intake-intro h1 {
+  font-family: var(--editorial-serif) !important;
+  font-weight: 400 !important;
+  font-size: clamp(2.85rem, 5.4vw, 5.2rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.04em !important;
+  color: var(--macs-ink);
+}
+
+/* 3. Hero Clarity, Primary Rolling CTA & Second Underline CTA */
+.editorial-hero__content {
+  padding-top: calc(var(--header-clearance-desktop) + 1.75rem) !important;
+  gap: 1.35rem !important;
+}
+
+.editorial-hero h1 {
+  line-height: 0.98 !important;
+  letter-spacing: -0.045em !important;
+  max-width: 11.5ch !important;
+}
+
+.editorial-hero__line {
+  color: rgba(246, 246, 233, 0.88);
+  max-width: 34rem !important;
+  margin: 0;
+  font-size: clamp(1.02rem, 1.25vw, 1.18rem) !important;
+  line-height: 1.62 !important;
+}
+
+.macs-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.15rem 1.75rem;
+  margin-top: 0.35rem;
+}
+
+.macs-hero-trust {
+  margin: 0.25rem 0 0;
+  font: 500 0.86rem/1.5 var(--editorial-sans);
+  color: rgba(246, 246, 233, 0.72);
+}
+
+/* Tactile Motion.dev RollingText Button */
+.macs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.1rem;
+  padding: 0.75rem 1.45rem;
+  border-radius: var(--macs-radius-btn);
+  font: 650 0.94rem/1.1 var(--editorial-sans);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 150ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 180ms ease;
+}
+
+.macs-btn--primary {
+  background: var(--macs-coral);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(232, 93, 63, 0.28);
+}
+
+.macs-btn--primary:hover {
+  background: #d84f32;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(232, 93, 63, 0.34);
+}
+
+.macs-btn--dark {
+  background: var(--macs-ink);
+  color: var(--macs-paper);
+}
+
+.macs-btn--dark:hover {
+  background: #2b2722;
+  transform: translateY(-1px);
+}
+
+.macs-btn:focus-visible {
+  outline: 3px solid var(--macs-coral);
+  outline-offset: 3px;
+}
+
+.macs-roll {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.macs-roll__layer {
+  display: block;
+  will-change: transform;
+}
+
+.macs-roll__layer--clone {
+  position: absolute;
+  inset: 0;
+}
+
+.macs-btn__arrow {
+  display: inline-block;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.macs-btn:hover .macs-btn__arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Second Underline CTA (Editorial Dual-Underline Hover) */
+.macs-underline-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding-block: 0.35rem;
+  font: 600 0.94rem/1.3 var(--editorial-sans);
+  color: var(--macs-paper);
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(246, 246, 233, 0.42);
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.macs-underline-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--macs-coral);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.macs-underline-cta:hover,
+.macs-underline-cta:focus-visible {
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.macs-underline-cta:hover::after,
+.macs-underline-cta:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.macs-underline-cta--dark {
+  color: var(--macs-ink);
+  border-bottom-color: rgba(23, 21, 18, 0.32);
+}
+
+.macs-underline-cta--dark:hover,
+.macs-underline-cta--dark:focus-visible {
+  color: var(--macs-ink);
+}
+
+/* 4. Conversion Factory Clarity Band (Problem -> Outcome) */
+.macs-clarity {
+  padding-block: clamp(4rem, 7vw, 6.5rem);
+  background: #ffffff;
+  color: var(--macs-ink);
+  border-top: 1px solid rgba(23, 21, 18, 0.1);
+  border-bottom: 1px solid rgba(23, 21, 18, 0.1);
+}
+
+.macs-clarity__head {
+  max-width: 44rem;
+  margin-bottom: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+.macs-clarity__head h2 {
+  margin: 0;
+  font: 400 clamp(2.2rem, 4.2vw, 3.6rem)/1.06 var(--editorial-serif);
+  letter-spacing: -0.035em;
+}
+
+.macs-clarity__head p {
+  margin: 0.85rem 0 0;
+  font: 400 1.05rem/1.6 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.76);
+}
+
+.macs-clarity__grid {
+  display: grid;
+  border-top: 1px solid rgba(23, 21, 18, 0.14);
+}
+
+.macs-clarity__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 1.5rem 2.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid rgba(23, 21, 18, 0.12);
+  align-items: start;
+}
+
+.macs-clarity__before {
+  font: 500 1rem/1.5 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.62);
+}
+
+.macs-clarity__after {
+  font: 600 1.04rem/1.55 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+/* 5. Enriched Programs Rows & Segmented Toggle */
+.macs-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 12px;
+  background: rgba(23, 21, 18, 0.06);
+  border: 1px solid rgba(23, 21, 18, 0.1);
+  margin-bottom: 2.5rem;
+}
+
+.macs-segmented__btn {
+  position: relative;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.05rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--macs-ink);
+  font: 600 0.88rem/1 var(--editorial-sans);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.macs-segmented__btn[aria-selected="true"] {
+  color: var(--macs-paper);
+}
+
+.macs-segmented__pill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 8px;
+  background: var(--macs-ink);
+}
+
+.macs-program-card {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.42fr) minmax(0, 1.25fr) minmax(14rem, 0.72fr);
+  gap: 1.75rem 2.5rem;
+  padding-block: clamp(2.25rem, 4vw, 3.25rem);
+  border-top: 1px solid rgba(23, 21, 18, 0.14);
+  align-items: start;
+}
+
+.macs-program-card__name {
+  margin: 0;
+  font: 600 0.9rem/1.2 var(--editorial-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--macs-blue);
+}
+
+.macs-program-card__title {
+  margin: 0 0 0.75rem;
+  font: 400 clamp(1.9rem, 3.2vw, 2.75rem)/1.08 var(--editorial-serif);
+  letter-spacing: -0.03em;
+}
+
+.macs-program-card__summary {
+  margin: 0 0 1rem;
+  font: 400 1.02rem/1.62 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.82);
+}
+
+.macs-program-card__list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.4rem;
+  font: 400 0.95rem/1.55 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.86);
+}
+
+.macs-program-card__meta {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(23, 21, 18, 0.1);
+}
+
+.macs-program-card__meta dt {
+  font: 650 0.78rem/1.2 var(--editorial-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(23, 21, 18, 0.58);
+}
+
+.macs-program-card__meta dd {
+  margin: 0.2rem 0 0;
+  font: 500 0.95rem/1.45 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.macs-proof-strip {
+  margin-top: 2.5rem;
+  padding: 1.65rem 1.85rem;
+  border-radius: 12px;
+  background: var(--macs-ink);
+  color: var(--macs-paper);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.macs-proof-strip h3 {
+  margin: 0 0 0.35rem;
+  font: 400 clamp(1.45rem, 2.4vw, 2rem)/1.15 var(--editorial-serif);
+}
+
+.macs-proof-strip p {
+  margin: 0;
+  max-width: 42rem;
+  font: 400 0.96rem/1.55 var(--editorial-sans);
+  color: rgba(246, 246, 233, 0.82);
+}
+
+/* 6. Motion.dev FAQ Accordion */
+.macs-faq-section {
+  padding-block: clamp(4rem, 7vw, 6.25rem);
+  background: var(--macs-paper);
+  color: var(--macs-ink);
+}
+
+.macs-faq-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 2rem 4rem;
+  align-items: start;
+}
+
+.macs-faq-section__intro h2 {
+  margin: 0;
+  font: 400 clamp(2.1rem, 3.8vw, 3.25rem)/1.06 var(--editorial-serif);
+  letter-spacing: -0.035em;
+}
+
+.macs-faq-section__intro p {
+  margin: 0.85rem 0 0;
+  font: 400 1rem/1.6 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.76);
+}
+
+.macs-faq {
+  border-top: 1px solid rgba(23, 21, 18, 0.16);
+}
+
+.macs-faq__item {
+  border-bottom: 1px solid rgba(23, 21, 18, 0.14);
+}
+
+.macs-faq__trigger {
+  width: 100%;
+  min-height: 3.75rem;
+  padding: 1.2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: var(--macs-ink);
+  font: 600 1.05rem/1.4 var(--editorial-sans);
+  cursor: pointer;
+}
+
+.macs-faq__trigger:focus-visible {
+  outline: 3px solid var(--macs-coral);
+  outline-offset: 2px;
+}
+
+.macs-faq__icon {
+  position: relative;
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
+.macs-faq__bar {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: var(--macs-ink);
+  border-radius: 2px;
+}
+
+.macs-faq__bar--h {
+  width: 100%;
+  height: 2px;
+}
+
+.macs-faq__bar--v {
+  width: 2px;
+  height: 100%;
+}
+
+.macs-faq__panel {
+  overflow: hidden;
+}
+
+.macs-faq__answer {
+  margin: 0 0 1.35rem;
+  max-width: 44rem;
+  font: 400 0.98rem/1.65 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.8);
+}
+
+/* 7. Work Contrast Scrims, Video Poster Cleanliness & Founder Framing */
+.editorial-story__media img {
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+.editorial-work__feature {
+  position: relative;
+  overflow: hidden;
+}
+
+.editorial-work__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(23, 21, 18, 0.04) 35%, rgba(23, 21, 18, 0.72) 100%);
+  pointer-events: none;
+}
+
+/* 8. /apply & /book "What happens next" Reassurance Strip */
+.macs-next-steps {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 12px;
+  background: rgba(23, 21, 18, 0.045);
+  border: 1px solid rgba(23, 21, 18, 0.1);
+}
+
+.macs-next-steps h2 {
+  margin: 0 0 0.65rem;
+  font: 650 0.92rem/1.3 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.macs-next-steps ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+  font: 400 0.94rem/1.5 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.82);
+}
+
+.macs-book-card {
+  max-width: 44rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.macs-book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 0.25rem;
+}
+
+/* 9. /team Clean Above-the-Fold Grid (No Giant Logo Wall) */
+.macs-team-page {
+  padding-top: var(--header-clearance-desktop);
+  padding-bottom: clamp(4.5rem, 8vw, 7rem);
+  background: var(--macs-paper);
+  color: var(--macs-ink);
+}
+
+.macs-team-intro {
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.macs-team-intro h1 {
+  margin: 0;
+  font: 400 clamp(3rem, 6vw, 5.4rem)/1.04 var(--editorial-serif);
+  letter-spacing: -0.04em;
+}
+
+.macs-team-intro p {
+  margin: 1rem 0 0;
+  font: 400 1.08rem/1.6 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.78);
+}
+
+.macs-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  gap: 1.75rem;
+}
+
+.macs-team-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(23, 21, 18, 0.1);
+}
+
+.macs-team-card__photo {
+  aspect-ratio: 4 / 4.4;
+  background-color: #23201c;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.macs-team-card__body {
+  padding: 1.25rem 1.35rem 1.5rem;
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.macs-team-card__body h2 {
+  margin: 0;
+  font: 400 1.65rem/1.15 var(--editorial-serif);
+}
+
+.macs-team-card__role {
+  margin: 0;
+  font: 600 0.88rem/1.4 var(--editorial-sans);
+  color: var(--macs-blue);
+}
+
+.macs-team-card__focus {
+  margin: 0.35rem 0 0;
+  font: 400 0.94rem/1.55 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.78);
+}
+
+.macs-team-cta {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: 2rem;
+  border-top: 1px solid rgba(23, 21, 18, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+/* 10. Mobile Breakpoints (390x844 Gauntlet) */
+@media (max-width: 900px) {
+  .editorial-page,
+  .application-page,
+  .application-page--intake,
+  .macs-team-page {
+    padding-top: var(--header-clearance-mobile) !important;
+  }
+
+  .editorial-hero__content {
+    padding-top: calc(var(--header-clearance-mobile) + 1.5rem) !important;
+  }
+
+  .macs-clarity__row,
+  .macs-program-card,
+  .macs-faq-section__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .editorial-page__intro {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+
+  .macs-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .macs-btn {
+    width: 100%;
+  }
+}

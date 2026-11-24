@@ -23,10 +23,10 @@
 }
 
 .editorial-page__intro h1 {
-  max-width: 14ch;
+  max-width: 18ch;
   margin: 0;
-  font: 400 clamp(3.7rem, 8vw, 9rem)/0.88 var(--editorial-serif);
-  letter-spacing: -0.055em;
+  font: 400 clamp(3.1rem, 6.4vw, 6.4rem)/1.04 var(--editorial-serif);
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 

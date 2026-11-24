@@ -20,6 +20,7 @@ import "./editorial-pages.css";
 import "./partnership-proof.css";
 import "./editorial-v3.css";
 import "./mobile-gauntlet.css";
+import "./gauntlet-ms04.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const preferences = await getServerPreferences();
