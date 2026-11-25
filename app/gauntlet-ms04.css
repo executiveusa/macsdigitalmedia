@@ -970,8 +970,384 @@ section[id],
   color: var(--macs-ink);
 }
 
-/* 11. Mobile Breakpoints (390x844 Gauntlet) */
+/* 11. Foundry Interactive Operator Desktop Stage (Orgo-Clarity, MACS Brand) */
+.foundry-showcase {
+  display: grid;
+  gap: 2rem;
+}
+
+.foundry-desktop {
+  border-radius: 12px;
+  border: 1px solid rgba(23, 21, 18, 0.16);
+  background: #f3f2eb;
+  overflow: hidden;
+}
+
+.foundry-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.15rem;
+  background: #171512;
+  color: #f6f6e9;
+  font: 600 0.8rem/1.2 var(--editorial-sans);
+}
+
+.foundry-topbar__left,
+.foundry-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.foundry-topbar__mark {
+  color: var(--macs-coral);
+  font-size: 0.75rem;
+}
+
+.foundry-topbar__vm {
+  color: rgba(246, 246, 233, 0.62);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.76rem;
+}
+
+.foundry-topbar__gate {
+  padding: 0.22rem 0.55rem;
+  border-radius: 6px;
+  background: rgba(21, 115, 71, 0.28);
+  color: #86efac;
+  font-size: 0.74rem;
+}
+
+.foundry-topbar__preview-tag {
+  color: rgba(246, 246, 233, 0.58);
+  font-size: 0.74rem;
+}
+
+.foundry-canvas {
+  display: grid;
+  grid-template-columns: 6.25rem minmax(0, 1fr);
+  min-height: 23.5rem;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(23, 21, 18, 0.05), transparent 46%),
+    linear-gradient(180deg, #f4f3ec 0%, #eae8df 100%);
+}
+
+.foundry-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1rem 0.65rem;
+  border-right: 1px solid rgba(23, 21, 18, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.foundry-icon-btn {
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  padding: 0.65rem 0.35rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(23, 21, 18, 0.75);
+  font: 600 0.74rem/1.1 var(--editorial-sans);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.foundry-icon-btn__glyph {
+  font-size: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.foundry-icon-btn:hover {
+  background: rgba(23, 21, 18, 0.06);
+  color: var(--macs-ink);
+}
+
+.foundry-icon-btn.is-active {
+  background: #171512;
+  color: #f6f6e9;
+  border-color: #171512;
+}
+
+.foundry-window-area {
+  position: relative;
+  padding: clamp(1rem, 2.5vw, 1.85rem);
+  display: grid;
+  align-items: center;
+}
+
+.foundry-window {
+  border-radius: 10px;
+  border: 1px solid rgba(23, 21, 18, 0.16);
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(23, 21, 18, 0.08);
+}
+
+.foundry-window--terminal {
+  background: #12110f;
+  color: #f6f6e9;
+}
+
+.foundry-window__chrome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.95rem;
+  border-bottom: 1px solid rgba(23, 21, 18, 0.1);
+  background: #faf9f5;
+}
+
+.foundry-window--terminal .foundry-window__chrome {
+  background: #1e1c18;
+  border-bottom-color: rgba(246, 246, 233, 0.12);
+}
+
+.foundry-window__dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.foundry-window__dots span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(23, 21, 18, 0.22);
+}
+
+.foundry-window--terminal .foundry-window__dots span {
+  background: rgba(246, 246, 233, 0.28);
+}
+
+.foundry-window__url {
+  font: 500 0.78rem/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: rgba(23, 21, 18, 0.65);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.foundry-window--terminal .foundry-window__url {
+  color: rgba(246, 246, 233, 0.72);
+}
+
+.foundry-human-tag {
+  padding: 0.22rem 0.55rem;
+  border-radius: 6px;
+  background: var(--macs-coral);
+  color: #ffffff;
+  font: 700 0.72rem/1.1 var(--editorial-sans);
+}
+
+.foundry-browser-body {
+  padding: 1.35rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.foundry-browser-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.foundry-browser-kicker {
+  margin: 0 0 0.25rem;
+  font: 650 0.74rem/1.2 var(--editorial-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--macs-blue);
+}
+
+.foundry-browser-head h3 {
+  margin: 0;
+  font: 600 1.15rem/1.3 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.foundry-status-pill {
+  padding: 0.28rem 0.6rem;
+  border-radius: 6px;
+  font: 650 0.76rem/1.1 var(--editorial-sans);
+}
+
+.foundry-status-pill--ok {
+  background: #f1f8f4;
+  color: #0f5132;
+  border: 1px solid rgba(21, 115, 71, 0.25);
+}
+
+.foundry-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.foundry-metric {
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  background: #f7f6f0;
+  border: 1px solid rgba(23, 21, 18, 0.08);
+  display: grid;
+  gap: 0.25rem;
+}
+
+.foundry-metric span {
+  font: 500 0.78rem/1.2 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.62);
+}
+
+.foundry-metric strong {
+  font: 700 1.15rem/1.2 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.foundry-browser-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(23, 21, 18, 0.1);
+  font: 400 0.86rem/1.4 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.72);
+}
+
+.foundry-inline-action {
+  border: 1px solid var(--macs-ink);
+  border-radius: 8px;
+  background: var(--macs-ink);
+  color: var(--macs-paper);
+  padding: 0.45rem 0.85rem;
+  font: 650 0.82rem/1.1 var(--editorial-sans);
+  cursor: pointer;
+}
+
+.foundry-terminal-body {
+  margin: 0;
+  padding: 1.25rem;
+  font: 400 0.84rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #e6e4db;
+  overflow-x: auto;
+}
+
+.foundry-approvals-body {
+  padding: 1rem 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.foundry-approval-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  background: #f8f7f2;
+  border: 1px solid rgba(23, 21, 18, 0.08);
+}
+
+.foundry-approval-row strong {
+  display: block;
+  font: 600 0.95rem/1.3 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.foundry-approval-row p {
+  margin: 0.2rem 0 0;
+  font: 400 0.84rem/1.4 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.68);
+}
+
+.foundry-approve-btn {
+  min-height: 2.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--macs-ink);
+  background: var(--macs-ink);
+  color: var(--macs-paper);
+  font: 650 0.82rem/1 var(--editorial-sans);
+  cursor: pointer;
+}
+
+.foundry-approve-btn.is-approved {
+  background: #157347;
+  border-color: #157347;
+  color: #ffffff;
+}
+
+.foundry-cursor-badge {
+  position: absolute;
+  right: 1.35rem;
+  bottom: 0.9rem;
+  padding: 0.24rem 0.6rem;
+  border-radius: 6px;
+  background: #171512;
+  color: #f6f6e9;
+  font: 700 0.72rem/1.1 var(--editorial-sans);
+  pointer-events: none;
+  box-shadow: 0 6px 16px rgba(23, 21, 18, 0.22);
+}
+
+.foundry-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(23, 21, 18, 0.14);
+  border-left: 1px solid rgba(23, 21, 18, 0.14);
+}
+
+.foundry-pillar {
+  padding: 1.4rem 1.5rem;
+  border-right: 1px solid rgba(23, 21, 18, 0.14);
+  border-bottom: 1px solid rgba(23, 21, 18, 0.14);
+  background: #ffffff;
+}
+
+.foundry-pillar h3 {
+  margin: 0 0 0.45rem;
+  font: 650 0.98rem/1.3 var(--editorial-sans);
+  color: var(--macs-ink);
+}
+
+.foundry-pillar p {
+  margin: 0;
+  font: 400 0.92rem/1.55 var(--editorial-sans);
+  color: rgba(23, 21, 18, 0.74);
+}
+
+/* 12. Mobile Breakpoints (390x844 Gauntlet) */
 @media (max-width: 900px) {
+  .foundry-canvas {
+    grid-template-columns: 1fr;
+  }
+
+  .foundry-sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: 0;
+    border-bottom: 1px solid rgba(23, 21, 18, 0.1);
+  }
+
+  .foundry-metrics,
+  .foundry-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .foundry-cursor-badge {
+    display: none;
+  }
   .macs-case-hero,
   .macs-case-chapter {
     grid-template-columns: 1fr;

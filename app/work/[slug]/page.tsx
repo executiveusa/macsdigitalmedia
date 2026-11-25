@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { FoundryStage } from "@/components/foundry-stage";
 import { RollingTextLink, StaggerItem } from "@/components/motion";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
 
@@ -122,7 +123,11 @@ export default async function CaseStudyPage({
           </dl>
         </header>
 
-        {study.heroImage ? (
+        {study.slug === "foundry-fleet" ? (
+          <div className="macs-case-stage">
+            <FoundryStage />
+          </div>
+        ) : study.heroImage ? (
           <figure className="macs-case-stage">
             <div className="macs-case-stage__frame">
               <Image
