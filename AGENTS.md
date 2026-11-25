@@ -2,6 +2,10 @@
 
 ## Governing authority
 
+Start with `CONTEXT.md`. It is the local map into the one MAXX ICM architecture.
+
+All substantial work follows `01_orient -> 02_plan -> 03_work -> 04_verify -> 05_release -> 06_learn`.
+
 Before any meaningful work, read `docs/icm/HUMAN_MACHINE_CONTRACT.md` and `docs/icm/ICM_CORE.md`. They define the Human ↔ Machine Contract, ICM truth model, sovereignty rules, approval gates, proactivity requirement, and voice-first/disappearing-interface north star. Repository execution conventions must not weaken those controls.
 
 Before every meaningful user-facing edit, also read `HEART-AND-SOUL.md`. Treat it as the mandatory MACS design/editing constitution and pre-edit skill gate. Apply the relevant disciplines before changing copy, UX, UI, mobile behavior, landing-page structure, portfolio presentation, motion, forms, or conversion paths.

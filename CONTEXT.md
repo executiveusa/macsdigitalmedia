@@ -1,12 +1,26 @@
 # MACS Digital Media — Project Context
 
+## One architecture
+
+MACS uses the same ICM grammar as the rest of MAXX:
+
+`01_orient -> 02_plan -> 03_work -> 04_verify -> 05_release -> 06_learn`
+
+The canonical philosophy and operating contracts live in `executiveusa/maxx-migrations-agentic-systems/CONTEXT.md` and `icm/maxx-os/_shared/`.
+
+This website owns presentation, story, proof, intake, and public experience. It does not become another business brain.
+
+Visible experience rule:
+
+**Complexity underneath. Simplicity on top.**
+
 ## Product direction
 
 MACS Digital Media installs and manages client-owned AI operating systems. The public site is the storefront; `executiveusa/maxx-migrations-agentic-systems` is the canonical private ICM and agentic execution brain.
 
 MAXX is voice-first and aims to make the interface progressively disappear: the machine performs safe digital work and brings humans only truth, priority, judgment, relationship, authority, and acceptance decisions.
 
-Primary audience: nonprofit and social-purpose organization leaders with approximately 3–50 staff who are losing time to administrative work, scattered knowledge, missed follow-up, and disconnected software.
+Primary audience: founders and organization leaders who need the digital side of the business to become simpler, not another system they must learn.
 
 ## Governing product sentence
 
