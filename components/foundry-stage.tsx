@@ -3,7 +3,7 @@
 import { m, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
-type AppView = "browser" | "terminal" | "approvals";
+type AppView = "daily" | "activity" | "approvals";
 
 type QueueItem = {
   id: string;
@@ -15,54 +15,77 @@ type QueueItem = {
 const initialQueue: QueueItem[] = [
   {
     id: "ads",
-    label: "Pause 2 wasted search terms",
-    detail: "Matched stop-loss rule: $0 conversions after 40 clicks",
+    label: "Pause 2 ads wasting money",
+    detail: "Spent $64 this week with zero phone calls or form leads",
     status: "pending",
   },
   {
     id: "lead",
-    label: "Send 60-second lead reply draft",
-    detail: "New Seattle roof inspection inquiry from web form",
+    label: "Text back Maria about her quote",
+    detail: "Friendly reply drafted 42 seconds after she submitted your form",
     status: "pending",
   },
   {
-    id: "llms",
-    label: "Publish refreshed /llms.txt",
-    detail: "Synced updated service areas and verified contact email",
+    id: "recap",
+    label: "Send Friday leads recap email",
+    detail: "Plain-English summary of this week's calls, bookings, and ad spend",
     status: "approved",
+  },
+];
+
+const activityFeed = [
+  {
+    time: "8:02 AM",
+    status: "Done",
+    text: "Checked your Google and Meta ads. Spotted 2 search terms wasting budget and queued them for your review.",
+  },
+  {
+    time: "9:15 AM",
+    status: "Done",
+    text: "Saw a new quote request from Maria while you were on a job. Drafted a helpful reply in 42 seconds.",
+  },
+  {
+    time: "11:30 AM",
+    status: "Done",
+    text: "Updated your customer sheet with 3 new inquiries and checked that your website contact form works on mobile.",
+  },
+  {
+    time: "Now",
+    status: "Waiting",
+    text: "Paused before spending money or texting any customer. Open Your Approvals to give the thumbs-up.",
   },
 ];
 
 const pillars = [
   {
-    title: "Private Client VM",
-    body: "Runs on your own isolated machine, never a shared multi-tenant bot farm.",
+    title: "Its Own Private Computer",
+    body: "Your helper works on a separate computer just for your business, never mixed with other companies.",
   },
   {
-    title: "Real Browser Execution",
-    body: "Navigates dashboards, audits live sites, and fills forms like a trained operator.",
+    title: "Handles the Boring Click-Work",
+    body: "Checks ad accounts, replies to new leads, updates spreadsheets, and fills repetitive forms automatically.",
   },
   {
-    title: "Human Takeover Anytime",
-    body: "Watch the live screen and step in with one click whenever you want control.",
+    title: "Watch Live or Jump In",
+    body: "Look at the screen anytime and take over with one click, just like looking over a teammate's shoulder.",
   },
   {
-    title: "Hard Approval Gates",
-    body: "Spending money, sending outreach, or publishing changes always waits for your sign-off.",
+    title: "Asks Before Spending or Sending",
+    body: "Drafts the work and waits for your thumbs-up before spending a dollar or texting a customer.",
   },
   {
-    title: "Model-Agnostic",
-    body: "Connects to Gemini, Claude, OpenAI, or open models without single-vendor lock-in.",
+    title: "Always Uses the Best AI",
+    body: "Upgrades cleanly as AI gets smarter, so your business is never stuck on outdated software.",
   },
   {
-    title: "Installed & Owned by You",
-    body: "MACS configures every workflow around your SOPs and hands you full ownership.",
+    title: "Set Up Once. Yours to Keep.",
+    body: "MACS sets it up around how you already work, and you keep full ownership and control.",
   },
 ];
 
 export function FoundryStage() {
   const reduceMotion = useReducedMotion();
-  const [activeApp, setActiveApp] = useState<AppView>("browser");
+  const [activeApp, setActiveApp] = useState<AppView>("daily");
   const [queue, setQueue] = useState<QueueItem[]>(initialQueue);
 
   const toggleItem = (id: string) => {
@@ -77,40 +100,44 @@ export function FoundryStage() {
 
   return (
     <div className="foundry-showcase">
-      <div className="foundry-desktop" role="region" aria-label="Interactive Foundry operator desktop preview">
+      <div
+        className="foundry-desktop"
+        role="region"
+        aria-label="Interactive Foundry helper computer preview"
+      >
         <div className="foundry-topbar">
           <div className="foundry-topbar__left">
             <span className="foundry-topbar__mark" aria-hidden="true">■</span>
-            <span className="foundry-topbar__title">Foundry OS</span>
-            <span className="foundry-topbar__vm">client-vm-seattle-01</span>
+            <span className="foundry-topbar__title">Foundry</span>
+            <span className="foundry-topbar__vm">Your Private Work Computer</span>
           </div>
           <div className="foundry-topbar__right">
-            <span className="foundry-topbar__gate">Human Gate: Active</span>
+            <span className="foundry-topbar__gate">Asks Before Sending</span>
             <span className="foundry-topbar__preview-tag">Interactive Preview</span>
           </div>
         </div>
 
         <div className="foundry-canvas">
-          <div className="foundry-sidebar" role="tablist" aria-label="Foundry desktop applications">
+          <div className="foundry-sidebar" role="tablist" aria-label="Foundry helper views">
             <button
               type="button"
               role="tab"
-              aria-selected={activeApp === "browser"}
-              className={`foundry-icon-btn${activeApp === "browser" ? " is-active" : ""}`}
-              onClick={() => setActiveApp("browser")}
+              aria-selected={activeApp === "daily"}
+              className={`foundry-icon-btn${activeApp === "daily" ? " is-active" : ""}`}
+              onClick={() => setActiveApp("daily")}
             >
-              <span className="foundry-icon-btn__glyph" aria-hidden="true">🌐</span>
-              <span>Browser</span>
+              <span className="foundry-icon-btn__glyph" aria-hidden="true">☀️</span>
+              <span>Daily Check</span>
             </button>
             <button
               type="button"
               role="tab"
-              aria-selected={activeApp === "terminal"}
-              className={`foundry-icon-btn${activeApp === "terminal" ? " is-active" : ""}`}
-              onClick={() => setActiveApp("terminal")}
+              aria-selected={activeApp === "activity"}
+              className={`foundry-icon-btn${activeApp === "activity" ? " is-active" : ""}`}
+              onClick={() => setActiveApp("activity")}
             >
-              <span className="foundry-icon-btn__glyph" aria-hidden="true">&gt;_</span>
-              <span>Terminal</span>
+              <span className="foundry-icon-btn__glyph" aria-hidden="true">📋</span>
+              <span>Activity</span>
             </button>
             <button
               type="button"
@@ -125,7 +152,7 @@ export function FoundryStage() {
           </div>
 
           <div className="foundry-window-area">
-            {activeApp === "browser" ? (
+            {activeApp === "daily" ? (
               <div className="foundry-window">
                 <div className="foundry-window__chrome">
                   <div className="foundry-window__dots" aria-hidden="true">
@@ -133,70 +160,74 @@ export function FoundryStage() {
                     <span />
                     <span />
                   </div>
-                  <div className="foundry-window__url">https://client-dashboard.local/ads-health</div>
+                  <div className="foundry-window__url">Morning Business Check · Ads & Leads</div>
                   <span className="foundry-human-tag">
-                    <span aria-hidden="true">↖</span> Human Takeover Ready
+                    <span aria-hidden="true">↖</span> You Stay in Charge
                   </span>
                 </div>
                 <div className="foundry-browser-body">
                   <div className="foundry-browser-head">
                     <div>
-                      <p className="foundry-browser-kicker">Autonomous Daily Check</p>
-                      <h3>Seattle Service Campaign · Live Guardrail Audit</h3>
+                      <p className="foundry-browser-kicker">What Your Helper Checked Today</p>
+                      <h3>Ad Spend, Website Forms &amp; New Customer Leads</h3>
                     </div>
-                    <span className="foundry-status-pill foundry-status-pill--ok">Isolated VM · Clean</span>
+                    <span className="foundry-status-pill foundry-status-pill--ok">
+                      All Healthy · Waiting on You
+                    </span>
                   </div>
                   <div className="foundry-metrics">
                     <div className="foundry-metric">
-                      <span>Lead Response</span>
-                      <strong>&lt; 60 sec</strong>
+                      <span>Lead Reply Speed</span>
+                      <strong>Under 60 sec</strong>
                     </div>
                     <div className="foundry-metric">
-                      <span>Wasted Terms Flagged</span>
-                      <strong>2 queued</strong>
+                      <span>Wasted Ads Caught</span>
+                      <strong>2 ready to pause</strong>
                     </div>
                     <div className="foundry-metric">
-                      <span>Unapproved Spend</span>
+                      <span>Spent Without Asking</span>
                       <strong>$0 (Locked)</strong>
                     </div>
                   </div>
                   <div className="foundry-browser-footer">
-                    <span>Operator paused at human approval gate. Click Approvals to review queued actions.</span>
+                    <span>
+                      Nothing changes until you say yes. Click Approvals to review what is waiting.
+                    </span>
                     <button
                       type="button"
                       className="foundry-inline-action"
                       onClick={() => setActiveApp("approvals")}
                     >
-                      Open Approval Queue →
+                      Review Approvals →
                     </button>
                   </div>
                 </div>
               </div>
             ) : null}
 
-            {activeApp === "terminal" ? (
-              <div className="foundry-window foundry-window--terminal">
+            {activeApp === "activity" ? (
+              <div className="foundry-window">
                 <div className="foundry-window__chrome">
                   <div className="foundry-window__dots" aria-hidden="true">
                     <span />
                     <span />
                     <span />
                   </div>
-                  <div className="foundry-window__url">foundry@client-vm-seattle-01:~</div>
-                  <span className="foundry-human-tag">Isolated Shell</span>
+                  <div className="foundry-window__url">Today&apos;s Work Log · Plain English</div>
+                  <span className="foundry-human-tag">No Tech Jargon</span>
                 </div>
-                <pre className="foundry-terminal-body">
-{`$ foundry status --workspace client-owned
-VM:       client-vm-seattle-01 (running · private network)
-Browser:  Chromium 134 headless + live takeover enabled
-Policy:   DRAFT_AND_QUEUE_ONLY (spend & outreach gated)
-
-$ foundry run daily-ads-audit --mode safe
-[ok] Checked 14 search terms against stop-loss rules
-[ok] Flagged 2 zero-conversion terms -> queued for human review
-[ok] Verified landing page load & mobile form submission
-[hold] Waiting for owner approval in Approvals tab...`}
-                </pre>
+                <div className="foundry-approvals-body">
+                  {activityFeed.map((item) => (
+                    <div className="foundry-approval-row" key={item.time}>
+                      <div>
+                        <strong>
+                          {item.time} · {item.status}
+                        </strong>
+                        <p>{item.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : null}
 
@@ -208,8 +239,8 @@ $ foundry run daily-ads-audit --mode safe
                     <span />
                     <span />
                   </div>
-                  <div className="foundry-window__url">foundry://approvals/queue</div>
-                  <span className="foundry-human-tag">Click to Toggle</span>
+                  <div className="foundry-window__url">Your Approvals · Click to Try</div>
+                  <span className="foundry-human-tag">One-Click Control</span>
                 </div>
                 <div className="foundry-approvals-body">
                   {queue.map((item) => (
@@ -239,13 +270,13 @@ $ foundry run daily-ads-audit --mode safe
                 reduceMotion ? { duration: 0 } : { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
               }
             >
-              ↖ Human
+              ↖ Owner
             </m.div>
           </div>
         </div>
       </div>
 
-      <div className="foundry-pillars" aria-label="Foundry core capabilities">
+      <div className="foundry-pillars" aria-label="What Foundry handles for your business">
         {pillars.map((pillar) => (
           <div className="foundry-pillar" key={pillar.title}>
             <h3>{pillar.title}</h3>
